@@ -112,95 +112,17 @@ Each test must produce:
 
 All test documentation must be retained as audit evidence.
 
-## Disaster Recovery Procedures
+## Disaster Recovery Phases
 
-### Phase 1: Notification and Activation
+This plan is structured around three phases: Notification/Activation, Recovery, and Reconstitution. Detailed execution procedures for each phase are defined in [DR-Procedures.md](./DR-Procedures.md). Platform-specific failover procedures are defined in the Disaster Recovery Process.
 
-This phase addresses initial detection, damage assessment, and plan activation.
-
-#### Notification Sequence
-
-1. The first responder detects the disruption and notifies the ____ (e.g., CTO / Head of Engineering). All known information must be relayed.
-2. The ____ contacts the recovery team and initiates assessment procedures.
-3. Recovery team members are directed to complete damage assessment to determine extent of damage and estimated recovery time.
-
-#### Damage Assessment
-
-The ____ leads the assessment to:
-
-- Determine whether the infrastructure is salvageable or requires full rebuild.
-- Estimate time to recovery under various scenarios.
-- Identify any immediate safety or security concerns.
-- Formulate an initial recovery approach.
-
-#### Activation Criteria
-
-The DRP is activated if one or more of the following criteria are met:
-
-- Critical systems will be unavailable for more than ____ hours.
-- A hosting facility or cloud region is damaged and will be unavailable for more than ____ hours.
-- A cybersecurity incident has caused widespread data destruction or system compromise.
-- Other criteria as defined by organizational leadership.
-
-#### Activation Actions
-
-Upon plan activation:
-
-1. The ____ notifies all recovery team members of activation and provides event details.
-2. Team leads notify their respective teams with applicable information and instructions.
-3. The ____ notifies external partners (hosting providers, cloud providers, critical vendors) that a contingency event has been declared.
-4. Executive leadership is notified of the event status.
-5. Customers and partners are notified as appropriate per the communications plan.
-6. All notifications must be documented with timestamps in the event log.
-
-### Phase 2: Recovery
-
-This phase covers the technical recovery of IT systems at the designated recovery site.
-
-#### Recovery Sequence
-
-The goal is to restore critical infrastructure to a production-ready state. Tasks may be executed in parallel where dependencies permit:
-
-1. **Communicate:** Notify affected customers, partners, and stakeholders of the service disruption.
-2. **Assess:** Complete damage assessment of the production environment.
-3. **Provision:** Initiate deployment of the recovery environment at the alternate site using automated infrastructure-as-code. The recovery environment may be provisioned in any supported cloud provider (AWS, Azure, GCP) or on-premises infrastructure based on availability and suitability.
-4. **Restore:** Restore data from the most recent verified backups to the recovery environment.
-5. **Validate:** Execute pre-defined validation tests to confirm systems are functional, integrated, and accessible.
-6. **Secure:** Verify that logging, monitoring, alerting, and security controls are operational in the recovery environment.
-7. **Patch:** Ensure all systems are appropriately patched and up to date.
-8. **Activate:** Deploy the recovery environment as the active production environment.
-9. **Route:** Update DNS and traffic routing to direct users to the recovery environment.
-
-#### Recovery Environment Requirements
-
-- The recovery environment must be logically isolated from the damaged production environment.
-- All security controls (encryption, access controls, logging, monitoring) must be maintained at the recovery site.
-- The recovery environment must be provisioned using the same infrastructure-as-code and configuration-as-code that define the production environment, ensuring consistency.
-
-### Phase 3: Reconstitution
-
-This phase covers the restoration of normal operations at the original or a new permanent site.
-
-#### Reconstitution Procedure
-
-1. Once the original site is restored or a new permanent site is established, provision the permanent environment using automated infrastructure-as-code.
-2. Replicate data from the recovery environment to the permanent environment.
-3. Execute validation tests against the permanent environment.
-4. Verify logging, monitoring, and security controls at the permanent site.
-5. Deploy the permanent environment as production.
-6. Update DNS to direct traffic to the permanent environment.
-7. Monitor the permanent environment for stability.
-
-The goal is to complete reconstitution with minimal or no additional service disruption. Transition should be seamless to end users where possible.
+- **Phase 1 — Notification and Activation:** Addresses initial detection, damage assessment, and plan activation. The DR Plan is activated when critical systems will be unavailable beyond their RTO, a hosting facility is damaged, a cybersecurity incident has caused widespread compromise, or as declared by executive leadership.
+- **Phase 2 — Recovery:** Covers technical recovery of IT systems at a designated recovery site, following a defined sequence of communication, assessment, provisioning, restoration, validation, security verification, patching, activation, and traffic routing.
+- **Phase 3 — Reconstitution:** Covers the restoration of normal operations at the original or a new permanent site, executed with minimal or no additional service disruption.
 
 ## Plan Deactivation
 
-When the permanent environment is operational and stable:
-
-1. The ____ declares the DRP deactivated.
-2. A formal post-incident review is conducted to capture lessons learned, update the DRP, and track remediation items.
-3. Hardware, storage, and infrastructure used at the recovery site are sanitized and disposed of according to organizational policy.
-4. All event logs, decisions, and actions are compiled into the incident record and retained.
+When the permanent environment is operational and stable, the DR Authority declares the DRP deactivated. A formal post-incident review is conducted to capture lessons learned. Recovery site resources are sanitized and decommissioned per organizational policy. All event logs, decisions, and actions are compiled into the incident record and retained.
 
 ## Roles and Responsibilities
 
@@ -230,4 +152,4 @@ Violation of this policy — including failure to participate in required testin
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to DR-Procedures.md. |

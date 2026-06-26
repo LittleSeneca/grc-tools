@@ -62,29 +62,13 @@ If the IRT Lead is unavailable to provide direction, command authority moves thr
 
 #### Incident Recognition
 
-Security events may be detected through:
+Security events may be detected through automated alerting from monitoring and security tools, manual discovery by personnel, or external notification. It is critical to differentiate between routine operational alerts and genuine security incidents. If any reviewing member of the IRT is unsure whether a notification constitutes an incident, assume it is an incident and proceed accordingly.
 
-- Automated alerting from monitoring and security tools (see Detection Mechanisms below).
-- Manual discovery by employees, contractors, or vendors.
-- External notification (customer reports, third-party disclosures, law enforcement).
-
-It is critical to differentiate between routine operational alerts and genuine security incidents. To prevent alert fatigue, alerting systems must be configured to balance sensitivity with specificity. As a rule, if any reviewing member of the IRT is unsure whether a notification constitutes an incident, assume it is an incident and proceed accordingly.
-
-Not all security events present through normal monitoring channels. Anomalous system behavior, broken functionality, unusual user activity, or unexpected changes to an environment may indicate compromise. Examples include:
-
-- An employee receiving an apparently authentic email from senior management requesting unauthorized access or financial transfers (business email compromise).
-- Unexpected outbound network connections to unknown IP addresses.
-- Unexplained configuration changes or account creations.
-
-Any such anomalies must be reported to the Security Officer for evaluation.
+Anomalous system behavior, broken functionality, unusual user activity, or unexpected changes to an environment may indicate compromise. Any such anomalies must be reported to the Security Officer for evaluation.
 
 #### Initial Assessment and Verification
 
-Upon receiving an alert or discovering an anomaly:
-
-1. **Alert Verification:** The first responder verifies the authenticity and severity of the alert. They flag the event as a potential incident and communicate the type of incident (e.g., DDoS, outage, malware, unauthorized access) and initial findings to the IRT as soon as possible.
-2. **Incident Confirmation:** The flagging member is responsible for assembling the full IRT through all available channels (messaging, SMS, phone) until the entire team is in communication.
-3. **Chain of Command Activation:** If the IRT Lead is unavailable, the succession plan activates automatically.
+Upon receiving an alert or discovering an anomaly, the first responder verifies the alert and communicates findings to the IRT. The IRT is assembled through all available channels. If the IRT Lead is unavailable, the succession plan activates automatically. Detailed mobilization procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ### Incident Types and Trigger Criteria
 
@@ -169,85 +153,34 @@ The tracking system must be configured with incident management workflows guidin
 
 ### Pre-Incident Responsibilities (Preparation)
 
-- **Training and Preparedness:** All IRT members must undergo regular, scenario-based training covering the latest threats and response techniques. Preparedness must be maintained through tabletop exercises, drills, and simulations to reinforce response protocols.
-- **Plan Review and Maintenance:** IRT contact lists, technology tools, response strategies, and this policy must be reviewed and updated at least quarterly to align with technological, operational, and threat landscape changes.
+- **Training and Preparedness:** All IRT members must undergo regular, scenario-based training. Preparedness must be maintained through tabletop exercises, drills, and simulations.
+- **Plan Review and Maintenance:** IRT contact lists, technology tools, response strategies, and this policy must be reviewed at least quarterly.
 - **Tool Readiness:** Incident response tools (forensic toolkits, communication channels, secure evidence storage) must be verified operational at least quarterly.
 
 ### During-Incident Responsibilities
 
-Within 24 hours of the incident being reported, the Security Officer shall conduct a preliminary investigation and risk assessment to review and confirm the details of the incident. If the incident is confirmed, the Security Officer must assess the impact and assign a severity level.
-
-**Incident Severity Ratings:**
-
-| Rating | Criteria | IRP Activation |
-|--------|----------|----------------|
-| **Critical (Highest)** | Potentially catastrophic to ____; disrupts day-to-day operations; violation of legal, regulatory, or contractual requirements likely; significant data breach. | Triggers full IRP |
-| **High** | Will cause harm to one or more business units; will cause delays to business unit activities; involves sensitive data exposure. | Triggers full IRP |
-| **Medium** | Clear violation of organizational security policy, but will not substantively impact the business. | IRP may be triggered at discretion |
-| **Low** | Debatably a violation of security policy; no business impact expected. | Does not trigger full IRP; logged and reviewed |
-
-**Steps for Identification, Containment, Eradication, and Recovery:**
-
-- **Identification:** Quickly determine the scope and impact of the incident using established detection tools and procedures. All findings must be documented in the incident ticket created during mobilization.
-- **Evidence Management:** Throughout the incident response process, the IRT must preserve all evidence associated with the incident, maintaining chain of custody for potential law enforcement involvement and legal proceedings.
-- **Containment:** Execute short-term containment strategies to limit the spread and impact of the incident. Tactics include:
-  - Isolating affected systems from the network.
-  - Disabling compromised user accounts.
-  - Blocking malicious IP addresses or network traffic.
-  - Suspending affected services if necessary.
-  - For severe incidents, the organization may engage the incident management team provided through cyber insurance.
-- **Eradication:** After containment, remove the root cause of the incident:
-  - Remove malware, backdoors, and attacker persistence mechanisms.
-  - Patch exploited vulnerabilities.
-  - Reconfigure affected systems to secure baselines.
-  - In severe cases, rebuild systems from trusted images.
-- **Recovery:** Restore affected systems and services to operational status:
-  - Restore data from clean backups.
-  - Validate system integrity before bringing systems back online.
-  - Restore services in stages, starting with mission-critical functions.
-  - Monitor recovered systems closely for signs of re-compromise.
-  - If standard recovery is insufficient, invoke the Disaster Recovery Plan.
+Within 24 hours of the incident being reported, the Security Officer shall conduct a preliminary investigation and risk assessment. If the incident is confirmed, the Security Officer must assess the impact and assign a severity level. The incident response lifecycle follows the NIST phases: Identification, Containment, Eradication, and Recovery. Detailed phase execution procedures are defined in the Security Incident Response Process and supplemented by [IR-Procedures.md](./IR-Procedures.md).
 
 ### Post-Incident Responsibilities and Lessons Learned
 
-In the event that the incident involves the breach of sensitive or personal data:
-
-- An assessment must be conducted to determine the extent of harm, embarrassment, inconvenience, or unfairness to affected parties.
-- All affected parties and appropriate organizations (e.g., regulators, law enforcement) must be notified within regulatory timeframes.
-- Every effort must be made to mitigate harm to affected parties.
+In the event that the incident involves the breach of sensitive or personal data, an assessment must be conducted to determine the extent of harm and all affected parties and appropriate organizations must be notified within regulatory timeframes. Every effort must be made to mitigate harm to affected parties.
 
 #### Post-Incident Activities
 
-- **Debriefings and Post-Mortem Analysis:** Immediately following an incident, organize debriefing sessions with all IRT members and any external teams involved. These sessions assess the incident handling process, capturing both successes and areas for improvement.
+- **Debriefings and Post-Mortem Analysis:** Following an incident, debriefing sessions must be organized with all IRT members and any external teams involved, assessing the incident handling process and capturing successes and areas for improvement.
 - **Documentation:** All aspects of the incident management process must be thoroughly documented, including timelines, actions taken, decision points, and the roles of all participants.
-- **Incident Report:** Prepare detailed incident reports for internal stakeholders and relevant external parties (e.g., regulatory bodies). Reports must outline the incident, response effectiveness, and steps taken to prevent recurrence.
-- **Prevention:** From insights gained during post-mortem analysis, identify process improvements or control changes. These changes must be tracked and reviewed as part of regular Security Oversight Committee meetings.
+- **Incident Report:** Detailed incident reports must be prepared for internal stakeholders and relevant external parties, outlining the incident, response effectiveness, and steps taken to prevent recurrence.
+- **Prevention:** From insights gained during post-mortem analysis, process improvements or control changes must be identified, tracked, and reviewed as part of regular Security Oversight Committee meetings.
 - **User Notification and Training:** The IRT Lead must notify all users of the incident, conduct additional training if necessary, and present lessons learned to prevent future occurrences.
 - **Disciplinary Action:** Where necessary, management must take disciplinary action if a user's activity is deemed malicious or grossly negligent.
 
 #### Lessons Learned Process
 
-- **Data Collection:** Gather detailed data from incident logs, team member feedback, system monitoring tools, and security alerts.
-- **Analysis Meeting:** Conduct structured meetings with the full IRT and supporting personnel to discuss findings and insights.
-- **Documenting Insights:** Summarize lessons learned in a formal document accessible to all relevant parties within the organization.
-
-Key areas evaluated include:
-
-- **Response Effectiveness:** Adequacy of detection speed, containment, and eradication. Note delays or bottlenecks.
-- **Resource Utilization:** Whether available resources (human, technology, information) were sufficient and effectively utilized.
-- **Communication:** Assessment of communication flow for issues hindering effective response and coordination.
-- **External Support:** Effectiveness of integration and cooperation between internal teams and external entities.
-- **Implementation of Changes:** Specific changes to incident response protocols or other relevant processes.
+A structured lessons learned process must be followed after each incident, including data collection, analysis meetings, and formal documentation. Key areas evaluated include response effectiveness, resource utilization, communication, external support, and implementation of changes. Detailed procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ### Root Cause Analysis (RCA)
 
-Root Cause Analysis is a systematic process used to identify the underlying causes of incidents to prevent future occurrences.
-
-- **Timing:** Initiate RCA soon after the incident is contained.
-- **Methodology:** Utilize structured techniques such as the "Five Whys" and "Fishbone (Ishikawa) Diagram" to drill down to the root cause.
-- **Documentation:** Clearly document the root cause and the analysis process. Include in the incident report.
-- **Action Items:** Develop corrective actions based on root cause findings. Actions must be specific, measurable, and assigned to accountable individuals.
-- **Review:** Root cause findings and corrective actions must be reviewed in follow-up meetings (e.g., Security Oversight Committee) to ensure implementation and effectiveness.
+Root Cause Analysis is a systematic process used to identify the underlying causes of incidents to prevent future occurrences. RCA must be initiated soon after the incident is contained, using structured techniques. Root cause findings and corrective actions must be documented and reviewed in follow-up meetings. Detailed RCA procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ## Review Cycle
 
@@ -268,6 +201,7 @@ Violation of this policy, including failure to report security incidents in a ti
 
 - Information Security Policy (ISP-001)
 - Security Incident Response Process
+- [IR-Procedures.md](./IR-Procedures.md)
 - Vulnerability Management Policy
 - Disaster Recovery Plan and Process
 - Business Continuity Plan
@@ -369,4 +303,4 @@ Violation of this policy, including failure to report security incidents in a ti
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to IR-Procedures.md. |

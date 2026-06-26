@@ -2,33 +2,43 @@
 
 ## What This Is
 
-The Logging and Monitoring Policy defines what to log, how to protect logs, how long to keep them, and how to monitor for security events. It's the foundation of your detection and investigation capabilities — without it, you're operating blind.
+The Logging and Monitoring Policy defines what must be logged, how logs must be protected, how long logs must be retained, and how monitoring must be conducted across the organization's entire technology estate. It is a foundational control — without comprehensive logging, you cannot detect incidents, investigate breaches, or prove control effectiveness to auditors. This policy is referenced by nearly every other security policy in the ISP.
 
 ## What It Covers
 
-- What events must be logged (authentication, authorization, data access, admin actions, network, security)
-- Log content requirements (timestamp, subject, object, action, result)
-- Log protection (access controls, immutability, forwarding)
-- Log retention (online and archive periods)
-- Clock synchronization (NTP/UTC)
-- Monitoring and alerting requirements
-- Security control failure response
+- Comprehensive list of activities that must be logged (access, data changes, network, admin actions, security events)
+- Required log elements (what, who, where, when, how, outcome)
+- Clock synchronization requirements (NTP, UTC)
+- Log integrity protection (FIM, centralized forwarding, append-only storage, access restrictions)
+- Separation of duties for log management (admins cannot delete their own logs)
+- Log retention minimums (90 days active recommended, 365 days for compliance)
+- Critical security control monitoring and failure response procedures
+- Alerting requirements for security events
 
 ## Gotchas People Get Wrong
 
-**1. Logging everything is expensive and useless.** The policy says "log all access to sensitive data" but your application generates 50 million data access events per day. At that volume, storage costs explode and nobody reviews the logs anyway. Be selective: log access to PII, access by privileged users, and anomalous patterns — not every row returned by a paginated API.
+**1. Logging everything but never reviewing.** Enabling verbose logging on all systems and then never looking at the logs provides zero security value and wastes storage. The policy must require both logging AND review (automated alerting + scheduled manual review of privileged activity). Auditors will check whether log review actually happens.
 
-**2. Centralized logging is table stakes.** If logs only exist on the server that generated them, an attacker who compromises that server can delete the evidence. Ship logs to a separate, immutable repository in real time. This is the single most important logging control.
+**2. "Retain logs for 30 days" is too short for almost any compliance framework.** PCI DSS requires 12 months. HIPAA requires 6 years. SOC 2 auditors typically expect at least 90 days of live, queryable logs. 30 days is a common default that fails every compliance check. Recommend 90 days active minimum.
 
-**3. Log retention is a cost optimization problem, not just a compliance checkbox.** 90 days of verbose application logs can cost thousands in storage and ingest costs. Use log levels: DEBUG (don't ship to centralized log system), INFO (ship, retain 30 days), WARN/ERROR/SECURITY (ship, retain 90+ days). Tier your retention by log severity.
+**3. Administrators can delete their own activity logs.** If your system administrators have the ability to clear logs on systems they manage, you have zero accountability for privileged actions. The policy must require centralized log forwarding to a system outside admin control, and FIM on log files to detect tampering.
 
-**4. "Logs must be reviewed" without automation is meaningless.** Nobody manually reviews gigabytes of logs. The policy should require automated alerting on known-bad patterns. Manual review is for investigation of alerts, not for discovering them.
+**4. Clock sync is boring until it's catastrophic.** During an incident investigation, if your servers are 5 minutes out of sync, you cannot reliably correlate events across systems to reconstruct the attack timeline. NTP configuration is one of the most commonly missed controls. Every system, including cloud resources, network devices, and containers, must sync to a trusted time source.
 
-**5. The monitoring section must define what constitutes an alert-worthy event.** "Unusual activity" is too vague. Define specific thresholds: "10 failed login attempts from the same IP in 5 minutes" or "privileged account used outside business hours." These thresholds should be tuned over time based on your baseline.
+**5. Log elements that are useful for operations but not for security.** An access log that records "user X accessed record Y" is useful for debugging. But for security, you also need: was it a success or failure? From what IP? Using what authentication method? At what exact time (with timezone)? Define log elements with forensic investigation in mind.
+
+**6. Not logging the logging system itself.** If your centralized logging platform goes down, how do you know? The policy must require monitoring of the logging infrastructure: log generation rate anomalies, forwarding failures, storage capacity thresholds, and unauthorized access to the logging platform itself.
+
+**7. PII in logs creating a compliance nightmare.** Logs often contain usernames, email addresses, IP addresses, and sometimes full request bodies that include customer PII. These logs are now "personal data" under GDPR/CCPA and subject to the same protection, retention, and data subject access request requirements. Consider log pseudonymization or separate PII-free log streams for third-party sharing (auditors, SIEM providers).
+
+**8. Retention vs. storage cost tradeoff left unaddressed.** 365 days of verbose logs from a production Kubernetes cluster can cost more in storage than the cluster itself. The policy must balance retention requirements with practical storage limits. Define what gets retained for how long: verbose debug logs → 30 days, security-relevant audit logs → 365 days, compliance-mandated logs → per regulation.
 
 ## Implementation Advice
 
-- **OpenObserve is cost-efficient for log management.** Unlike Splunk or Datadog (which charge by ingest volume and get expensive fast), OpenObserve offers columnar storage with dramatically lower ingest costs. For organizations watching their budget, it's a strong alternative. The open-source version runs in your own infrastructure.
-- **Use log levels strategically.** Don't ship DEBUG and TRACE logs to your centralized system — they'll dominate your ingest volume without providing security value. Ship INFO and above, with WARN and ERROR at higher retention.
-- **NTP is deceptively important.** If your servers' clocks are off by even a few seconds, correlating events across systems becomes impossible during an investigation. All servers should sync to the same NTP sources, and clock drift should be monitored.
-- **Test your alerting pipeline quarterly.** Generate a known-bad event (a test login failure pattern, a fake malicious IP) and verify that it generates an alert that reaches the right people. Silent alert failures are common and dangerous.
+- **Centralize before you scale.** Implement a centralized logging platform (recommended: OpenObserve for cost efficiency, or ELK/Splunk/Datadog for larger budgets) before you have more than a handful of servers. Retroactively centralizing logs from 50+ systems is painful. Forward logs in real-time; don't batch.
+- **Start with privileged access logging.** If you can only log one thing well, log everything that root/administrator accounts do. This is the highest-value logging for both security investigations and compliance audits. Everything else can be layered on.
+- **Use Wazuh for file integrity monitoring.** Wazuh is an open-source, actively maintained OSSEC fork that provides FIM, configuration assessment, and compliance monitoring. It integrates well with centralized logging platforms and is substantially easier to deploy than legacy OSSEC.
+- **Automate log review, don't assign it.** "Review logs weekly" assigned to an overworked security engineer means logs never get reviewed. Build automated alerting rules for the patterns you care about (privileged access, authentication failures, security control failures) and alert on anomalies. Manual review should be exception-based, not exhaustive.
+- **Log retention is a data lifecycle problem, not just a security problem.** Work with your infrastructure team to implement automated log lifecycle management: hot storage (live, queryable) → warm storage (compressed, slower queries) → cold storage (archival, restore-to-query) → deletion. The centralized logging platform should manage this automatically.
+- **Document log sources in an inventory.** Maintain a list of all systems that generate logs, what they log, where logs are forwarded, and retention periods. This inventory is audit gold and essential for incident response. Without it, you'll discover during an investigation that some critical system hasn't been logging for 6 months.
+- **Test log completeness quarterly.** Pick a random 24-hour window each quarter and verify that logs from all critical systems are present and complete in the centralized platform. Missing log data is the most common undetected control failure.

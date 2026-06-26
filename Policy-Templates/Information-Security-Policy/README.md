@@ -20,6 +20,15 @@ The Information Security Policy (ISP-001) is the foundational policy document fo
 - Disciplinary processes for policy violations
 - Policy review and exception handling
 
+## Document Structure
+
+This folder contains two documents:
+
+- **`ISP-Template.md`** — The policy itself. Defines WHAT is required: scope, objectives, roles, and high-level requirements for training, clean desk, access, remote work, and disciplinary process. This is the document employees acknowledge and auditors review.
+- **`ISP-Procedures.md`** — Companion implementation procedures for the three most operationally intensive areas: (1) Security Awareness Training Program, (2) Clean Desk and Clear Screen Enforcement, and (3) Disciplinary Process for Policy Violations. Each procedure includes standard approaches, alternative methods, and common pitfalls.
+
+Separating policy from procedures keeps the ISP concise (readable by all employees) while giving HR, IT, and security teams the detailed how-to guidance they need to implement it.
+
 ## Gotchas People Get Wrong
 
 **1. Writing it too long and too specific.** This is the overarching policy. It should set direction and principles — save the nitty-gritty controls for the subordinate policies. If your ISP is 50 pages, you're doing it wrong. Aim for ~10 pages.

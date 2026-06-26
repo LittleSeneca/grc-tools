@@ -2,35 +2,36 @@
 
 ## What This Is
 
-The Code of Conduct is the ethical foundation document for the organization. It covers everything from conflicts of interest to workplace behavior to information security expectations. Every employee should read and acknowledge this document. This is often the first policy an auditor or investor asks to see.
+The Code of Conduct is a foundational governance document that defines the ethical standards and behavioral expectations for everyone associated with the organization. It serves as the moral compass — setting the baseline for integrity, professionalism, and lawful conduct. Unlike operational policies that govern specific technical controls, this document addresses culture, values, and interpersonal behavior.
 
 ## What It Covers
 
-- Ethical decision-making framework
-- Equal opportunity and anti-harassment
-- Workplace safety (drugs, alcohol, violence)
-- Conflicts of interest
-- Confidentiality and information security
-- Intellectual property and asset protection
-- Financial integrity
-- Legal compliance
-- Disciplinary process
+- Core ethical expectations and decision-making framework
+- Equal opportunity employment and anti-harassment commitments
+- Workplace safety, substance use, and violence prevention
+- Conflicts of interest identification and disclosure
+- Confidentiality and information security responsibilities
+- Protection of intellectual property and company assets
+- Financial integrity and legal compliance obligations
+- Reporting mechanisms and non-retaliation protections
+- Mandatory annual acknowledgment process
 
-## Gotchas People Get Wrong
+## Common Gotchas and Mistakes
 
-**1. Writing a Code of Conduct that nobody reads.** The Code is only effective if employees actually know what's in it. Annual acknowledgment doesn't cut it if nobody reads the document. Use real scenarios in training: "Here's a conflict of interest situation. What should this person do?"
+**1. Treating it as a boilerplate checkbox.** Organizations often copy-paste a Code of Conduct, have everyone sign it at onboarding, and never reference it again. A Code loses all credibility if it is not visibly enforced. If leadership doesn't model the behavior, no one else will either.
 
-**2. "Ask your manager" as the only escalation path.** If someone's manager IS the problem (harassment, ethical violation), "ask your manager" is useless. Always provide at least two escalation paths: direct manager AND an independent channel (HR, Compliance Officer, anonymous hotline).
+**2. Weak reporting mechanisms.** If Personnel don't trust that they can safely report violations without retaliation, the Code is unenforceable. The reporting and non-retaliation sections must be credible and backed by real practice. Anonymous reporting channels significantly increase utilization.
 
-**3. The retaliation section needs to be credible.** If you say "no retaliation" but employees have seen whistleblowers get pushed out, the policy is dead. This section only works if leadership visibly supports it.
+**3. Vague conflict of interest guidance.** "Avoid conflicts of interest" is too broad to be useful. The Code must provide concrete examples of common conflict scenarios (investments, outside employment, family relationships, gifts) and a clear path for obtaining guidance on ambiguous situations.
 
-**4. Gift policies that are too vague or too specific.** "$50 maximum for gifts" is clear but can create awkward situations when a vendor sends a holiday basket worth $60. "Gifts must not influence business decisions" is principled but vague. Strike a balance: provide a dollar threshold PLUS a principles-based override.
+**4. Missing the annual acknowledgment.** Auditors and regulators expect documented proof that every employee reviews and acknowledges the Code annually — not just at hire. A gap in acknowledgments is an immediate audit finding.
 
-**5. The Code of Conduct is not the Employee Handbook.** The Code covers ethics and behavior. The Handbook covers vacation policy, benefits, and sick leave. Keep them separate. The Code should be short enough to actually read (under 10 pages).
+**5. Conflicting disciplinary expectations.** The Code must align with the Employee Handbook and HR policies. If the Code says "immediate termination for X" but HR has a progressive discipline process, you create legal exposure and confuse managers.
 
 ## Implementation Advice
 
-- **Use specific, real examples.** "Do not accept gifts that could influence business decisions" is abstract. "You may accept a vendor's coffee mug. You may not accept their Super Bowl tickets." is clear.
-- **The annual acknowledgment should include a quiz.** Not a punitive test — just a few scenario questions that force people to think through ethical dilemmas. It dramatically improves retention vs. a checkbox.
-- **Translate the Code.** If you have non-English-speaking employees, translate it. An English-only Code in a multilingual workforce is an HR liability.
-- **Review after major incidents.** If you have a harassment incident or a conflict-of-interest violation, review the Code to see if clearer language could have prevented it.
+- **Leadership must own it publicly.** The CEO or executive team should personally introduce the Code during all-hands meetings and reference it in internal communications. A Code signed only by legal counsel carries less cultural weight than one visibly championed by leadership.
+- **Integrate with performance reviews.** Make ethical conduct a formal component of performance evaluations. This signals that integrity is valued as highly as business results.
+- **Provide real scenarios in training.** Annual Code of Conduct training should use scenario-based exercises drawn from actual situations that could arise in your industry. Generic "be ethical" training is ineffective.
+- **Test the reporting channel.** Periodically verify that whistleblower hotlines, anonymous email addresses, and other reporting channels are functioning correctly. A non-working reporting mechanism discovered during an investigation is indefensible.
+- **Document enforcement consistently.** When Code violations occur, document the investigation and outcome consistently. Selective enforcement or inconsistent discipline creates legal liability and destroys trust in the system.

@@ -1,6 +1,7 @@
 # Code of Conduct
 
 Policy Title: Code of Conduct
+Policy Number: COC-001
 Effective Date: ____
 Version: 1.0
 Classification: Internal
@@ -8,143 +9,168 @@ Approved By: ____
 
 ## Purpose
 
-The ____ Code of Conduct ("Code") is built around the belief that everything we do must be measured against the highest possible standards of ethical business conduct. Our commitment to high standards helps us attract great people, build great products, and earn loyal customers.
+The Code of Conduct (the "Code") establishes the ethical foundation for all activities undertaken on behalf of ____. It embodies the principle that all actions performed in the course of employment or engagement must meet the highest standards of business ethics and integrity. This commitment to principled conduct supports the organization in attracting top talent, delivering quality products and services, and earning sustained trust from customers and partners.
 
-## Who Must Follow the Code
+## Scope
 
-All employees, contractors, consultants, and anyone performing work or services for ____ must know and follow the Code. Failure to do so can result in disciplinary action, up to and including termination of employment or contract.
+This Code applies to all employees, officers, and directors of ____. It also extends to contractors, consultants, temporary workers, and any third parties performing services for or on behalf of ____ (collectively "Personnel"). Compliance with this Code is a condition of employment or engagement. Failure to adhere to the Code may result in disciplinary action, up to and including termination of employment or engagement.
 
-## How to Raise Concerns
+## Policy
 
-If you have a question or concern about the Code, contact your manager, the ____ (Compliance Officer), or use the organization's designated reporting channel.
+### Core Expectations
 
-## No Retaliation
+All Personnel are expected to act honestly, ethically, and with integrity in every professional situation. Personnel must follow the policies and procedures outlined in this Code as well as those specific to their role and must comply with all applicable laws and regulations. When in doubt about the correct course of action, Personnel should consult with their manager or a member of the compliance function.
 
-____ prohibits retaliation against anyone who reports, or participates in an investigation of, a possible violation of the Code, organizational policies, or the law. If you believe you are the subject of retaliation, contact ____ (senior management / HR / Compliance Officer) immediately.
+### Decision-Making Framework
 
-## Code of Conduct
-
-As a member of ____, you are expected to be honest, act ethically, and demonstrate integrity in all situations. You have a duty to follow policies and procedures found in this Code and those specific to your job. You must also comply with all applicable laws.
-
-Before you act, ask yourself:
+Before taking any action, ask the following questions:
 
 - Is this the right thing to do?
-- Is it legal?
+- Is it legal and consistent with organizational policy?
 - Do I have the authority to act?
-- Does the action comply with the Code and organizational policies?
-- If this action became public, how would it look?
-- Would I be concerned if others found out about this action?
+- If this action became public, how would it be perceived?
+- Would I be uncomfortable if others learned about this action?
 
-If your answer to any of these raises doubts, talk with your supervisor, a manager, or the ____ (Compliance Officer).
+If the answer to any of these questions raises concerns, consult your manager, the compliance team, or any member of leadership before proceeding.
 
-Managers and supervisors are additionally responsible for:
+### Supervisor and Manager Responsibilities
 
-- Knowing the rules and reviewing the Code with their teams.
-- Preventing violations of the Code.
-- Detecting violations that may occur and reporting them appropriately.
-- Leading with integrity and encouraging employees to ask questions.
-- Educating employees on compliance policies specific to their roles.
+Supervisors and managers carry additional obligations:
 
-## Quality Work Environment
+- Lead by example and demonstrate integrity in all actions.
+- Ensure direct reports are familiar with and understand the Code.
+- Encourage personnel to ask questions and expand their understanding of compliance obligations.
+- Detect and prevent potential violations and report them through appropriate channels.
+- Address issues promptly and effectively when they arise.
+- Provide role-specific compliance education to team members.
 
-### Equal Opportunity Employment
+### Quality Work Environment
 
-Employment at ____ is based solely upon individual merit and qualifications directly related to professional competence. We strictly prohibit unlawful discrimination or harassment on the basis of race, color, religion, veteran status, national origin, ancestry, pregnancy status, sex, gender identity or expression, age, marital status, mental or physical disability, medical condition, sexual orientation, or any other characteristics protected by law.
+____ is committed to a supportive, professional workplace where all Personnel can reach their fullest potential. Everyone is expected to contribute to a culture free from harassment, intimidation, bias, and unlawful discrimination.
 
-### Harassment, Discrimination, and Bullying
+#### Equal Opportunity Employment
 
-____ strictly prohibits discrimination, harassment, and bullying in any form — verbal, physical, or visual. Report incidents promptly to your manager or HR. All complaints will be investigated and appropriate action taken.
+Employment decisions at ____ are based solely on individual merit and qualifications directly related to professional competence. ____ strictly prohibits unlawful discrimination or harassment on the basis of race, color, religion, veteran status, national origin, ancestry, pregnancy status, sex, gender identity or expression, age, marital status, mental or physical disability, medical condition, sexual orientation, or any other characteristic protected by applicable law. Reasonable accommodations are provided to meet obligations under disability rights laws.
 
-### Drugs and Alcohol
+#### Harassment, Discrimination, and Bullying
 
-Substance abuse is incompatible with the health and safety of our employees. Consumption of alcohol at work-related events must be moderate and never lead to impaired performance, inappropriate behavior, or endangerment of others. Illegal drugs at work or work-related events are strictly prohibited.
+____ prohibits discrimination, harassment, and bullying in any form — verbal, physical, or visual. Personnel who believe they have been subjected to harassment or bullying by anyone associated with ____ (including partners, vendors, or customers) must immediately report the incident to their manager or the Human Resources department. All complaints will be investigated promptly and thoroughly, and appropriate corrective action will be taken.
 
-### Safe Workplace
+#### Substance Use
 
-We are committed to a violence-free work environment. Violence, threats of violence, and weapons in the workplace are not tolerated under any circumstances. Report violations immediately to senior management.
+Substance abuse is incompatible with the health and safety of Personnel and is not permitted. Alcohol consumption at company-sponsored events is permitted only in moderation, using good judgment, and never in a manner that impairs performance, endangers safety, or violates the law. Illegal drugs are strictly prohibited on company premises and at work-related events.
 
-## Avoid Conflicts of Interest
+#### Safe Workplace
 
-Employees must avoid conflicts of interest and circumstances that reasonably appear to create a conflict. Areas where conflicts often arise include:
+____ is committed to a violence-free workplace. Violence or threats of violence will not be tolerated under any circumstances. Weapons are prohibited on company premises. Any awareness of a violation of this policy must be reported to senior management immediately.
 
-- Personal investments in competitors, customers, or suppliers.
-- Outside employment, advisory roles, or board seats that conflict with organizational interests.
-- Business opportunities discovered through your work at ____.
-- Inventions or intellectual property influenced by your work.
-- Business opportunities involving friends or relatives.
-- Acceptance of gifts, entertainment, or business courtesies that could influence decisions.
+### Conflicts of Interest
 
-If you are unsure whether a situation constitutes a conflict of interest, contact the ____ (Compliance / Legal) team.
+Personnel must avoid conflicts of interest and circumstances that reasonably appear to create a conflict of interest. A conflict of interest exists when personal interests interfere, or appear to interfere, with the interests of ____. Common areas where conflicts arise include:
 
-## Preserve Confidentiality
+- Personal investments in competitors, suppliers, or business partners
+- Outside employment, advisory roles, and board positions
+- Business opportunities discovered through work at ____
+- Inventions or intellectual property influenced by work at ____
+- Business dealings involving friends, family, or relatives
+- Acceptance of gifts, entertainment, or business courtesies
 
-All nonpublic information processed, transmitted, or stored by ____ must be protected consistent with our contractual and legal requirements and appropriate for the level of sensitivity and risk. Information containing data from multiple classifications must be protected at the highest level represented.
+If you are uncertain whether a situation constitutes a conflict of interest, contact the Compliance or Legal teams for guidance.
 
-Nonpublic information must be:
+### Confidentiality
 
-- Secured at rest (encryption, access controls).
-- Secured in transit (encrypted communications).
-- Securely destroyed in accordance with record retention policies.
+All nonpublic information processed, transmitted, or stored by ____ must be protected in a manner consistent with legal, regulatory, and contractual requirements and appropriate for the level of sensitivity, value, and risk associated with the information (see the Data Classification Policy). Information containing elements from multiple classification levels must be protected at the highest level represented. Nonpublic information must be:
 
-## Information Security
+- Secured at rest
+- Secured in transit
+- Securely destroyed in accordance with record retention policies and procedures
 
-You are responsible for using ____ computer resources properly and must be familiar with the organization's Information Security policies. Basic security practices include:
+### Information Security
 
-- Never share your login credentials.
-- Lock your workstation when you step away.
-- Log off when you leave for the day.
-- Clear your workspace of sensitive information (PII, confidential documents) when unattended.
+Personnel are responsible for using organizational computer resources properly and must be thoroughly familiar with ____'s Information Security policies and procedures. Key practices for preventing unauthorized access include:
 
-## Protect Organizational Assets
+- Never share login credentials.
+- Lock your workstation when stepping away.
+- Log off your workstation at the end of the day.
+- Clear workstations and printers of sensitive documents before leaving.
 
-### Intellectual Property
+### Protection of Organizational Assets
 
-____ intellectual property (patents, trademarks, copyrights, trade secrets, know-how) is a valuable asset. You must comply with intellectual property laws and must never use organizational trademarks or protected information for any business or commercial venture without pre-clearance.
+#### Intellectual Property
 
-Respect the intellectual property rights of others. Inappropriate use of others' intellectual property may expose ____ and you to criminal and civil liability.
+____'s intellectual property rights — including patents, trademarks, copyrights, trade secrets, and know-how — are valuable assets. Unauthorized use can lead to their loss or significant diminution of value. Personnel must comply with all intellectual property laws and must not use organizational trademarks or protected information for any business or commercial venture without prior approval from the appropriate team (e.g., Marketing or Legal).
 
-### Company Equipment
+Personnel must also respect the intellectual property rights of others. Improper use of third-party intellectual property may expose ____ and the individual to criminal and civil liability. Consult the Legal team before soliciting, accepting, or using proprietary information from outside parties.
 
-____ provides tools and equipment to do our jobs effectively. Use them responsibly and not wastefully. Personal use of company assets should be minimal and must not interfere with work responsibilities or violate other policies.
+#### Company Equipment
 
-### Physical Security
+____ provides the tools and equipment necessary for Personnel to perform their jobs effectively. Personnel are expected to use these resources responsibly and without waste. Questions regarding personal use of company assets should be directed to one's manager.
 
-Always secure your laptop, important equipment, and personal belongings, even on company premises. Report suspicious activity to your manager promptly.
+#### Network Resources
 
-## Financial Integrity and Responsibility
+The organization's network, software, and computing systems are critical assets. All security policies must be followed diligently. Any suspected security breach — such as a lost device or compromised credentials — must be promptly reported to the appropriate manager.
 
-Financial integrity and fiscal responsibility are core aspects of professionalism. Everyone has a role in ensuring money is appropriately spent, financial records are complete and accurate, and internal controls are honored. This applies when hiring vendors, expensing items, or signing contracts.
+#### Physical Security
 
-Records must be kept for appropriate periods as defined in the Data Retention Policy. If asked by the Legal team to retain records for litigation, audit, or investigation, do so until Legal confirms retention is no longer necessary.
+Personnel must always secure laptops, equipment, and personal belongings, even while on company premises. Any suspicious activity must be promptly reported to management.
 
-## Obey the Law
+### Financial Integrity and Responsibility
 
-____ takes compliance with laws seriously. Every employee is expected to comply with applicable legal requirements and restrictions. Understand the laws and regulations that apply to your work. Contact the ____ (Compliance / Legal) team with questions.
+Financial integrity and fiscal responsibility are core aspects of corporate professionalism. Every individual at ____ has a role in ensuring that resources are appropriately spent, financial records are complete and accurate, and internal controls are honored. This applies to all financial transactions, including vendor engagements, expense reports, and contract execution.
 
-## Policy Compliance
+Records must be retained for the periods specified in the Data Retention Policy, applicable legal requirements, accounting standards, and contractual obligations. If directed by the Legal team to preserve records relevant to litigation, audit, or investigation, those records must be retained until Legal confirms retention is no longer required.
 
-### Compliance Measurement
+### Legal Compliance
 
-The ____ (Compliance) team will verify compliance with this Code through various methods, including periodic reviews, tool reports, internal and external audits, and employee feedback.
+____ takes its legal obligations seriously. All Personnel are expected to comply with applicable laws and regulations relevant to their work. Questions about legal obligations should be directed to the Compliance or Legal teams.
 
-### Exceptions
+## Roles and Responsibilities
 
-Any exception to this Code must be approved by the ____ (Compliance) team in writing.
+| Role | Responsibility |
+|------|----------------|
+| ____ (e.g., Chief Compliance Officer) | Policy owner; annual review; enforcement oversight |
+| Managers and Supervisors | Model ethical behavior; educate team members; prevent and detect violations |
+| All Personnel | Understand and comply with the Code; report potential violations |
+| Human Resources | Investigate workplace conduct complaints; administer disciplinary processes |
+| Legal/Compliance | Provide guidance on conflicts of interest and legal obligations |
 
-### Non-Compliance
+## Reporting and Non-Retaliation
 
-Any employee who violates this Code may be subject to disciplinary action, up to and including termination of employment, in addition to any civil and criminal liability.
+____ prohibits retaliation against anyone who, in good faith, reports or participates in an investigation of a possible violation of the Code, organizational policies, or applicable law. Personnel who believe they are experiencing retaliation should immediately contact a member of senior management or the compliance function.
 
 ## Annual Acknowledgment
 
-Each year, as a condition of employment, you must acknowledge that you have reviewed the Code of Conduct and understand its requirements. New employees must sign this acknowledgment upon hire.
+On an annual basis, and as a condition of continued employment, all Personnel must acknowledge in writing that they have received, reviewed, and understand the Code of Conduct. The acknowledgment confirms that:
+
+- The Code has been reviewed and the individual agrees to comply.
+- The individual will report any questions or concerns about suspected violations.
+- To the best of the individual's knowledge, they have not acted contrary to the Code.
+- Any potential conflicts of interest have been disclosed to the Compliance team.
+
+New hires must sign this acknowledgment as part of the onboarding process.
+
+## Compliance and Enforcement
+
+### Compliance Verification
+
+The Compliance function will verify adherence to this Code through various methods, including periodic management reviews, system-generated reports, internal and external audits, and Personnel feedback.
+
+### Exceptions
+
+Any exception to this Code must be approved in writing by the Compliance function.
+
+### Non-Compliance
+
+Any Personnel who violate this Code may be subject to disciplinary action, up to and including termination of employment or engagement, in addition to any civil or criminal liability that may apply.
 
 ## Related Documents
 
 - Information Security Policy
-- Acceptable Use Policy
 - Data Classification Policy
 - Data Retention Policy
+- Acceptable Use Policy
+- Employee Handbook
+- Anti-Retaliation Policy
 
 ## Revision History
 

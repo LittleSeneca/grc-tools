@@ -60,6 +60,7 @@ ____ adopts the industry-standard 3-2-1 backup framework:
 - Restore tests must validate that data can be successfully restored, that restored data is complete and internally consistent, and that restored systems are functional.
 - Test results must be documented and retained as audit evidence. Any failures must be remediated within ____ business days.
 - At least one restore test per year must involve restoring to an isolated environment and running application-level validation against the restored data.
+- Implementation procedures for configuring and executing restore tests are defined in [Backup-Procedures.md](./Backup-Procedures.md).
 
 ### Backup Monitoring and Alerting
 
@@ -94,4 +95,4 @@ Violation of this policy may result in disciplinary action as outlined in the In
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to Backup-Procedures.md. |

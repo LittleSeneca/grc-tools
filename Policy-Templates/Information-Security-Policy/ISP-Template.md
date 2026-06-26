@@ -72,37 +72,15 @@ The ____ is responsible for the design, development, maintenance, dissemination,
 
 ### Training
 
-Management shall ensure that all Personnel:
+All Personnel must complete information security awareness training upon hire and annually thereafter. Training must cover security policies, data handling, incident reporting, and role-specific responsibilities. Training records must be maintained in ____.
 
-- Are properly briefed on their information security roles and responsibilities prior to being granted access to covered information or information systems.
-- Are provided with guidelines stating security expectations for their role.
-- Are regularly notified of security changes and updates, and reminded of security responsibilities through annual security awareness training and annual policy acknowledgements.
-- Are motivated to comply with the security policies of the organization.
-- Achieve a level of awareness on security relevant to their roles and responsibilities.
-- Conform to the terms and conditions of employment, which includes the organization's information security policy and appropriate methods of working.
-
-All new hires must complete information security awareness training as part of onboarding and annually thereafter. New hire onboarding must be completed within ____ days of the hire date. Ongoing training must include security and privacy requirements as well as training in the correct use of information assets and facilities.
-
-Personnel assigned incident response roles must receive incident response and contingency training:
-
-- Within ____ days of assuming an incident response role.
-- As required by information system or policy changes.
-- Annually.
-
-The organization must document that training has been provided, and all Personnel must acknowledge in writing their understanding of the Information Security Program, including the Code of Conduct, upon hire and annually thereafter.
+Implementation procedures, including onboarding timelines, training delivery methods, content requirements, and non-compliance tracking, are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 1: Security Awareness Training Program.
 
 ### Clean Desk and Clear Screen
 
-Authorized users must ensure that all sensitive or confidential materials, whether hardcopy or electronic, are removed from their workspace and secured when not in use or when the employee leaves their workstation. Requirements include:
+All Personnel must maintain a clean desk and clear screen — sensitive materials must be secured when unattended, workstations must be locked when not in use, and passwords must never be left in accessible locations.
 
-- Computer workstations must be locked when the workspace is unattended.
-- Sensitive information must be removed from desks and securely stored when unattended and at the end of the day.
-- Laptops and portable computing devices must be properly stored and secured.
-- File cabinets containing Restricted or Sensitive information must be kept closed and locked when not in use.
-- Passwords must not be left on sticky notes or written down in accessible locations.
-- Printouts containing Restricted or Sensitive information must be immediately removed from printers.
-- Upon disposal, Restricted or Sensitive documents must be securely shredded.
-- Mass storage devices such as external drives or USB drives must be treated as sensitive and always secured and encrypted.
+Enforcement procedures, including technical controls, periodic walkthroughs, and remote worker considerations, are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 2: Clean Desk and Clear Screen Enforcement.
 
 ### Internet and Intranet Access
 
@@ -189,14 +167,9 @@ Contractual obligations for safeguarding information include:
 
 ### Disciplinary Process
 
-The organization's discipline policy provides a structured corrective action process. The organization reserves the right to combine or skip steps depending on the circumstances. The typical progression is:
+Policy violations must be addressed through a structured corrective action process. The organization reserves the right to combine or skip steps depending on the severity and circumstances of the violation. Behavior that is illegal (theft, violence, substance abuse, fraud) is grounds for immediate termination without progressive discipline.
 
-1. **Verbal Warning and Counseling:** Supervisor meets with employee to discuss performance, conduct, or attendance issues and outlines expectations.
-2. **Formal Written Warning:** Formal documentation of issues and consequences. A performance improvement plan may be issued.
-3. **Suspension and Final Written Warning:** Temporary removal from workplace when immediate action is necessary for safety.
-4. **Recommendation for Termination:** Final step after progressive discipline has been exhausted.
-
-Behavior that is illegal is not subject to progressive discipline. Theft, substance abuse, intoxication, fighting, and other acts of violence are grounds for immediate termination.
+Detailed procedures for each step — verbal warning, formal written warning, suspension, and termination — are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 3: Disciplinary Process for Policy Violations.
 
 ## Policy Review
 
@@ -229,6 +202,7 @@ Violation of this policy is prohibited and will be appropriately addressed. Disc
 - Risk Assessment Policy (ISP-008)
 - Vendor Management Policy (ISP-009)
 - Code of Conduct
+- [ISP Implementation Procedures](ISP-Procedures.md)
 
 ## Revision History
 

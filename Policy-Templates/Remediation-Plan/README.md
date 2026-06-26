@@ -2,33 +2,42 @@
 
 ## What This Is
 
-The Remediation Plan defines the operational process for fixing security findings — from discovery to verification to closure. It's the bridge between "we found a vulnerability" and "we fixed it." The SLAs in this document are what auditors check to determine if your vulnerability management program is actually effective.
+The Remediation Plan is the operational document that defines the end-to-end workflow for addressing security findings — from discovery through prioritization, assignment, remediation, verification, and closure. It bridges the Vulnerability Management Policy (which defines SLAs and severity) and the Vulnerability Management Process (which defines detection and scanning) by focusing specifically on what happens after a finding is identified. This is the document that makes remediation accountable and measurable.
 
 ## What It Covers
 
-- Finding identification and documentation
-- Prioritization and severity-based SLAs
-- Assignment to responsible teams
-- Remediation action types (remediate, mitigate, transfer, accept)
-- Verification that fixes are effective
-- Exception handling for SLA misses
-- Reporting to oversight body
+- Six-step remediation workflow: Identification → Prioritization → Assignment → Remediation → Verification → Review
+- Finding documentation requirements (what must be captured when a finding is created)
+- Prioritization methodology (CVSS + asset criticality + exploitability + exposure)
+- Assignment SLAs by severity (Critical: 4 hours, High: 24 hours)
+- Four risk treatment options with detailed requirements: Resolve, Mitigate, Transfer, Accept
+- Verification and closure procedures with closure SLAs
+- Risk acceptance governance (approval thresholds by severity, quarterly review)
+- Monthly/quarterly Security Oversight Committee review cadence
+- Exception management process
+- Roles and responsibilities across security, IT, development, and leadership
 
 ## Gotchas People Get Wrong
 
-**1. SLA timelines that look good on paper but are impossible to meet.** "Critical vulnerabilities: 7 days" sounds responsible until you realize it takes 3 days just to get through your change management process. Align your SLAs with your actual ability to deploy fixes. A 14-day SLA you consistently meet is better than a 7-day SLA you regularly miss.
+**1. No distinction between "assigned" and "acknowledged."** An SLA that says "Critical findings must be assigned within 4 hours" is meaningless if the assignee doesn't look at their queue for 3 days. Define both an assignment SLA (ticket lands in someone's queue) and an acknowledgment SLA (assignee confirms they're working on it). The escalation path triggers on missed acknowledgments, not missed assignments.
 
-**2. "Accept" becomes the default for hard-to-fix findings.** When a vulnerability is difficult or expensive to fix, there's pressure to just accept the risk. Track your acceptance rate — if it's trending up, you're using acceptance to avoid hard work, not because the risk calculus actually supports it. Require formal risk acceptance with documented justification.
+**2. Mitigation as a permanent solution.** Mitigation (WAF rules, network segmentation, disabling features) is a temporary control, not a permanent fix. If your remediation plan allows mitigation to sit forever, you accumulate technical debt that eventually becomes a breach. Every mitigation must have a linked "eventual resolution" ticket with a target date; these must be reviewed quarterly.
 
-**3. Verification is the most commonly skipped step.** After applying a patch, someone should verify the vulnerability is actually gone. Often, teams apply the fix, close the ticket, and move on — only for the next scan to re-open the same finding. Make re-scanning part of the closure criteria.
+**3. Risk acceptance without approval thresholds.** The plan says "acceptance must be approved," but doesn't specify by whom. A developer should not be able to accept a Critical risk on a production system. Define approval thresholds: Low → Security team, Medium → Asset owner + Security, High → CISO, Critical → Executive leadership. This creates accountability commensurate with risk.
 
-**4. Separation of duties in verification matters.** If the person who applied the fix also verifies it, you have no independent check. For high and critical findings, the verifier should be a different person (or an automated scan, which is inherently independent).
+**4. Verification that consists of "close the ticket."** The most common remediation failure mode is closing a ticket without actually verifying the fix worked. Re-scan the affected asset. For Critical findings, do a targeted manual test. "I applied the patch" is not verification — "I applied the patch AND re-scanned AND the vulnerability is no longer present" is verification.
 
-**5. Exception tracking falls apart without enforced review.** If you create an exception with a 30-day extension, someone needs to follow up on day 31. Without automated reminders and escalation for overdue exceptions, exceptions become permanent.
+**5. Closure SLAs vs. change management timelines.** A Critical vulnerability with a 7-day SLA goes through emergency change management (24-hour approval). A High vulnerability with a 30-day SLA goes through standard change management (5-10 business days for CAB review). If your change management process doesn't have an expedited path for security patches, you'll routinely miss High SLAs. Align your change management policy with your remediation SLAs.
+
+**6. Counting "accepted" findings as "closed."** An accepted risk is not remediated and should not be reported as "closed" in metrics. Track acceptances separately: "X resolved, Y mitigated, Z transferred, A accepted." If you lump acceptances into "closed," you're misleading management and auditors about your actual remediation performance.
+
+**7. No recurring vulnerability analysis.** If the same type of finding (e.g., "TLS 1.0 enabled") keeps appearing across different systems, it's not a remediation problem — it's a configuration standard or build pipeline problem. The review phase should identify patterns and trigger root cause fixes, not just individual ticket closure. This turns your remediation program from reactive to proactive.
 
 ## Implementation Advice
 
-- **Automate the link between findings and tickets.** When your vulnerability scanner finds something, it should automatically create a ticket in your tracking system with the severity, affected system, and remediation guidance. Manual transcription wastes time and introduces errors.
-- **Use dashboards, not reports.** A real-time dashboard showing open findings by severity, SLA status, and aging is more actionable than a monthly PDF report. The oversight body should see the same dashboard.
-- **Track mean time to remediate (MTTR) as a metric.** Average time from finding to closure, broken down by severity. This is your program's North Star metric. If MTTR is increasing, you're losing ground.
-- **Acceptance requires annual re-evaluation.** A risk accepted today may not be acceptable next year if the threat landscape changes or your risk appetite shifts. Every accepted risk must have an annual review date.
+- **Integrate the ticketing system with your scanners.** Manual ticket creation from scanner reports doesn't scale. Your vulnerability scanner and CSPM tool should auto-create tickets via API. Human effort should go into triage and remediation, not data entry.
+- **Build remediation dashboards that drive accountability.** Create a dashboard visible to the Security Oversight Committee and team leads showing: open findings by team, SLA breach count, aging findings (30/60/90+ days), and acceptance inventory. Public visibility drives action more effectively than email reminders.
+- **Define ownership BEFORE findings appear.** Maintain an asset-to-team mapping so that when a scanner finds a vulnerability on "app-server-07," the ticket is auto-assigned to the correct team. If assignment requires manual routing, you'll burn SLA time on bureaucracy.
+- **Patch management is a subset of remediation.** Some findings are fixed by patching; others require code changes, configuration updates, architecture modifications, or vendor coordination. Don't assume "remediation = patching." The plan must accommodate all treatment types.
+- **Pre-approve standard mitigations.** For common finding types, pre-approve standard mitigation responses: "If WAF not deployed, deploy WAF rule X." This lets teams mitigate quickly without waiting for approval, while the resolution ticket tracks the permanent fix.
+- **Test the closure workflow end-to-end quarterly.** Pick a recently closed Critical finding and walk it backwards: was it identified promptly? Assigned to the right team? Remediated within SLA? Verified effectively? Closed with proper documentation? This spot-check reveals process gaps better than any dashboard.

@@ -1,34 +1,43 @@
-# Logging and Monitoring Process
+# Logging and Monitoring Process Template
 
 ## What This Is
 
-The Logging and Monitoring Process is the operational companion to the Logging and Monitoring Policy. While the policy says what must be logged and monitored, this process document says how — what tools, what configurations, what thresholds, what alert routing. It's the runbook for your observability platform.
+The Logging and Monitoring Process is the operational guide for how logs and metrics are collected, stored, retained, and monitored. While the Logging and Monitoring Policy defines what must be logged and protected, this Process defines how it happens: collection architecture, storage tiers, access controls, specific log sources, alert configurations, and review procedures. This is the document your infrastructure and security engineering teams will implement from.
 
 ## What It Covers
 
-- Log collection architecture (agents, infrastructure, applications)
-- Log storage tiers (hot/warm/cold)
-- Dashboard configuration
-- Alert configuration by category (service, auth, utilization, security)
-- Alert routing and escalation
-- False positive management
-- Access control for log data
+- Centralized logging platform architecture and data flow
+- Agent-based host collection and cloud-native streaming collection methods
+- Three-tier storage model: hot (30 days queryable), warm (90-365 days), cold (archival)
+- Role-based access control for the logging platform
+- Comprehensive catalog of tracked logs (OS, application, database, cloud, security tools)
+- Tracked metrics (host and infrastructure level)
+- Alert categories: service-level, authentication, utilization, security
+- Alert routing by severity (messaging, SMS, ticketing)
+- Scheduled manual log review procedures
+- Platform health monitoring
 
 ## Gotchas People Get Wrong
 
-**1. Logging can get really expensive really fast.** If you ship every DEBUG line from every microservice to a SaaS logging platform that charges by ingest, your logging bill will exceed your infrastructure bill. Be ruthless about what you ship: structured INFO+ logs from applications, security-relevant events only. Use sampling for high-volume debug data.
+**1. Not defining the collection tier for each log source.** The process describes both agent-based and cloud-streaming collection. Every log source needs an explicit assignment: "PostgreSQL logs → Otel-Collector agent → OpenObserve." Vague "logs are forwarded" language means logs get forgotten. Maintain a log source inventory that maps each source to its collection method and destination.
 
-**2. OpenObserve as a cost-efficient option.** Traditional log platforms (Splunk, Datadog, New Relic) charge per GB ingested, and costs scale linearly with your traffic. OpenObserve uses columnar storage that dramatically reduces storage costs and can run self-hosted. For small-to-medium organizations, it's often 10x cheaper. Worth evaluating if your logging bill is becoming a board-level conversation.
+**2. "We'll configure alerts later."** The hard part of logging isn't collection — it's building useful alerts that fire on real problems without flooding the team with noise. Start alerting on day one with conservative thresholds (high sensitivity, expect false positives), then tune down. Starting with no alerts means you're collecting logs with no monitoring, which is the same as not collecting logs at all.
 
-**3. Log levels are your friend.** Not everything needs to be shipped to the central platform. Use log levels to tier what gets collected: DEBUG stays on the server (rotates quickly), INFO goes to centralized storage (30 days), WARN and above gets longer retention (90+ days). This is the single most impactful cost optimization.
+**3. Storage tier transitions that never get tested.** The process defines hot → warm → cold storage transitions. Have you tested what happens when you need to restore cold storage logs for an investigation that's 18 months old? Restoration time, cost, and data completeness should be validated before you need them for real.
 
-**4. Alerts without runbooks are noise.** An alert that says "CPU > 90%" with no link to a runbook for what to do about it will be ignored. Every alert should either link to a runbook or auto-remediate. If nobody knows what to do when an alert fires, don't create the alert.
+**4. OpenObserve (self-hosted) requires operational care.** If you self-host OpenObserve, you need to manage: storage scaling, backup of the OpenObserve data (it's now a critical system), upgrades, and high availability. If you don't have the operational capacity, consider OpenObserve Cloud or a SaaS alternative.
 
-**5. Alert fatigue kills monitoring programs.** If your on-call team gets 50 alerts per night and 48 are false positives, they will learn to ignore all of them — including the 2 real ones. Aggressively tune alert thresholds, suppress known false positives, and use alert aggregation (don't fire 50 alerts for 50 servers with the same problem).
+**5. Logging agent deployment is a configuration management problem.** The process assumes a logging agent is deployed on all hosts. If you don't have configuration management (Ansible, Puppet, Chef, Terraform), you'll have hosts with outdated, broken, or missing agents. Automate agent deployment, configuration, and health checks through your infrastructure-as-code pipeline.
+
+**6. Alerting on "unusual" without defining baseline.** "Network throughput anomalies" and "authentication from unusual locations" require a baseline of normal behavior to detect anomalies. Without at least 2-4 weeks of baseline data and a defined threshold (e.g., "3 standard deviations above the 30-day moving average"), "anomaly" alerts are either uselessly vague or generate constant false positives.
+
+**7. Missing cloud data event logging.** Cloud audit logs (AWS CloudTrail, Azure Activity Log) capture management events by default. But data events — reading S3 objects, querying DynamoDB tables, accessing KMS keys — are often NOT enabled by default and are a separate configuration. If you don't explicitly enable data event logging, you'll have no visibility into data access patterns.
 
 ## Implementation Advice
 
-- **Start with the "four golden signals" for services:** latency, traffic, errors, and saturation. These cover 90% of what you need to detect problems.
-- **Structured logging from day one.** JSON-formatted logs are queryable by field. Free-text logs require regex parsing that breaks every time someone changes the log message. If you're starting a new project, mandate structured logging in the SDLC policy.
-- **Test your alert pipeline.** Once a quarter, trigger a test alert and verify: the alert fires, it routes to the right people, the notification channel works, and someone acknowledges it within the expected timeframe.
-- **PII in logs is a data breach waiting to happen.** Audit your logs quarterly for accidentally logged PII (email addresses, SSNs, credit card numbers). Most log platforms have DLP-like features to detect and mask this.
+- **Start with authentication logs and privileged access.** If you're building logging incrementally, start with: SSH/RDP authentication logs, sudo/administrator command logs, and IAM/cloud audit logs. These give you the highest security value per engineering hour invested.
+- **OpenObserve is genuinely cost-efficient.** Compared to Splunk (expensive per GB), Datadog (expensive at scale), or self-hosted ELK (high operational overhead), OpenObserve provides a good balance. It supports logs, metrics, and traces; has a built-in query engine and alerting; and can be self-hosted in your own cloud environment for data sovereignty.
+- **Template your alert configurations.** Create reusable alert templates for each log source type: "NGINX error rate alert," "SSH brute force alert," "Database connection failure alert." When you add a new NGINX server, the alerts are pre-configured, not manually recreated.
+- **The manual review requirement needs a checklist.** "Review privileged user activity weekly" is too vague. Create a specific checklist: check all root/sudo actions on production servers, verify all new user creations had tickets, review firewall rule changes against change management records. Without a checklist, manual review becomes skimming.
+- **Alert on what stopped working, not just what happened.** The most important alerts aren't "someone did X" — they're "logging from system Y has stopped" and "the centralized platform's disk is 90% full." Silent failures are the most dangerous. Monitor the monitoring system.
+- **Align storage tiers with your compliance framework.** SOC 2 auditors typically want 90 days of hot queryable logs for control testing. PCI DSS requires 12 months. GDPR/CCPA may limit how long you can keep PII-containing logs. Map each log source type to its retention requirement and implement lifecycle policies accordingly.

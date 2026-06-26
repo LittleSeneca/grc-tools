@@ -2,31 +2,35 @@
 
 ## What This Is
 
-The Data Retention Policy defines how long the organization keeps different types of data and what happens when the retention period expires. It's one of the hardest policies to implement correctly because it requires coordination between legal, engineering, and operations teams.
+The Data Retention Policy defines how long different categories of data must be kept — and, critically, when it must be deleted. It bridges legal and regulatory requirements with operational data management, ensuring the organization keeps what it needs and disposes of what it doesn't. This policy is a key control for minimizing data breach impact, managing storage costs, and complying with privacy regulations that mandate data minimization.
 
 ## What It Covers
 
-- Retention principles (keep only what's needed)
-- Retention schedule by data category
-- Data deletion requirements and methods
-- Legal hold procedures
-- Backup and archive retention considerations
+- Retention schedules for customer data (active, closed, suspended accounts)
+- Employee and personnel data retention by category
+- Financial record retention periods
+- Operational data and communications retention
+- Security and compliance evidence retention
+- Secure disposal methods per classification level
+- Legal hold procedures that override standard retention
+- Backup and archive data lifecycle management
 
-## Gotchas People Get Wrong
+## Common Gotchas and Mistakes
 
-**1. Backups make deletion nearly impossible.** When you delete a customer record from your production database, that record still exists in nightly backups for the next 30/60/90 days. True "deletion" means waiting for the backup retention period to expire. Be honest about this in your policy — don't claim you can delete data from backups that you can't touch.
+**1. Retaining data "just in case" with no defined period.** The most common retention failure is indefinite retention. Every terabyte of data kept beyond its useful life is a terabyte you must protect, search during e-discovery, and notify about in a breach. Indefinite retention is a liability, not an asset.
 
-**2. "Delete within 90 days of account closure" means 90 days plus your backup window.** If customers can request deletion and you have 30-day backups, your policy should say "data will be fully purged within 120 days (90-day processing window + 30-day backup cycle)." Transparency prevents disputes.
+**2. Forgetting about backups.** Deleting data from production systems is only half the battle. Backups, replicas, snapshots, and off-site archives all contain copies that must also be purged. If your backup rotation is 90 days and you delete data from production today, it remains recoverable from backups for 90 days. This must be addressed in the policy and in practice.
 
-**3. Legal holds override everything.** When litigation starts, your retention policy goes out the window — you must preserve everything relevant. Make sure you have a process to rapidly identify and freeze data when a legal hold arrives. Screenshots and manual processes don't scale.
+**3. Conflicting retention requirements.** Different jurisdictions impose different retention periods for the same data type. For example, tax records may require 3 years in one country and 10 in another. The policy must default to the longest applicable period and document the basis for each requirement.
 
-**4. Employee data retention varies by jurisdiction.** US states, EU member countries, and other jurisdictions have different requirements for how long you must retain (and must not retain) employee data. A single "7 years" policy may not work globally.
+**4. Inconsistent disposal verification.** Many organizations have a disposal policy but never verify it works. Deleted files recoverable from the recycle bin, database records that are soft-deleted, and cloud storage with versioning enabled all create gaps between policy and reality. Verify disposal through testing.
 
-**5. "Retain for 7 years" without a deletion mechanism is just data hoarding.** If your policy says "retain financial records for 7 years," you need a system that automatically deletes them after 7 years + 1 day. Manual deletion at scale is a fantasy.
+**5. Ignoring legal holds.** A legal hold must override normal retention schedules, but the process for issuing, tracking, and releasing holds is often ad hoc. Without a documented and enforced legal hold procedure, you risk spoliation of evidence and the associated legal consequences.
 
 ## Implementation Advice
 
-- **Automate deletion where you can.** S3 lifecycle policies, database TTL features, and log rotation tools can handle most retention policies automatically. Manual processes break down at scale.
-- **The retention schedule is a living document.** Laws change, contracts change, business needs change. Review the retention schedule annually with legal counsel.
-- **Test your deletion process before you need it.** Pick a non-critical data category, run through the full deletion workflow, and verify the data is actually gone (including backups). You'll find gaps you didn't expect.
-- **Data inventory makes retention possible.** If you don't know where your data lives, you can't apply retention policies to it. The Data Classification Policy's inventory is the foundation for this policy.
+- **Build deletion into system design.** Automated data lifecycle management is far more reliable than manual cleanup. Implement TTL (time-to-live) fields, automated archival jobs, and scheduled purging from day one. Retrofitting deletion into a system that was designed to keep everything forever is painful and error-prone.
+- **Map retention requirements to regulations explicitly.** For each retention period in the policy, cite the specific regulation or business justification. This makes audits straightforward and helps when regulations change. A matrix mapping data category → retention period → regulatory citation → system of record is gold for auditors.
+- **Start with the highest-risk data.** If you cannot implement full lifecycle management at once, prioritize customer data and employee PII. These categories carry the highest breach notification obligations and regulatory penalties. Operational logs can follow later.
+- **Test legal hold procedures with a tabletop exercise.** Run a simulated litigation scenario where Legal issues a hold. Verify that IT can identify affected systems, suspend deletion, and confirm preservation. Most organizations discover gaps in their first exercise — finding them before a real litigation is invaluable.
+- **Document what you delete.** For Restricted and Confidential data, maintain deletion logs showing what was deleted, by whom, when, and using what method. Some regulations require proof of deletion. A deletion log satisfies this and also provides evidence of policy compliance during audits.

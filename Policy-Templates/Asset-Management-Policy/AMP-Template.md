@@ -71,78 +71,41 @@ The ____ determines when an asset is no longer needed or is obsolete. If the ass
 
 Before retiring or replacing any asset that retains data, data retention requirements for all data stored or managed by that asset must be reviewed. Any data subject to data retention requirements must be migrated to an appropriate destination and tested for appropriateness, completeness, accessibility, and retrievability before the original data is deleted.
 
-### System Hardening Standards
+### System Hardening
 
-#### Device Best Practices and Hardening
+System hardening must follow industry-standard benchmarks (CIS or equivalent) and organizational configuration standards. Implementation procedures — including specific hardening steps, patching cadences, and endpoint security configurations — are defined in the companion [Asset Management — Implementation Procedures](Asset-Management-Procedures.md).
 
-Manufacturer-provided hardening and best practice guides must be employed to ensure all device installations are properly guarded from vulnerabilities.
+#### Device Hardening
 
-- Center for Internet Security (CIS) benchmarks or equivalent industry standards should be utilized for system hardening guidance.
-- Vendor-supplied defaults, including usernames, passwords, and common settings, must be changed in accordance with hardening guides.
-- Insecure and unnecessary communication protocols must be disabled.
-- Local passwords, when required, must be randomly generated and securely stored in the approved password management system.
-- Current patches must be installed and an automatic, ongoing patch management process must be maintained.
-- Malware protection must be implemented.
-- Logging must be enabled.
-- Multi-factor authentication must be used whenever available and supported on the device platform.
+All endpoint devices must be hardened according to CIS benchmarks or equivalent industry standards. Vendor defaults must be changed. Insecure protocols must be disabled. Local passwords must use the approved secrets manager. Patching must be automated. Malware protection must be enabled. Logging and MFA must be configured.
 
-#### Infrastructure Configuration and Maintenance
+#### Infrastructure Patching
 
-**Internal Workstation and Server Patching:**
+OS and infrastructure patches must be evaluated and installed based on criticality during off-peak hours. Infrastructure changes must be reviewed and approved via staging. Redundant systems must be patched serially. Network diagrams and config standards must be documented and current.
 
-- Operating system patches and upgrades must be evaluated periodically.
-- Patches and upgrades must be installed based on criticality.
-- Patches and upgrades must be installed during off-peak hours to minimize disruption.
+#### Endpoint Security
 
-**Internal Infrastructure Patching:**
+Anti-malware/EDR must be deployed on all endpoints with automatic updates, scanning, and alerting.
 
-- Infrastructure patches and upgrades must be evaluated as they become available from vendors.
-- Patches and upgrades must be installed based on criticality.
-- Patches and upgrades must be reviewed and approved via a lab or staging environment when possible.
-- When applicable, redundant systems must be patched or upgraded one device at a time to ensure no impact to shared services.
-
-**Infrastructure Support Documentation:**
-
-- A network diagram must be available to all appropriate service personnel and kept current.
-- Configuration standards for the setup of all infrastructure devices must be in place and formally documented.
-
-**Endpoint Security:**
-
-- Anti-malware tools must be deployed on endpoint devices.
-- Anti-malware tools must be configured to automatically receive updates, run scans, and alert appropriate personnel.
+Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md).
 
 ### Physical Media Transfer
 
-Secure electronic transfer should be used whenever possible. When physical media must be transported:
+Physical media transfers must follow secure handling procedures. Electronic transfer is preferred. When physical media is required, data must be encrypted. Approved couriers must be used with verification of identification. Packaging must protect against physical damage. Transfers must be logged with content description, protection type, times, and receipt confirmation.
 
-- Data on physical media must be encrypted using approved encryption methods.
-- Reliable transport or couriers must be used, with a management-approved list and identification verification procedures.
-- Packaging must be sufficient to protect contents from physical damage during transport.
-- Transfers must be logged with information about content, protection applied, time of transfer to transport custodian, and time of receipt at destination.
+Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 4: Physical Media Transfer.
 
-### Return of Assets Upon Termination
+### Return of Assets
 
-- The termination process must include the return of all previously issued physical and electronic assets owned by or entrusted to the organization.
-- If organization equipment was purchased by an employee or third party, or personal equipment was used, all relevant information must be transferred to the organization and securely erased from the equipment.
-- Unauthorized copying of information during the termination period must be monitored and controlled.
+Upon termination, all issued assets must be returned. The process includes return of physical and electronic assets. If equipment was purchased by or entrusted to an employee or third party, information must be transferred to the organization and securely erased. Unauthorized copying must be monitored and controlled.
 
-### Disposal of Media
+Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 6: Return of Assets.
 
-The steps for secure disposal of media containing confidential information must be proportional to the sensitivity of that information:
+### Media Disposal
 
-- Identification of items requiring disposal.
-- Use of appropriate third-party collection and disposal services in accordance with the Vendor Management Policy.
-- Secure disposal by incineration or shredding, or erasure of data for reuse within the organization.
-- Risk assessment of damaged media to determine disposal or repair.
-- Full-disk encryption to mitigate risk of disclosure of confidential information.
-- Logging each disposal to maintain an audit trail.
+Media containing confidential information must be disposed of proportionally to sensitivity. Secure disposal via approved third-party services is required. Sanitization through incineration, shredding, or cryptographic erasure must follow the Encryption Policy. Disposal must be logged for audit trail purposes. Damaged media must be assessed for disposal vs. repair. Sanitization procedures must be tested annually.
 
-### Media Sanitization
-
-Media sanitization procedures must ensure that when data is removed, it cannot be retrieved or reconstructed:
-
-- Media must be securely wiped before disposal or when the information is no longer needed.
-- Sanitization procedures and equipment must be reviewed and tested annually to ensure intended sanitization is being achieved.
+Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 5: Media Disposal and Sanitization.
 
 ## Roles and Responsibilities
 

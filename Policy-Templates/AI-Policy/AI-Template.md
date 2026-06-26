@@ -44,29 +44,15 @@ This policy applies to all Personnel who use AI tools and services in the course
 - Ongoing security awareness training must include safe AI use practices.
 - Policy breaches will follow the disciplinary process outlined in the Acceptable Use Policy. Determination of "serious misconduct" must weigh factors such as intent and impact.
 
-## Procedures
+## Implementation
 
-### Permitted AI Use
+The requirements in this policy must be implemented according to the companion [AI Usage Policy — Implementation Procedures](AI-Procedures.md), which covers:
 
-- **Customer Data Processing:** Submit customer data only to approved AI platforms that provide contractual data protection guarantees.
-- **Development Activities:** Use approved integrated AI tools for software development when processing source code that is free of Customer PII.
+- AI platform approval, security review, and onboarding
+- Data handling implementation (pre-submission PII scanning, monitoring, incident response)
+- AI tool offboarding and data deletion
 
-### Prohibited Activities
-
-- **Unauthorized Platform Use:** Submitting Customer PII to any AI platform not on the approved list constitutes a breach of this policy.
-- **Public Forum Posting:** Do not post sensitive data, customer data, or confidential code on public AI platforms or associated forums.
-- **Unapproved Financial Transactions:** Do not purchase unauthorized AI services using organizational payment methods.
-
-### AI Data Handling Requirements
-
-In accordance with the Data Classification and Data Protection policies, data used with AI systems is subject to the following requirements:
-
-- **Sensitive Data Definition:** For the operational context of this policy, sensitive data is defined as Customer Personally Identifiable Information (PII) — names, addresses, contact information, or any other data that can identify a specific individual.
-- **Sensitive Data Restriction:** Never enter Customer PII into unauthorized AI platforms, including any AI-enabled development tools.
-- **Development Data Boundaries:** When using approved development AI tools, ensure the data contains only source code.
-- **Legacy Code:** If you discover pre-existing Customer PII embedded in legacy code, report it to your manager or the security team for remediation. Discovering and reporting such issues is encouraged and is not a policy violation.
-- **Authorized Information Exchange:** Any exchange of information with an external AI system must be formally authorized through a vendor contract.
-- **Encryption:** All data, whether at rest or in transit to or from an approved AI service, must be encrypted according to the Encryption Policy.
+Personnel responsible for AI tool procurement, security review, or data handling must follow these procedures.
 
 ## Compliance and Enforcement
 
@@ -79,6 +65,7 @@ Violation of this policy may result in disciplinary action as outlined in the Ac
 - Encryption Policy
 - Acceptable Use Policy
 - Vendor Management Policy
+- [AI Usage Policy — Implementation Procedures](AI-Procedures.md)
 
 ## Revision History
 

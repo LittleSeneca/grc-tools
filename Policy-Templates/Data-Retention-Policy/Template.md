@@ -1,7 +1,7 @@
 # Data Retention Policy
 
 Policy Title: Data Retention Policy
-Policy Number: ISP-012
+Policy Number: DRP-001
 Effective Date: ____
 Version: 1.0
 Classification: Internal
@@ -9,74 +9,146 @@ Approved By: ____
 
 ## Purpose
 
-This policy defines the requirements and procedures for retaining and deleting data throughout its lifecycle, ensuring compliance with legal, regulatory, contractual, and business requirements.
+This policy defines the requirements and procedures for retaining, archiving, and securely deleting organizational and customer data. It establishes minimum and maximum retention periods based on data type, legal and regulatory obligations, and business requirements, and ensures that data is not retained longer than necessary.
 
 ## Scope
 
-This policy applies to all data owned, managed, or processed by ____, regardless of form or location, including customer data, employee data, financial records, and operational data.
+This policy applies to all data created, received, stored, processed, or transmitted by ____, regardless of medium or location. It covers customer data, employee data, financial records, operational data, and all other information assets under the organization's control. All Personnel, contractors, and third-party service providers who manage organizational data are subject to this policy.
+
+## Policy
+
+### General Principles
+
+- Data must be retained only for as long as necessary to fulfill its designated business purpose and to satisfy legal, regulatory, and contractual requirements.
+- Data that has exceeded its retention period must be securely disposed of using methods appropriate to its classification level as defined in the Data Classification Policy.
+- Retention periods must be documented, justified, and reviewed periodically.
+- Legal holds (litigation holds) supersede standard retention periods. When a legal hold is issued by the Legal team, affected data must be preserved until the hold is formally released.
+
+### Customer Data Retention
+
+#### Active Accounts
+
+Customer data associated with active accounts is retained for the duration of the customer relationship. Customers maintain control over their data within the application and may export or delete data through self-service mechanisms where provided.
+
+#### Account Closure
+
+Upon customer account closure or termination:
+
+- Customer data enters a ____-day (e.g., 90) grace period during which the data is retained but the account is inaccessible through normal user interfaces.
+- Customers may request data export or account reactivation during the grace period by contacting support.
+- After the grace period expires, customer data and associated account information are permanently deleted from production systems.
+- A deletion record is maintained, including the date of deletion and the scope of data removed.
+
+#### Account Suspension
+
+If a customer account is suspended (e.g., for non-payment or terms of service violation), the account enters a ____-day (e.g., 90) suspension period. During suspension:
+
+- The account and data are inaccessible through user interfaces.
+- The customer may restore the account to good standing to regain access.
+- If the suspension is not resolved within the suspension period, the account is treated as closed and the standard account closure retention process is applied.
+
+#### Legal and Regulatory Exceptions
+
+Customer data that is subject to a legal hold, regulatory investigation, or other mandatory preservation requirement must be retained beyond standard retention periods until the Legal team confirms in writing that retention is no longer required.
+
+### Employee Data Retention
+
+Employee and personnel data is retained according to the following schedule:
+
+| Data Category | Retention Period | Rationale |
+|---------------|-----------------|-----------|
+| Employment records (applications, offer letters, contracts) | ____ years after termination (e.g., 7) | Regulatory requirements; employment verification |
+| Payroll and compensation records | ____ years (e.g., 7) | Tax and labor law requirements |
+| Performance evaluations and disciplinary records | ____ years after termination (e.g., 5) | Business necessity; legal defensibility |
+| Benefits enrollment and administration | ____ years after termination (e.g., 7) | ERISA and related regulatory requirements |
+| Background check records | ____ years after hiring decision (e.g., 3) | FCRA and similar regulations |
+| Time and attendance records | ____ years (e.g., 3) | Wage and hour law requirements |
+| Training and certification records | ____ years after termination (e.g., 3) | Business necessity; audit requirements |
+| I-9 forms (or local equivalent) | ____ years after hire or ____ after termination, whichever is later | Immigration law requirements |
+| Personnel files (general) | ____ years after termination (e.g., 7) | Regulatory and business requirements |
+
+### Financial and Operational Data Retention
+
+| Data Category | Retention Period | Rationale |
+|---------------|-----------------|-----------|
+| Financial statements and audit reports | ____ years (e.g., 7) | Tax and securities law requirements |
+| Tax filings and supporting documentation | ____ years (e.g., 7) | Tax authority requirements |
+| Accounts payable and receivable records | ____ years (e.g., 7) | Financial audit requirements |
+| Contracts and agreements | ____ years after expiration (e.g., 7) | Legal enforceability; dispute resolution |
+| Insurance policies and claims | ____ years after expiration (e.g., 7) | Insurance and liability requirements |
+| Operational logs and metrics | ____ years (e.g., 3) | Business analysis; troubleshooting |
+| Internal reports and analyses | ____ years (e.g., 3) or until superseded | Business relevance |
+| Correspondence and general communications | ____ years (e.g., 3) | Business reference; legal defensibility |
+
+### Security and Compliance Data Retention
+
+| Data Category | Retention Period | Rationale |
+|---------------|-----------------|-----------|
+| Security incident reports and investigations | ____ years (e.g., 7) | Legal and regulatory requirements |
+| Access logs and audit trails | ____ months (e.g., 12) | Security monitoring; forensic analysis |
+| Vulnerability scan and penetration test reports | ____ years (e.g., 3) | Compliance evidence; trend analysis |
+| Risk assessments | ____ years (e.g., 3) | Compliance evidence |
+| Policy acknowledgments and training records | ____ years after termination (e.g., 3) | Audit and compliance requirements |
+| Third-party security assessments | ____ years after relationship ends (e.g., 3) | Vendor risk management |
+
+### Secure Disposal
+
+When data has reached the end of its retention period, it must be securely disposed of using methods appropriate to its classification:
+
+| Classification | Disposal Method |
+|----------------|-----------------|
+| **Restricted** | Cryptographic erasure, verified multi-pass overwrite per NIST SP 800-88, or physical destruction |
+| **Confidential** | Secure deletion utility, cryptographic erasure, or cross-cut shredding for physical media |
+| **Internal** | Standard deletion or single-pass overwrite |
+| **Public** | Standard deletion; no special disposal requirements |
+
+Disposal activities must be documented with a record including:
+- Description of data disposed
+- Disposal method used
+- Date of disposal
+- Individual performing or authorizing the disposal
+
+### Backups and Archives
+
+- Backup media is subject to the same retention periods as the source data.
+- When data is deleted from production systems, it must also be removed from backup systems within the backup rotation cycle (not to exceed ____ days, e.g., 90).
+- Archived data that is past its retention period must be securely disposed of even if storage costs are negligible. Retaining data unnecessarily increases breach impact and discovery burden.
 
 ## Roles and Responsibilities
 
 | Role | Responsibility |
 |------|----------------|
-| ____ (Security Officer / Privacy Officer) | Annual review; retention schedule maintenance |
-| Data Owners | Apply retention periods to data under their ownership |
-| ____ (Legal/Compliance) | Regulatory retention requirements |
-| ____ (IT/Engineering) | Technical implementation of retention and deletion |
+| ____ (e.g., CISO / Data Governance Officer) | Policy owner; annual review |
+| Data Owners | Define retention periods for data under their stewardship; authorize disposal |
+| IT / Engineering | Implement automated retention and deletion mechanisms; execute disposal procedures |
+| Legal | Issue and release legal holds; advise on regulatory retention requirements |
+| Human Resources | Manage employee data retention schedules; coordinate offboarding data disposition |
+| Finance | Manage financial record retention; coordinate with auditors on retention requirements |
+| All Personnel | Comply with retention schedules; do not retain data beyond authorized periods |
 
-## Policy
+## Legal Hold Procedure
 
-### Retention Principles
+When a legal hold is issued:
 
-- Data must only be retained for as long as necessary to fulfill its business purpose and meet legal or regulatory requirements.
-- Data retention periods must be defined and documented for each category of data.
-- At the end of the retention period, data must be securely deleted unless a legal hold is in place.
-- Data subject to litigation, investigation, or audit must be preserved until the legal hold is released.
-
-### Retention Schedule
-
-| Data Category | Retention Period | Rationale |
-|---------------|-----------------|-----------|
-| Customer Data (active accounts) | Duration of account activity + ____ days after closure | Contractual and business requirements |
-| Customer Data (inactive/suspended accounts) | ____ days from suspension | Grace period for account reinstatement |
-| Employee Records | Duration of employment + ____ years | Legal and HR requirements |
-| Financial Records | ____ years | Tax and regulatory requirements |
-| Security Logs and Audit Trails | ____ years (minimum 1 year recommended) | Security investigation and compliance |
-| System Backups | ____ days | Operational recovery; older data available in archives |
-| Operational Data (metrics, reports) | ____ years | Business needs |
-| Marketing and Analytics Data | ____ years or until consent withdrawal | Privacy regulations |
-| Contracts and Legal Documents | ____ years after termination | Legal requirements |
-
-### Data Deletion
-
-When data reaches the end of its retention period and no legal hold applies:
-
-- Data must be securely deleted using approved methods (cryptographic erasure, secure overwrite per NIST SP 800-88, or physical destruction).
-- A record of deletion must be maintained, including: data category, deletion date, method used, and authorizing party.
-- Cloud provider data deletion capabilities may be used where they meet the secure deletion standard.
-
-### Legal Holds
-
-- When a legal hold is issued, all data relevant to the hold must be preserved immediately, overriding normal retention schedules.
-- The ____ (Legal/Compliance) team is responsible for issuing and releasing legal holds.
-- A record of all active legal holds must be maintained.
-- Data subject to legal hold must not be modified or deleted until the hold is released.
-
-### Backups and Archives
-
-- Data in backups is subject to the same retention and deletion requirements as live data.
-- When data is deleted from production systems, corresponding backup data must be deleted within the next backup rotation cycle.
-- Archived data that has reached end-of-retention must be securely destroyed.
+1. The Legal team issues a written legal hold notice identifying the scope of data to be preserved, the relevant matter, and the custodian(s) of the data.
+2. Affected Personnel and system owners must immediately suspend normal deletion schedules for the identified data.
+3. IT implements technical measures to prevent deletion of the affected data (e.g., suspension of automated purging jobs, preservation of backup media).
+4. The legal hold remains in effect until the Legal team issues a written release.
+5. Upon release, normal retention and deletion processes resume.
 
 ## Compliance and Enforcement
 
-Violation of this policy may result in disciplinary action as outlined in the Information Security Policy, and may have legal or regulatory consequences.
+Compliance with this policy is verified through periodic data audits and automated monitoring of data lifecycle management systems. Retention of data beyond authorized periods — particularly Restricted or Confidential data — is a policy violation and must be remediated promptly.
+
+Personnel who willfully violate this policy may be subject to disciplinary action, up to and including termination of employment or engagement.
 
 ## Related Documents
 
-- Information Security Policy (ISP-001)
 - Data Classification Policy
 - Data Protection Policy
+- Encryption Policy
+- Information Security Policy
+- Asset Management Policy
 - Backup Policy
 
 ## Revision History

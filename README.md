@@ -8,8 +8,11 @@ Open-source GRC (Governance, Risk, and Compliance) policy templates, tools, and 
 
 Production-ready policy templates in a consistent ISP (Information Security Program) format. Each policy lives in its own folder with:
 
-- **Template (.md):** Fill-in-the-blanks policy document using industry-standard structure
-- **README:** Plain-English explanation, common gotchas, and implementation advice
+- **Template (.md):** Fill-in-the-blanks policy document using industry-standard structure — defines WHAT is required.
+- **Procedures (.md):** Companion implementation procedures with multiple approaches and pitfalls — defines HOW to implement the policy.
+- **README:** Plain-English explanation of the policy, common gotchas, and implementation advice, plus a document-structure section explaining the policy/procedure split.
+
+Policies and procedures are deliberately separated: policies are written for a broad audience (employees, auditors, executives); procedures are written for implementers (IT, security, HR teams). This follows the industry consensus that mixing the two creates version-control headaches, audience confusion, and audit friction.
 
 These templates are framework-aligned (NIST 800-53, SOC 2, ISO 27001) and reflect operational lessons learned from deploying security programs in real organizations — not theoretical best practices from a textbook.
 

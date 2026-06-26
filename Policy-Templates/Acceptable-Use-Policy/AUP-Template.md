@@ -50,25 +50,13 @@ All Personnel must comply with the following acceptable use requirements:
 - Anti-malware or equivalent protection and monitoring must be installed and enabled on all endpoint systems that may be affected by malware, including workstations, laptops, and servers.
 - Vulnerabilities that could be exploited by malware must be reduced through technical vulnerability management.
 
-### Malware Detection and Scanning
+### Malware Protection
 
-Malware detection and repair software must be installed and regularly updated. Scans must include:
+All endpoint systems must be protected by anti-malware or EDR (Endpoint Detection and Response) software with automatic updates and real-time scanning enabled. Malware detection must be implemented at multiple points: email gateways, web proxies, endpoints, cloud storage, and removable media interfaces.
 
-- Files received over networks or via any storage medium, scanned for malware before use.
-- Electronic mail attachments and downloads scanned for malware before use. Scanning should occur at multiple points (e.g., mail servers, desktop computers, and network entry points).
-- Web pages scanned for malware.
+Software installation must follow the principle of least privilege, and only legally licensed, approved software may be used on organizational equipment.
 
-### Defense Principles and Configuration
-
-The organization must determine defense principles, effective placement, and configuration of malware detection and repair tools based on risk assessment outcomes, including:
-
-- Evasive techniques of attackers (e.g., encrypted files or protocols used to deliver malware).
-- Protection against malware introduction during maintenance and emergency procedures.
-- A process to authorize temporary or permanent disabling of anti-malware measures, including exception approval, documented justification, and review dates.
-- Business continuity plans for recovering from malware attacks, including data and software backup and recovery arrangements.
-- Procedures to collect information about new malware (subscribing to mailing lists, monitoring vendor advisories).
-- Procedures to verify malware-related information, distinguishing between hoaxes and real malware.
-- Isolation of environments where catastrophic impacts may result.
+Implementation procedures — including agent deployment, update cadence, scan scheduling, multi-point scanning architecture, and malware incident response — are defined in the [AUP Implementation Procedures](AUP-Procedures.md) — Procedure 1: Malware Protection Program.
 
 ## Compliance and Enforcement
 

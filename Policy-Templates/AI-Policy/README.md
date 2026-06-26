@@ -14,6 +14,15 @@ The AI Usage Policy defines what AI tools and platforms employees can use, what 
 - Data handling requirements for AI systems
 - Legacy code PII discovery
 
+## Document Structure
+
+This folder contains two documents:
+
+- **`AI-Template.md`** — The policy itself. Defines WHAT is required: approved platforms, prohibited activities, data handling rules. This is what employees read and acknowledge.
+- **`AI-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: platform approval workflow, data handling implementation (pre-submission scanning, monitoring, incident response), and AI tool offboarding. This is what the security and IT teams use.
+
+Separating policy from procedures keeps the policy readable and auditor-friendly while giving implementers the detailed guidance they need.
+
 ## Gotchas People Get Wrong
 
 **1. "Free" AI tools are never free.** ChatGPT Free, Claude Free, etc. train on your data by default. If employees paste customer data into a free AI tool, you have a data breach. Your policy must be explicit about this. The business-friendly way to handle it is to provide an approved, contractually-protected enterprise AI platform.

@@ -1,7 +1,7 @@
 # Data Protection Policy
 
 Policy Title: Data Protection Policy
-Policy Number: ISP-011
+Policy Number: DPP-001
 Effective Date: ____
 Version: 1.0
 Classification: Internal
@@ -9,150 +9,148 @@ Approved By: ____
 
 ## Purpose
 
-This policy defines the technical controls and procedures for protecting data throughout its lifecycle — at rest, in transit, and during processing.
+This policy defines the technical controls, operational procedures, and governance requirements for protecting organizational and customer data throughout its lifecycle. It establishes the baseline safeguards necessary to ensure the confidentiality, integrity, and availability of data processed, stored, or transmitted by ____.
 
 ## Scope
 
-This policy applies to all production systems that create, receive, store, or transmit sensitive or customer data ("Production Systems"). It applies to all Personnel with access to such systems.
+This policy applies to all production systems that create, receive, store, or transmit data belonging to ____ or its customers (hereafter "Production Systems"). All Personnel, contractors, and third parties with access to Production Systems or the data they contain are subject to this policy.
+
+## Policy
+
+### General Data Protection Principles
+
+The following principles govern all data protection activities:
+
+- Data must be handled and protected according to its classification level as defined in the Data Classification Policy, with encryption applied where required by the Encryption Policy.
+- Data of the same classification level should be stored in dedicated repositories wherever possible. Where multiple classification levels coexist in a single repository, security controls — including authentication, authorization, encryption, and auditing — must be applied at the level required by the highest classification present.
+- Personnel shall not have direct, routine administrative access to production data during normal business operations. Exceptions are limited to emergency operations such as forensic investigation, incident response, and disaster recovery, and must be logged and reviewed.
+- All Production Systems must disable services, ports, and protocols that are not required to fulfill the system's business purpose or function (principle of least functionality).
+- All access to Production Systems must be logged and retained in accordance with the Logging and Monitoring Policy.
+- All Production Systems must have security monitoring enabled, including activity monitoring, file integrity monitoring, vulnerability scanning, and malware detection, as applicable to the system type.
+
+### Customer Data Protection
+
+All customer data must be protected in accordance with the following requirements:
+
+- Controls must be implemented and periodically reviewed to protect customer data from unauthorized alteration, destruction, or disclosure.
+- Customer data must be logically or physically segmented so that each customer can access only their own data. Segmentation must be enforced at the application layer and validated through testing.
+- Customer data at rest must be stored on encrypted volumes using encryption keys managed by ____. Volume encryption keys and the systems that generate them must be protected from unauthorized access, with key material accessible only by privileged accounts subject to access reviews.
+- All customer data repositories must support access logging and automated monitoring for potential security incidents.
+
+### Access Controls for Production Data
+
+Access to production data is governed by the principle of least privilege and requires the following controls:
+
+- Access to production environments is disabled by default for all Personnel. Temporary, time-bound access may be granted through a formal approval process when a legitimate business need exists.
+- All production access requests must be documented, approved by the appropriate authority (e.g., Security Officer, system owner), and include a clear justification, scope, and expiration time.
+- Production access is reviewed on a ____ (e.g., quarterly) basis. Access that is no longer required must be revoked immediately.
+- Privileged access to production must use just-in-time (JIT) provisioning where technically feasible, with automatic revocation after the approved time window.
+
+### Data at Rest Protection
+
+#### Encryption
+
+All databases, data stores, and file systems containing Restricted or Confidential data must be encrypted in accordance with the Encryption Policy. Encryption must use approved algorithms and key management practices.
+
+#### Storage and Disposal
+
+Stored data must be managed in alignment with the Asset Management Policy, Data Classification Policy, and Data Retention Policy. Key considerations include:
+
+- Authorization requirements for accessing or managing stored data
+- Proper identification of records and their applicable retention periods
+- Planning for technology changes to ensure data remains accessible throughout the retention period
+- Defined retrieval timeframes and acceptable formats
+- Approved methods of secure disposal at end of retention
+
+#### Data Deletion
+
+Data that is no longer required for business, legal, or regulatory purposes must be securely deleted. Deletion methods must be appropriate to the classification level:
+
+- **Restricted data:** Cryptographic erasure or verified multi-pass overwrite (e.g., NIST SP 800-88)
+- **Confidential data:** Secure deletion utilities or cryptographic erasure
+- **Internal and Public data:** Standard deletion methods
+
+A record of data deletion, including the method used and the date, must be maintained for Restricted and Confidential data.
+
+### Data in Transit Protection
+
+#### Transfer Authorization
+
+Data shall only be transferred where strictly necessary for effective business processes. Before initiating a data transfer, the following factors must be evaluated:
+
+- Nature, sensitivity, confidentiality, and value of the information
+- Volume of data being transferred
+- Potential impact of loss, interception, or corruption during transit
+
+#### Encryption Requirements
+
+All external data transmission must be encrypted end-to-end using approved encryption protocols. Requirements include:
+
+- All internet-facing and inter-network connections must use strong, mutually authenticated encryption with approved cipher suites.
+- Internal data transmission within trusted network segments must use encryption where required by the data classification (see Data Classification Policy handling matrix).
+- Data transmitted to third-party vendors or cloud services must be encrypted using protocols that meet or exceed the requirements of the Encryption Policy.
+
+### Information Exchange with External Parties
+
+Information exchange between ____'s systems and external systems must be governed by formal agreements that specify:
+
+- Technical interface characteristics and API specifications
+- Security and privacy requirements, controls, and responsibilities for each party
+- The impact level of the information being exchanged
+- Incident notification timelines and procedures
+- Data ownership, usage restrictions, and return/destruction upon agreement termination
+
+Agreements must be reviewed and updated at least annually or upon significant changes to the systems, data, or threat landscape.
+
+### End-User Messaging Channels
+
+Restricted and Confidential data must not be transmitted via unencrypted end-user messaging channels such as email, instant messaging, or chat platforms. Where transmission of such data is unavoidable, end-to-end encryption must be enabled and verified.
+
+### Confidentiality and Non-Disclosure Agreements
+
+Confidentiality or Non-Disclosure Agreements (NDAs) must be used to protect confidential information shared with internal and external parties. NDAs must include, at minimum:
+
+- Clear definition of the information to be protected
+- Duration of the confidentiality obligation
+- Required actions upon termination of the agreement
+- Responsibilities to prevent unauthorized disclosure
+- Ownership of information, trade secrets, and intellectual property
+- Permitted use of confidential information
+- Audit and monitoring rights related to confidential information
+- Notification and reporting process for unauthorized disclosure
+- Information return or destruction terms at agreement termination
+- Consequences of breach
 
 ## Roles and Responsibilities
 
 | Role | Responsibility |
 |------|----------------|
-| ____ (Security Officer) | Annual review; policy enforcement |
-| ____ (Engineering/DevOps) | Implementation of data protection controls |
-| Data Owners | Data handling decisions |
-| All Personnel | Compliance with data handling procedures |
-
-## Policy
-
-____ requires that:
-
-- Data must be handled and protected according to its classification as defined in the Data Classification Policy.
-- Data of different classifications should be stored in separate repositories where possible. Where mixed, security controls must apply at the highest classification present.
-- Personnel must not have direct, persistent administrative access to production data during normal operations. Exceptions include emergency operations (forensic analysis, disaster recovery) and must be logged and reviewed.
-- All Production Systems must disable services that are not required for the business purpose of the system (principle of least functionality).
-- All access to Production Systems must be logged.
-- All Production Systems must have security monitoring enabled, including activity monitoring, file integrity monitoring, vulnerability scanning, and malware detection as applicable.
-
-## Data Protection Controls
-
-### Customer Data Protection
-
-- Customer data must be stored in environments with appropriate redundancy and disaster recovery capabilities.
-- Controls must be implemented to protect production data from improper alteration or destruction.
-- Confidential data must be stored in a manner that supports access logging and automated monitoring for potential security incidents.
-- Customer data must be logically or physically segmented so that each customer's data is only accessible by that customer's authorized users.
-- All production data at rest must be stored on encrypted volumes.
-- Encryption keys must be protected from unauthorized access. Key material must only be accessible by privileged, authorized accounts.
-
-### Access Controls
-
-- Access to production systems and data must follow the principle of least privilege.
-- Production access must be granted through a formal approval process. By default, access is disabled and granted only when needed.
-- Privileged access must be temporary where possible (just-in-time access), time-bound, and automatically revoked.
-- Production access must be reviewed at least ____ (quarterly).
-
-### Data Separation
-
-- Customer data must be logically separated at the application and database layers.
-- Separation must be enforced at the API layer through authentication and authorization.
-- All database queries must be scoped to the authenticated context.
-
-### Monitoring and Alerting
-
-- Production systems must be continuously monitored for availability, performance, and security events.
-- System failures or anomalies must generate alerts to designated personnel.
-- Security agents must monitor system activities, generate alerts on suspicious behavior, and report on vulnerability findings.
-
-### Confidentiality and Non-Disclosure Agreements (NDA)
-
-NDAs or equivalent confidentiality agreements must be used to protect confidential information with legally enforceable terms. NDAs must include:
-
-- Definition of the information to be protected.
-- Duration of the agreement.
-- Required actions upon termination.
-- Responsibilities to avoid unauthorized disclosure.
-- Ownership of information, trade secrets, and intellectual property.
-- Permitted use of confidential information.
-- Audit and monitoring rights.
-- Notification and reporting process for unauthorized disclosure.
-- Information return or destruction terms.
-- Actions in case of breach.
-- Periodic review requirement.
-
-## Data at Rest
-
-### Encryption
-
-All databases, data stores, and file systems containing sensitive data must be encrypted according to the Encryption Policy.
-
-### Storage and Disposal
-
-Stored data must be properly stored and handled while at rest. Considerations include:
-
-- Authorization to access stored data.
-- Identification of records and their retention period.
-- Technology changes and ability to access data throughout the retention period.
-- Acceptable timeframe and format for data retrieval.
-- Appropriate disposal methods.
-
-### Data Deletion
-
-Stored sensitive data that is no longer required must be properly deleted in accordance with business objectives, applicable laws and regulations, and third-party agreements. A record of deletion must be maintained.
-
-Approved deletion methods for sensitive data include:
-
-- Cryptographic erasure (destroying encryption keys).
-- Secure overwrite utilities following NIST SP 800-88 standards.
-- Physical destruction for hardcopy and removable media.
-- Cloud provider data destruction capabilities.
-
-## Data in Transit
-
-### Necessity
-
-Data must only be transferred where strictly necessary for effective business processes.
-
-### Transfer Risk Assessment
-
-Before data transfer, consider:
-
-- Nature, sensitivity, and value of the information.
-- Size of data being transferred.
-- Impact of loss or interception during transit.
-
-### Encryption
-
-- All external data transmission must be encrypted end-to-end using approved encryption methods (TLS 1.3 minimum).
-- This includes cloud infrastructure communication, third-party vendor connections, and API calls.
-- All internal network connections handling sensitive data should also be encrypted.
-
-## Information Exchange with Third Parties
-
-Information must only be exchanged between ____ systems and external systems through formally authorized channels, which include:
-
-- Interface characteristics.
-- Security and privacy requirements, controls, and responsibilities for each system.
-- Impact level of the information communicated.
-
-Agreements must be reviewed and updated annually or as needed.
-
-## End-User Messaging Channels
-
-Sensitive data must not be sent over unencrypted end-user messaging channels such as email or chat. End-to-end encryption or secure file sharing must be used for sensitive data transmission.
+| ____ (e.g., CISO / Security Officer) | Policy owner; annual review; approval of production access exceptions |
+| System Owners | Implement data protection controls on their systems; approve routine access requests |
+| Data Owners | Classify data; define protection requirements; approve data transfers |
+| Engineering / DevOps | Implement encryption, access controls, and monitoring on Production Systems |
+| All Personnel | Handle data in accordance with classification requirements; report suspected data breaches |
+| Legal / Privacy | Review and approve NDAs and information exchange agreements |
 
 ## Compliance and Enforcement
 
-Violation of this policy may result in disciplinary action as outlined in the Information Security Policy.
+Compliance with this policy is verified through technical audits, access reviews, vulnerability assessments, and monitoring activities. Violations may result in disciplinary action, up to and including termination of employment or engagement.
+
+Specific attention will be paid to:
+- Unauthorized access to production data
+- Transmission of Restricted or Confidential data over unencrypted channels
+- Failure to encrypt data at rest where required
+- Unauthorized data retention beyond approved periods
 
 ## Related Documents
 
-- Information Security Policy (ISP-001)
+- Information Security Policy
 - Data Classification Policy
 - Data Retention Policy
 - Encryption Policy
-- Vendor Management Policy
+- System Access Control Policy
+- Asset Management Policy
+- Logging and Monitoring Policy
 
 ## Revision History
 

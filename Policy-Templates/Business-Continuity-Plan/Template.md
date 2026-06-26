@@ -105,58 +105,24 @@ The following response teams are established and trained to respond to continuit
 - Team leads must maintain a local copy of this plan in case internet access is unavailable during a disaster.
 - All teams must participate in the annual BCP testing exercise.
 
-## Recovery Procedures
+## Recovery and Continuity
 
-### Work Site Recovery
-
-In the event a facility becomes non-functional due to a disaster:
-
-1. Affected personnel will transition to remote work from home or from a pre-designated secondary location with internet access.
-2. If remote work is not feasible for certain roles, the ____ team will coordinate temporary office space or relocation.
-3. The organization must be able to operate with a distributed workforce; critical business processes must not depend on physical presence at a specific facility.
-
-### Critical Service Recovery
-
-For disruptions affecting customer-facing or revenue-generating services:
-
-1. The IT and Infrastructure Recovery Team will execute recovery procedures as defined in the Disaster Recovery Plan.
-2. The Communications Team will update the organization's public status page with real-time information about the event and estimated recovery timeline.
-3. Customer support channels must remain operational or provide a fallback mechanism for critical customer communications.
-
-### Third-Party Dependency Failures
-
-For disruptions caused by a critical vendor or service provider outage:
-
-1. Identify alternative providers or manual workarounds documented in the vendor contingency register.
-2. Escalate to the vendor through established support channels.
-3. If the vendor cannot restore service within the organization's RTO for the affected function, activate the alternate provider or manual process.
+- Detailed procedures for Work Site Recovery, Critical Service Recovery, Third-Party Dependency Failures, and other continuity scenarios are defined in [BCP-Procedures.md](./BCP-Procedures.md).
+- IT-specific technical recovery is executed per the Disaster Recovery Plan and Disaster Recovery Process.
 
 ## Testing and Maintenance
 
 ### Annual Testing Requirement
 
-The BCP must be tested at least once per year. Testing must include:
-
-- **Tabletop Exercise:** A facilitated walkthrough of a realistic disruption scenario. All response team leads must participate. The exercise must test the notification cascade, decision-making under the succession plan, and coordination between teams.
-- **Functional or Technical Test:** Where feasible, a live test of specific recovery procedures (e.g., failover to alternate site, restoration of a key system from backup, communication channel failover).
+The BCP must be tested at least once per year through a tabletop exercise, with a functional or technical test where feasible. All response team leads must participate.
 
 ### Test Documentation
 
-Each test must produce:
-
-- A test plan defining the scenario, objectives, scope, and participants
-- A post-exercise report documenting: what worked, what did not, lessons learned, and remediation items
-- Metrics including: time to activate the plan, time to notify all team members, time to restore each critical function tested
-
-Remediation items must be tracked to resolution in the organization's ticketing system. Any item not resolved before the next annual test must be escalated to executive leadership.
+Each test must produce a test plan, a post-exercise report documenting outcomes and lessons learned, and measured metrics (time to activate, time to notify, time to restore). Remediation items must be tracked to resolution; any item not resolved before the next annual test must be escalated to executive leadership.
 
 ### Plan Maintenance
 
-This plan must be reviewed and updated:
-
-- Annually as part of the test cycle
-- Within ____ days of any material organizational change (acquisition, new product launch, office relocation)
-- Within ____ days of any significant change to the IT architecture or vendor landscape
+This plan must be reviewed and updated annually as part of the test cycle, within ____ days of any material organizational change, and within ____ days of any significant change to the IT architecture or vendor landscape. Implementation procedures for testing and maintenance are defined in [BCP-Procedures.md](./BCP-Procedures.md).
 
 ## Roles and Responsibilities
 
@@ -186,4 +152,4 @@ Violation of this policy, including failure to participate in required testing o
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to BCP-Procedures.md. |

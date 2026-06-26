@@ -2,31 +2,34 @@
 
 ## What This Is
 
-The Data Classification Policy defines how the organization categorizes its data by sensitivity and what security controls apply at each level. Everything else — encryption, access control, backup, retention — uses these classifications to decide what level of protection to apply.
+The Data Classification Policy establishes a standardized taxonomy for categorizing all organizational data based on sensitivity and business impact. This policy is the cornerstone of data-centric security — it tells everyone in the organization how to label information and what handling controls apply at each level. Without classification, security controls are applied inconsistently, leading to both over-protection (wasted resources) and under-protection (increased risk).
 
 ## What It Covers
 
-- Four-level classification scheme (Restricted, Confidential, Internal, Public)
-- Classification assignment responsibilities
-- Handling controls matrix (encryption, access, sharing, disposal)
-- De-identification requirements
-- Reclassification and review process
+- Four-tier classification scheme: Restricted, Confidential, Internal, Public
+- Definitions, examples, and impact descriptions for each level
+- Handling controls matrix covering access, encryption, transmission, storage, disposal
+- Decision matrix for determining appropriate classification
+- Information aggregation rules (highest classification governs)
+- De-identification standards
+- Labeling requirements for physical and electronic documents
 
-## Gotchas People Get Wrong
+## Common Gotchas and Mistakes
 
-**1. Default classification matters.** If "Internal" is the default and your engineers default-save everything, then nothing gets the encryption or access controls it should. Make sure your default classification and your actual data handling practices align.
+**1. Too many or too few classification levels.** Some organizations create seven or eight tiers that no one can consistently apply. Others default everything to one level. Four tiers (Public, Internal, Confidential, Restricted) is the industry standard for a reason — it balances granularity with usability. Anything beyond four levels degrades adoption.
 
-**2. "Internal" becomes a dumping ground.** When people don't know how to classify something, they pick Internal. This means your most sensitive data might be sitting in Internal-labeled S3 buckets. Regular classification reviews are essential.
+**2. Defaulting everything to "Confidential" or "Internal."** When classification is undefined or too hard, people mark everything the same. This either creates alert fatigue (everything is "high sensitivity") or causes sensitive data to leak because "everything is just Internal." The policy must make classification easy and automated where possible.
 
-**3. End-user classification doesn't work without automation.** Expecting employees to manually classify every file they create is unrealistic. Automate classification where possible: tag cloud resources, use DLP tools to detect PII, classify by data store rather than individual files.
+**3. Ignoring the aggregation problem.** A common mistake is classifying individual fields but not the combined dataset. A report combining employee names (Internal) with salary data (Confidential) is Confidential. If it also includes Social Security numbers (Restricted), the whole report becomes Restricted. This cascading effect is frequently overlooked.
 
-**4. The handling controls matrix looks great on paper but fails in practice.** "Encryption Required for Restricted data" — how do you enforce this? If you can't enforce it, it's not a control, it's a suggestion. Each row in the matrix needs a technical enforcement mechanism.
+**4. No enforcement mechanism.** A classification policy without automated tooling (DLP, data discovery, classification labels enforced by the DLP system) relies entirely on human diligence — which fails consistently. Plan for technical enforcement from the start.
 
-**5. Four levels is the sweet spot.** Three (Public, Internal, Restricted) is workable for small orgs. Five or more gets confusing and people stop classifying correctly. Four (Public, Internal, Confidential, Restricted) is optimal for most mid-size companies.
+**5. Confusing classification with retention.** Classification determines *how* data is protected; retention determines *how long* it is kept. These are related but distinct policies. Don't conflate them — a document might be Public (low sensitivity) but still require seven-year retention for legal reasons.
 
 ## Implementation Advice
 
-- **Start by classifying data stores, not individual files.** Classify your S3 buckets, databases, SharePoint sites, and Google Drive shared drives. Individual files inherit the classification of their container. This is 80% of the value for 20% of the effort.
-- **Your data classification scheme drives your backup and retention policies.** Restricted data might need daily backups retained 7 years. Public data might need no backup at all. These policies talk to each other.
-- **PII auto-detection is worth the investment.** Tools that scan for credit card numbers, SSNs, and other PII patterns catch misclassified data. AWS Macie, Google DLP, and similar tools pay for themselves the first time they find PII in a public bucket.
-- **Train on classification at onboarding and annually.** Most people don't know the difference between Confidential and Restricted. Use real examples from your business.
+- **Automate classification where possible.** Use data discovery and classification tools to scan repositories and auto-tag data. Manual classification at scale is a fantasy. Start with high-value targets: file shares, email, cloud storage.
+- **Integrate classification into the creation workflow.** Add a classification field to document templates, project intake forms, and ticket systems. If people have to stop and think about classification at the point of creation, compliance improves significantly.
+- **Publish the handling matrix as a one-pager.** The full policy is for auditors. The one-page handling matrix is what people actually need at their desks. Laminated quick-reference cards work surprisingly well for physical environments.
+- **Test de-identification assumptions.** De-identified data frequently retains re-identification risk (e.g., through cross-referencing with public datasets). Have the Privacy or Data Science team validate de-identification processes before reclassifying data downward.
+- **Review classifications during access reviews.** Quarterly access reviews are a natural opportunity to verify that data classifications are still accurate. Build this verification step into the access review procedure.

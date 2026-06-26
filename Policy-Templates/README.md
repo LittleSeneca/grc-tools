@@ -1,14 +1,24 @@
 # Policy Templates
 
-Production-ready information security policy templates aligned with NIST 800-53, SOC 2, and ISO 27001. Every template follows the ISP (Information Security Program) house format and includes a companion README with implementation guidance.
+Production-ready information security policy templates aligned with NIST 800-53, SOC 2, and ISO 27001. Every template follows the ISP (Information Security Program) house format.
+
+## Document Structure
+
+Each policy folder contains:
+
+- **Policy template (`Template.md`):** The policy document — defines WHAT is required. Written for a broad audience (employees, auditors, executives). Uses ISP house format with `____` placeholders.
+- **Companion procedures (`*-Procedures.md`):** Implementation guidance — describes HOW to operationalize the policy. Written for implementers (IT, security, HR teams). Each procedure includes standard approaches, alternative methods (with rationale), and common pitfalls.
+- **README (`README.md`):** Plain-English overview, gotchas, implementation advice, and an explanation of the policy/procedure split.
+
+Policies and procedures are deliberately separated: policies change infrequently and are approved by leadership; procedures evolve with tools and operational experience. Keeping them separate prevents version-control chaos and makes both documents more usable for their intended audiences.
 
 ## How to Use
 
 1. Read the README in the policy folder first — it explains the policy's purpose, common mistakes, and implementation strategy.
-2. Copy the template markdown file.
-3. Replace all `____` placeholders with your organization's specifics (names, roles, tools, time periods).
-4. Have legal review the final document.
-5. Publish to your policy management platform.
+2. Copy the policy template and replace all `____` placeholders with your organization's specifics.
+3. Copy the companion procedures and adapt the approaches to your environment — the alternatives section helps you choose what fits.
+4. Have legal review the final policy document.
+5. Publish the policy to your policy management platform. Keep the procedures accessible to the teams that need them.
 
 ## Templates
 

@@ -1,7 +1,7 @@
 # Removable Media Policy
 
 Policy Title: Removable Media Policy
-Policy Number: ISP-008
+Policy Number: RMM-001
 Effective Date: ____
 Version: 1.0
 Classification: Internal
@@ -9,63 +9,98 @@ Approved By: ____
 
 ## Purpose
 
-The purpose of this policy is to protect ____ information assets by restricting and controlling the use of removable media such as USB drives, external hard drives, SD cards, CDs/DVDs, and other portable storage devices.
+This policy protects ____'s information assets by restricting and controlling the use of removable media — including USB drives, external hard drives, optical media, SD cards, and other portable storage devices — on organizational systems and networks. Removable media present elevated risks of data exfiltration, malware introduction, and data loss that are best managed through a default-deny posture.
 
 ## Scope
 
-This policy applies to all Personnel and all organization-owned equipment, as well as personally-owned devices used for organizational purposes (BYOD).
+This policy applies to all Personnel — employees, contractors, temporary workers, and any other users of ____'s computing resources and equipment. It covers all organizational endpoints, servers, and systems capable of interfacing with removable media.
 
 ## Policy
 
-### Default Prohibition
+### General Prohibition
 
-The use of removable media devices on organization-owned equipment is prohibited by default. Data transfer must be conducted through approved, encrypted cloud storage or secure file transfer services.
+The use of removable media devices on organizational equipment is prohibited by default. This includes USB flash drives, external SSDs and HDDs, SD/microSD cards, optical media, smartphones used as storage devices, and legacy media formats. This prohibition applies regardless of the data classification level.
 
-### Exceptions
+### Approved Alternatives
 
-- Exceptions to this policy must be approved in writing by the ____ (Security Officer or equivalent).
-- Exception requests must demonstrate a specific, legitimate business need that cannot be fulfilled by approved cloud storage or secure transfer methods.
-- Exception requests must include: business justification, type of media, type of data to be transferred, security controls to be applied, and duration of the exception.
+Before requesting an exception, Personnel must evaluate whether the business need can be met through approved alternatives, including:
+
+- **Cloud Storage:** Organization-approved cloud storage and file sharing platforms with encryption, access controls, and audit logging.
+- **Secure File Transfer:** Approved file transfer services (SFTP, managed file transfer platforms).
+- **Endpoint Encryption and Secure Sharing:** Data stored on encrypted endpoints and shared through approved collaboration platforms.
+- **Virtual Data Rooms:** For external sharing of highly sensitive data during due diligence or partner engagements.
+
+### Exception Process
+
+Exceptions may be granted when a legitimate business need cannot be met by approved alternatives:
+
+1. A written exception request must be submitted to the Security Officer (or designee).
+2. The request must include: detailed business need description, explanation of why approved alternatives cannot satisfy the requirement, data classification, estimated duration, and planned security measures.
+3. The Security Officer reviews the request and may approve, deny, or request additional information.
+4. Approved exceptions must be documented, tracked, and assigned an expiration date not to exceed ____ (e.g., 90) days.
+5. Exceptions may be renewed upon submission of a new request demonstrating ongoing need.
 
 ### Security Measures for Approved Exceptions
 
-If an exception is granted, the following controls are mandatory:
+#### Encryption
+- All data on removable media must be encrypted using an organization-approved encryption method (refer to Encryption Policy).
+- Full-volume encryption is required; individual file encryption acceptable only when full-volume is technically infeasible.
+- The encryption key or passphrase must meet Password Policy requirements and must not be stored with the media.
 
-- All data on removable media must be encrypted using an approved encryption method (AES-256 or equivalent).
-- The removable media must be scanned for malware before connection to any organizational equipment.
-- Use of the removable media must be logged, including: data transferred, person responsible, date and time, and purpose.
-- Media must be physically secured when not in use.
-- Data must be securely erased from the media immediately after the approved use is complete.
+#### Malware Protection
+- Removable media must be scanned for malware before being connected to any organizational equipment.
+- Any media found to contain malware must be quarantined and reported to the Security team.
 
-### Prohibited Activities
+#### Logging and Accountability
+- Each use must be logged: date/time, responsible individual, data description, source/destination systems, duration.
+- Logs must be retained for a minimum of ____ (e.g., 12) months and be available for audit.
 
-The following are explicitly prohibited:
+#### Physical Security
+- Removable media must be physically secured when not in use (locked drawer, safe, or access-controlled storage).
+- Media must not be left unattended in vehicles, hotel rooms, or public spaces.
+- Lost or stolen media must be reported immediately per Incident Response Policy.
 
-- Connecting personally-owned removable media to organizational equipment without an approved exception.
-- Using removable media to exfiltrate organizational data.
-- Storing sensitive or confidential data on removable media as a primary or backup storage location.
-- Connecting removable media of unknown origin to organizational equipment.
+#### Disposal
+- Removable media no longer needed must be securely disposed of.
+- Cryptographic erasure is acceptable for media encrypted with approved methods.
+- Physical destruction (shredding, incineration, degaussing) is required for media containing Restricted data or media that was not encrypted.
+
+### Technical Enforcement
+
+Where technically feasible, the organization's endpoint management platform should:
+- Block or disable USB mass storage access by default on all managed endpoints.
+- Implement allowlisting for specifically authorized devices.
+- Log all attempts to connect removable media, including blocked attempts.
+
+### Exemptions
+
+The following are exempt from the general prohibition:
+- IT-managed bootable recovery media used for system recovery, provided the media is encrypted and securely stored.
+- Encrypted backup media used as part of the formal backup and disaster recovery program, managed by IT.
+
+Exempt media must be tracked in the asset inventory and subject to the same encryption, physical security, and disposal requirements.
 
 ## Roles and Responsibilities
 
 | Role | Responsibility |
 |------|----------------|
-| ____ (Security Officer) | Review exception requests; conduct periodic audits |
-| All Personnel | Compliance; reporting lost media or policy violations |
-| ____ (IT) | Technical enforcement (device control policies via MDM/endpoint management) |
+| ____ (e.g., CISO / Security Officer) | Policy owner; annual review; approve or deny exceptions |
+| IT / Endpoint Management | Implement technical controls to block removable media; manage allowlisting |
+| Managers | Ensure team members understand the policy and do not use removable media without an approved exception |
+| All Personnel | Comply with the prohibition; do not connect unauthorized removable media; report violations immediately |
 
-## Enforcement
+## Compliance and Enforcement
 
-Unauthorized use of removable media is considered a breach of the Acceptable Use Policy. Disciplinary action will follow the process outlined in the Information Security Policy.
-
-Lost or stolen removable media containing organizational data must be reported within ____ hours. Failure to report constitutes a policy violation.
+Unauthorized use of removable media is a policy violation and may result in disciplinary action, up to and including termination. The Security team will conduct periodic audits of endpoint configurations and exception logs to verify compliance.
 
 ## Related Documents
 
 - Acceptable Use Policy
-- Information Security Policy
-- Encryption Policy
 - Data Classification Policy
+- Data Protection Policy
+- Encryption Policy
+- Incident Response Policy
+- Asset Management Policy
 
 ## Revision History
 

@@ -1,7 +1,7 @@
 # Vendor Management Policy
 
 Policy Title: Vendor Management Policy
-Policy Number: ISP-014
+Policy Number: VMP-001
 Effective Date: ____
 Version: 1.0
 Classification: Internal
@@ -9,121 +9,118 @@ Approved By: ____
 
 ## Purpose
 
-This policy establishes requirements for evaluating, onboarding, and managing third-party service providers and vendors to ensure they meet ____ security and privacy standards.
+This policy establishes the requirements for assessing, onboarding, managing, and offboarding third-party vendors and service providers that have access to ____'s information, systems, or facilities. Effective vendor risk management ensures that third-party relationships do not introduce unacceptable risk to the confidentiality, integrity, or availability of organizational and customer data.
 
 ## Scope
 
-This policy applies to all IT vendors, service providers, contractors, and partners who have the ability to impact the confidentiality, integrity, or availability of ____ technology, systems, or sensitive information. It applies to all Personnel responsible for vendor management and oversight.
+This policy applies to all IT vendors, service providers, contractors, and partners who process, store, or transmit organizational or customer data; provide critical services; have network or system access to ____'s environment; or are within the scope of ____'s information security program. It also applies to all Personnel responsible for vendor evaluation, engagement, management, or oversight.
+
+## Policy
+
+### Vendor Risk Tiering
+
+| Risk Tier | Criteria | Examples |
+|-----------|----------|----------|
+| **High** | Stores or accesses Restricted or Confidential data; failure would have critical impact on business operations | Cloud infrastructure providers, payment processors, data analytics platforms with PII access, managed security service providers |
+| **Medium** | May access Internal data but not Restricted or Confidential data; failure would have moderate but not critical impact | Project management tools, communication platforms, non-critical SaaS applications |
+| **Low** | Does not store or access organizational data; failure would have minimal operational impact | Publicly available tools, isolated utility services |
+
+### Vendor Risk Assessment
+
+#### High-Risk Vendor Requirements
+
+Prior to engagement, High-risk vendors must provide:
+
+- A current third-party audit report: **SOC 2 Type II, ISO 27001 certification, or equivalent** independent assessment, dated within the last ____ (e.g., 12) months.
+- In lieu of an independent audit, the organization may conduct its own security assessment using a standardized questionnaire (e.g., SIG, CAIQ) and may perform additional technical testing or on-site evaluation.
+- Documented information security policies and an incident response plan.
+- Evidence of background checks for personnel accessing organizational systems or data.
+- Data flow diagrams or descriptions showing where organizational data will be stored, processed, and transmitted, including geographic locations.
+
+#### Medium-Risk Vendor Requirements
+
+- A completed security questionnaire (e.g., SIG-Lite, custom questionnaire).
+- Confirmation of security practices in areas relevant to the services provided.
+- Additional documentation may be requested if questionnaire responses raise concerns.
+
+#### Low-Risk Vendor Requirements
+
+- Brief review confirming the vendor's risk tier classification. No formal questionnaire or audit required unless specific concerns arise.
+
+### Vendor Contracts and Agreements
+
+Formal, written contracts must be in place before vendors are granted access to organizational systems or data. All contracts must address:
+
+- **Data Security:** Vendor is responsible for security of organizational data in its possession.
+- **Compliance:** Vendor must comply with applicable laws, regulations, and organizational security requirements.
+- **Confidentiality:** Obligations to protect confidential information, including return or secure destruction upon contract termination.
+- **Incident Notification:** Requirement to notify the organization within ____ hours (e.g., 24-48) of a security incident affecting organizational data.
+- **Subcontractors:** Disclosure of subcontractors and flow-down of security requirements.
+- **Audit Rights:** Organization's right to audit vendor compliance.
+- **Data Location:** Geographic restrictions on data storage, processing, or transmission.
+- **Data Return/Destruction:** Procedures and timelines for return or secure destruction of data upon termination.
+- **Right to Terminate:** Right to terminate if vendor fails to meet security requirements.
+
+**Additional provisions for High-risk vendors:** independent review requirements, background check requirements, SLAs.
+**Additional provisions for Cloud Service Providers:** shared responsibility model definition, advance notification of substantive changes, incident response support, exit strategy.
+
+### Vendor Inventory
+
+A centralized vendor inventory must be maintained, containing: vendor name and contact, risk tier, services provided, data types shared, access method, key security controls, date of most recent assessment, contract expiration, and security documentation on file. The inventory must be reviewed at least ____ (e.g., quarterly).
+
+### Ongoing Vendor Monitoring
+
+- **High-risk vendors:** Annual re-assessment. Review updated audit reports, security documentation, and any changes to services or data handling practices.
+- **Medium-risk vendors:** Re-assessment every ____ (e.g., 2) years or upon significant changes.
+- **Low-risk vendors:** Re-assessment upon contract renewal or if risk tier classification changes.
+- **All vendors:** Continuous monitoring of publicly available information (breach notifications, news, security advisories).
+
+### Vendor Access Management
+
+- Vendor access must follow the System Access Control Policy, with additional requirements:
+- Access limited to minimum necessary for the contracted service.
+- Access must be time-bound with defined expiration date aligned to contract term.
+- Vendor accounts must be clearly identified as such.
+- Vendor access must be reviewed at least ____ (e.g., quarterly or monthly for High-risk).
+- Vendor access must be revoked within ____ (e.g., 1) business day of contract termination.
+
+### Vendor Offboarding
+
+When a vendor relationship ends: all access must be revoked, vendor must certify data return/destruction, organizational assets must be returned, integrations/API keys deactivated, and vendor inventory updated.
+
+### Individual Contractors
+
+Individual contractors must undergo the same security procedures as employees: background checks (where legally permissible), signed NDAs, security awareness training, compliance with all applicable policies, and standard access provisioning and offboarding.
 
 ## Roles and Responsibilities
 
 | Role | Responsibility |
 |------|----------------|
-| ____ (Security Officer) | Annual policy review; vendor security assessments |
-| ____ (Procurement / Legal) | Contract negotiation; vendor onboarding |
-| Vendor Owners (relationship managers) | Ongoing vendor oversight; risk reassessment |
-| Vendors | Compliance with contractual security requirements |
+| ____ (e.g., CISO / Security Officer) | Policy owner; annual review; approve High-risk vendor engagements |
+| Vendor Management Office / Procurement | Maintain vendor inventory; ensure security requirements in contracts |
+| Legal | Review and negotiate contract security provisions |
+| System Owners / Business Owners | Initiate vendor risk assessments; monitor vendor performance |
+| IT / Security Engineering | Implement and manage vendor access; review vendor access logs |
+| All Personnel | Do not engage vendors outside the approved procurement process; report unauthorized vendor activity |
 
-## Policy
+## Exceptions
 
-### Vendor Risk Assessment
-
-Before engaging a vendor, a risk assessment must be conducted based on:
-
-| Risk Level | Criteria |
-|-----------|----------|
-| **High** | Vendor stores, processes, or has access to sensitive data (PII, financial data, credentials); a failure would have critical business impact |
-| **Medium** | Vendor does not access sensitive data but provides a service that impacts business operations; a failure would have moderate impact |
-| **Low** | Vendor has no access to sensitive data and a failure would have minimal business impact |
-
-### Security Requirements by Risk Level
-
-**High-Risk Vendors:**
-
-- Must provide a current third-party audit report (SOC 2 Type 2, ISO 27001, or equivalent). In the absence of a third-party audit, the organization may conduct its own security assessment.
-- Must sign a contract that includes security and data protection clauses.
-- Must comply with all applicable ____ security policies.
-- Must be reviewed annually.
-
-**Medium-Risk Vendors:**
-
-- Must complete a security questionnaire covering key control areas.
-- Must sign a contract with appropriate security clauses.
-- Must be reviewed biennially or when the service scope changes.
-
-**Low-Risk Vendors:**
-
-- Standard terms and conditions may suffice. No formal security review required.
-- Must not be granted access to sensitive systems or data.
-
-### Vendor Inventory
-
-A vendor inventory must be maintained and include:
-
-- Vendor name and primary contact.
-- Risk level and date of last assessment.
-- Types of data shared with the vendor.
-- Brief description of services provided.
-- How the vendor accesses organizational systems or data (API, VPN, SSO).
-- Key security controls in place.
-- Security assessment report or questionnaire on file.
-- Contract expiration date.
-
-### Contract Requirements
-
-Contracts with High and Medium-risk vendors must include:
-
-- Acknowledgment that the vendor is responsible for the security of organizational data it possesses, stores, processes, or transmits.
-- Requirement for regular security control review and validation.
-- Background verification requirements for vendor personnel.
-- Incident notification requirements, including timing as defined by SLAs (recommended: within 24 hours for security incidents affecting customer data).
-- Data breach responsibilities and liability.
-- Data return or secure destruction requirements upon contract termination.
-- Geographic limitations on data storage and processing.
-- Right to audit the vendor's security controls, either directly or through a third-party audit report.
-- Compliance with applicable privacy regulations (GDPR, CCPA, etc.).
-
-### Cloud Service Provider Requirements
-
-Contracts with cloud service providers must additionally address:
-
-- Shared responsibility model: delineation of security controls managed by the provider vs. the organization.
-- How to obtain and utilize security capabilities provided by the cloud service.
-- How to obtain assurance on security controls (SOC reports, audit certifications).
-- Management of controls across multiple cloud services.
-- Incident handling procedures specific to cloud environments.
-- Exit strategy: data extraction, migration, and secure deletion upon termination.
-- Advance notification of substantive changes affecting the service (infrastructure changes, new jurisdictions for data, use of subcontractors).
-
-### Vendor Access Controls
-
-- Vendor access to organizational systems must follow the principle of least privilege.
-- Vendor access must be time-bound and automatically expire when the engagement ends.
-- Vendor access must use multi-factor authentication.
-- Vendor activity must be logged and monitored.
-- Vendors must not access production systems without explicit authorization and justification.
-
-### Vendor Offboarding
-
-When a vendor relationship ends:
-
-- All vendor access must be revoked within ____ business days.
-- Organizational data held by the vendor must be returned or certified as securely destroyed.
-- The vendor's entry in the inventory must be updated to reflect the terminated relationship.
+Exceptions must be submitted in writing with business justification and compensating controls, approved by the Security Officer, and reviewed at least ____ (e.g., annually). Exceptions do not exempt the vendor from compliance with applicable laws and regulations.
 
 ## Compliance and Enforcement
 
-Violation of this policy may result in disciplinary action as outlined in the Information Security Policy. Vendors who fail to meet security requirements may have their access suspended or their contract terminated.
+Compliance is verified through quarterly vendor inventory reviews, audit of vendor contracts, review of vendor access logs, assessment of overdue re-assessments, and incident post-mortems involving vendor-related root causes. Engaging a vendor outside the approved process is a policy violation.
 
 ## Related Documents
 
-- Information Security Policy (ISP-001)
-- Data Protection Policy
+- Information Security Policy
+- Data Classification Policy
 - System Access Control Policy
-- Risk Assessment Policy
+- Incident Response Policy
+- Acceptable Use Policy
 
 ## Revision History
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Three-tier risk classification; SOC 2/ISO 27001 required for High-risk. |
