@@ -45,9 +45,11 @@ Access to database credentials must be strictly controlled:
 
 - Credentials stored in the secrets management service must be accessible only to authorized applications and personnel via IAM policies or equivalent access controls.
 - Access to retrieve secret values manually must be logged and audited.
-- Environment files containing database credentials must have file permissions restricted to the application user only (e.g., `600` or `400`).
+- Credential storage locations (environment files, configuration files) must have file permissions restricted to the application user only.
 - Shared or group credentials for database access are prohibited. Each application must have a unique database user and credential.
 - Database credentials must never be committed to source code repositories, included in documentation, or transmitted over unencrypted channels.
+
+Detailed access control implementation — including secrets manager IAM policy configuration, access logging and audit procedures, and credential storage hardening — is defined in Procedure.md.
 
 ## Roles and Responsibilities
 
@@ -70,6 +72,7 @@ Failure to rotate database credentials on schedule, failure to use the secrets m
 - Encryption Policy
 - System Access Control Policy
 - Backup Policy
+- Procedure.md (Database Password Management Implementation Procedures)
 
 ## Revision History
 

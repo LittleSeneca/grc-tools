@@ -171,6 +171,7 @@ Any Personnel who violate this Code may be subject to disciplinary action, up to
 - Acceptable Use Policy
 - Employee Handbook
 - Anti-Retaliation Policy
+- Procedure.md (Code of Conduct Implementation Procedures)
 
 ## Revision History
 

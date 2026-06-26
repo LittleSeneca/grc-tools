@@ -32,13 +32,9 @@ Before requesting an exception, Personnel must evaluate whether the business nee
 
 ### Exception Process
 
-Exceptions may be granted when a legitimate business need cannot be met by approved alternatives:
+Exceptions may be granted when a legitimate business need cannot be met by approved alternatives. A written exception request must be submitted to the Security Officer (or designee) and must include: detailed business need description, explanation of why approved alternatives cannot satisfy the requirement, data classification, estimated duration, and planned security measures. Approved exceptions must be documented, tracked, and assigned an expiration date not to exceed ____ (e.g., 90) days. Exceptions may be renewed upon submission of a new request demonstrating ongoing need.
 
-1. A written exception request must be submitted to the Security Officer (or designee).
-2. The request must include: detailed business need description, explanation of why approved alternatives cannot satisfy the requirement, data classification, estimated duration, and planned security measures.
-3. The Security Officer reviews the request and may approve, deny, or request additional information.
-4. Approved exceptions must be documented, tracked, and assigned an expiration date not to exceed ____ (e.g., 90) days.
-5. Exceptions may be renewed upon submission of a new request demonstrating ongoing need.
+Detailed exception handling procedures — including the request intake workflow, review criteria, technical implementation of device allowlisting, expiration enforcement, and quarterly audit of active exceptions — are defined in Procedure.md.
 
 ### Security Measures for Approved Exceptions
 
@@ -67,10 +63,9 @@ Exceptions may be granted when a legitimate business need cannot be met by appro
 
 ### Technical Enforcement
 
-Where technically feasible, the organization's endpoint management platform should:
-- Block or disable USB mass storage access by default on all managed endpoints.
-- Implement allowlisting for specifically authorized devices.
-- Log all attempts to connect removable media, including blocked attempts.
+The organization's endpoint management platform must enforce the default-deny posture for removable media on all managed endpoints. This includes blocking or disabling removable media access by default, implementing allowlisting for specifically authorized devices, and logging all connection attempts (both allowed and blocked).
+
+Detailed technical enforcement procedures — including OS-specific MDM/endpoint configuration, device allowlisting, logging integration, and enforcement verification testing — are defined in Procedure.md.
 
 ### Exemptions
 
@@ -101,6 +96,7 @@ Unauthorized use of removable media is a policy violation and may result in disc
 - Encryption Policy
 - Incident Response Policy
 - Asset Management Policy
+- Procedure.md (Removable Media Implementation Procedures)
 
 ## Revision History
 

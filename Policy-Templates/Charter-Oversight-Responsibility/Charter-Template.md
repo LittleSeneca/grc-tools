@@ -76,6 +76,7 @@ This Charter is binding on all members of the Oversight Body and executive manag
 - Information Security Policy
 - Risk Assessment Policy
 - Code of Conduct
+- Procedure.md (Oversight Implementation Procedures)
 
 ## Revision History
 

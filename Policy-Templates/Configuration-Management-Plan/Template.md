@@ -227,6 +227,7 @@ Violation of this plan — including unauthorized changes to controlled baseline
 - Asset Management Policy
 - Software Development Lifecycle Policy
 - System Access Control Policy
+- Procedure.md (Configuration Management Implementation Procedures)
 
 ## Revision History
 

@@ -57,6 +57,7 @@ Detailed implementation procedures — including assessment scheduling, evidence
 - Vulnerability Management Policy
 - Incident Response Policy
 - Vendor Management Policy
+- Procedure.md (Control Self-Assessment Implementation Procedures)
 
 ## Revision History
 

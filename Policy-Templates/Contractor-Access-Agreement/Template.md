@@ -99,6 +99,7 @@ By signing below, I acknowledge that:
 - System Access Control Policy
 - Vendor Management Policy
 - Employee Access and Confidentiality Agreement
+- Procedure.md (Contractor Access Implementation Procedures)
 
 ## Revision History
 

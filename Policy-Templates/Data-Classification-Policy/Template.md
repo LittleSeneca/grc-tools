@@ -138,6 +138,7 @@ Requests for exceptions to any provision of this policy must be submitted in wri
 - Encryption Policy
 - System Access Control Policy
 - Acceptable Use Policy
+- Procedure.md (Data Classification Implementation Procedures)
 
 ## Revision History
 
