@@ -23,6 +23,22 @@ These templates are framework-aligned (NIST 800-53, SOC 2, ISO 27001) and reflec
 - **Fill-in-the-blanks.** Underscores (`____`) mark where you need to customize - your company name, your tools, your people.
 - **Tooling-agnostic.** References to specific vendors are replaced with functional descriptions (e.g., "centralized log management platform" instead of "OpenObserve").
 
+### Guides/
+
+Vendor-neutral tool evaluation guides covering six security tool categories. Each guide explains what the tool does, who needs it, options by budget tier, and how to evaluate vendors. Written for people who need to pick tools but are not sure where to start.
+
+### Getting Started
+
+[Getting-Started.md](Getting-Started.md) - Three-tier implementation roadmap (Startup, Growth, Enterprise) showing which policies to implement at each stage, what tools you need, approximate costs, and how long it takes.
+
+### Supporting Documents
+
+- [Framework-Mapping.md](Framework-Mapping.md) - Every policy mapped to NIST 800-53, SOC 2 CC criteria, and ISO 27001 Annex A controls
+- [Vendor-Questionnaire.md](Vendor-Questionnaire.md) - Standardized security assessment questionnaire for evaluating third-party vendors
+- [Risk-Register-Template.md](Risk-Register-Template.md) - Likelihood × impact scoring template with example risks
+- [Annual-Review-Checklist.md](Annual-Review-Checklist.md) - Step-by-step checklist for the required annual policy review
+- [Evidence-Collection-Guide.md](Evidence-Collection-Guide.md) - What evidence auditors actually want for each control area, and how to collect it
+
 ## Policies Included
 
 | # | Policy | Folder |
