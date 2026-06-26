@@ -1,4 +1,4 @@
-# Vendor Management — Implementation Procedures
+# Vendor Management - Implementation Procedures
 
 > **Companion to:** Vendor Management Policy (Template.md)
 > **Purpose:** These procedures describe how to execute the vendor risk assessment, onboarding, access management, and offboarding requirements set forth in the Vendor Management Policy. The policy defines WHAT must be done; this document describes HOW to do it.
@@ -14,45 +14,45 @@ This procedure covers the end-to-end assessment of a new vendor before engagemen
 #### 1.1 Intake and Triage
 
 1. **Assessment Request:** The business owner or system owner submits a vendor assessment request via `____` (procurement system, Jira form, or service desk). Request must include:
-   - Vendor name, website, and primary contact.
-   - Service description and business purpose.
-   - Data types the vendor will access, store, or process (classified per Data Classification Policy).
-   - Access method: API, VPN, SSO, shared credentials, physical access?
-   - Estimated annual spend and contract term.
-   - Urgency: when is the vendor needed?
+  - Vendor name, website, and primary contact.
+  - Service description and business purpose.
+  - Data types the vendor will access, store, or process (classified per Data Classification Policy).
+  - Access method: API, VPN, SSO, shared credentials, physical access?
+  - Estimated annual spend and contract term.
+  - Urgency: when is the vendor needed?
 2. **Initial Triage:** The Vendor Management Office / Security team reviews the request within `____` business days and assigns a risk tier:
-   - **High:** Vendor accesses Restricted or Confidential data, OR failure has critical business impact. → Proceed to 1.2.
-   - **Medium:** Vendor may access Internal data; moderate impact. → Proceed to 1.3.
-   - **Low:** No organizational data access; minimal impact. → Proceed to 1.5.
+  - **High:** Vendor accesses Restricted or Confidential data, OR failure has critical business impact. → Proceed to 1.2.
+  - **Medium:** Vendor may access Internal data; moderate impact. → Proceed to 1.3.
+  - **Low:** No organizational data access; minimal impact. → Proceed to 1.5.
 
 #### 1.2 High-Risk Vendor Assessment
 
 1. **Security Documentation Request:** Send the vendor a formal request for:
-   - Most recent SOC 2 Type II report (dated within last `____` months, recommended: 12 months) or ISO 27001 certificate.
-   - If no independent audit exists: completed SIG questionnaire (Standard Information Gathering) or CAIQ (Consensus Assessments Initiative Questionnaire).
-   - Written information security policy and incident response plan.
-   - Data flow diagram showing where organizational data will be stored, processed, and transmitted, including geographic locations and sub-processors.
-   - Evidence of background checks for personnel accessing organizational systems/data.
+  - Most recent SOC 2 Type II report (dated within last `____` months, recommended: 12 months) or ISO 27001 certificate.
+  - If no independent audit exists: completed SIG questionnaire (Standard Information Gathering) or CAIQ (Consensus Assessments Initiative Questionnaire).
+  - Written information security policy and incident response plan.
+  - Data flow diagram showing where organizational data will be stored, processed, and transmitted, including geographic locations and sub-processors.
+  - Evidence of background checks for personnel accessing organizational systems/data.
 2. **Document Review:** The Security team evaluates:
-   - **SOC 2 Report:** Review the auditor's opinion (unqualified = good). Check the scope (does it cover the services you're using?). Review control exceptions — any exception in the Security or Availability criteria is a red flag.
-   - **ISO 27001 Certificate:** Verify the certificate is current, check the scope statement, and look up the certificate on the certification body's registry.
-   - **SIG/CAIQ Responses:** Score responses using a predefined rubric. Flag any response indicating lack of encryption, lack of MFA, lack of incident response testing, or data stored in non-approved jurisdictions.
+  - **SOC 2 Report:** Review the auditor's opinion (unqualified = good). Check the scope (does it cover the services you're using?). Review control exceptions - any exception in the Security or Availability criteria is a red flag.
+  - **ISO 27001 Certificate:** Verify the certificate is current, check the scope statement, and look up the certificate on the certification body's registry.
+  - **SIG/CAIQ Responses:** Score responses using a predefined rubric. Flag any response indicating lack of encryption, lack of MFA, lack of incident response testing, or data stored in non-approved jurisdictions.
 3. **Risk Rating:** Based on the review, assign a vendor risk rating: Low Risk, Moderate Risk, High Risk, or Unacceptable. Document the rationale.
-   - **Moderate Risk or higher:** Identify compensating controls or additional contractual requirements.
-   - **Unacceptable Risk:** Deny the engagement and notify the business owner.
+  - **Moderate Risk or higher:** Identify compensating controls or additional contractual requirements.
+  - **Unacceptable Risk:** Deny the engagement and notify the business owner.
 
 #### 1.3 Medium-Risk Vendor Assessment
 
 1. **Security Questionnaire:** Send a standardized, lightweight questionnaire (SIG-Lite or custom). Key questions:
-   - Do you encrypt data at rest and in transit? (Must be: Yes)
-   - Do you enforce MFA for all users? (Must be: Yes)
-   - Do you have an incident response plan? (Must be: Yes)
-   - Do you perform background checks on employees? (Must be: Yes)
-   - Where is organizational data stored? (Must be: Approved jurisdictions only)
-   - Do you have cyber insurance? (If handling any sensitive data)
+  - Do you encrypt data at rest and in transit? (Must be: Yes)
+  - Do you enforce MFA for all users? (Must be: Yes)
+  - Do you have an incident response plan? (Must be: Yes)
+  - Do you perform background checks on employees? (Must be: Yes)
+  - Where is organizational data stored? (Must be: Approved jurisdictions only)
+  - Do you have cyber insurance? (If handling any sensitive data)
 2. **Review and Decision:**
-   - Any "No" to a critical question: escalate to a fuller review or require compensating controls.
-   - All critical questions answered acceptably: approve with standard security terms in the contract.
+  - Any "No" to a critical question: escalate to a fuller review or require compensating controls.
+  - All critical questions answered acceptably: approve with standard security terms in the contract.
 
 #### 1.4 Technical Assessment (Optional, for High-Risk)
 
@@ -65,8 +65,8 @@ For vendors with direct network/system access or processing Highly Confidential 
 #### 1.5 Low-Risk Vendor Assessment
 
 1. **Brief Review:** Confirm the vendor's risk tier classification is accurate. Verify:
-   - Does the vendor truly have no access to organizational data?
-   - Is the service properly isolated?
+  - Does the vendor truly have no access to organizational data?
+  - Is the service properly isolated?
 2. **Documentation:** Record the vendor name, service description, risk tier, and assessment date in the vendor inventory. No formal questionnaire required.
 
 #### 1.6 Assessment Documentation
@@ -105,36 +105,36 @@ This procedure covers the steps to bring an assessed and approved vendor into th
 #### 2.1 Contract Finalization
 
 1. **Security Terms Review:** Legal and Security must review the vendor contract before signing. Verify inclusion of:
-   - [ ] Data security obligations (vendor responsible for security of organizational data).
-   - [ ] Compliance with applicable laws and organizational security requirements.
-   - [ ] Confidentiality provisions, including return/destruction upon termination.
-   - [ ] Incident notification requirement: within `____` hours (24-48) of confirmed security incident.
-   - [ ] Subcontractor disclosure and flow-down of security requirements.
-   - [ ] Audit rights: organization's right to audit vendor compliance (or rely on third-party audit reports).
-   - [ ] Data location: geographic restrictions on data storage/processing.
-   - [ ] Data return/destruction: timelines and procedures upon termination.
-   - [ ] Right to terminate for security failures.
-   - [ ] For High-risk: independent review requirements, SLAs, background check attestation.
-   - [ ] For cloud services: shared responsibility model definition, advance notification of substantive changes, exit strategy.
+  - [ ] Data security obligations (vendor responsible for security of organizational data).
+  - [ ] Compliance with applicable laws and organizational security requirements.
+  - [ ] Confidentiality provisions, including return/destruction upon termination.
+  - [ ] Incident notification requirement: within `____` hours (24-48) of confirmed security incident.
+  - [ ] Subcontractor disclosure and flow-down of security requirements.
+  - [ ] Audit rights: organization's right to audit vendor compliance (or rely on third-party audit reports).
+  - [ ] Data location: geographic restrictions on data storage/processing.
+  - [ ] Data return/destruction: timelines and procedures upon termination.
+  - [ ] Right to terminate for security failures.
+  - [ ] For High-risk: independent review requirements, SLAs, background check attestation.
+  - [ ] For cloud services: shared responsibility model definition, advance notification of substantive changes, exit strategy.
 2. **Contract Signing:** No vendor access may be granted before the contract is fully executed. This includes "trial" or "pilot" access.
 
 #### 2.2 Vendor Access Provisioning
 
 1. **Access Request:** The business owner submits a vendor access request via `____` (IT service desk). Specify:
-   - Vendor contact(s) requiring access.
-   - Systems/resources they need access to.
-   - Required access level (read, write, admin).
-   - Contract start and end dates.
+  - Vendor contact(s) requiring access.
+  - Systems/resources they need access to.
+  - Required access level (read, write, admin).
+  - Contract start and end dates.
 2. **Access Configuration:**
-   - Create dedicated vendor accounts (not shared accounts). Username format: `vnd-[vendor]-[name]` (e.g., `vnd-acme-johns`).
-   - Apply least privilege: grant access only to the specific resources required. For cloud access, use IAM roles with resource-level restrictions. For application access, use role-based access control.
-   - Configure time-bound access: set account expiration to the contract end date + `____` days buffer.
-   - Enable MFA on all vendor accounts. Require phishing-resistant MFA (FIDO2/WebAuthn or hardware token) for High-risk vendor access.
-   - Configure just-in-time (JIT) access where possible: vendor requests temporary elevated access, approved by the business owner, and automatically revoked after a set duration.
+  - Create dedicated vendor accounts (not shared accounts). Username format: `vnd-[vendor]-[name]` (e.g., `vnd-acme-johns`).
+  - Apply least privilege: grant access only to the specific resources required. For cloud access, use IAM roles with resource-level restrictions. For application access, use role-based access control.
+  - Configure time-bound access: set account expiration to the contract end date + `____` days buffer.
+  - Enable MFA on all vendor accounts. Require phishing-resistant MFA (FIDO2/WebAuthn or hardware token) for High-risk vendor access.
+  - Configure just-in-time (JIT) access where possible: vendor requests temporary elevated access, approved by the business owner, and automatically revoked after a set duration.
 3. **Access Verification:**
-   - Verify the vendor can access ONLY the intended resources.
-   - Verify the vendor CANNOT access resources outside scope (negative testing).
-   - Document the access configuration in the vendor inventory.
+  - Verify the vendor can access ONLY the intended resources.
+  - Verify the vendor CANNOT access resources outside scope (negative testing).
+  - Document the access configuration in the vendor inventory.
 
 #### 2.3 Vendor Onboarding Checklist
 
@@ -176,27 +176,27 @@ A standardized checklist ensures consistency. Complete and document each item:
 #### 3.1 Access Review Process
 
 1. **Review Schedule:**
-   - High-risk vendor access: quarterly.
-   - Medium-risk vendor access: semi-annually.
-   - Low-risk vendor access: annually.
+  - High-risk vendor access: quarterly.
+  - Medium-risk vendor access: semi-annually.
+  - Low-risk vendor access: annually.
 2. **Review Execution:**
-   - Generate an access report from IAM, application access controls, and VPN: all vendor accounts and their permissions.
-   - Send to each business owner: "Here are the vendor accounts for your vendors. Please confirm each is still needed with the current access level."
-   - Business owner responds within `____` business days. Non-response is escalated to their manager.
-   - If access is no longer needed: initiate offboarding (Procedure 4).
+  - Generate an access report from IAM, application access controls, and VPN: all vendor accounts and their permissions.
+  - Send to each business owner: "Here are the vendor accounts for your vendors. Please confirm each is still needed with the current access level."
+  - Business owner responds within `____` business days. Non-response is escalated to their manager.
+  - If access is no longer needed: initiate offboarding (Procedure 4).
 3. **Review Documentation:** Record the review date, reviewer, and decisions in the vendor inventory.
 
 #### 3.2 Vendor Activity Monitoring
 
 1. **Logging:**
-   - Enable logging for all vendor access: cloud API calls (CloudTrail/Activity Log), application access logs, VPN session logs, database query logs.
-   - Forward vendor-specific logs to a dedicated dashboard or report.
+  - Enable logging for all vendor access: cloud API calls (CloudTrail/Activity Log), application access logs, VPN session logs, database query logs.
+  - Forward vendor-specific logs to a dedicated dashboard or report.
 2. **Alert Rules:**
-   - Vendor activity outside business hours (unless pre-authorized for 24/7 support).
-   - Vendor accessing resources outside their approved scope.
-   - Vendor account used from an unexpected geography.
-   - Vendor performing privileged actions (IAM changes, security group modifications, data exports).
-   - Vendor account with no activity for > `____` days (dormant — revoke).
+  - Vendor activity outside business hours (unless pre-authorized for 24/7 support).
+  - Vendor accessing resources outside their approved scope.
+  - Vendor account used from an unexpected geography.
+  - Vendor performing privileged actions (IAM changes, security group modifications, data exports).
+  - Vendor account with no activity for > `____` days (dormant - revoke).
 3. **Monthly Review:** Security team reviews vendor activity logs monthly. Flag anomalies for investigation.
 
 ### Common Pitfalls
@@ -222,25 +222,25 @@ Offboarding is triggered by:
 #### 4.2 Offboarding Execution
 
 1. **Access Revocation (within `____` business day, recommended: 1):**
-   - Disable/delete all vendor user accounts (IAM, SSO, application accounts, VPN accounts).
-   - Revoke API keys, OAuth tokens, and service account credentials.
-   - Rotate any shared credentials the vendor had access to.
-   - Remove vendor from security groups, distribution lists, and shared drives.
+  - Disable/delete all vendor user accounts (IAM, SSO, application accounts, VPN accounts).
+  - Revoke API keys, OAuth tokens, and service account credentials.
+  - Rotate any shared credentials the vendor had access to.
+  - Remove vendor from security groups, distribution lists, and shared drives.
 2. **Data Return and Destruction:**
-   - Send formal written notice to vendor: all organizational data must be returned or securely destroyed within `____` days (recommended: 30 days).
-   - Vendor must provide written certification of data return/destruction.
-   - If vendor fails to certify within the deadline, escalate to Legal.
+  - Send formal written notice to vendor: all organizational data must be returned or securely destroyed within `____` days (recommended: 30 days).
+  - Vendor must provide written certification of data return/destruction.
+  - If vendor fails to certify within the deadline, escalate to Legal.
 3. **Asset Recovery:**
-   - Retrieve any organizational assets provided to the vendor (laptops, hardware tokens, access badges).
+  - Retrieve any organizational assets provided to the vendor (laptops, hardware tokens, access badges).
 4. **Integration Cleanup:**
-   - Deactivate vendor-specific API integrations, webhooks, and data feeds.
-   - Remove vendor-specific firewall rules and network ACLs.
+  - Deactivate vendor-specific API integrations, webhooks, and data feeds.
+  - Remove vendor-specific firewall rules and network ACLs.
 5. **Vendor Inventory Update:**
-   - Update the vendor inventory: mark vendor as "Offboarded" with date, record data destruction certification, archive security documentation.
+  - Update the vendor inventory: mark vendor as "Offboarded" with date, record data destruction certification, archive security documentation.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Offboarding the vendor's primary accounts but forgetting about secondary access — the vendor's "backup admin account," the API key in a config file, the SSH key on a jump host. Use an access management tool that can enumerate ALL access paths for a vendor, not just the obvious ones.
+> **⚠️ Watch out:** Offboarding the vendor's primary accounts but forgetting about secondary access - the vendor's "backup admin account," the API key in a config file, the SSH key on a jump host. Use an access management tool that can enumerate ALL access paths for a vendor, not just the obvious ones.
 
 > **⚠️ Watch out:** Assuming the vendor deleted your data without verification. A written certification is good; audit evidence is better. For High-risk vendors, consider a remote verification session (screen share of the deletion) or contractual right to audit data deletion.
 

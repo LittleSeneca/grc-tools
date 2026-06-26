@@ -1,4 +1,4 @@
-# Removable Media Policy — Implementation Procedures
+# Removable Media Policy - Implementation Procedures
 
 > **Companion to:** Removable Media Policy (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -16,11 +16,11 @@
    c. The allowlist entry must include an expiration date matching the exception approval.
    d. Configure the endpoint management platform to automatically remove the allowlist entry when the expiration date is reached.
 3. Enable logging:
-   a. Configure endpoint telemetry to log all removable media connection attempts — both allowed and blocked.
+   a. Configure endpoint telemetry to log all removable media connection attempts - both allowed and blocked.
    b. Include in logs: device type, device ID, timestamp, hostname, username, and whether the connection was allowed or blocked.
    c. Forward logs to the SIEM or centralized logging platform.
 4. Testing:
-   a. After deploying the block policy, test on each OS platform: connect a USB drive and confirm it is blocked. Connect an SD card, external hard drive, and smartphone in USB mass storage mode — confirm all are blocked.
+   a. After deploying the block policy, test on each OS platform: connect a USB drive and confirm it is blocked. Connect an SD card, external hard drive, and smartphone in USB mass storage mode - confirm all are blocked.
    b. Test an allowed device: confirm it connects and is accessible.
    c. Test that logging captures both blocked and allowed events.
 5. Maintain a configuration baseline for endpoint media controls. Drift from this baseline (a device where the block policy is disabled) triggers a security alert.
@@ -57,7 +57,7 @@
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
 > - **Delegated exception authority for low-risk scenarios:** Allow department heads to approve exceptions for Internal data, short duration (< 7 days), and encrypted media without Security Officer review. Security Officer review is reserved for Confidential/Restricted data or extended durations. This reduces approval bottlenecks for low-risk use cases.
-> - **No exceptions — provide a managed alternative:** Instead of granting USB exceptions, provide a managed secure file transfer service that replicates the workflow (transfer large files to an external party) without removable media. Eliminate the exception path by making the alternative better than the exception.
+> - **No exceptions - provide a managed alternative:** Instead of granting USB exceptions, provide a managed secure file transfer service that replicates the workflow (transfer large files to an external party) without removable media. Eliminate the exception path by making the alternative better than the exception.
 ### Common Pitfalls
 > **⚠️ Watch out:**
 > - **Exception log that's a spreadsheet on someone's desktop.** The exception register must be centralized, accessible to IT and Security, and tied to the technical enforcement (so allowlist entries have the same expiration dates). A disconnected spreadsheet leads to permanent exceptions.
@@ -79,7 +79,7 @@
    b. **Manual logging (fallback):** Provide a digital logging form (web form, shared document, or ticket template) that the user completes at the time of use. The form is submitted to the Security team or logged in the GRC platform.
 3. Log retention and review:
    a. Retain use logs for a minimum of 12 months (or as specified in the policy).
-   b. Review logs quarterly: (i) verify that all approved exceptions have corresponding use logs (an exception with zero use logs suggests it wasn't needed), (ii) look for patterns — frequent use by one individual or department may indicate the approved alternatives are insufficient, (iii) flag any use outside the approved exception parameters (different data classification, different device).
+   b. Review logs quarterly: (i) verify that all approved exceptions have corresponding use logs (an exception with zero use logs suggests it wasn't needed), (ii) look for patterns - frequent use by one individual or department may indicate the approved alternatives are insufficient, (iii) flag any use outside the approved exception parameters (different data classification, different device).
 4. Unauthorized use detection:
    a. Review endpoint telemetry for blocked removable media connection attempts.
    b. A blocked attempt is a near-miss: the user attempted to connect removable media that was blocked. Investigate: was this a policy violation, a training gap, or a legitimate need that should have gone through the exception process?
@@ -92,21 +92,21 @@
 > **⚠️ Watch out:**
 > - **Manual logs that are never completed.** Users complete the log for the first use, then stop because "it's the same as last time." If manual logging is the method, compliance must be audited: compare exception approvals to log entries. Missing logs are escalated to the user's manager.
 > - **Logs that are not reviewed.** Collecting logs that nobody reads is compliance theater. The quarterly review must be a real activity with documented findings. A year of logs with zero anomalies suggests the review isn't thorough, not that everything is perfect.
-> - **Logging that captures the data itself, not just the description.** A log entry that says "transferred customer PII including names, SSNs, and account numbers" is itself a data exposure risk. Log the data classification and type ("Restricted — customer PII"), not the actual PII values.
+> - **Logging that captures the data itself, not just the description.** A log entry that says "transferred customer PII including names, SSNs, and account numbers" is itself a data exposure risk. Log the data classification and type ("Restricted - customer PII"), not the actual PII values.
 
 ## Procedure 4: Incident Response for Lost or Stolen Removable Media
 ### Standard Approach
 1. Reporting:
-   a. Any Personnel who discover that removable media containing organizational data is lost or stolen must report it immediately — within 1 hour of discovery.
+   a. Any Personnel who discover that removable media containing organizational data is lost or stolen must report it immediately - within 1 hour of discovery.
    b. Report to: the Security team (via incident hotline or ticketing system) and the individual's direct manager.
    c. The report must include: what media was lost/stolen, when and where the loss occurred, what data was on the media (classification and general description), whether the media was encrypted, and whether the encryption key/passphrase was stored separately from the media.
 2. Triage:
    a. The Security team triages the report within 1 hour of receipt.
    b. Severity determination:
-      - **Critical:** Media contained Restricted data (PII, PHI, payment card data, credentials) OR media was unencrypted AND contained Confidential data.
-      - **High:** Media was encrypted AND contained Confidential data, OR media was unencrypted but contained only Internal data.
-      - **Medium:** Media was encrypted AND contained only Internal data.
-      - **Low:** Media contained only Public data, or media was blank.
+     - **Critical:** Media contained Restricted data (PII, PHI, payment card data, credentials) OR media was unencrypted AND contained Confidential data.
+     - **High:** Media was encrypted AND contained Confidential data, OR media was unencrypted but contained only Internal data.
+     - **Medium:** Media was encrypted AND contained only Internal data.
+     - **Low:** Media contained only Public data, or media was blank.
    c. If the media was encrypted with strong encryption (AES-256 or equivalent) and the encryption key was NOT stored with the media, the risk of data exposure is low. This significantly reduces the incident severity.
 3. Immediate actions:
    a. **Critical or High:** Declare a security incident per the Incident Response Policy. Activate the incident response team. Notify the Security Officer immediately.
@@ -135,6 +135,6 @@
 > - **Kill-switch for high-risk media:** For media used in high-risk exceptions, issue devices with a built-in kill-switch: after a defined period without network connectivity, the device self-encrypts or self-wipes. This reduces the window of exposure for lost media.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Not reporting because "it was encrypted, so it's fine."** Personnel may rationalize that encrypted media doesn't need to be reported. This is wrong — the organization still needs to know what data was potentially exposed, even if the encryption makes actual exposure unlikely. Train Personnel: report ALL lost media, regardless of encryption status.
+> - **Not reporting because "it was encrypted, so it's fine."** Personnel may rationalize that encrypted media doesn't need to be reported. This is wrong - the organization still needs to know what data was potentially exposed, even if the encryption makes actual exposure unlikely. Train Personnel: report ALL lost media, regardless of encryption status.
 > - **Over-notifying when encryption makes exposure infeasible.** Conversely, declaring a breach and notifying 100,000 customers because an AES-256 encrypted USB drive with a 20-character random passphrase (stored separately) was lost is unnecessary and damages trust. The incident severity assessment must account for encryption effectiveness. If encryption makes data recovery computationally infeasible, notification may not be required. Let Legal make this determination.
 > - **No pre-defined communication templates.** During a lost-media incident, the clock is ticking on regulatory notification deadlines. Pre-approved notification templates (customer notification, regulatory filing, press release skeleton) reduce the time to notification by days. Prepare templates for the most likely scenarios: lost encrypted media, lost unencrypted media containing PII, lost media with unknown contents.

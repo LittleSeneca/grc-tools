@@ -9,7 +9,7 @@
 9|
 10|## Introduction
 11|
-12|In accordance with the Password Policy, all database credentials — particularly those protecting production data — must be unique, complex, and regularly rotated. This document provides the operational procedures for managing and rotating database passwords across all production database systems while maintaining service uptime.
+12|In accordance with the Password Policy, all database credentials - particularly those protecting production data - must be unique, complex, and regularly rotated. This document provides the operational procedures for managing and rotating database passwords across all production database systems while maintaining service uptime.
 13|
 14|This process applies to all production database systems, including managed database services, self-hosted database instances, and database clusters used by applications and services.
 15|
@@ -19,7 +19,7 @@
 19|
 20|### Connection Requirements
 21|
-22|Applications and services must connect to databases using a centralized secrets management service for credential retrieval. Hardcoded credentials in source code, compiled binaries, or unversioned configuration files are prohibited. Each application must have a unique database user and credential — shared credentials across applications are prohibited.
+22|Applications and services must connect to databases using a centralized secrets management service for credential retrieval. Hardcoded credentials in source code, compiled binaries, or unversioned configuration files are prohibited. Each application must have a unique database user and credential - shared credentials across applications are prohibited.
 23|
 24|Database credentials must never be committed to source code repositories, included in documentation, or transmitted over unencrypted channels.
 25|

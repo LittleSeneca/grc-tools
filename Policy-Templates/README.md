@@ -6,8 +6,8 @@ Production-ready information security policy templates aligned with NIST 800-53,
 
 Each policy folder contains:
 
-- **Policy template (`Template.md` or `*-Template.md`):** The policy document — defines WHAT is required. Written for a broad audience (employees, auditors, executives). Uses ISP house format with `____` placeholders.
-- **Companion procedures (`*-Procedures.md`):** Implementation guidance — describes HOW to operationalize the policy. Written for implementers (IT, security, HR teams). Each procedure includes standard approaches, alternative methods (with rationale), and common pitfalls.
+- **Policy template (`Template.md` or `*-Template.md`):** The policy document - defines WHAT is required. Written for a broad audience (employees, auditors, executives). Uses ISP house format with `____` placeholders.
+- **Companion procedures (`*-Procedures.md`):** Implementation guidance - describes HOW to operationalize the policy. Written for implementers (IT, security, HR teams). Each procedure includes standard approaches, alternative methods (with rationale), and common pitfalls.
 - **README (`README.md`):** Plain-English overview, gotchas, implementation advice, and an explanation of the policy/procedure split.
 
 Policies and procedures are deliberately separated: policies change infrequently and are approved by leadership; procedures evolve with tools and operational experience. Keeping them separate prevents version-control chaos and makes both documents more usable for their intended audiences.
@@ -27,9 +27,9 @@ Policies and procedures are deliberately separated: policies change infrequently
 
 ## How to Use
 
-1. Read the README in the policy folder first — it explains the policy's purpose, common mistakes, and implementation strategy.
+1. Read the README in the policy folder first - it explains the policy's purpose, common mistakes, and implementation strategy.
 2. Copy the policy template and replace all `____` placeholders with your organization's specifics.
-3. Copy the companion procedures and adapt the approaches to your environment — the alternatives section helps you choose what fits.
+3. Copy the companion procedures and adapt the approaches to your environment - the alternatives section helps you choose what fits.
 4. Have legal review the final policy document.
 5. Publish the policy to your policy management platform. Keep the procedures accessible to the teams that need them.
 
@@ -39,7 +39,7 @@ Policies and procedures are deliberately separated: policies change infrequently
 
 | Policy | Folder | Description |
 |--------|--------|-------------|
-| Information Security Policy | [`Information-Security-Policy/`](./Information-Security-Policy/) | Overarching ISP framework — the constitution all other policies derive from |
+| Information Security Policy | [`Information-Security-Policy/`](./Information-Security-Policy/) | Overarching ISP framework - the constitution all other policies derive from |
 | Code of Conduct | [`Code-of-Conduct/`](./Code-of-Conduct/) | Ethical standards, conflicts of interest, confidentiality expectations |
 | Responsible Disclosure Policy | [`Responsible-Disclosure-Policy/`](./Responsible-Disclosure-Policy/) | Vulnerability reporting and whistleblower protection |
 

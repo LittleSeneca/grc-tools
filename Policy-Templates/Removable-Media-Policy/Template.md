@@ -9,11 +9,11 @@
 9|
 10|## Purpose
 11|
-12|This policy protects ____'s information assets by restricting and controlling the use of removable media — including USB drives, external hard drives, optical media, SD cards, and other portable storage devices — on organizational systems and networks. Removable media present elevated risks of data exfiltration, malware introduction, and data loss that are best managed through a default-deny posture.
+12|This policy protects ____'s information assets by restricting and controlling the use of removable media - including USB drives, external hard drives, optical media, SD cards, and other portable storage devices - on organizational systems and networks. Removable media present elevated risks of data exfiltration, malware introduction, and data loss that are best managed through a default-deny posture.
 13|
 14|## Scope
 15|
-16|This policy applies to all Personnel — employees, contractors, temporary workers, and any other users of ____'s computing resources and equipment. It covers all organizational endpoints, servers, and systems capable of interfacing with removable media.
+16|This policy applies to all Personnel - employees, contractors, temporary workers, and any other users of ____'s computing resources and equipment. It covers all organizational endpoints, servers, and systems capable of interfacing with removable media.
 17|
 18|## Policy
 19|

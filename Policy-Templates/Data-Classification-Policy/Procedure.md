@@ -1,4 +1,4 @@
-# Data Classification Policy — Implementation Procedures
+# Data Classification Policy - Implementation Procedures
 
 > **Companion to:** Data Classification Policy (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -6,7 +6,7 @@
 ## Procedure 1: Classification Labeling
 ### Standard Approach
 1. Establish a labeling standard that defines exactly how each classification level must be marked across media types:
-   a. **Electronic documents (Office, PDF):** Header/footer text (e.g., "RESTRICTED — Do Not Distribute"), metadata field (document properties > classification), filename prefix/suffix convention (e.g., `[R] Project_Alpha_Report.docx`).
+   a. **Electronic documents (Office, PDF):** Header/footer text (e.g., "RESTRICTED - Do Not Distribute"), metadata field (document properties > classification), filename prefix/suffix convention (e.g., `[R] Project_Alpha_Report.docx`).
    b. **Emails:** Subject line tag (e.g., `[RESTRICTED]`), body header, and sensitivity label where the email platform supports it (e.g., Microsoft 365 sensitivity labels).
    c. **Cloud storage:** Classification tag in the storage platform's metadata (e.g., AWS S3 object tags, Google Drive labels, SharePoint sensitivity labels).
    d. **Physical documents:** Printed label/watermark on each page, colored cover sheet (e.g., red for Restricted), and classification marking on the storage container (folder, binder, drawer).
@@ -31,7 +31,7 @@
 ## Procedure 2: Handling Controls Implementation
 ### Standard Approach
 1. Translate the Handling Controls Matrix from the policy into specific technical configurations for each control area:
-   a. **Access Control:** Configure IAM policies, group memberships, and permission sets per classification level. Restricted data access requires explicit, individually approved permissions — no group-based default access.
+   a. **Access Control:** Configure IAM policies, group memberships, and permission sets per classification level. Restricted data access requires explicit, individually approved permissions - no group-based default access.
    b. **Encryption at Rest:** Enforce encryption standards per classification: AES-256-GCM for Restricted, minimum AES-256 for Confidential. Use cloud provider default encryption with customer-managed keys for Restricted data, provider-managed keys acceptable for Confidential.
    c. **Encryption in Transit:** Enforce TLS minimum versions per classification (1.3 for Restricted, 1.2+ for Confidential). Configure load balancers, CDNs, and application servers to reject connections below the minimum version.
    d. **Email Transmission:** Configure the email gateway/DLP to enforce restrictions: block emails containing Restricted data patterns unless encrypted (S/MIME, PGP, or secure portal link). Warn on Confidential data sent externally without encryption.
@@ -60,11 +60,11 @@
    d. **Discovery:** Automated scanning discovers data that appears misclassified (e.g., patterns matching Restricted data found in Internal-labeled storage).
 2. Reclassification process:
    a. The data owner submits a reclassification request with justification.
-   b. For upward reclassification: approved by the data owner's manager. Implementation handles it as a priority — the data is under-protected.
+   b. For upward reclassification: approved by the data owner's manager. Implementation handles it as a priority - the data is under-protected.
    c. For downward reclassification: requires approval from the Security Officer or Privacy Officer. A downward reclassification reduces protections and must be justified and documented.
    d. Upon approval, update: the data's classification label/metadata, the access controls to match the new classification, the storage location if required (e.g., moving from Restricted storage to Confidential storage), and downstream systems and reports that reference this data.
    e. Notify all users with access to the reclassified data of the change and any new handling requirements.
-3. Log all reclassifications: data asset, previous classification, new classification, justification, approving authority, and date. Review the reclassification log quarterly for patterns — frequent downward reclassification may indicate initial over-classification or a process gap.
+3. Log all reclassifications: data asset, previous classification, new classification, justification, approving authority, and date. Review the reclassification log quarterly for patterns - frequent downward reclassification may indicate initial over-classification or a process gap.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
 > - **Automated reclassification based on data age or content:** Configure data discovery tools to auto-reclassify data that meets defined criteria (e.g., data containing PII that is older than 7 years and has not been accessed in 3 years may be recommended for reclassification to a lower tier if de-identification criteria are met). Human approval is still required for downward reclassification.

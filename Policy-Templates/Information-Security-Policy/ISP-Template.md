@@ -41,7 +41,7 @@
 41|
 42|## Information Security Objectives
 43|
-44|It is the policy of ____ that information, in all its forms — written, spoken, recorded electronically, or printed — will be protected from accidental or intentional unauthorized modification, destruction, or disclosure throughout its lifecycle. This protection includes an appropriate level of security over the equipment and software used to process, store, and transmit that information.
+44|It is the policy of ____ that information, in all its forms - written, spoken, recorded electronically, or printed - will be protected from accidental or intentional unauthorized modification, destruction, or disclosure throughout its lifecycle. This protection includes an appropriate level of security over the equipment and software used to process, store, and transmit that information.
 45|
 46|The organization's information security objectives are:
 47|
@@ -77,7 +77,7 @@
 78|
 79|### Clean Desk and Clear Screen
 80|
-81|All Personnel must maintain a clean desk and clear screen — sensitive materials must be secured when unattended, workstations must be locked when not in use, and passwords must never be left in accessible locations.
+81|All Personnel must maintain a clean desk and clear screen - sensitive materials must be secured when unattended, workstations must be locked when not in use, and passwords must never be left in accessible locations.
 82|
 84|
 85|### Internet and Intranet Access

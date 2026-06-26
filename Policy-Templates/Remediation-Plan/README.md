@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Remediation Plan is the operational document that defines the end-to-end workflow for addressing security findings — from discovery through prioritization, assignment, remediation, verification, and closure. It bridges the Vulnerability Management Policy (which defines SLAs and severity) and the Vulnerability Management Process (which defines detection and scanning) by focusing specifically on what happens after a finding is identified. This is the document that makes remediation accountable and measurable.
+The Remediation Plan is the operational document that defines the end-to-end workflow for addressing security findings - from discovery through prioritization, assignment, remediation, verification, and closure. It bridges the Vulnerability Management Policy (which defines SLAs and severity) and the Vulnerability Management Process (which defines detection and scanning) by focusing specifically on what happens after a finding is identified. This is the document that makes remediation accountable and measurable.
 
 ## What It Covers
 
@@ -21,9 +21,9 @@ The Remediation Plan is the operational document that defines the end-to-end wor
 
 This folder contains three files:
 
-- **`Remediation-Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Remediation-Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -35,13 +35,13 @@ The policy and procedure are deliberately separate: the policy is for all employ
 
 **3. Risk acceptance without approval thresholds.** The plan says "acceptance must be approved," but doesn't specify by whom. A developer should not be able to accept a Critical risk on a production system. Define approval thresholds: Low → Security team, Medium → Asset owner + Security, High → CISO, Critical → Executive leadership. This creates accountability commensurate with risk.
 
-**4. Verification that consists of "close the ticket."** The most common remediation failure mode is closing a ticket without actually verifying the fix worked. Re-scan the affected asset. For Critical findings, do a targeted manual test. "I applied the patch" is not verification — "I applied the patch AND re-scanned AND the vulnerability is no longer present" is verification.
+**4. Verification that consists of "close the ticket."** The most common remediation failure mode is closing a ticket without actually verifying the fix worked. Re-scan the affected asset. For Critical findings, do a targeted manual test. "I applied the patch" is not verification - "I applied the patch AND re-scanned AND the vulnerability is no longer present" is verification.
 
 **5. Closure SLAs vs. change management timelines.** A Critical vulnerability with a 7-day SLA goes through emergency change management (24-hour approval). A High vulnerability with a 30-day SLA goes through standard change management (5-10 business days for CAB review). If your change management process doesn't have an expedited path for security patches, you'll routinely miss High SLAs. Align your change management policy with your remediation SLAs.
 
 **6. Counting "accepted" findings as "closed."** An accepted risk is not remediated and should not be reported as "closed" in metrics. Track acceptances separately: "X resolved, Y mitigated, Z transferred, A accepted." If you lump acceptances into "closed," you're misleading management and auditors about your actual remediation performance.
 
-**7. No recurring vulnerability analysis.** If the same type of finding (e.g., "TLS 1.0 enabled") keeps appearing across different systems, it's not a remediation problem — it's a configuration standard or build pipeline problem. The review phase should identify patterns and trigger root cause fixes, not just individual ticket closure. This turns your remediation program from reactive to proactive.
+**7. No recurring vulnerability analysis.** If the same type of finding (e.g., "TLS 1.0 enabled") keeps appearing across different systems, it's not a remediation problem - it's a configuration standard or build pipeline problem. The review phase should identify patterns and trigger root cause fixes, not just individual ticket closure. This turns your remediation program from reactive to proactive.
 
 ## Implementation Advice
 

@@ -19,8 +19,8 @@ The Data Protection Policy translates the high-level data classification framewo
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Data protection controls throughout the data lifecycle. Defines customer data segmentation, production access controls, encryption requirements, data deletion standards, and information exchange governance. This is the governance document reviewed by leadership and auditors.
-- **`Data-Protection-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Customer data segmentation implementation, production data access controls (JIT provisioning), secure data deletion methods, and monitoring setup for data protection. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Data protection controls throughout the data lifecycle. Defines customer data segmentation, production access controls, encryption requirements, data deletion standards, and information exchange governance. This is the governance document reviewed by leadership and auditors.
+- **`Data-Protection-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Customer data segmentation implementation, production data access controls (JIT provisioning), secure data deletion methods, and monitoring setup for data protection. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
@@ -41,6 +41,6 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 
 - **Implement just-in-time access from day one.** Even if you start with a simple manual approval process tracked in tickets, establish the pattern early. Retrofitting JIT access into a culture accustomed to standing production access is extremely difficult.
 - **Use a data discovery tool to find classification violations.** Run a data discovery scan across all repositories quarterly. Look for Restricted data (SSNs, credit card numbers, API keys) in locations not configured for Restricted-level protection. This catches both misclassification and shadow IT.
-- **Automate encryption verification.** Don't rely on configuration management alone — periodically scan storage volumes and databases to verify encryption is actually enabled and using the correct key management service. Misconfigurations during maintenance windows are a common root cause of unencrypted data exposure.
+- **Automate encryption verification.** Don't rely on configuration management alone - periodically scan storage volumes and databases to verify encryption is actually enabled and using the correct key management service. Misconfigurations during maintenance windows are a common root cause of unencrypted data exposure.
 - **Document data flows for external integrations.** For every third-party integration, maintain a data flow diagram showing what data is exchanged, how it is encrypted in transit, where it is stored, and who has access at each stage. This makes vendor security reviews and incident response significantly faster.
 - **Test your data deletion process.** Periodically verify that "deleted" data is actually irrecoverable. Attempt to restore data that was deleted 90 days ago using backup systems, database snapshots, and filesystem recovery tools. If you can recover it, your deletion process is not working.

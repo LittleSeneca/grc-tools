@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Control Self-Assessment Process defines how the organization evaluates its own internal controls for design adequacy and operating effectiveness. It's the mechanism by which control owners attest that their controls are working, collect evidence to prove it, and identify gaps that need remediation. This process is the backbone of any SOC 2, ISO 27001, or similar compliance program — auditors rely on it to validate that you know whether your controls are effective.
+The Control Self-Assessment Process defines how the organization evaluates its own internal controls for design adequacy and operating effectiveness. It's the mechanism by which control owners attest that their controls are working, collect evidence to prove it, and identify gaps that need remediation. This process is the backbone of any SOC 2, ISO 27001, or similar compliance program - auditors rely on it to validate that you know whether your controls are effective.
 
 ## What It Covers
 
@@ -20,19 +20,19 @@ The Control Self-Assessment Process defines how the organization evaluates its o
 
 This folder contains three files:
 
-- **`CSA-Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`CSA-Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
 ## Gotchas People Get Wrong
 
-**1. "Self-assessment" means "mark everything as effective."** The most common failure mode is control owners attesting that everything is working perfectly because they don't want to create work for themselves. This is why external auditors test controls independently — and why discrepancies between self-assessments and audit findings are a major red flag. Create a culture where identifying issues is rewarded, not punished. "We found and fixed 5 control gaps this quarter" is a better narrative than "Everything is perfect."
+**1. "Self-assessment" means "mark everything as effective."** The most common failure mode is control owners attesting that everything is working perfectly because they don't want to create work for themselves. This is why external auditors test controls independently - and why discrepancies between self-assessments and audit findings are a major red flag. Create a culture where identifying issues is rewarded, not punished. "We found and fixed 5 control gaps this quarter" is a better narrative than "Everything is perfect."
 
-**2. Evidence that proves the wrong thing.** A control that says "Access reviews are performed quarterly" needs evidence of the actual review — meeting minutes, a signed attestation, system-generated access review reports — not just a screenshot of the policy that says reviews should happen. Evidence must demonstrate that the control *operated*, not just that it *exists*.
+**2. Evidence that proves the wrong thing.** A control that says "Access reviews are performed quarterly" needs evidence of the actual review - meeting minutes, a signed attestation, system-generated access review reports - not just a screenshot of the policy that says reviews should happen. Evidence must demonstrate that the control *operated*, not just that it *exists*.
 
-**3. Quarterly vs. annual assessment confusion.** The process defines multiple assessment cadences. Control owners often conflate them — they think the annual assessment covers them for the year and skip quarterly high-risk assessments. Make clear assignments: "Control A (quarterly) → assessed by Jane in Q1, Q2, Q3, Q4. Control B (annual) → assessed by Jane in Q4." Track compliance with cadence separately from control effectiveness.
+**3. Quarterly vs. annual assessment confusion.** The process defines multiple assessment cadences. Control owners often conflate them - they think the annual assessment covers them for the year and skip quarterly high-risk assessments. Make clear assignments: "Control A (quarterly) → assessed by Jane in Q1, Q2, Q3, Q4. Control B (annual) → assessed by Jane in Q4." Track compliance with cadence separately from control effectiveness.
 
 **4. Corrective actions with no owner or no deadline.** "We should improve our access review process" is a wish, not a corrective action. Every identified issue needs: specific action description, assigned owner, target completion date, and verification method. Without these four elements, it won't get done.
 

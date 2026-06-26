@@ -1,4 +1,4 @@
-# Acceptable Use Policy — Implementation Procedures
+# Acceptable Use Policy - Implementation Procedures
 
 > **Companion to:** Acceptable Use Policy (AUP-Template.md)
 > **Purpose:** These procedures describe how to implement the requirements set forth in the Acceptable Use Policy. The policy defines WHAT must be done; this document describes HOW to do it.
@@ -14,11 +14,11 @@ This procedure covers the end-to-end deployment, configuration, and maintenance 
 #### 1.1 Anti-Malware Deployment
 
 1. Select an enterprise anti-malware / EDR (Endpoint Detection and Response) platform. Approved platform: `____` (e.g., CrowdStrike Falcon, Microsoft Defender for Endpoint, SentinelOne).
-2. Deploy agents to all endpoint systems — workstations, laptops, and servers — via the organization's device management tool (`____`, e.g., Jamf, Intune, SCCM, Ansible).
+2. Deploy agents to all endpoint systems - workstations, laptops, and servers - via the organization's device management tool (`____`, e.g., Jamf, Intune, SCCM, Ansible).
 3. Configure deployment groups:
-   - **Production Servers:** Agent installed in "detect-only" or "monitor" mode initially for a `____`-day observation period before moving to "protect" mode.
-   - **Workstations/Laptops:** Agent installed in "protect" mode from Day 1.
-   - **Legacy/Embedded Systems:** If agent cannot be installed, document a compensating control plan (network segmentation, application whitelisting).
+  - **Production Servers:** Agent installed in "detect-only" or "monitor" mode initially for a `____`-day observation period before moving to "protect" mode.
+  - **Workstations/Laptops:** Agent installed in "protect" mode from Day 1.
+  - **Legacy/Embedded Systems:** If agent cannot be installed, document a compensating control plan (network segmentation, application whitelisting).
 4. Verify agent health dashboard shows >`____`% coverage within `____` days of deployment initiation. Escalate gaps to `____` (IT Operations).
 
 #### 1.2 Signature and Engine Updates
@@ -34,10 +34,10 @@ This procedure covers the end-to-end deployment, configuration, and maintenance 
 2. **Quick Scans:** Schedule daily during idle time. Focus on common malware persistence locations (registry, startup folders, browser extensions, temp directories).
 3. **On-Access Scanning:** Enable real-time scanning for all file operations (open, save, execute). This is non-negotiable and must not be disabled by end users.
 4. **Scan Exclusions:** Maintain a centrally managed exclusion list for known false positives. All exclusions must be:
-   - Submitted via change request with business justification.
-   - Approved by `____` (Security Engineering).
-   - Reviewed quarterly for continued necessity.
-   - Limited in scope — exclude specific file paths, never entire directories or drive volumes.
+  - Submitted via change request with business justification.
+  - Approved by `____` (Security Engineering).
+  - Reviewed quarterly for continued necessity.
+  - Limited in scope - exclude specific file paths, never entire directories or drive volumes.
 
 #### 1.4 Multi-Point Scanning Architecture
 
@@ -54,15 +54,15 @@ The following scan points must be configured:
 #### 1.5 Malware Incident Response
 
 1. On detection, the EDR platform automatically:
-   - Quarantines the affected file or process.
-   - Isolates the endpoint from the network (if configured for automatic containment).
-   - Generates a ticket in `____` (SIEM / ticketing system) with severity based on detection type.
+  - Quarantines the affected file or process.
+  - Isolates the endpoint from the network (if configured for automatic containment).
+  - Generates a ticket in `____` (SIEM / ticketing system) with severity based on detection type.
 2. Security Operations acknowledges the alert within `____` minutes (Severity: Critical/High) or `____` hours (Medium/Low).
 3. If the detection is confirmed as malicious:
-   - Initiate the Incident Response Process (see IR-Process-Template.md).
-   - Preserve forensic artifacts: memory dump, disk image, network flows from `____` hours before detection.
-   - Determine scope of compromise — was data exfiltrated? Lateral movement?
-   - After containment and remediation, validate that the system is clean before restoring network access.
+  - Initiate the Incident Response Process (see IR-Process-Template.md).
+  - Preserve forensic artifacts: memory dump, disk image, network flows from `____` hours before detection.
+  - Determine scope of compromise - was data exfiltrated? Lateral movement?
+  - After containment and remediation, validate that the system is clean before restoring network access.
 4. Post-incident: update detection rules, exclusion lists, and user awareness training based on lessons learned.
 
 ### Alternative Approaches
@@ -77,7 +77,7 @@ The following scan points must be configured:
 
 > **⚠️ Watch out:** Scan exclusions creeping over time. "Just exclude this folder for performance" becomes a gaping hole. Audit exclusions quarterly and require re-approval.
 
-> **⚠️ Watch out:** Assuming anti-malware is sufficient. Modern adversaries use fileless malware, living-off-the-land binaries (LOLBins), and stolen credentials that bypass signature-based detection. Anti-malware is one layer — behavior-based EDR, network detection, and robust logging are essential complements.
+> **⚠️ Watch out:** Assuming anti-malware is sufficient. Modern adversaries use fileless malware, living-off-the-land binaries (LOLBins), and stolen credentials that bypass signature-based detection. Anti-malware is one layer - behavior-based EDR, network detection, and robust logging are essential complements.
 
 > **⚠️ Watch out:** Alert fatigue from overly sensitive detection policies. If Security Operations receives 500 low-fidelity alerts daily, real incidents will be missed. Tune detection rules continuously; suppress known false positives aggressively; use alert correlation.
 
@@ -95,12 +95,12 @@ This procedure governs how software is approved, installed, and maintained on or
 
 1. **Request Submission:** Personnel submit software installation requests via `____` (IT service desk / procurement system). Request must include: software name, vendor, version, business purpose, license type/cost, and data the software will access or process.
 2. **Security Review:** The Security team evaluates:
-   - Vendor reputation and breach history.
-   - Data access requirements — does it need access to Restricted or Confidential data?
-   - Network communication patterns — does it phone home? To where?
-   - Known vulnerabilities (check NVD, vendor advisories).
-   - Privacy policy and data handling practices (for cloud-connected software).
-   - Open-source license compatibility (for internally used tools).
+  - Vendor reputation and breach history.
+  - Data access requirements - does it need access to Restricted or Confidential data?
+  - Network communication patterns - does it phone home? To where?
+  - Known vulnerabilities (check NVD, vendor advisories).
+  - Privacy policy and data handling practices (for cloud-connected software).
+  - Open-source license compatibility (for internally used tools).
 3. **Architecture Review:** IT validates compatibility with the standard endpoint image, tests for conflicts with existing software, and verifies deployment packaging.
 4. **Approval Decision:** `____` (IT Manager / Security Officer) approves or denies within `____` business days. Approved software is added to the Approved Software Catalog.
 5. **Catalog Maintenance:** The catalog is published on the intranet and reviewed quarterly. Software that is no longer needed, reaches end-of-life, or has unresolved critical vulnerabilities is removed.
@@ -110,18 +110,18 @@ This procedure governs how software is approved, installed, and maintained on or
 1. **Standard Users:** By default, personnel do not have local administrator rights and cannot install software. This is enforced via group policy / MDM.
 2. **Self-Service Portal:** Approved software is available through a self-service portal (`____`, e.g., Company Portal for Intune, Self Service for Jamf, Software Center for SCCM). Users can install pre-approved software without an IT ticket.
 3. **Privileged Access for Installation:** IT personnel with software deployment responsibilities receive elevated accounts used ONLY for installation tasks. These accounts are:
-   - Separate from daily-driver accounts.
-   - Subject to just-in-time (JIT) elevation with time-bound access.
-   - Fully logged and reviewed monthly.
+  - Separate from daily-driver accounts.
+  - Subject to just-in-time (JIT) elevation with time-bound access.
+  - Fully logged and reviewed monthly.
 4. **Developer Exception:** Developers who require compilers, SDKs, containers, or tools may receive a secondary local admin account on their development machine ONLY. This machine must not store production data. See SDLC Policy for environment separation requirements.
 
 #### 2.3 Software Inventory and License Compliance
 
 1. **Automated Discovery:** Deploy a software inventory agent (`____`) on all endpoints to detect installed software. Run discovery scans weekly.
 2. **Reconciliation:** Compare discovered software against the Approved Software Catalog. Flag discrepancies:
-   - **Unapproved software:** Generate a ticket for IT to investigate and remove.
-   - **Unlicensed software:** Escalate to Procurement/Legal for license compliance.
-   - **End-of-life software:** Flag for upgrade or removal with a deadline based on severity.
+  - **Unapproved software:** Generate a ticket for IT to investigate and remove.
+  - **Unlicensed software:** Escalate to Procurement/Legal for license compliance.
+  - **End-of-life software:** Flag for upgrade or removal with a deadline based on severity.
 3. **License Management:** Maintain a license register tracking purchased licenses vs. actual installations. True-up with vendors on `____` (annual/semi-annual) basis.
 4. **Vulnerability Correlation:** Cross-reference the software inventory against vulnerability databases (CVE/NVD). Automatically flag software with known Critical/High CVEs for patching.
 
@@ -129,7 +129,7 @@ This procedure governs how software is approved, installed, and maintained on or
 
 The following software categories are explicitly prohibited on organizational devices:
 - Peer-to-peer file sharing applications (BitTorrent, LimeWire, etc.).
-- Unauthorized remote access tools (TeamViewer personal edition, AnyDesk personal, etc. — only the corporate-licensed version is permitted).
+- Unauthorized remote access tools (TeamViewer personal edition, AnyDesk personal, etc. - only the corporate-licensed version is permitted).
 - Cryptocurrency miners.
 - Unlicensed or pirated software of any kind.
 - Software that circumvents security controls (proxies, VPNs for bypassing organizational filtering, keyloggers).

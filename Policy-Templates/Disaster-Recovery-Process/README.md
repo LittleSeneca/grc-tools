@@ -19,8 +19,8 @@ The Disaster Recovery Process is the operational companion to the Disaster Recov
 
 This folder contains two files:
 
-- **`Template.md`** — The process document. Describes HOW to operationalize the related policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** - This overview.
 
 When updating the governing policy, ensure implementation changes flow into this process document.
 

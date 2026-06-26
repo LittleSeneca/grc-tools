@@ -39,10 +39,10 @@
 39|- **Annual Comprehensive Assessment:** All in-scope controls assessed at least once per year.
 40|- **Quarterly High-Risk Control Assessment:** Controls that address high-risk areas, have a history of deficiencies, or are critical to compliance must be assessed quarterly.
 41|- **Event-Driven Assessment:** Controls are re-assessed upon:
-42|  - Significant changes to the control environment (system changes, process changes, organizational restructuring).
-43|  - Discovery of a control failure or incident related to the control.
-44|  - Changes in applicable regulations or compliance framework requirements.
-45|  - Findings from internal or external audits indicating control weakness.
+42| - Significant changes to the control environment (system changes, process changes, organizational restructuring).
+43| - Discovery of a control failure or incident related to the control.
+44| - Changes in applicable regulations or compliance framework requirements.
+45| - Findings from internal or external audits indicating control weakness.
 46|
 47|## Assessment Execution Requirements
 48|

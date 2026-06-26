@@ -17,9 +17,9 @@ The Employee Access and Confidentiality Agreement is a legally binding document 
 
 This folder contains three files:
 
-- **`Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -38,7 +38,7 @@ The policy and procedure are deliberately separate: the policy is for all employ
 ## Implementation Advice
 
 - **Use an e-signature platform.** Paper-based signature collection is unreliable and doesn't scale. Use DocuSign, HelloSign, or your HRIS's built-in e-signature feature. Automatically route signed copies to the employee's personnel file.
-- **Bundle with onboarding.** This agreement should be presented alongside the offer letter, I-9, W-4, and other new-hire paperwork. Make it non-negotiable — no signed agreement, no system access.
+- **Bundle with onboarding.** This agreement should be presented alongside the offer letter, I-9, W-4, and other new-hire paperwork. Make it non-negotiable - no signed agreement, no system access.
 - **Add to your offboarding checklist.** When an employee leaves, remind them of their continuing confidentiality obligations during the exit interview. Have them sign an exit acknowledgment confirming they have returned all organizational data and equipment and understand their ongoing obligations.
 - **Train on it, don't just sign it.** During security awareness training, walk through the agreement's key points with real examples. "Remember the confidentiality agreement you signed? Here's what it means in practice when you're working from a coffee shop or considering a side project."
 - **Review with Legal periodically.** Employment laws, data protection regulations, and legal precedents change. Have legal counsel review the agreement at least every two years to ensure it remains enforceable and compliant with current law.

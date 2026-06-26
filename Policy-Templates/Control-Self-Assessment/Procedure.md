@@ -1,4 +1,4 @@
-# Control Self-Assessment — Implementation Procedures
+# Control Self-Assessment - Implementation Procedures
 
 > **Companion to:** Control Self-Assessment Process (CSA-Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -15,7 +15,7 @@
    c. Review completion date.
    d. Corrective action planning deadline.
 3. Define the scope: list every control in scope for this assessment, its owner, and the expected evidence types.
-4. Assign each control to a specific assessor (control owner or designated delegate). Confirm assignment acceptance in writing — an unacknowledged assignment is the leading cause of missed assessments.
+4. Assign each control to a specific assessor (control owner or designated delegate). Confirm assignment acceptance in writing - an unacknowledged assignment is the leading cause of missed assessments.
 5. Notify all assessors, control owners, and executive stakeholders of the upcoming assessment period. Include expectations, deadlines, evidence requirements, and links to the assessment platform or forms.
 6. Publish a reminder at 2 weeks before the evidence deadline, at 1 week before, and at 48 hours before. Escalate non-respondents to their manager at the 48-hour mark.
 ### Alternative Approaches
@@ -30,14 +30,14 @@
 ## Procedure 2: Evidence Collection
 ### Standard Approach
 1. For each control, pre-define acceptable evidence types and formats. This eliminates ambiguity and prevents assessors from submitting irrelevant documentation:
-   a. **Operational controls:** System-generated reports, logs, dashboards, or automated exports (not screenshots — they're too easy to fake and don't prove ongoing operation).
+   a. **Operational controls:** System-generated reports, logs, dashboards, or automated exports (not screenshots - they're too easy to fake and don't prove ongoing operation).
    b. **Periodic controls:** Meeting minutes, signed attestations, approval records, with timestamps proving occurrence within the assessment period.
    c. **Design controls:** Architecture diagrams, policy documents, configuration standards with version history.
    d. **Training/awareness controls:** Training completion reports from the LMS or HRIS, showing completion rates and dates.
 2. Assessors collect evidence for each assigned control during the assessment period. Evidence must:
    a. Cover the full assessment period, not a single point in time. A quarterly access review performed in January doesn't prove the control operated in February and March.
-   b. Be attributable — the evidence must show who performed the control and when.
-   c. Be relevant — evidence must demonstrate the control OPERATED, not just that the control EXISTS.
+   b. Be attributable - the evidence must show who performed the control and when.
+   c. Be relevant - evidence must demonstrate the control OPERATED, not just that the control EXISTS.
 3. Upload or link evidence to the GRC platform or assessment tool. Tag each piece of evidence with the control ID, assessment period, and evidence type.
 4. If evidence cannot be produced for a control, the assessor must document the reason (control not performed, evidence not retained, system issue) and this becomes a finding.
 ### Alternative Approaches
@@ -46,16 +46,16 @@
 > - **Sampling-based evidence for high-frequency controls:** For controls that operate daily (e.g., log monitoring, backup verification), collect evidence for a representative sample (e.g., one week per month) rather than every single day. Document the sampling methodology.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Evidence that proves the wrong thing.** A screenshot of the policy that says "access reviews are performed quarterly" proves the policy exists — it does NOT prove the access review actually happened. Evidence must demonstrate execution, not existence.
+> - **Evidence that proves the wrong thing.** A screenshot of the policy that says "access reviews are performed quarterly" proves the policy exists - it does NOT prove the access review actually happened. Evidence must demonstrate execution, not existence.
 > - **Evidence that is too old.** Evidence from outside the assessment period is rejected. If the assessment covers Q2 and the assessor uploads Q1 evidence because "nothing changed," that's a gap. The evidence must cover the assessment period.
 > - **Evidence stored in personal email or local drives.** Evidence uploaded only to the GRC platform survives personnel changes. If the only copy of evidence is in a former employee's email, it's lost.
 
 ## Procedure 3: Rating Calibration
 ### Standard Approach
 1. After evidence is collected, each assessor evaluates their assigned controls against the defined effectiveness scale:
-   - **Operating Effectively:** Control design is adequate, control is functioning as intended, and evidence supports this conclusion without gaps.
-   - **Needs Improvement:** Control is partially effective. Minor gaps or inconsistencies exist that can be remediated within one assessment cycle.
-   - **Not Effective:** Control is not achieving its objective. Significant gaps or failures exist that require immediate corrective action.
+  - **Operating Effectively:** Control design is adequate, control is functioning as intended, and evidence supports this conclusion without gaps.
+  - **Needs Improvement:** Control is partially effective. Minor gaps or inconsistencies exist that can be remediated within one assessment cycle.
+  - **Not Effective:** Control is not achieving its objective. Significant gaps or failures exist that require immediate corrective action.
 2. To ensure consistent application of the rating scale across assessors and departments, conduct a calibration session before the assessment period begins:
    a. Present 3–5 anonymized scenarios from prior assessments (or constructed examples).
    b. Have all assessors independently rate each scenario.

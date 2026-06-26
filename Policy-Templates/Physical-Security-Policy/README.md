@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Physical Security Policy establishes the controls that protect the organization's facilities, equipment, and — by extension — the information contained within them. Physical security is often the most overlooked layer in a security program, but it is also the layer where a single failure (an unlocked door, an unescorted visitor, a stolen laptop) can completely bypass sophisticated technical controls. This policy ensures that physical access is as carefully managed as digital access.
+The Physical Security Policy establishes the controls that protect the organization's facilities, equipment, and - by extension - the information contained within them. Physical security is often the most overlooked layer in a security program, but it is also the layer where a single failure (an unlocked door, an unescorted visitor, a stolen laptop) can completely bypass sophisticated technical controls. This policy ensures that physical access is as carefully managed as digital access.
 
 ## What It Covers
 
@@ -20,8 +20,8 @@ The Physical Security Policy establishes the controls that protect the organizat
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Physical security controls for facilities, secure areas, workstations, and off-site equipment. Defines access controls, clean desk requirements, alarm systems, and data center security. This is the governance document reviewed by leadership and auditors.
-- **`Physical-Security-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Physical access control system configuration, badge management, surveillance monitoring procedures, and facility inspection workflows. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Physical security controls for facilities, secure areas, workstations, and off-site equipment. Defines access controls, clean desk requirements, alarm systems, and data center security. This is the governance document reviewed by leadership and auditors.
+- **`Physical-Security-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Physical access control system configuration, badge management, surveillance monitoring procedures, and facility inspection workflows. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
@@ -34,7 +34,7 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 
 **3. Visitor logs that don't work in practice.** Visitor logs that require paper sign-in with no verification are theater. A visitor can write any name and any host. Implement a process that verifies identity (ID check), issues a temporary badge visibly different from employee badges, and logs entry/exit digitally.
 
-**4. Clean desk policy without enforcement.** Almost every organization has a clean desk policy. Almost nobody enforces it. Without periodic walkthrough inspections — ideally unannounced — the policy is aspirational. Consider gentle enforcement: leave a "thank you for securing your desk" card on clean desks and a reminder on unsecured ones.
+**4. Clean desk policy without enforcement.** Almost every organization has a clean desk policy. Almost nobody enforces it. Without periodic walkthrough inspections - ideally unannounced - the policy is aspirational. Consider gentle enforcement: leave a "thank you for securing your desk" card on clean desks and a reminder on unsecured ones.
 
 **5. Ignoring off-site and remote work.** Physical security doesn't stop at the office door. Laptops taken home, to coffee shops, or on business travel are high-risk. A stolen laptop with unencrypted Restricted data is a reportable breach. The policy must address off-site equipment security explicitly.
 

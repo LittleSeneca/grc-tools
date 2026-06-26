@@ -1,4 +1,4 @@
-# Employee Access and Confidentiality Agreement — Implementation Procedures
+# Employee Access and Confidentiality Agreement - Implementation Procedures
 
 > **Companion to:** Employee Access and Confidentiality Agreement (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -23,10 +23,10 @@
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
 > - **HRIS-native document execution:** If the HRIS platform (BambooHR, Workday, Rippling) supports native document signing, use it instead of a separate e-signature tool. This eliminates integration complexity and keeps everything in one system of record.
-> - **Bundled with offer acceptance:** Present the confidentiality agreement as a condition of the offer — sign it alongside the offer letter, before the start date. This ensures the agreement is executed before the employee has any access to organizational information, even during orientation.
+> - **Bundled with offer acceptance:** Present the confidentiality agreement as a condition of the offer - sign it alongside the offer letter, before the start date. This ensures the agreement is executed before the employee has any access to organizational information, even during orientation.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Agreement signed but not stored retrievably.** The most common audit finding: "We know they signed it, but we can't produce the signed copy." Signed agreements stored in a former HR manager's email, a paper file in an off-site storage unit, or an e-signature platform that was decommissioned — all are audit failures. The signed copy must be stored in a durable, searchable, access-controlled system.
+> - **Agreement signed but not stored retrievably.** The most common audit finding: "We know they signed it, but we can't produce the signed copy." Signed agreements stored in a former HR manager's email, a paper file in an off-site storage unit, or an e-signature platform that was decommissioned - all are audit failures. The signed copy must be stored in a durable, searchable, access-controlled system.
 > - **Different versions of the agreement in circulation.** HR uses v2.1 from the shared drive, but Legal updated it to v2.2 last month. The e-signature platform still has v2.0 configured. Version control for the agreement template is as important as version control for any other policy document. Maintain a single source of truth for the current version.
 
 ## Procedure 2: Annual Re-Acknowledgment
@@ -51,7 +51,7 @@
 ### Common Pitfalls
 > **⚠️ Watch out:**
 > - **Re-acknowledgment treated as a checkbox with no engagement.** If employees click "Acknowledge" without any reminder of what they're acknowledging, the exercise is hollow. Include a brief summary of key obligations: "Remember: your confidentiality obligations continue after employment ends. You cannot take customer data to a new employer. Report potential violations immediately."
-> - **Employees who left during the campaign period but are still in the system.** Terminated employees showing up as "non-compliant" on the acknowledgment report indicate an offboarding gap — their accounts and records haven't been updated. Investigate why terminated employees are still in the active population.
+> - **Employees who left during the campaign period but are still in the system.** Terminated employees showing up as "non-compliant" on the acknowledgment report indicate an offboarding gap - their accounts and records haven't been updated. Investigate why terminated employees are still in the active population.
 
 ## Procedure 3: Violation Reporting
 ### Standard Approach
@@ -77,7 +77,7 @@
 > - **Ombudsperson model:** For larger organizations, establish an ombudsperson role that operates independently of management and HR. The ombudsperson can receive reports, provide confidential guidance, and mediate informal resolutions without triggering a formal investigation.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Reporting channel that nobody uses.** If the hotline receives zero reports in a year in an organization of 500+ people, it's not because there are zero issues — it's because employees don't trust the system, don't know it exists, or fear retaliation. Survey employees anonymously about their awareness of and trust in reporting channels.
+> - **Reporting channel that nobody uses.** If the hotline receives zero reports in a year in an organization of 500+ people, it's not because there are zero issues - it's because employees don't trust the system, don't know it exists, or fear retaliation. Survey employees anonymously about their awareness of and trust in reporting channels.
 > - **Report that falls between functions.** "An employee shared their password with a contractor who is now accessing client data." Is this an HR issue (employee misconduct), a Security issue (unauthorized access), or a Legal issue (contractor breaching confidentiality)? Reports at the intersection of functions are the most likely to fall through cracks. Designate a triage function (typically Compliance) with the authority to assign ownership and follow up.
 
 ## Procedure 4: Access Monitoring for Confidentiality Compliance
@@ -97,7 +97,7 @@
    c. If the activity cannot be explained by legitimate business need, escalate to a formal investigation per the organization's investigation procedure.
 4. Reporting:
    a. Monthly: summary of monitoring alerts by severity, investigations opened, and outcomes.
-   b. Quarterly: trends — are certain departments, roles, or data types associated with more alerts? Address systemic issues.
+   b. Quarterly: trends - are certain departments, roles, or data types associated with more alerts? Address systemic issues.
    c. Annually: review monitoring effectiveness. Are alerts generating actionable investigations or noise? Tune policies.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
@@ -107,4 +107,4 @@
 > **⚠️ Watch out:**
 > - **Monitoring that violates employee privacy expectations.** In some jurisdictions, monitoring employee email content, file access, or browser activity requires disclosure and may have legal restrictions. Consult Legal before deploying monitoring tools. Publish an employee monitoring disclosure that explains what is monitored, why, and how data is used.
 > - **Alert fatigue that desensitizes the response team.** If DLP generates 500 alerts per day and 498 are false positives, the 2 real alerts will be missed. Tune alerting thresholds aggressively. A DLP deployment that starts with broad rules and gradually tightens them is better than one that generates noise from day one.
-> - **Monitoring that doesn't cover departing employees.** The highest-risk period for data exfiltration is the 2 weeks before an employee's departure. Configure elevated monitoring for employees who have submitted resignation or whose termination is scheduled. This may trigger privacy considerations — ensure the monitoring policy covers this scenario.
+> - **Monitoring that doesn't cover departing employees.** The highest-risk period for data exfiltration is the 2 weeks before an employee's departure. Configure elevated monitoring for employees who have submitted resignation or whose termination is scheduled. This may trigger privacy considerations - ensure the monitoring policy covers this scenario.

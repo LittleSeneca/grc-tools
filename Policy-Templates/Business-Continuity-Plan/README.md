@@ -18,15 +18,15 @@ The Business Continuity Plan (BCP) is the organization's framework for maintaini
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Business continuity strategy including recovery objectives (RTO/RPO), line of succession, response team structure, and plan testing requirements. This is the governance document reviewed by leadership and auditors.
-- **`BCP-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Work site recovery, critical service recovery, third-party dependency failure handling, and plan testing execution procedures. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Business continuity strategy including recovery objectives (RTO/RPO), line of succession, response team structure, and plan testing requirements. This is the governance document reviewed by leadership and auditors.
+- **`BCP-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Work site recovery, critical service recovery, third-party dependency failure handling, and plan testing execution procedures. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
 
 ## Gotchas People Get Wrong
 
-**1. Mixing up BCP and DRP.** The BCP is about business operations — people, facilities, communication, supply chain. The DRP is about IT systems — servers, databases, networks. They reference each other, but they are separate documents with separate owners. Auditors expect both.
+**1. Mixing up BCP and DRP.** The BCP is about business operations - people, facilities, communication, supply chain. The DRP is about IT systems - servers, databases, networks. They reference each other, but they are separate documents with separate owners. Auditors expect both.
 
 **2. Undefined RTO and RPO.** "We'll recover as fast as we can" is not a plan. RTO and RPO must be specific numbers backed by business impact analysis. If the business hasn't defined them, the BCP is incomplete. The recovery procedures can't be validated without targets to measure against.
 
@@ -39,7 +39,7 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 ## Implementation Advice
 
 - **Perform a Business Impact Analysis (BIA) first.** Before writing RTO/RPO targets, you need to understand which business functions are critical, what the financial and reputational impact of downtime is, and what dependencies each function has. The BIA feeds the BCP. Without it, your RTO/RPO numbers are guesses.
-- **Keep contact information current.** The BCP contact roster is useless if it lists people who left the company six months ago. Link the roster to the HR system or an always-updated directory. Review it quarterly — not just annually.
-- **Test communications during the exercise.** Don't just test system recovery — test whether you can actually reach all team members. Send the notification through the actual channels you'd use in a real event (phone tree, Slack, email, SMS). Phone numbers change and people miss Slack messages.
+- **Keep contact information current.** The BCP contact roster is useless if it lists people who left the company six months ago. Link the roster to the HR system or an always-updated directory. Review it quarterly - not just annually.
+- **Test communications during the exercise.** Don't just test system recovery - test whether you can actually reach all team members. Send the notification through the actual channels you'd use in a real event (phone tree, Slack, email, SMS). Phone numbers change and people miss Slack messages.
 - **Define "declaration" criteria explicitly.** When exactly does the CEO or designated authority declare a continuity event? "When things are really bad" is subjective and leads to delayed activation. Define objective triggers: e.g., office unusable for > 8 hours, customer-facing system down > 4 hours, 20% of workforce unavailable.
 - **Store the plan where it can be accessed during an outage.** A BCP stored only on the corporate intranet is useless if the intranet is what's down. Maintain offline copies with team leads. Store it in a shared cloud drive, a printed binder, and personal devices.

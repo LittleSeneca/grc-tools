@@ -44,7 +44,7 @@ ____ defines two categories of systems for disaster recovery purposes:
 
 #### Critical Systems
 
-Systems that host application servers, database servers, or are required for the functioning of application and database servers. If unavailable, these systems affect the integrity, confidentiality, or availability of data and business operations. Critical systems must be restored — or have restoration initiated — immediately upon becoming unavailable.
+Systems that host application servers, database servers, or are required for the functioning of application and database servers. If unavailable, these systems affect the integrity, confidentiality, or availability of data and business operations. Critical systems must be restored - or have restoration initiated - immediately upon becoming unavailable.
 
 #### Non-Critical Systems
 
@@ -113,9 +113,9 @@ Each test must produce:
 All test documentation must be retained as audit evidence.
 
 ## Disaster Recovery Phases
-- **Phase 1 — Notification and Activation:** Addresses initial detection, damage assessment, and plan activation. The DR Plan is activated when critical systems will be unavailable beyond their RTO, a hosting facility is damaged, a cybersecurity incident has caused widespread compromise, or as declared by executive leadership.
-- **Phase 2 — Recovery:** Covers technical recovery of IT systems at a designated recovery site, following a defined sequence of communication, assessment, provisioning, restoration, validation, security verification, patching, activation, and traffic routing.
-- **Phase 3 — Reconstitution:** Covers the restoration of normal operations at the original or a new permanent site, executed with minimal or no additional service disruption.
+- **Phase 1 - Notification and Activation:** Addresses initial detection, damage assessment, and plan activation. The DR Plan is activated when critical systems will be unavailable beyond their RTO, a hosting facility is damaged, a cybersecurity incident has caused widespread compromise, or as declared by executive leadership.
+- **Phase 2 - Recovery:** Covers technical recovery of IT systems at a designated recovery site, following a defined sequence of communication, assessment, provisioning, restoration, validation, security verification, patching, activation, and traffic routing.
+- **Phase 3 - Reconstitution:** Covers the restoration of normal operations at the original or a new permanent site, executed with minimal or no additional service disruption.
 
 ## Plan Deactivation
 
@@ -133,7 +133,7 @@ When the permanent environment is operational and stable, the DR Authority decla
 
 ## Compliance and Enforcement
 
-Violation of this policy — including failure to participate in required testing, failure to maintain current contact information, or failure to follow recovery procedures during a declared event — may result in disciplinary action as outlined in the Information Security Policy.
+Violation of this policy - including failure to participate in required testing, failure to maintain current contact information, or failure to follow recovery procedures during a declared event - may result in disciplinary action as outlined in the Information Security Policy.
 
 ## Related Documents
 

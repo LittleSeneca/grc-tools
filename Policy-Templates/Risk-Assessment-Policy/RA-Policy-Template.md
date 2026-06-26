@@ -21,7 +21,7 @@ A key element of ____'s Information Security Program is a holistic and systemati
 
 1. **Identification** of ____'s assets, as well as the threats and vulnerabilities that apply to them.
 2. **Assessment** of the likelihood and consequence (impact) of threats exploiting vulnerabilities, producing a risk rating.
-3. **Treatment** — identification and implementation of appropriate risk responses for each risk rated above the organizational risk appetite.
+3. **Treatment** - identification and implementation of appropriate risk responses for each risk rated above the organizational risk appetite.
 4. **Evaluation** of residual risk after treatment, and ongoing monitoring.
 
 This policy is aligned with industry-standard frameworks including ISO 31000 (Risk Management) and ISO 27001 (Information Security Management).
@@ -34,7 +34,7 @@ The risk assessment process includes the identification of threats and vulnerabi
 
 #### Step 1: Asset Identification
 
-The first step in the risk assessment is to identify all assets within the scope of the Information Security Program — all assets which may affect the confidentiality, integrity, and/or availability of information in the organization. Assets may include:
+The first step in the risk assessment is to identify all assets within the scope of the Information Security Program - all assets which may affect the confidentiality, integrity, and/or availability of information in the organization. Assets may include:
 
 - Documents in paper or electronic form.
 - Applications and software systems.
@@ -58,7 +58,7 @@ For each asset, identify all relevant threats and vulnerabilities. Threats and v
 
 For each identified risk (threat-vulnerability pair), a risk owner must be identified. The risk owner is accountable for managing the risk, including acceptance, treatment, and ongoing monitoring. The risk owner and the asset owner may be the same individual.
 
-#### Step 4: Risk Analysis — Impact and Likelihood Assessment
+#### Step 4: Risk Analysis - Impact and Likelihood Assessment
 
 Once risk owners are identified, they must assess:
 
@@ -75,21 +75,21 @@ Risk Score = Impact × Likelihood
 
 | Impact Value | Rating | Definition |
 |--------------|--------|------------|
-| **1.0 — Incidental** | Very Low | Minimal loss or damage; localized media attention quickly remedied; not reportable to regulators; isolated staff dissatisfaction. |
-| **2.0 — Minor** | Low | Minor financial loss; local reputational damage; reportable incident to regulator with no follow-up required; general staff morale problems and increase in turnover. |
-| **3.0 — Moderate** | Medium | Moderate financial loss; national short-term negative media coverage; report of breach to regulator with immediate correction required; widespread staff morale problems and high turnover. |
-| **4.0 — Major** | High | Significant financial loss; national long-term negative media coverage; significant loss of market share; report to regulator requiring major corrective action project; senior managers depart, high turnover of experienced staff. |
-| **5.0 — Extreme** | Critical | Massive financial loss; international long-term negative media coverage; game-changing loss of market share; significant prosecution and fines, litigation including class actions, incarceration of leadership; multiple senior leaders leave. |
+| **1.0 - Incidental** | Very Low | Minimal loss or damage; localized media attention quickly remedied; not reportable to regulators; isolated staff dissatisfaction. |
+| **2.0 - Minor** | Low | Minor financial loss; local reputational damage; reportable incident to regulator with no follow-up required; general staff morale problems and increase in turnover. |
+| **3.0 - Moderate** | Medium | Moderate financial loss; national short-term negative media coverage; report of breach to regulator with immediate correction required; widespread staff morale problems and high turnover. |
+| **4.0 - Major** | High | Significant financial loss; national long-term negative media coverage; significant loss of market share; report to regulator requiring major corrective action project; senior managers depart, high turnover of experienced staff. |
+| **5.0 - Extreme** | Critical | Massive financial loss; international long-term negative media coverage; game-changing loss of market share; significant prosecution and fines, litigation including class actions, incarceration of leadership; multiple senior leaders leave. |
 
 ### Description of Likelihood Values and Criteria
 
 | Likelihood Value | Rating | Description |
 |-----------------|--------|-------------|
-| **1.0 — Rare** | Very Low | Once in 100+ years (<10% chance of occurrence over the life of the organization). |
-| **2.0 — Unlikely** | Low | Once in 50 to 100 years (10% to 35% chance of occurrence over the life of the organization). |
-| **3.0 — Possible** | Medium | Once in 25 to 50 years (35% to 65% chance of occurrence over the life of the organization). |
-| **4.0 — Likely** | High | Once in 2 to 25 years (65% to 90% chance of occurrence over the life of the organization). |
-| **5.0 — Certain** | Very High | Up to once in 2 years (90% or greater chance of occurrence over the life of the organization). |
+| **1.0 - Rare** | Very Low | Once in 100+ years (<10% chance of occurrence over the life of the organization). |
+| **2.0 - Unlikely** | Low | Once in 50 to 100 years (10% to 35% chance of occurrence over the life of the organization). |
+| **3.0 - Possible** | Medium | Once in 25 to 50 years (35% to 65% chance of occurrence over the life of the organization). |
+| **4.0 - Likely** | High | Once in 2 to 25 years (65% to 90% chance of occurrence over the life of the organization). |
+| **5.0 - Certain** | Very High | Up to once in 2 years (90% or greater chance of occurrence over the life of the organization). |
 
 ### Risk Rating Criteria
 
@@ -129,11 +129,11 @@ Treatment options for risks include:
 2. **Risk Transfer:** Transfer the risk to a third party, for example, by purchasing a cyber insurance policy, outsourcing to a managed service provider with contractual SLAs, or signing risk-sharing agreements with suppliers or partners.
 3. **Risk Avoidance:** Discontinue the business activity, process, or system that creates the risk, or avoid initiating the activity altogether.
 4. **Risk Acceptance:** Formally accept the risk. This option is permitted only if:
-   - The risk level is within the organization's risk appetite, OR
-   - The cost of other treatment options demonstrably exceeds the potential impact of the risk being realized, AND
-   - The acceptance is formally documented and approved by the appropriate authority.
+  - The risk level is within the organization's risk appetite, OR
+  - The cost of other treatment options demonstrably exceeds the potential impact of the risk being realized, AND
+  - The acceptance is formally documented and approved by the appropriate authority.
 
-After selecting and implementing a treatment option, the risk owner must estimate the **residual risk** — the new impact and likelihood values after the planned controls are implemented. Risks with unacceptable residual risk levels require additional treatment.
+After selecting and implementing a treatment option, the risk owner must estimate the **residual risk** - the new impact and likelihood values after the planned controls are implemented. Risks with unacceptable residual risk levels require additional treatment.
 
 ### Plan of Action and Milestones (POA&M)
 

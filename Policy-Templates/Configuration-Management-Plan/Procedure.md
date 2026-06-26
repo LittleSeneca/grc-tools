@@ -1,4 +1,4 @@
-# Configuration Management Plan — Implementation Procedures
+# Configuration Management Plan - Implementation Procedures
 
 > **Companion to:** Configuration Management Plan (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -19,7 +19,7 @@
 8. Protect baselines from unauthorized modification. Only the Configuration Manager or authorized designee may update a baseline, and only through a CCB-approved change request.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
-> - **Continuous baseline for CI/CD pipelines:** In environments with continuous deployment, traditional lifecycle-phase baselines may be too slow. Instead, treat every successful production deployment as a baseline — automatically tagged in version control and recorded in the CMDB. The "product baseline" becomes the most recent successful deployment.
+> - **Continuous baseline for CI/CD pipelines:** In environments with continuous deployment, traditional lifecycle-phase baselines may be too slow. Instead, treat every successful production deployment as a baseline - automatically tagged in version control and recorded in the CMDB. The "product baseline" becomes the most recent successful deployment.
 > - **Infrastructure-as-Code as the baseline:** For cloud-native environments, the baseline is the IaC repository at a specific commit hash. The CMDB becomes a view generated from the IaC state, not a separate manually maintained database.
 ### Common Pitfalls
 > **⚠️ Watch out:**
@@ -62,7 +62,7 @@
    c. Schedule the release during the defined maintenance window. Notify affected stakeholders at least 5 business days in advance.
    d. Obtain final release approval from the CCB or designated release authority.
 2. Execute the release:
-   a. Follow the documented deployment procedure. All steps must be pre-scripted — no ad-hoc commands.
+   a. Follow the documented deployment procedure. All steps must be pre-scripted - no ad-hoc commands.
    b. Monitor deployment progress in real time through logging and observability dashboards.
    c. After deployment, run the defined smoke test suite to verify core functionality.
    d. If smoke tests pass, promote the release to full production traffic.
@@ -80,20 +80,20 @@
 > - **Continuous deployment for Low-risk changes:** For Low-severity changes (documentation, cosmetic fixes), automated deployment without manual CCB gate may be appropriate if the change management policy permits it. The release process still requires post-deploy verification but skips the manual approval step.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Rollback plan that exists only in theory.** The rollback plan must be tested — ideally in a staging environment — before every major release. An untested rollback plan is not a plan; it's a hope. If you cannot roll back within the defined RTO, do not proceed with the release.
+> - **Rollback plan that exists only in theory.** The rollback plan must be tested - ideally in a staging environment - before every major release. An untested rollback plan is not a plan; it's a hope. If you cannot roll back within the defined RTO, do not proceed with the release.
 > - **Release notes that don't mention what's NOT included.** If a change request was approved but deferred from this release, the release notes should call this out. Stakeholders who expected a fix and don't see it will assume it was delivered unless explicitly told otherwise.
 > - **Old baselines deleted to save space.** Archived baselines are your rollback safety net. Do not delete them before the retention period expires, even if storage is tight. The cost of storage is always less than the cost of unrecoverable production state.
 
 ## Procedure 4: Configuration Item (CI) Auditing
 ### Standard Approach
 1. Schedule CI audits on a recurring basis:
-   - **Quarterly:** Automated drift detection against defined baselines for all production systems.
-   - **Annually:** Full Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA) for each major system.
-   - **Event-driven:** After major releases, incident recovery, or significant infrastructure changes.
+  - **Quarterly:** Automated drift detection against defined baselines for all production systems.
+  - **Annually:** Full Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA) for each major system.
+  - **Event-driven:** After major releases, incident recovery, or significant infrastructure changes.
 2. For automated drift detection:
    a. Configure the configuration management or infrastructure monitoring tool to compare the running state of each CI against its defined baseline.
    b. Flag any deviation: open network ports, modified configuration files, unapproved software packages, changed firewall rules, altered IAM policies.
-   c. For each flagged deviation, determine: (i) authorized change with missing CCB record — update the CMDB and close the gap, or (ii) unauthorized change — create an incident ticket and initiate investigation.
+   c. For each flagged deviation, determine: (i) authorized change with missing CCB record - update the CMDB and close the gap, or (ii) unauthorized change - create an incident ticket and initiate investigation.
    d. Report drift metrics to the CCB: total CIs audited, deviations found, authorized vs. unauthorized, remediation status.
 3. For annual FCA/PCA:
    a. FCA: Verify that system functionality matches the functional and design baselines. Review test results, user acceptance records, and requirements traceability.
@@ -106,6 +106,6 @@
 > - **Risk-based audit frequency:** Audit critical systems (customer-facing, containing Restricted data) quarterly and non-critical systems annually. This focuses audit effort where risk is highest.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Drift that accumulates between audits.** If quarterly audits find 50+ deviations every time, your change control process is broken. Investigate why changes are happening outside the CCB process — it's usually because the CCB process is too slow or burdensome for routine operational changes.
+> - **Drift that accumulates between audits.** If quarterly audits find 50+ deviations every time, your change control process is broken. Investigate why changes are happening outside the CCB process - it's usually because the CCB process is too slow or burdensome for routine operational changes.
 > - **FCA/PCA findings with no corrective action.** An audit finding without a linked remediation ticket is an open risk. Every discrepancy must generate a corrective action in the POA&M or ticketing system with an owner and target date.
 > - **Auditing the CMDB, not the system.** The auditor should compare the live system to the baseline, not the CMDB to the baseline. A CMDB that says "port 443 open" is irrelevant if the actual system has port 22 open. Validate against reality, not against the database that may itself be stale.

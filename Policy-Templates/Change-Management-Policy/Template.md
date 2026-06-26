@@ -120,7 +120,7 @@
 123|
 124|## Compliance and Enforcement
 125|
-126|Violation of this policy — including unauthorized production changes, circumvention of the approval process, or failure to follow the documented change management procedures — may result in disciplinary action as outlined in the Information Security Policy. Unauthorized changes that cause a service disruption or security incident will be treated as a policy violation and may result in immediate suspension of access.
+126|Violation of this policy - including unauthorized production changes, circumvention of the approval process, or failure to follow the documented change management procedures - may result in disciplinary action as outlined in the Information Security Policy. Unauthorized changes that cause a service disruption or security incident will be treated as a policy violation and may result in immediate suspension of access.
 127|
 128|## Related Documents
 129|

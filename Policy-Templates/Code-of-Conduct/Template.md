@@ -54,7 +54,7 @@
 54|
 55|#### Harassment, Discrimination, and Bullying
 56|
-57|____ prohibits discrimination, harassment, and bullying in any form — verbal, physical, or visual. Personnel who believe they have been subjected to harassment or bullying by anyone associated with ____ (including partners, vendors, or customers) must immediately report the incident to their manager or the Human Resources department. All complaints will be investigated promptly and thoroughly, and appropriate corrective action will be taken.
+57|____ prohibits discrimination, harassment, and bullying in any form - verbal, physical, or visual. Personnel who believe they have been subjected to harassment or bullying by anyone associated with ____ (including partners, vendors, or customers) must immediately report the incident to their manager or the Human Resources department. All complaints will be investigated promptly and thoroughly, and appropriate corrective action will be taken.
 58|
 59|#### Substance Use
 60|
@@ -98,7 +98,7 @@
 98|
 99|#### Intellectual Property
 100|
-101|____'s intellectual property rights — including patents, trademarks, copyrights, trade secrets, and know-how — are valuable assets. Unauthorized use can lead to their loss or significant diminution of value. Personnel must comply with all intellectual property laws and must not use organizational trademarks or protected information for any business or commercial venture without prior approval from the appropriate team (e.g., Marketing or Legal).
+101|____'s intellectual property rights - including patents, trademarks, copyrights, trade secrets, and know-how - are valuable assets. Unauthorized use can lead to their loss or significant diminution of value. Personnel must comply with all intellectual property laws and must not use organizational trademarks or protected information for any business or commercial venture without prior approval from the appropriate team (e.g., Marketing or Legal).
 102|
 103|Personnel must also respect the intellectual property rights of others. Improper use of third-party intellectual property may expose ____ and the individual to criminal and civil liability. Consult the Legal team before soliciting, accepting, or using proprietary information from outside parties.
 104|
@@ -108,7 +108,7 @@
 108|
 109|#### Network Resources
 110|
-111|The organization's network, software, and computing systems are critical assets. All security policies must be followed diligently. Any suspected security breach — such as a lost device or compromised credentials — must be promptly reported to the appropriate manager.
+111|The organization's network, software, and computing systems are critical assets. All security policies must be followed diligently. Any suspected security breach - such as a lost device or compromised credentials - must be promptly reported to the appropriate manager.
 112|
 113|#### Physical Security
 114|

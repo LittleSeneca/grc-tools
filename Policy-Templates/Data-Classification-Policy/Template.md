@@ -13,7 +13,7 @@
 13|
 14|## Scope
 15|
-16|This policy applies to all information owned, managed, controlled, or maintained by ____, regardless of the medium on which it resides. Covered information includes, but is not limited to, data that is received, stored, processed, or transmitted via any means — electronic, hardcopy, verbal, or any other form. All Personnel, contractors, and third parties with access to organizational information are subject to this policy.
+16|This policy applies to all information owned, managed, controlled, or maintained by ____, regardless of the medium on which it resides. Covered information includes, but is not limited to, data that is received, stored, processed, or transmitted via any means - electronic, hardcopy, verbal, or any other form. All Personnel, contractors, and third parties with access to organizational information are subject to this policy.
 17|
 18|## Policy
 19|
@@ -124,7 +124,7 @@
 124|
 125|Compliance with this policy is verified through periodic audits, automated data discovery tools, and review of access controls. Personnel found to have violated this policy may be subject to disciplinary action, up to and including termination of employment or engagement.
 126|
-127|Misclassification of data — particularly under-classification of Restricted data — is a serious policy violation and must be remediated immediately upon discovery.
+127|Misclassification of data - particularly under-classification of Restricted data - is a serious policy violation and must be remediated immediately upon discovery.
 128|
 129|## Exceptions
 130|

@@ -133,7 +133,7 @@
 134|
 135|## Compliance and Enforcement
 136|
-137|Compliance with this policy is verified through periodic data audits and automated monitoring of data lifecycle management systems. Retention of data beyond authorized periods — particularly Restricted or Confidential data — is a policy violation and must be remediated promptly.
+137|Compliance with this policy is verified through periodic data audits and automated monitoring of data lifecycle management systems. Retention of data beyond authorized periods - particularly Restricted or Confidential data - is a policy violation and must be remediated promptly.
 138|
 139|Personnel who willfully violate this policy may be subject to disciplinary action, up to and including termination of employment or engagement.
 140|

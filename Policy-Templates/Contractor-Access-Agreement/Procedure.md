@@ -1,4 +1,4 @@
-# Contractor Access and Confidentiality Agreement — Implementation Procedures
+# Contractor Access and Confidentiality Agreement - Implementation Procedures
 
 > **Companion to:** Contractor Access and Confidentiality Agreement (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -25,7 +25,7 @@
 7. Provide the contractor with the Acceptable Use Policy, relevant system-specific policies, and a point of contact for security questions.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
-> - **Just-in-Time (JIT) access for short engagements:** For contractors engaged for less than 30 days, use JIT access — no standing permissions. Access is requested and approved per session, with automatic revocation after a defined period (e.g., 8 hours). This eliminates the risk of forgotten access revocation.
+> - **Just-in-Time (JIT) access for short engagements:** For contractors engaged for less than 30 days, use JIT access - no standing permissions. Access is requested and approved per session, with automatic revocation after a defined period (e.g., 8 hours). This eliminates the risk of forgotten access revocation.
 > - **Vendor-managed identity federation:** If the contractor's organization maintains an identity provider, federate their identities into your systems rather than creating separate accounts. This keeps the contractor's employer responsible for identity lifecycle, and your access revocation is as simple as disabling the federation trust.
 ### Common Pitfalls
 > **⚠️ Watch out:**
@@ -44,7 +44,7 @@
    e. Sponsoring manager.
 3. For each contractor account:
    a. Verify that the contract is active (current date is within the contract period).
-   b. Verify that the permissions held match the current statement of work — remove any access no longer required.
+   b. Verify that the permissions held match the current statement of work - remove any access no longer required.
    c. Flag accounts with no login activity in the past 90 days for investigation.
    d. Flag accounts where the contract end date is within the next 30 days for offboarding planning.
 4. For accounts that fail review:
@@ -86,7 +86,7 @@
 6. Document offboarding completion: date, actions taken, assets recovered, exit certification received, and any exceptions or follow-up items.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
-> - **Automated offboarding orchestration:** For organizations with high contractor volume, use an identity governance platform that orchestrates the full offboarding workflow — revocation, notification, asset tracking, and certification — triggered by a single offboarding event.
+> - **Automated offboarding orchestration:** For organizations with high contractor volume, use an identity governance platform that orchestrates the full offboarding workflow - revocation, notification, asset tracking, and certification - triggered by a single offboarding event.
 > - **Contractor responsible for their own offboarding attestation:** In vendor management platforms, the vendor organization (not the individual contractor) attests that all access has been terminated and all data returned. This shifts legal accountability to the contracting company.
 ### Common Pitfalls
 > **⚠️ Watch out:**

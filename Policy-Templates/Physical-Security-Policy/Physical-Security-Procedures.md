@@ -1,6 +1,6 @@
-# Physical Security — Implementation Procedures
+# Physical Security - Implementation Procedures
 
-Document Title: Physical Security — Implementation Procedures
+Document Title: Physical Security - Implementation Procedures
 Parent Policy: Physical Security Policy (PHY-001)
 Effective Date: ____
 Version: 1.0
@@ -11,15 +11,15 @@ Approved By: ____
 
 ## Purpose
 
-This document provides step-by-step procedures for implementing the Physical Security Policy. It covers secure area setup, access control management, clean desk enforcement, workstation security, visitor management, alarm systems, and off-site equipment handling — with practical alternatives and common pitfalls to help teams maintain a verifiably secure physical environment.
+This document provides step-by-step procedures for implementing the Physical Security Policy. It covers secure area setup, access control management, clean desk enforcement, workstation security, visitor management, alarm systems, and off-site equipment handling - with practical alternatives and common pitfalls to help teams maintain a verifiably secure physical environment.
 
 ---
 
-## Standard Approach — Secure Area Implementation
+## Standard Approach - Secure Area Implementation
 
 ### Phase 1: Define and Configure Secure Areas
 
-**Step 1 — Classify Each Physical Space**
+**Step 1 - Classify Each Physical Space**
 
 Walk the facilities with the Facilities Manager and Security Officer. Classify each room/area:
 
@@ -31,22 +31,22 @@ Walk the facilities with the Facilities Manager and Security Officer. Classify e
 
 Document the classification of each space on the facility floor plan. Post classification signage as appropriate.
 
-**Step 2 — Establish Access Control for Secure Areas**
+**Step 2 - Establish Access Control for Secure Areas**
 
 For each secure area:
 
 1. **Select the access control mechanism:**
-   - **Badge readers:** Proximity card, smart card, or mobile credential. Each badge uniquely identifies the individual.
-   - **Biometric readers:** Fingerprint, iris, or facial recognition for high-security areas.
-   - **Smart locks with PIN:** Acceptable for low-traffic secure areas (e.g., individual offices); PINs must be unique per individual, not shared.
+  - **Badge readers:** Proximity card, smart card, or mobile credential. Each badge uniquely identifies the individual.
+  - **Biometric readers:** Fingerprint, iris, or facial recognition for high-security areas.
+  - **Smart locks with PIN:** Acceptable for low-traffic secure areas (e.g., individual offices); PINs must be unique per individual, not shared.
 
 2. **Wire the door for fail-safe operation:**
-   - In a power failure, doors must default to a state that permits safe egress (fail-safe, not fail-secure) per fire code.
-   - Ensure the access control system is on UPS/battery backup so it continues to log access events during power interruptions.
+  - In a power failure, doors must default to a state that permits safe egress (fail-safe, not fail-secure) per fire code.
+  - Ensure the access control system is on UPS/battery backup so it continues to log access events during power interruptions.
 
-3. **Configure access logging:** The access control system must log every access event — individual identity, door, timestamp, and access granted/denied. Logs must be retained for at least `____` months and forwarded to the centralized logging platform (or equivalent for physical access).
+3. **Configure access logging:** The access control system must log every access event - individual identity, door, timestamp, and access granted/denied. Logs must be retained for at least `____` months and forwarded to the centralized logging platform (or equivalent for physical access).
 
-**Step 3 — Establish Access Authorization Process**
+**Step 3 - Establish Access Authorization Process**
 
 Create a documented process for granting access to secure areas:
 
@@ -56,7 +56,7 @@ Create a documented process for granting access to secure areas:
 4. **Verification:** Individual tests access at the door. Confirmation logged.
 5. **Documentation:** Access grant recorded in the access registry with: individual, area(s), approving authority, date, and expiration (if temporary).
 
-**Step 4 — Implement Access Reviews**
+**Step 4 - Implement Access Reviews**
 
 Per policy, access lists for secure areas must be reviewed quarterly:
 
@@ -70,7 +70,7 @@ Per policy, access lists for secure areas must be reviewed quarterly:
 
 ### Phase 2: Badge and Credential Management
 
-**Step 5 — Issue Identification Badges**
+**Step 5 - Issue Identification Badges**
 
 Every Person must be issued an organization identification badge. Procedures:
 
@@ -80,7 +80,7 @@ Every Person must be issued an organization identification badge. Procedures:
 4. **Badge delivery:** Issue the badge in person. Have the individual sign an acknowledgment of the badge policy (lost badge reporting, visible wear requirement, no sharing).
 5. **Temporary badges for visitors and contractors:** Use a distinct visual design (different color, "VISITOR" or "CONTRACTOR" marking). Temporary badges must include an expiration date and are collected upon departure.
 
-**Step 6 — Handle Lost or Stolen Badges**
+**Step 6 - Handle Lost or Stolen Badges**
 
 When a badge is reported lost or stolen:
 
@@ -90,7 +90,7 @@ When a badge is reported lost or stolen:
 4. **Produce permanent replacement:** Issue a new badge with a new badge number and re-encode access rights.
 5. **For keys (physical locks):** If physical keys to secure areas are lost or stolen, the lock must be rekeyed within `____` days. All key holders for that lock must receive new keys.
 
-**Step 7 — Offboard Badge and Access**
+**Step 7 - Offboard Badge and Access**
 
 When Personnel depart (termination, resignation, contract end):
 
@@ -103,7 +103,7 @@ When Personnel depart (termination, resignation, contract end):
 
 ### Phase 3: Clean Desk Enforcement
 
-**Step 8 — Communicate the Clean Desk Policy**
+**Step 8 - Communicate the Clean Desk Policy**
 
 Ensure all Personnel understand the clean desk requirements:
 
@@ -115,24 +115,24 @@ Ensure all Personnel understand the clean desk requirements:
 
 Post reminders in common areas. Include clean desk expectations in the onboarding checklist and annual security awareness training.
 
-**Step 9 — Conduct Clean Desk Audits**
+**Step 9 - Conduct Clean Desk Audits**
 
 Schedule clean desk audits (recommended: quarterly, unannounced):
 
 1. **Audit team:** Two-person team (one from Security/Facilities, one from the department being audited).
 2. **Walk the floor after hours:** Check each desk, office, and common area.
 3. **Checklist:**
-   - [ ] Any Restricted or Confidential documents left on desks?
-   - [ ] Whiteboards with sensitive information not erased?
-   - [ ] Workstations unlocked? (Lightly tap spacebar — if the screen wakes to a desktop, it's unlocked.)
-   - [ ] Passwords or credentials visible? (Sticky notes, whiteboards, under keyboards.)
-   - [ ] Printers/copiers with sensitive documents in output trays?
-   - [ ] Badges left unattended?
+  - [ ] Any Restricted or Confidential documents left on desks?
+  - [ ] Whiteboards with sensitive information not erased?
+  - [ ] Workstations unlocked? (Lightly tap spacebar - if the screen wakes to a desktop, it's unlocked.)
+  - [ ] Passwords or credentials visible? (Sticky notes, whiteboards, under keyboards.)
+  - [ ] Printers/copiers with sensitive documents in output trays?
+  - [ ] Badges left unattended?
 
 4. **Document findings:** Photograph violations (with sensitive content redacted or obscured) for evidence. Record: location, type of violation, date/time.
 5. **Escalate repeat violations:** First offense: reminder and education. Second offense: notice to manager. Third+ offense: formal policy violation per compliance framework.
 
-**Step 10 — Automate Workstation Locking**
+**Step 10 - Automate Workstation Locking**
 
 Reduce reliance on human memory:
 
@@ -144,24 +144,24 @@ Reduce reliance on human memory:
 
 ### Phase 4: Workstation Security
 
-**Step 11 — Configure Workstation Security Baseline**
+**Step 11 - Configure Workstation Security Baseline**
 
 All organization workstations must be configured with:
 
-1. **Full-disk encryption:** Enabled and verified (BitLocker for Windows, FileVault for Mac, LUKS for Linux). Recovery keys must be escrowed in the device management platform — not stored locally.
+1. **Full-disk encryption:** Enabled and verified (BitLocker for Windows, FileVault for Mac, LUKS for Linux). Recovery keys must be escrowed in the device management platform - not stored locally.
 2. **Host-based firewall:** Enabled, blocking all unsolicited inbound connections.
 3. **Endpoint detection and response (EDR):** Installed and reporting to the management console.
 4. **Automatic screen lock:** Configured as described in Step 10.
 5. **Device management enrollment:** Workstation is enrolled in the organization's MDM/UEM platform (e.g., Jamf, Intune, Workspace ONE) and receiving configuration and security policies.
 
-**Step 12 — Implement Privacy Screen Guidelines**
+**Step 12 - Implement Privacy Screen Guidelines**
 
 For Personnel whose screens may display sensitive information in view of unauthorized individuals:
 - Issue privacy filters for laptop and desktop monitors.
 - Configure workspaces so screens face away from windows, walkways, and visitor areas.
 - In open-plan offices, arrange desks so that sensitive work is not visible from adjacent desks or common areas.
 
-**Step 13 — Secure End-of-Day Workstation Practices**
+**Step 13 - Secure End-of-Day Workstation Practices**
 
 Communicate and enforce end-of-day procedures:
 
@@ -173,7 +173,7 @@ Communicate and enforce end-of-day procedures:
 
 ### Phase 5: Visitor Management
 
-**Step 14 — Establish the Visitor Intake Process**
+**Step 14 - Establish the Visitor Intake Process**
 
 All visitors must be processed through a standardized intake procedure:
 
@@ -183,7 +183,7 @@ All visitors must be processed through a standardized intake procedure:
 4. **Escort:** The host (or designated escort) meets the visitor and accompanies them at all times while on premises. The visitor must never be left unescorted in a secure area.
 5. **Check-out:** Upon departure, the visitor signs out on the visitor log. The visitor badge is collected.
 
-**Step 15 — Maintain and Review Visitor Logs**
+**Step 15 - Maintain and Review Visitor Logs**
 
 The visitor log must capture:
 - Visitor name and organization
@@ -198,7 +198,7 @@ Logs are maintained at the reception desk (physical book or digital kiosk) and r
 
 ### Phase 6: Alarm Systems
 
-**Step 16 — Deploy Alarm Systems**
+**Step 16 - Deploy Alarm Systems**
 
 For facilities housing sensitive information or critical infrastructure:
 
@@ -206,7 +206,7 @@ For facilities housing sensitive information or critical infrastructure:
 2. **Environmental monitoring:** Smoke and heat detectors, water leak sensors, temperature/humidity sensors in server rooms.
 3. **Central monitoring:** Alarm system connected to a 24/7 monitoring service or internal security operations center. The monitoring service must have current contact information for responsible Personnel.
 
-**Step 17 — Test Alarm Systems**
+**Step 17 - Test Alarm Systems**
 
 Test quarterly (or per policy frequency):
 
@@ -215,7 +215,7 @@ Test quarterly (or per policy frequency):
 3. **Test communication paths:** Verify the alarm system can communicate with the monitoring service via primary and backup paths (cellular backup for landline, or equivalent).
 4. **Document results:** Record date, sensors tested, results, any failures, and corrective actions.
 
-**Step 18 — Respond to Alarm Malfunctions**
+**Step 18 - Respond to Alarm Malfunctions**
 
 If the alarm system or any sensor malfunctions:
 
@@ -228,7 +228,7 @@ If the alarm system or any sensor malfunctions:
 
 ### Phase 7: Off-Site Equipment and Remote Work
 
-**Step 19 — Authorize Equipment Removal**
+**Step 19 - Authorize Equipment Removal**
 
 Before equipment leaves the premises:
 
@@ -237,16 +237,16 @@ Before equipment leaves the premises:
 3. **Update asset inventory:** Record the equipment as "Off-Site" with the removal date, expected return date, and responsible individual.
 4. **Brief the responsible individual** on their obligations: equipment must remain in their physical custody or secured (hotel safe, locked vehicle trunk) at all times; never left unattended in public spaces; lost or stolen equipment must be reported immediately.
 
-**Step 20 — Secure Home Office and Remote Work Environments**
+**Step 20 - Secure Home Office and Remote Work Environments**
 
 For Personnel working from home or remote locations with organizational assets:
 
 1. **Provide guidance** on securing the home workspace:
-   - Work in a private space where screens are not visible to others (family, roommates, visitors).
-   - Lock the workstation when stepping away.
-   - Store physical documents with sensitive data in a locked file cabinet or drawer.
-   - Use a shredder for sensitive documents no longer needed.
-   - Do not allow non-Personnel to use organization equipment.
+  - Work in a private space where screens are not visible to others (family, roommates, visitors).
+  - Lock the workstation when stepping away.
+  - Store physical documents with sensitive data in a locked file cabinet or drawer.
+  - Use a shredder for sensitive documents no longer needed.
+  - Do not allow non-Personnel to use organization equipment.
 
 2. **Verify through self-assessment or spot check:** Include remote work security in the annual security awareness training. Consider a self-assessment questionnaire for Personnel handling Restricted or Confidential data at home.
 
@@ -254,19 +254,19 @@ For Personnel working from home or remote locations with organizational assets:
 
 ## Alternative Approaches
 
-### 💡 Alternative 1 — Cloud-Based Access Control System
+### 💡 Alternative 1 - Cloud-Based Access Control System
 
 Instead of on-premises access control hardware and software, use a cloud-managed access control platform (e.g., Verkada, Brivo, Openpath). Cloud systems offer: remote management from anywhere, automatic software updates, built-in redundancy, and simplified integration with identity providers (SSO/SCIM for automatic provisioning and deprovisioning).
 
 **Trade-off:** Recurring subscription cost vs. capital expenditure. Requires reliable internet connectivity at each facility. Data sovereignty considerations if access logs contain PII and must stay within a jurisdiction.
 
-### 💡 Alternative 2 — Co-Working Space Security (No Dedicated Office)
+### 💡 Alternative 2 - Co-Working Space Security (No Dedicated Office)
 
 For organizations without dedicated office space, physical security relies on the co-working provider. Your procedures shift to vendor management: ensure the co-working provider meets your security requirements through their SOC 2 or ISO 27001 certification. Supplement with: privacy screens on all laptops, cable locks for equipment in shared spaces, and locked storage for sensitive documents.
 
 **Trade-off:** Less control over the physical environment. Stronger reliance on non-physical controls (full-disk encryption, remote wipe, VPN). Ensure the co-working contract includes security obligations.
 
-### 💡 Alternative 3 — Mantrap / Anti-Tailgating Entry
+### 💡 Alternative 3 - Mantrap / Anti-Tailgating Entry
 
 For high-security facilities, deploy a mantrap (interlocking door system) at the main entrance to prevent tailgating. The mantrap enforces one-person-at-a-time entry. Integrate with the access control and camera system to log and record every entry.
 
@@ -276,7 +276,7 @@ For high-security facilities, deploy a mantrap (interlocking door system) at the
 
 ## Common Pitfalls
 
-### ⚠️ Pitfall 1 — Propped-Open Doors
+### ⚠️ Pitfall 1 - Propped-Open Doors
 
 **Symptom:** Personnel prop open secure doors for "just a minute" (to carry equipment through, step out for a smoke, get fresh air). A door stop, rock, or piece of cardboard keeps the door from latching.
 
@@ -284,23 +284,23 @@ For high-security facilities, deploy a mantrap (interlocking door system) at the
 
 **How to Avoid:** Install door position sensors that trigger an audible alarm (and a security alert) when a secure door is held open for more than `____` seconds. The goal is to make propping more annoying than using the badge reader. Include "no propping doors" in security awareness training with real photos of the consequences.
 
-### ⚠️ Pitfall 2 — Tailgating Culture
+### ⚠️ Pitfall 2 - Tailgating Culture
 
 **Symptom:** A Person badges through a secure door, and three others follow without badging because it feels rude to close the door on colleagues. The access control system records one entry for four people.
 
 **Why It's Dangerous:** Untailgated individuals are not logged. If an incident occurs, you can't account for who was in the secure area. An attacker in professional attire can easily tailgate in without ever presenting credentials.
 
-**How to Avoid:** Organizational culture is the primary control — make it clear that challenging tailgaters is expected, not rude. Train Personnel: "If you don't recognize someone behind you, let the door close and let them badge in." Consider turnstiles or optical turnstiles for high-traffic entrances, which physically enforce one-person-per-credential.
+**How to Avoid:** Organizational culture is the primary control - make it clear that challenging tailgaters is expected, not rude. Train Personnel: "If you don't recognize someone behind you, let the door close and let them badge in." Consider turnstiles or optical turnstiles for high-traffic entrances, which physically enforce one-person-per-credential.
 
-### ⚠️ Pitfall 3 — The Inactive Badge That Still Works
+### ⚠️ Pitfall 3 - The Inactive Badge That Still Works
 
 **Symptom:** A Person's access is "revoked" in the HR system upon termination, but the badge deactivation wasn't propagated to the access control system. The badge still opens doors. Nobody discovers this until the next quarterly review.
 
-**Why It's Dangerous:** The gap between HR termination and access control deactivation is a window where a terminated individual — potentially disgruntled — can access secure areas. In high-profile cases, terminated employees have used this window to steal data, sabotage equipment, or cause harm.
+**Why It's Dangerous:** The gap between HR termination and access control deactivation is a window where a terminated individual - potentially disgruntled - can access secure areas. In high-profile cases, terminated employees have used this window to steal data, sabotage equipment, or cause harm.
 
 **How to Avoid:** Automate the HR-to-access-control deactivation. If the access control system integrates with the HRIS (via SCIM, LDAP, or API), deactivation should happen within minutes of the termination record being entered. If manual, the termination checklist must include "deactivate physical access" as the first item, completed within `____` hours. Verify deactivation by checking the access control system, not just trusting the HR record.
 
-### ⚠️ Pitfall 4 — Unmonitored Cameras
+### ⚠️ Pitfall 4 - Unmonitored Cameras
 
 **Symptom:** Cameras cover all secure area entry points, but nobody reviews the footage unless an incident is reported. Meanwhile, the camera over the server room door has been pointed at the ceiling for a month because a contractor bumped it.
 
@@ -308,13 +308,13 @@ For high-security facilities, deploy a mantrap (interlocking door system) at the
 
 **How to Avoid:** Weekly automated check: verify each camera is online, recording, and has not been moved (compare current frame to baseline). The system should generate an alert for any camera that goes offline or has a significant change in field of view. Spot-check random footage weekly to verify quality. If full-time monitoring isn't feasible, at minimum ensure the recording is functional so it's available for post-incident review.
 
-### ⚠️ Pitfall 5 — Ignoring the Clean Desk Policy After Hours
+### ⚠️ Pitfall 5 - Ignoring the Clean Desk Policy After Hours
 
-**Symptom:** The clean desk policy is communicated during onboarding and mentioned in annual training, but nobody enforces it. After-hours walkthroughs find sensitive documents on desks, unlocked workstations, and credentials on sticky notes — every time.
+**Symptom:** The clean desk policy is communicated during onboarding and mentioned in annual training, but nobody enforces it. After-hours walkthroughs find sensitive documents on desks, unlocked workstations, and credentials on sticky notes - every time.
 
 **Why It's Dangerous:** After-hours cleaning staff, maintenance workers, and visitors who stay late have access to unattended sensitive information. A single photographed document can be a significant data breach. Unlocked workstations provide network access without authentication.
 
-**How to Avoid:** Enforcement is the difference between a policy that works and one that's ignored. Conduct genuine after-hours audits (not announced in advance). Report aggregate statistics to department heads: "Last quarter, your department had 12 clean desk violations out of 3 audits." Tie clean desk compliance to management accountability. Make it easier to comply than to violate — provide lockable storage at every desk.
+**How to Avoid:** Enforcement is the difference between a policy that works and one that's ignored. Conduct genuine after-hours audits (not announced in advance). Report aggregate statistics to department heads: "Last quarter, your department had 12 clean desk violations out of 3 audits." Tie clean desk compliance to management accountability. Make it easier to comply than to violate - provide lockable storage at every desk.
 
 ---
 
@@ -349,4 +349,4 @@ For facilities staff or security personnel conducting a daily end-of-day walkthr
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version — extracted implementation procedures from Physical Security Policy. |
+| 1.0 | ____ | ____ | Initial version - extracted implementation procedures from Physical Security Policy. |

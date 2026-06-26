@@ -192,7 +192,7 @@
 192|
 193|All changes to controlled baselines must be submitted through a formal change request process managed by the Change Control Board (CCB). The CCB is the decision-making authority for all configuration changes and must approve or reject all change requests before implementation. Changes must be classified by severity and impact, supported by documented needs statements, change requests, impact analyses, and authorization notices. A complete audit trail linking problems to change requests and resolutions must be maintained.
 194|
-195|Configuration Status Accounting (CSA) must track all change requests from submission through implementation and produce status summary reports on a ____ (e.g., monthly) basis. Configuration management metrics — including change volume, disposition rates, change success rates, unauthorized changes, and audit findings — must be tracked to assess CM effectiveness.
+195|Configuration Status Accounting (CSA) must track all change requests from submission through implementation and produce status summary reports on a ____ (e.g., monthly) basis. Configuration management metrics - including change volume, disposition rates, change success rates, unauthorized changes, and audit findings - must be tracked to assess CM effectiveness.
 196|
 198|
 199|## Configuration Management Libraries
@@ -216,7 +216,7 @@
 218|
 219|## Compliance and Enforcement
 220|
-221|Violation of this plan — including unauthorized changes to controlled baselines, circumvention of the CCB process, or failure to maintain CM records — may result in disciplinary action as outlined in the Information Security Policy.
+221|Violation of this plan - including unauthorized changes to controlled baselines, circumvention of the CCB process, or failure to maintain CM records - may result in disciplinary action as outlined in the Information Security Policy.
 222|
 223|## Related Documents
 224|

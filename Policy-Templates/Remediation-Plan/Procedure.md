@@ -1,4 +1,4 @@
-# Remediation Plan — Implementation Procedures
+# Remediation Plan - Implementation Procedures
 
 > **Companion to:** Remediation Plan (Remediation-Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -45,15 +45,15 @@
    b. Remediation SLA: time from ticket creation to verified closure (Critical: 7 days, High: 30 days, Medium: 90 days, Low: 365 days).
 2. SLA monitoring dashboard:
    a. Real-time view accessible to all remediation stakeholders showing: open tickets by severity, SLA status (on-track, approaching breach, breached), aging tickets, and tickets by team.
-   b. Color coding: green (on-track), yellow (approaching breach — within 20% of SLA deadline), red (breached).
+   b. Color coding: green (on-track), yellow (approaching breach - within 20% of SLA deadline), red (breached).
    c. Dashboard is displayed on a shared monitor in the security operations area and reviewed at weekly team meetings.
 3. SLA breach escalation:
    a. **Approaching breach (yellow):** Automated notification to the assignee and their team lead. "Ticket X will breach its SLA in Y days."
    b. **Breached (red, first occurrence):** Escalate to team lead and Security Officer. Assignee must provide a remediation plan with revised target date within 2 business days.
-   c. **Breached (red, second escalation — 2x SLA):** Ticket is escalated to the Security Oversight Committee agenda. Executive sponsor is assigned. The finding is treated as a control deficiency and added to the POA&M.
+   c. **Breached (red, second escalation - 2x SLA):** Ticket is escalated to the Security Oversight Committee agenda. Executive sponsor is assigned. The finding is treated as a control deficiency and added to the POA&M.
 4. SLA metrics reporting:
    a. Weekly: SLA adherence percentage by team (tickets closed within SLA / total tickets closed).
-   b. Monthly: SLA trends — is adherence improving or declining? Top breach contributors by team and by finding type.
+   b. Monthly: SLA trends - is adherence improving or declining? Top breach contributors by team and by finding type.
    c. Quarterly: Comprehensive report to the Security Oversight Committee.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
@@ -62,11 +62,11 @@
 ### Common Pitfalls
 > **⚠️ Watch out:**
 > - **SLA that pauses when the ticket is "waiting for vendor."** A ticket waiting for a vendor patch for 45 days is still an open risk. The SLA clock should not pause indefinitely. Define a maximum pause duration (e.g., 30 days). If the vendor hasn't released a patch by then, implement compensating controls (mitigation) and revisit the SLA.
-> - **SLA adherence that's gamed.** "We met the SLA by closing 50 tickets this week" — but 30 were closed as "won't fix" without proper risk acceptance. SLA metrics must differentiate between: resolved, mitigated, transferred, and accepted. Only resolved and mitigated should count as "met SLA."
+> - **SLA adherence that's gamed.** "We met the SLA by closing 50 tickets this week" - but 30 were closed as "won't fix" without proper risk acceptance. SLA metrics must differentiate between: resolved, mitigated, transferred, and accepted. Only resolved and mitigated should count as "met SLA."
 
 ## Procedure 3: Verification Testing
 ### Standard Approach
-1. After the remediation team marks a finding as resolved, verification must be performed before the ticket is closed. Verification is NOT performed by the person who implemented the fix — it's an independent check.
+1. After the remediation team marks a finding as resolved, verification must be performed before the ticket is closed. Verification is NOT performed by the person who implemented the fix - it's an independent check.
 2. Verification method by finding type:
    a. **Vulnerability (patch applied):** Re-scan the affected asset with the same scanner that identified the vulnerability. Confirm the vulnerability is no longer reported.
    b. **Misconfiguration:** Re-run the configuration assessment (CSPM scan, compliance check) against the asset. Confirm the misconfiguration is resolved.
@@ -89,7 +89,7 @@
 > **⚠️ Watch out:**
 > - **Verification that checks the wrong thing.** "I verified the patch is installed" → the vulnerability is still present because the service wasn't restarted after the patch. Verification must confirm the vulnerability is gone, not just that the fix was applied.
 > - **Self-verification.** The person who applied the patch also verifies it. This creates a conflict of interest and often results in superficial verification. Independent verification (by a different person or automated system) is required.
-> - **Verification that takes so long the SLA is breached while waiting.** The verification step should be prompt — within 2 business days for Critical/High, 5 business days for Medium/Low. If the security team is a bottleneck, train remediation teams on self-service verification for common finding types (e.g., "re-scan and attach the report").
+> - **Verification that takes so long the SLA is breached while waiting.** The verification step should be prompt - within 2 business days for Critical/High, 5 business days for Medium/Low. If the security team is a bottleneck, train remediation teams on self-service verification for common finding types (e.g., "re-scan and attach the report").
 
 ## Procedure 4: Exception Management and Reporting
 ### Standard Approach
@@ -111,7 +111,7 @@
    a. Weekly operational report: open findings, SLA status, new exceptions, approaching deadlines.
    b. Monthly management report: SLA adherence, exception inventory, aging findings, team performance.
    c. Quarterly executive report: trends, systemic issues (recurring finding types), risk acceptance inventory, exception aging.
-   d. Critical findings are reported immediately upon discovery — not waiting for the next reporting cycle.
+   d. Critical findings are reported immediately upon discovery - not waiting for the next reporting cycle.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
 > - **Integrated GRC platform for exception workflow:** If using a GRC platform, manage exceptions within the platform rather than a separate register. The platform links exceptions to the original finding, tracks approvals, and includes exceptions in automated reporting.

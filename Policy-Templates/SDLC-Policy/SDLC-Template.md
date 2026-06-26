@@ -126,7 +126,7 @@
 133|
 134|Regardless of methodology, security activities must be traceable from requirements through design, implementation, testing, and deployment.
 135|
-136|## SDLC Security Controls — Detailed Requirements
+136|## SDLC Security Controls - Detailed Requirements
 137|
 138|### Production Data in Non-Production Environments
 139|

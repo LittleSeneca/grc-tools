@@ -1,4 +1,4 @@
-# Database Password Management — Implementation Procedures
+# Database Password Management - Implementation Procedures
 
 > **Companion to:** Database Password Management Process (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -18,7 +18,7 @@
 5. Maintain a rotation log: credential identifier, database, scheduled rotation date, actual rotation date, success/failure, and any actions taken.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
-> - **Dynamic credentials (Vault-style):** Instead of rotating long-lived passwords, use a secrets management platform that generates short-lived, dynamic credentials per session. The application requests a credential, uses it for one connection, and the credential expires automatically. No rotation schedule needed — every connection uses a new password.
+> - **Dynamic credentials (Vault-style):** Instead of rotating long-lived passwords, use a secrets management platform that generates short-lived, dynamic credentials per session. The application requests a credential, uses it for one connection, and the credential expires automatically. No rotation schedule needed - every connection uses a new password.
 > - **Certificate-based authentication instead of passwords:** For databases that support it (e.g., PostgreSQL, MongoDB), replace password authentication with certificate-based mutual TLS. Certificates have built-in expiration, managed by a CA, and rotation becomes certificate renewal managed by the PKI infrastructure.
 ### Common Pitfalls
 > **⚠️ Watch out:**
@@ -35,13 +35,13 @@
    d. Notify affected teams at least 5 business days in advance.
    e. Prepare a rollback plan: if rotation fails, what steps revert to the previous credential?
 3. During the maintenance window:
-   a. Generate a new password that meets Password Policy complexity requirements. Use a password generator — do not create passwords manually.
+   a. Generate a new password that meets Password Policy complexity requirements. Use a password generator - do not create passwords manually.
    b. Update the database instance with the new credential: `ALTER USER 'app_user'@'host' IDENTIFIED BY '<new_password>';` (MySQL example; use the appropriate command for your database type).
    c. Verify the database accepts the new credential: connect from a test client using the new password.
    d. Update the application's credential storage:
-      - **Secrets manager:** Update the secret value via console or CLI.
-      - **Environment file:** SSH to the application server, edit the environment file, replace the password value, save.
-      - **Configuration management:** Update the value in the configuration management system (Ansible, Chef, Puppet) and apply the change.
+     - **Secrets manager:** Update the secret value via console or CLI.
+     - **Environment file:** SSH to the application server, edit the environment file, replace the password value, save.
+     - **Configuration management:** Update the value in the configuration management system (Ansible, Chef, Puppet) and apply the change.
    e. Restart or reload the application to pick up the new credential.
    f. Verify application connectivity: check application health endpoints, database connection pool metrics, and application logs for authentication errors.
    g. For multi-server deployments, update and restart each server sequentially. Verify each server's connectivity before moving to the next.
@@ -56,13 +56,13 @@
    d. Do not leave the database in an unknown password state. Either the new password works or the old password is restored.
 ### Alternative Approaches
 > **💡 Why you might choose differently:**
-> - **Configuration management orchestration:** Instead of manual SSH-to-each-server, use a configuration management tool (Ansible playbook, Chef recipe) to execute the rotation across all servers. The playbook updates the password, restarts services, and verifies — all automated and repeatable. This is still "manual" in the sense that it's not auto-scheduled, but it's far less error-prone than hand-editing files.
+> - **Configuration management orchestration:** Instead of manual SSH-to-each-server, use a configuration management tool (Ansible playbook, Chef recipe) to execute the rotation across all servers. The playbook updates the password, restarts services, and verifies - all automated and repeatable. This is still "manual" in the sense that it's not auto-scheduled, but it's far less error-prone than hand-editing files.
 > - **Migrate to automated rotation:** Prioritize migrating manual-rotation databases to a secrets management service with automated rotation. Every manual rotation is a risk event. Track the number of manual-rotation databases as a metric and set a quarterly reduction target.
 ### Common Pitfalls
 > **⚠️ Watch out:**
 > - **Updating the database first, forgetting the application.** The most common manual rotation failure: DBA updates the database password, confirms it works from the DBA's client, and closes the ticket. The application still has the old password and goes down. Always update the credential store and restart the application BEFORE closing the rotation.
 > - **Environment file edited with the wrong permissions.** After editing the environment file, verify file ownership and permissions: owned by the application user, mode 600 or 400. A world-readable environment file exposes the password to every user on the system.
-> - **Hardcoded connection strings.** If the application has the database password hardcoded in source code or compiled configuration, manual rotation requires a code change, build, and deploy — a multi-day process, not a maintenance window activity. Identify and remediate hardcoded credentials as a prerequisite to implementing password rotation.
+> - **Hardcoded connection strings.** If the application has the database password hardcoded in source code or compiled configuration, manual rotation requires a code change, build, and deploy - a multi-day process, not a maintenance window activity. Identify and remediate hardcoded credentials as a prerequisite to implementing password rotation.
 
 ## Procedure 3: Secrets Manager Integration and Verification Testing
 ### Standard Approach
@@ -122,4 +122,4 @@
 > **⚠️ Watch out:**
 > - **Incident response that assumes the DBA is available.** Password rotation failures at 2 AM on a Saturday. If the on-call DBA doesn't respond, who has the break-glass credentials and the knowledge to use them? Cross-train at least two people on the emergency recovery procedure, and ensure break-glass credentials are accessible to the on-call rotation, not just the DBA.
 > - **Fixing the symptom but not the root cause.** Manually fixing the password and restoring service is not enough. If the root cause is not identified and fixed, the next rotation will fail the same way. The incident must remain open until root cause is determined and the fix is tested.
-> - **No post-rotation verification for the emergency fix.** After using the break-glass procedure to set a known password, verify that ALL applications can connect — not just the one that triggered the alert. The break-glass password may work for one application but not another if they use different database users.
+> - **No post-rotation verification for the emergency fix.** After using the break-glass procedure to set a known password, verify that ALL applications can connect - not just the one that triggered the alert. The break-glass password may work for one application but not another if they use different database users.

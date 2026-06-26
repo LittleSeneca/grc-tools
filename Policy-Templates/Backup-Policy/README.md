@@ -18,19 +18,19 @@ The Backup Policy defines the organization's requirements for protecting data th
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Backup and recovery requirements using the 3-2-1 framework. Defines backup frequency by data classification, encryption standards, restore testing cadence, and monitoring requirements. This is the governance document reviewed by leadership and auditors.
-- **`Backup-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Backup job configuration, restore testing procedures, backup monitoring setup, and recovery validation workflows. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Backup and recovery requirements using the 3-2-1 framework. Defines backup frequency by data classification, encryption standards, restore testing cadence, and monitoring requirements. This is the governance document reviewed by leadership and auditors.
+- **`Backup-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Backup job configuration, restore testing procedures, backup monitoring setup, and recovery validation workflows. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
 
 ## Gotchas People Get Wrong
 
-**1. Backing up without testing restores.** A backup that has never been restored is not a backup — it's a hope. Auditors expect quarterly restore tests with documented evidence. The most common finding is "backups exist but restore testing does not."
+**1. Backing up without testing restores.** A backup that has never been restored is not a backup - it's a hope. Auditors expect quarterly restore tests with documented evidence. The most common finding is "backups exist but restore testing does not."
 
 **2. Forgetting SaaS data.** Organizations back up databases and file servers but forget that critical business data lives in Google Workspace, Microsoft 365, Salesforce, and other SaaS tools. These platforms require separate backup solutions. The shared responsibility model means the SaaS provider ensures availability of the platform, not recoverability of your data.
 
-**3. Storing backups in the same region as production.** A single-region disaster (e.g., us-east-1 outage) takes out both production and backups. The "one off-site" in 3-2-1 means geographically separated — different region, different provider, or different facility.
+**3. Storing backups in the same region as production.** A single-region disaster (e.g., us-east-1 outage) takes out both production and backups. The "one off-site" in 3-2-1 means geographically separated - different region, different provider, or different facility.
 
 **4. Undefined RPO and RTO.** Saying "daily backups" without defining Recovery Point Objective (RPO) means you've accepted losing up to 24 hours of data. If the business can't tolerate that, you need more frequent backups or continuous replication. Define RPO and RTO per system, not as a blanket statement.
 

@@ -1,4 +1,4 @@
-# Code of Conduct — Implementation Procedures
+# Code of Conduct - Implementation Procedures
 
 > **Companion to:** Code of Conduct (Template.md)
 > **Purpose:** How to implement the requirements. The policy defines WHAT; this describes HOW.
@@ -33,7 +33,7 @@
 6. For each disclosure that raises a potential conflict:
    a. Document the nature of the conflict.
    b. Assess the severity and materiality.
-   c. Determine the resolution: (i) no action — no actual conflict exists, (ii) management plan — restrictions on certain activities or decisions, (iii) recusal — individual excluded from specific matters, or (iv) remediation — divestiture, resignation from outside role, or termination of the conflicting relationship.
+   c. Determine the resolution: (i) no action - no actual conflict exists, (ii) management plan - restrictions on certain activities or decisions, (iii) recusal - individual excluded from specific matters, or (iv) remediation - divestiture, resignation from outside role, or termination of the conflicting relationship.
    d. Communicate the resolution in writing to the individual and their manager.
    e. File the disclosure and resolution in the compliance records.
 7. Maintain a COI register summarizing all active disclosures, resolutions, and review dates. Present a summary to the Oversight Body annually.
@@ -43,7 +43,7 @@
 > - **Role-specific disclosure thresholds:** For roles with purchasing authority or vendor selection responsibility, require more frequent disclosure (quarterly) and a lower gift threshold. For roles without financial decision authority, annual disclosure may suffice.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Disclosures that sit unreviewed.** A submitted disclosure that no one reviews for 6 months is worse than no disclosure at all — it creates a record of knowledge without action. Establish and monitor a review SLA.
+> - **Disclosures that sit unreviewed.** A submitted disclosure that no one reviews for 6 months is worse than no disclosure at all - it creates a record of knowledge without action. Establish and monitor a review SLA.
 > - **"It's obvious, I didn't think I needed to disclose."** Personnel often fail to disclose conflicts they consider minor or obvious. The COI form must explicitly state: "When in doubt, disclose. Self-disclosure is never penalized; failure to disclose is."
 > - **No mechanism for anonymous disclosure.** Some Personnel may be uncomfortable disclosing a conflict directly. Provide an anonymous channel (whistleblower hotline, anonymous web form) as an alternative.
 
@@ -53,10 +53,10 @@
 2. Publicize the reporting channels in the employee handbook, on the intranet, in onboarding materials, and during annual training. Personnel must know HOW to report without having to ask.
 3. All reports of potential Code violations must be acknowledged within 1 business day and logged in a confidential case management system.
 4. Triage each report:
-   - **Workplace conduct complaints** (harassment, discrimination, bullying) → Human Resources.
-   - **Conflicts of interest, financial integrity, legal compliance** → Compliance/Legal.
-   - **Information security violations** → Security team, with HR/Compliance notified.
-   - **Executive or senior management conduct** → Oversight Body Chair or Board.
+  - **Workplace conduct complaints** (harassment, discrimination, bullying) → Human Resources.
+  - **Conflicts of interest, financial integrity, legal compliance** → Compliance/Legal.
+  - **Information security violations** → Security team, with HR/Compliance notified.
+  - **Executive or senior management conduct** → Oversight Body Chair or Board.
 5. Notify the reporting individual (if not anonymous) that the report has been received and is being reviewed. Do not promise specific outcomes.
 6. Protect the confidentiality of the reporter and any witnesses to the extent permitted by law and consistent with the need to investigate.
 7. Prohibit and monitor for retaliation. Any report of retaliation must be handled as a separate, priority investigation.
@@ -66,14 +66,14 @@
 > - **Ombudsperson model:** For larger organizations, designate an ombudsperson who receives reports, provides confidential guidance, and can mediate resolutions without formal investigation.
 ### Common Pitfalls
 > **⚠️ Watch out:**
-> - **Reporting channels that don't work.** Periodically test every reporting channel — call the hotline, submit an anonymous form, email the compliance alias. Verify that a real person receives and responds. A non-working reporting channel discovered during litigation is indefensible.
-> - **Retaliation that is subtle.** Retaliation isn't always termination — it can be exclusion from meetings, reassignment to less desirable projects, negative performance reviews, or social ostracism. Train managers on what retaliation looks like and investigate all reports of adverse treatment following a Code report.
+> - **Reporting channels that don't work.** Periodically test every reporting channel - call the hotline, submit an anonymous form, email the compliance alias. Verify that a real person receives and responds. A non-working reporting channel discovered during litigation is indefensible.
+> - **Retaliation that is subtle.** Retaliation isn't always termination - it can be exclusion from meetings, reassignment to less desirable projects, negative performance reviews, or social ostracism. Train managers on what retaliation looks like and investigate all reports of adverse treatment following a Code report.
 > - **No reporting for contractors.** Contractors need access to the same reporting channels. If the hotline is only accessible from the corporate network or HRIS, contractors are effectively silenced.
 
 ## Procedure 4: Investigation Process
 ### Standard Approach
 1. Upon receipt of a report warranting investigation, the responsible function (HR, Compliance, or Legal) assigns an investigator within 2 business days.
-2. The investigator must be independent — no personal or reporting relationship with the subject of the investigation. For senior management investigations, engage external counsel.
+2. The investigator must be independent - no personal or reporting relationship with the subject of the investigation. For senior management investigations, engage external counsel.
 3. Develop an investigation plan: scope, allegations to be investigated, witnesses to interview, documents to review, estimated timeline.
 4. Preserve all relevant evidence immediately: emails, chat logs, system access records, badge logs, documents. Issue a legal hold if the matter may result in litigation.
 5. Conduct interviews:
@@ -81,7 +81,7 @@
    b. Interview witnesses with relevant knowledge.
    c. Interview the subject of the investigation last, after facts have been gathered.
    d. Document all interviews with contemporaneous notes. Inform interviewees of the expectation of confidentiality and the non-retaliation policy.
-6. Analyze evidence and make a determination: (a) substantiated — violation occurred, (b) unsubstantiated — insufficient evidence, (c) unfounded — allegation determined to be false, or (d) inconclusive — cannot be determined.
+6. Analyze evidence and make a determination: (a) substantiated - violation occurred, (b) unsubstantiated - insufficient evidence, (c) unfounded - allegation determined to be false, or (d) inconclusive - cannot be determined.
 7. Document findings in a written investigation report: allegations, evidence reviewed, interviews conducted, factual findings, determination, and recommended actions.
 8. Communicate the outcome:
    a. To the reporter (if known): whether the investigation is complete and whether appropriate action was taken (without disclosing confidential disciplinary details).

@@ -1,4 +1,4 @@
-# Risk Assessment — Implementation Procedures
+# Risk Assessment - Implementation Procedures
 
 > **Companion to:** Risk Assessment Policy (RA-Policy-Template.md)
 > **Purpose:** These procedures describe how to execute the risk assessment and treatment process defined in the Risk Assessment Policy. The policy defines the methodology, impact/likelihood scales, and risk rating criteria; this document describes HOW to conduct assessments, facilitate workshops, populate the risk register, and manage the POA&M.
@@ -14,49 +14,49 @@ This procedure covers how to plan and facilitate a risk assessment workshop or i
 #### 1.1 Pre-Workshop Preparation
 
 1. **Asset Inventory Collection:** `____` weeks before the workshop (recommended: 2 weeks):
-   - Gather the current asset inventory from the centralized asset management system.
-   - For each asset, identify: asset name, description, asset owner, data classification, system criticality, current controls.
-   - Review previous risk assessments for these assets (if any).
+  - Gather the current asset inventory from the centralized asset management system.
+  - For each asset, identify: asset name, description, asset owner, data classification, system criticality, current controls.
+  - Review previous risk assessments for these assets (if any).
 2. **Threat Research:**
-   - Review current threat intelligence feeds for threats relevant to the organization's industry and geography.
-   - Review the Threat Assessment document (if maintained separately).
-   - Prepare a list of likely threats for discussion: ransomware, phishing/social engineering, insider threat, third-party compromise, cloud misconfiguration, DDoS, physical disaster, supply chain attack.
+  - Review current threat intelligence feeds for threats relevant to the organization's industry and geography.
+  - Review the Threat Assessment document (if maintained separately).
+  - Prepare a list of likely threats for discussion: ransomware, phishing/social engineering, insider threat, third-party compromise, cloud misconfiguration, DDoS, physical disaster, supply chain attack.
 3. **Workshop Logistics:**
-   - Schedule a 2–4 hour session (depending on scope). For broad organizational assessments, plan multiple sessions by business unit or asset category.
-   - Invite: asset owner(s), risk owner(s), Security Officer (or assessor/facilitator), and a scribe.
-   - Distribute the asset inventory and threat list 1 week before. Ask participants to come prepared with their understanding of business impact.
+  - Schedule a 2–4 hour session (depending on scope). For broad organizational assessments, plan multiple sessions by business unit or asset category.
+  - Invite: asset owner(s), risk owner(s), Security Officer (or assessor/facilitator), and a scribe.
+  - Distribute the asset inventory and threat list 1 week before. Ask participants to come prepared with their understanding of business impact.
 4. **Workshop Agenda:**
-   - Introduction (10 min): purpose, methodology, ground rules.
-   - Asset review (30–60 min): review assets, confirm owners.
-   - Threat and vulnerability identification (45–90 min): per asset, brainstorm threats and vulnerabilities.
-   - Impact and likelihood scoring (30–60 min): score each risk.
-   - Treatment discussion (30 min): initial treatment options for Critical/High risks.
-   - Next steps (10 min): POA&M ownership, follow-up schedule.
+  - Introduction (10 min): purpose, methodology, ground rules.
+  - Asset review (30–60 min): review assets, confirm owners.
+  - Threat and vulnerability identification (45–90 min): per asset, brainstorm threats and vulnerabilities.
+  - Impact and likelihood scoring (30–60 min): score each risk.
+  - Treatment discussion (30 min): initial treatment options for Critical/High risks.
+  - Next steps (10 min): POA&M ownership, follow-up schedule.
 
 #### 1.2 Facilitated Session Execution
 
 1. **Asset Review:**
-   - Walk through each asset in priority order (Critical assets first).
-   - Confirm: is the asset still active? Is the owner correct? Has the business impact changed since last assessment?
-   - For new assets: assign an owner and data classification before proceeding.
+  - Walk through each asset in priority order (Critical assets first).
+  - Confirm: is the asset still active? Is the owner correct? Has the business impact changed since last assessment?
+  - For new assets: assign an owner and data classification before proceeding.
 2. **Threat and Vulnerability Identification:**
-   - For each asset, ask: "What could go wrong? Who or what could cause harm to this asset?"
-   - Prompt with threat categories if participants get stuck:
-     - **External actors:** hackers, nation-state, competitors, cybercriminals.
-     - **Internal actors:** disgruntled employees, careless employees, contractors.
-     - **Environmental:** natural disasters, power failure, ISP outage.
-     - **Technical:** software bugs, hardware failure, cloud provider outage.
-   - For each threat, ask: "What weakness (vulnerability) would allow this threat to succeed?"
-   - Record each threat-vulnerability pair as a separate risk entry in the Risk Register.
+  - For each asset, ask: "What could go wrong? Who or what could cause harm to this asset?"
+  - Prompt with threat categories if participants get stuck:
+    - **External actors:** hackers, nation-state, competitors, cybercriminals.
+    - **Internal actors:** disgruntled employees, careless employees, contractors.
+    - **Environmental:** natural disasters, power failure, ISP outage.
+    - **Technical:** software bugs, hardware failure, cloud provider outage.
+  - For each threat, ask: "What weakness (vulnerability) would allow this threat to succeed?"
+  - Record each threat-vulnerability pair as a separate risk entry in the Risk Register.
 3. **Impact and Likelihood Scoring:**
-   - For each risk, guide participants through scoring using the policy's criteria tables.
-   - **Impact scoring:** "If this risk materialized, what would be the worst-case scenario?" Reference the impact criteria table. Avoid the trap of "it depends" — score the most likely bad outcome, not the theoretical worst case.
-   - **Likelihood scoring:** "How often would you expect this to happen?" Reference the likelihood criteria table. Consider: have similar events happened in the industry? Does the organization have compensating controls?
-   - Calculate Risk Score = Impact × Likelihood. Assign risk level per the matrix.
-   - **Facilitator tip:** If participants disagree on a score, have each person state their score and rationale, then converge. Do not average scores — reach consensus.
+  - For each risk, guide participants through scoring using the policy's criteria tables.
+  - **Impact scoring:** "If this risk materialized, what would be the worst-case scenario?" Reference the impact criteria table. Avoid the trap of "it depends" - score the most likely bad outcome, not the theoretical worst case.
+  - **Likelihood scoring:** "How often would you expect this to happen?" Reference the likelihood criteria table. Consider: have similar events happened in the industry? Does the organization have compensating controls?
+  - Calculate Risk Score = Impact × Likelihood. Assign risk level per the matrix.
+  - **Facilitator tip:** If participants disagree on a score, have each person state their score and rationale, then converge. Do not average scores - reach consensus.
 4. **Treatment Discussion (Initial):**
-   - For Critical and High risks: discuss which treatment option is most appropriate.
-   - Do not finalize treatment in the workshop — asset/risk owners need time to research costs and feasibility. Instead, capture initial direction and assign the owner to develop a treatment plan.
+  - For Critical and High risks: discuss which treatment option is most appropriate.
+  - Do not finalize treatment in the workshop - asset/risk owners need time to research costs and feasibility. Instead, capture initial direction and assign the owner to develop a treatment plan.
 
 #### 1.3 Post-Workshop Deliverables
 
@@ -76,7 +76,7 @@ This procedure covers how to plan and facilitate a risk assessment workshop or i
 
 > **⚠️ Watch out:** Risk workshops that turn into "security wish list" sessions. "We need a new firewall, a SIEM, and three more security engineers." Separate risk identification from solution identification. First, identify and score the risk; later, evaluate which treatment option (including new tools) is appropriate.
 
-> **⚠️ Watch out:** Scoring inflation. If every risk comes out "Critical," the scoring is broken. Review the distribution: a healthy risk register has a pyramid shape — many Low/Medium risks, fewer High risks, very few Critical risks. If the distribution is skewed, recalibrate with the participants.
+> **⚠️ Watch out:** Scoring inflation. If every risk comes out "Critical," the scoring is broken. Review the distribution: a healthy risk register has a pyramid shape - many Low/Medium risks, fewer High risks, very few Critical risks. If the distribution is skewed, recalibrate with the participants.
 
 > **⚠️ Watch out:** Forgetting to document risks that are already well-controlled. A risk that's mitigated by existing controls should still be recorded, with the current controls noted and a lower residual risk score. This documents due diligence and prevents the control from being inadvertently removed later.
 
@@ -91,8 +91,8 @@ This procedure covers the setup, population, and maintenance of the Risk Assessm
 #### 2.1 Risk Register Setup
 
 1. **Tool Selection:** Use a dedicated risk management tool or a structured spreadsheet/document. Recommended tools:
-   - **GRC Platforms:** SimpleRisk (open-source), Eramba (open-source), or commercial platforms (Archer, ServiceNow GRC, OneTrust).
-   - **Spreadsheet (interim):** For organizations not yet using a GRC platform, maintain the register in a governed spreadsheet with version control.
+  - **GRC Platforms:** SimpleRisk (open-source), Eramba (open-source), or commercial platforms (Archer, ServiceNow GRC, OneTrust).
+  - **Spreadsheet (interim):** For organizations not yet using a GRC platform, maintain the register in a governed spreadsheet with version control.
 2. **Register Fields (minimum):**
    | Field | Description |
    |-------|-------------|
@@ -121,17 +121,17 @@ This procedure covers the setup, population, and maintenance of the Risk Assessm
 #### 2.2 Ongoing Maintenance
 
 1. **New Risk Addition:**
-   - Any employee can submit a risk via `____` (service desk, dedicated form, or direct communication to the Security Officer).
-   - The Security Officer reviews the submission within `____` business days. If valid, assigns a Risk Owner and adds to the register.
+  - Any employee can submit a risk via `____` (service desk, dedicated form, or direct communication to the Security Officer).
+  - The Security Officer reviews the submission within `____` business days. If valid, assigns a Risk Owner and adds to the register.
 2. **Risk Review Cadence:**
-   - Critical risks: reviewed quarterly.
-   - High risks: reviewed semi-annually.
-   - Medium risks: reviewed annually.
-   - Low risks: reviewed annually or at next formal assessment.
+  - Critical risks: reviewed quarterly.
+  - High risks: reviewed semi-annually.
+  - Medium risks: reviewed annually.
+  - Low risks: reviewed annually or at next formal assessment.
 3. **Risk Closure:**
-   - A risk may be closed when: treatment has been fully implemented and residual risk is within risk appetite, OR the asset has been decommissioned.
-   - Closure requires risk owner approval and Security Officer review.
-   - Closed risks are moved to an "Archived" section of the register, not deleted.
+  - A risk may be closed when: treatment has been fully implemented and residual risk is within risk appetite, OR the asset has been decommissioned.
+  - Closure requires risk owner approval and Security Officer review.
+  - Closed risks are moved to an "Archived" section of the register, not deleted.
 
 ### Common Pitfalls
 
@@ -163,13 +163,13 @@ For each risk with a treatment plan, create a POA&M entry with:
 
 1. **Update Frequency:** POA&M must be updated at least monthly. Risk owners report status to the Security Officer.
 2. **Status Values:**
-   - **Ongoing:** Work is in progress and on track.
-   - **Delayed:** Work is behind schedule. Must include a revised completion date and reason for delay.
-   - **Complete:** Milestone achieved. Must include the actual completion date and evidence of completion.
-   - **Cancelled:** Milestone is no longer required (e.g., risk accepted, asset decommissioned). Include rationale.
+  - **Ongoing:** Work is in progress and on track.
+  - **Delayed:** Work is behind schedule. Must include a revised completion date and reason for delay.
+  - **Complete:** Milestone achieved. Must include the actual completion date and evidence of completion.
+  - **Cancelled:** Milestone is no longer required (e.g., risk accepted, asset decommissioned). Include rationale.
 3. **Escalation:**
-   - Delayed items: escalated to Security Officer. If delay exceeds one reporting cycle (e.g., two monthly reviews), escalate to CISO.
-   - Unfunded items: included in the annual budget planning cycle.
+  - Delayed items: escalated to Security Officer. If delay exceeds one reporting cycle (e.g., two monthly reviews), escalate to CISO.
+  - Unfunded items: included in the annual budget planning cycle.
 
 #### 3.3 POA&M Reporting
 
@@ -178,7 +178,7 @@ For each risk with a treatment plan, create a POA&M entry with:
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** POA&M items that are perpetually "Ongoing" with no end date. "Implementing SIEM" with a completion date of "ongoing" is not a POA&M milestone — it's a program. Break large initiatives into specific, time-bound milestones: "Deploy log agents to all servers (Q1)," "Configure alert rules for Critical events (Q2)," "Complete tuning and handoff to SOC (Q3)."
+> **⚠️ Watch out:** POA&M items that are perpetually "Ongoing" with no end date. "Implementing SIEM" with a completion date of "ongoing" is not a POA&M milestone - it's a program. Break large initiatives into specific, time-bound milestones: "Deploy log agents to all servers (Q1)," "Configure alert rules for Critical events (Q2)," "Complete tuning and handoff to SOC (Q3)."
 
 > **⚠️ Watch out:** POA&M entries that reference a person who left the organization. When personnel change, reassign POA&M ownership immediately. Include POA&M ownership in the offboarding checklist: "Reassign all POA&M items owned by departing employee to [successor]."
 
@@ -200,11 +200,11 @@ A Risk Acceptance Form must be completed and include:
 - Risk ID and description.
 - Why treatment is not being pursued (cost-benefit analysis summary).
 - Compensating controls in place (if any).
-- Acceptance duration (risk acceptances are time-bound — typically 12 months).
+- Acceptance duration (risk acceptances are time-bound - typically 12 months).
 - Approvals:
-  - **Low/Medium risks:** Risk Owner approval.
-  - **High risks:** Risk Owner + Security Officer approval.
-  - **Critical risks:** Risk Owner + Security Officer + Executive Leadership approval.
+ - **Low/Medium risks:** Risk Owner approval.
+ - **High risks:** Risk Owner + Security Officer approval.
+ - **Critical risks:** Risk Owner + Security Officer + Executive Leadership approval.
 
 #### 4.3 Acceptance Review
 

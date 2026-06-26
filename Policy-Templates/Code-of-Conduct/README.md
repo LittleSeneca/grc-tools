@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Code of Conduct is a foundational governance document that defines the ethical standards and behavioral expectations for everyone associated with the organization. It serves as the moral compass — setting the baseline for integrity, professionalism, and lawful conduct. Unlike operational policies that govern specific technical controls, this document addresses culture, values, and interpersonal behavior.
+The Code of Conduct is a foundational governance document that defines the ethical standards and behavioral expectations for everyone associated with the organization. It serves as the moral compass - setting the baseline for integrity, professionalism, and lawful conduct. Unlike operational policies that govern specific technical controls, this document addresses culture, values, and interpersonal behavior.
 
 ## What It Covers
 
@@ -20,9 +20,9 @@ The Code of Conduct is a foundational governance document that defines the ethic
 
 This folder contains three files:
 
-- **`Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -34,7 +34,7 @@ The policy and procedure are deliberately separate: the policy is for all employ
 
 **3. Vague conflict of interest guidance.** "Avoid conflicts of interest" is too broad to be useful. The Code must provide concrete examples of common conflict scenarios (investments, outside employment, family relationships, gifts) and a clear path for obtaining guidance on ambiguous situations.
 
-**4. Missing the annual acknowledgment.** Auditors and regulators expect documented proof that every employee reviews and acknowledges the Code annually — not just at hire. A gap in acknowledgments is an immediate audit finding.
+**4. Missing the annual acknowledgment.** Auditors and regulators expect documented proof that every employee reviews and acknowledges the Code annually - not just at hire. A gap in acknowledgments is an immediate audit finding.
 
 **5. Conflicting disciplinary expectations.** The Code must align with the Employee Handbook and HR policies. If the Code says "immediate termination for X" but HR has a progressive discipline process, you create legal exposure and confuse managers.
 

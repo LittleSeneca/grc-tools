@@ -20,9 +20,9 @@ The Configuration Management Plan (CMP) is a detailed operational document that 
 
 This folder contains three files:
 
-- **`Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -30,11 +30,11 @@ The policy and procedure are deliberately separate: the policy is for all employ
 
 **1. Confusing CM with change management.** Configuration Management is about knowing what you have and controlling its state. Change Management is about controlling how it changes. They overlap heavily, but CM defines the baselines and CIs that change management operates on. If you only have a change management policy without a CM plan, you don't know what you're changing.
 
-**2. Baselines that exist only on paper.** A baseline isn't a document — it's a known, tested, approved state of the system that can be reproduced. If you can't rebuild the system from the items in your production library, you don't have a baseline. Every baseline must be reproducible from version-controlled artifacts.
+**2. Baselines that exist only on paper.** A baseline isn't a document - it's a known, tested, approved state of the system that can be reproduced. If you can't rebuild the system from the items in your production library, you don't have a baseline. Every baseline must be reproducible from version-controlled artifacts.
 
 **3. CMDB rot.** Configuration management databases go stale fast if they're manually maintained. Within six months, the CMDB and reality diverge. Use discovery tools, infrastructure-as-code, and automated inventory to keep CM data current. Manual updates don't scale.
 
-**4. Release management without rollback.** If your release process doesn't include a tested rollback procedure, you're not doing release management — you're gambling. Every release must have a documented, tested rollback plan that can return the system to the prior baseline within the defined RTO.
+**4. Release management without rollback.** If your release process doesn't include a tested rollback procedure, you're not doing release management - you're gambling. Every release must have a documented, tested rollback plan that can return the system to the prior baseline within the defined RTO.
 
 **5. Skipping the Functional Configuration Audit (FCA) and Physical Configuration Audit (PCA).** These audits verify that the system as built matches the system as specified and that the documentation matches reality. Skipping them means accepting configuration drift as normal. For high-assurance systems, FCAs and PCAs are mandatory.
 

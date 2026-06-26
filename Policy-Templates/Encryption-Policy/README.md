@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Encryption Policy is the authoritative reference for which cryptographic algorithms, protocols, and key management practices are permitted in the organization. It prevents the proliferation of weak cryptography by giving engineering, IT, and security teams a single source of truth. This is one of the most technically prescriptive policies in the GRC suite — it names specific algorithms, minimum key sizes, and required configurations.
+The Encryption Policy is the authoritative reference for which cryptographic algorithms, protocols, and key management practices are permitted in the organization. It prevents the proliferation of weak cryptography by giving engineering, IT, and security teams a single source of truth. This is one of the most technically prescriptive policies in the GRC suite - it names specific algorithms, minimum key sizes, and required configurations.
 
 ## What It Covers
 
@@ -19,8 +19,8 @@ The Encryption Policy is the authoritative reference for which cryptographic alg
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Approved cryptographic algorithms, minimum key strengths, key management lifecycle, and encryption requirements for data at rest, data in transit, cloud environments, and end-user devices. This is the governance document reviewed by leadership and auditors.
-- **`Encryption-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Key management implementation, device encryption deployment (FileVault, BitLocker), TLS configuration, and cryptographic validation procedures. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Approved cryptographic algorithms, minimum key strengths, key management lifecycle, and encryption requirements for data at rest, data in transit, cloud environments, and end-user devices. This is the governance document reviewed by leadership and auditors.
+- **`Encryption-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Key management implementation, device encryption deployment (FileVault, BitLocker), TLS configuration, and cryptographic validation procedures. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
@@ -39,7 +39,7 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 
 ## Implementation Advice
 
-- **Publish a companion standards document.** The policy says *what* must be done. A separate standards document provides the *how* — example nginx/Apache TLS configurations, OpenSSL commands for certificate generation, AWS KMS key policy templates. This prevents every team from independently interpreting the policy.
+- **Publish a companion standards document.** The policy says *what* must be done. A separate standards document provides the *how* - example nginx/Apache TLS configurations, OpenSSL commands for certificate generation, AWS KMS key policy templates. This prevents every team from independently interpreting the policy.
 - **Use certificate transparency monitoring.** Monitor CT logs for certificates issued for your domains. This catches mis-issued certificates, unauthorized CAs, and expiring certificates before they cause outages or security incidents.
 - **Automate key rotation for cloud services.** Cloud KMS services support automatic key rotation. Enable it by default. For application-level encryption, build key rotation into the encryption library so application teams don't need to think about it.
 - **Test encrypted backup recovery.** Full-disk encryption, database TDE, and backup encryption all rely on keys that must be available during disaster recovery. If the key management service is in the same cloud region that failed, you may lose both data and keys. Test recovery from a different region or provider.

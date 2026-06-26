@@ -49,25 +49,25 @@ This procedure covers all production databases, including but not limited to rel
 1. **Identify Backup Source:** Locate the most recent automated backup for each production database in the designated backup storage location (e.g., cloud object storage, backup vault).
 
 2. **Provision Test Environment:**
-   - Create or reuse an isolated test database instance or cluster.
-   - Ensure the test instance matches the production database engine version.
-   - Configure the test instance with minimal capacity (scaled-down compute and storage) to control costs.
+  - Create or reuse an isolated test database instance or cluster.
+  - Ensure the test instance matches the production database engine version.
+  - Configure the test instance with minimal capacity (scaled-down compute and storage) to control costs.
 
 3. **Execute Restoration:**
-   - Restore the identified backup to the test instance.
-   - Monitor the restore process and log the duration from initiation to availability.
+  - Restore the identified backup to the test instance.
+  - Monitor the restore process and log the duration from initiation to availability.
 
 4. **Validate Restored Data:**
-   - Connect to the restored database and execute a standard set of validation queries, including:
-     - Database version and size verification
-     - Table and row count checks against known baselines
-     - Sample data retrieval from key tables
-     - Referential integrity checks where applicable
-   - Compare row counts and data samples between the restored backup and, if available, a current production snapshot.
+  - Connect to the restored database and execute a standard set of validation queries, including:
+    - Database version and size verification
+    - Table and row count checks against known baselines
+    - Sample data retrieval from key tables
+    - Referential integrity checks where applicable
+  - Compare row counts and data samples between the restored backup and, if available, a current production snapshot.
 
 5. **Clean Up:**
-   - Delete the test database instance and any associated storage volumes.
-   - Verify that no residual test data or credentials remain.
+  - Delete the test database instance and any associated storage volumes.
+  - Verify that no residual test data or credentials remain.
 
 6. **Document Results:** Record the test outcome, restore duration, any anomalies, and validation query results in the quarterly backup integrity testing report.
 
@@ -86,21 +86,21 @@ This procedure covers file systems, object storage buckets, and network-attached
 ### Test Procedure
 
 1. **Select Sample Files:** Choose a representative sample of files from production storage. Selection criteria:
-   - Files from multiple tenants, customers, or business units
-   - Mix of file sizes (small, medium, and large files)
-   - Mix of file types representative of the production workload
-   - Minimum of ____ files per test cycle
+  - Files from multiple tenants, customers, or business units
+  - Mix of file sizes (small, medium, and large files)
+  - Mix of file types representative of the production workload
+  - Minimum of ____ files per test cycle
 
 2. **Identify Recovery Points:** Query the backup system for the latest available recovery points or snapshots for the selected storage resources.
 
 3. **Execute Item-Level Restore:**
-   - Restore the sampled files to an isolated test location.
-   - If the backup system supports item-level recovery, use that capability rather than full-volume restoration to reduce test time and cost.
+  - Restore the sampled files to an isolated test location.
+  - If the backup system supports item-level recovery, use that capability rather than full-volume restoration to reduce test time and cost.
 
 4. **Validate File Integrity:**
-   - Verify that restored files match their original checksums or hashes.
-   - Confirm file metadata (timestamps, permissions, ownership) is intact.
-   - For structured data files, perform schema or format validation.
+  - Verify that restored files match their original checksums or hashes.
+  - Confirm file metadata (timestamps, permissions, ownership) is intact.
+  - For structured data files, perform schema or format validation.
 
 5. **Clean Up:** Remove all restored files and temporary test infrastructure.
 
@@ -123,7 +123,7 @@ This procedure covers data stored in SaaS platforms used by the organization, in
 - An authorized administrator account for the backup/recovery platform used to protect each SaaS service.
 - Access to at least two organization user accounts (an active account and a shared mailbox or secondary account) to validate cross-user restore.
 
-### Test Procedure — File and Document Restore
+### Test Procedure - File and Document Restore
 
 1. Log into the backup/recovery platform with an authorized administrator account.
 2. Navigate to the protected service and select a user account for testing.
@@ -132,7 +132,7 @@ This procedure covers data stored in SaaS platforms used by the organization, in
 5. In the target SaaS application, verify that the restored file(s) appear, are accessible, and contain the expected content.
 6. Document the user account, files tested, and outcome in the quarterly report.
 
-### Test Procedure — Email Restore
+### Test Procedure - Email Restore
 
 1. Select a user account and navigate to the email protection area within the backup platform.
 2. Select one or more email messages from different time periods for restoration.
@@ -140,7 +140,7 @@ This procedure covers data stored in SaaS platforms used by the organization, in
 4. Verify that restored emails appear in the target folder with correct sender, subject, body, and attachments.
 5. Document results.
 
-### Test Procedure — Calendar Restore
+### Test Procedure - Calendar Restore
 
 1. Select a user account and navigate to the calendar protection area.
 2. Select a calendar or a set of calendar events for restoration.
@@ -165,9 +165,9 @@ This procedure covers backups of source code repositories, including all branche
 1. From the backup storage, select a repository backup snapshot.
 2. Clone or restore the repository backup to an isolated test environment.
 3. Verify that the restored repository contains:
-   - All expected branches and tags
-   - A complete, traversable commit history
-   - Buildable code (execute a representative build or test suite against the restored code)
+  - All expected branches and tags
+  - A complete, traversable commit history
+  - Buildable code (execute a representative build or test suite against the restored code)
 4. Compare commit counts and branch lists with the primary repository to confirm completeness.
 5. Document results.
 

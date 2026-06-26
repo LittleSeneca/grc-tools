@@ -88,9 +88,9 @@ Access to the centralized logging platform is restricted:
 - Access requires an individual account; shared accounts are prohibited.
 - Multi-factor authentication is required.
 - Role-based access control (RBAC) defines minimum necessary access levels:
-  - **Viewer:** Read-only access to dashboards and log queries for operations and development teams.
-  - **Analyst:** Full query access for security and compliance personnel.
-  - **Administrator:** Platform configuration, user management, and data lifecycle management, restricted to the infrastructure/security engineering team.
+ - **Viewer:** Read-only access to dashboards and log queries for operations and development teams.
+ - **Analyst:** Full query access for security and compliance personnel.
+ - **Administrator:** Platform configuration, user management, and data lifecycle management, restricted to the infrastructure/security engineering team.
 
 ### Access Provisioning
 
@@ -111,7 +111,7 @@ All production Linux/Windows hosts forward audit logs to the centralized platfor
 
 Tracked OS-level events include:
 
-- User authentication (SSH, RDP, console login — success and failure).
+- User authentication (SSH, RDP, console login - success and failure).
 - Privilege escalation (sudo, su, Run As Administrator).
 - User and group management (creation, deletion, modification).
 - File system operations on sensitive paths.
@@ -143,10 +143,10 @@ Database systems must forward:
 Cloud-native log streaming services are configured to forward:
 
 - **Cloud Audit / API Logs:** All API calls and management events, including:
-  - IAM permission modifications and execution.
-  - Security group and firewall rule changes.
-  - Encryption key management operations.
-  - Storage bucket policy changes.
+ - IAM permission modifications and execution.
+ - Security group and firewall rule changes.
+ - Encryption key management operations.
+ - Storage bucket policy changes.
 - **Network Flow Logs:** Metadata about network traffic traversing cloud network boundaries.
 - **DNS Logs:** DNS query logs for detecting domain generation algorithms (DGA), data exfiltration, and command-and-control traffic.
 

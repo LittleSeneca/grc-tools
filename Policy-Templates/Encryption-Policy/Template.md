@@ -143,7 +143,7 @@ When using cloud infrastructure and platform services:
 
 - Cloud-native key management services (e.g., AWS KMS, Azure Key Vault, GCP Cloud KMS) are the preferred method for managing encryption keys in cloud environments.
 - Customer-managed keys (CMKs) must be used for encrypting data classified as Restricted or Confidential. Provider-managed keys are acceptable for Internal and Public data.
-- Key access policies must follow least privilege — only the specific services and roles that require cryptographic operations should have access to each key.
+- Key access policies must follow least privilege - only the specific services and roles that require cryptographic operations should have access to each key.
 - Cloud HSM offerings should be evaluated for protecting high-value keys such as root Certificate Authority keys or master key encryption keys.
 
 ### End-User Device Encryption

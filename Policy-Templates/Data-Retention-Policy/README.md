@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Data Retention Policy defines how long different categories of data must be kept — and, critically, when it must be deleted. It bridges legal and regulatory requirements with operational data management, ensuring the organization keeps what it needs and disposes of what it doesn't. This policy is a key control for minimizing data breach impact, managing storage costs, and complying with privacy regulations that mandate data minimization.
+The Data Retention Policy defines how long different categories of data must be kept - and, critically, when it must be deleted. It bridges legal and regulatory requirements with operational data management, ensuring the organization keeps what it needs and disposes of what it doesn't. This policy is a key control for minimizing data breach impact, managing storage costs, and complying with privacy regulations that mandate data minimization.
 
 ## What It Covers
 
@@ -19,9 +19,9 @@ The Data Retention Policy defines how long different categories of data must be 
 
 This folder contains three files:
 
-- **`Template.md`** — The policy. Defines WHAT is required.
-- **`Data-Retention-Procedures.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The policy. Defines WHAT is required.
+- **`Data-Retention-Procedures.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -42,5 +42,5 @@ The policy and procedure are deliberately separate: the policy is for all employ
 - **Build deletion into system design.** Automated data lifecycle management is far more reliable than manual cleanup. Implement TTL (time-to-live) fields, automated archival jobs, and scheduled purging from day one. Retrofitting deletion into a system that was designed to keep everything forever is painful and error-prone.
 - **Map retention requirements to regulations explicitly.** For each retention period in the policy, cite the specific regulation or business justification. This makes audits straightforward and helps when regulations change. A matrix mapping data category → retention period → regulatory citation → system of record is gold for auditors.
 - **Start with the highest-risk data.** If you cannot implement full lifecycle management at once, prioritize customer data and employee PII. These categories carry the highest breach notification obligations and regulatory penalties. Operational logs can follow later.
-- **Test legal hold procedures with a tabletop exercise.** Run a simulated litigation scenario where Legal issues a hold. Verify that IT can identify affected systems, suspend deletion, and confirm preservation. Most organizations discover gaps in their first exercise — finding them before a real litigation is invaluable.
+- **Test legal hold procedures with a tabletop exercise.** Run a simulated litigation scenario where Legal issues a hold. Verify that IT can identify affected systems, suspend deletion, and confirm preservation. Most organizations discover gaps in their first exercise - finding them before a real litigation is invaluable.
 - **Document what you delete.** For Restricted and Confidential data, maintain deletion logs showing what was deleted, by whom, when, and using what method. Some regulations require proof of deletion. A deletion log satisfies this and also provides evidence of policy compliance during audits.

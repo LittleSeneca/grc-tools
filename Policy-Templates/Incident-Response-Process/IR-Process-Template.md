@@ -7,7 +7,7 @@ Version: 1.0
 Classification: Internal
 Approved By: ____
 
-## TL;DR — Immediate Action Required
+## TL;DR - Immediate Action Required
 
 As soon as you are made aware of a security incident (data loss, breach, knowledge of policy violations, etc.) or observe a vulnerability or anomalous behavior:
 
@@ -279,11 +279,11 @@ These external entities may assist in or take over eradication and recovery. The
 **Compliance-Driven Notification:**
 
 - If the incident involves sensitive personal data or violates regulatory requirements, the Security Officer must notify the relevant regulatory bodies within the mandated timeframes:
-  - **GDPR:** Within 72 hours of becoming aware of the breach.
-  - **CCPA/CPRA:** Without unreasonable delay.
-  - **HIPAA:** Within 60 days of discovery.
-  - **PCI DSS:** Per acquiring bank and card brand requirements.
-  - **Other:** Per applicable state, federal, and international regulations.
+ - **GDPR:** Within 72 hours of becoming aware of the breach.
+ - **CCPA/CPRA:** Without unreasonable delay.
+ - **HIPAA:** Within 60 days of discovery.
+ - **PCI DSS:** Per acquiring bank and card brand requirements.
+ - **Other:** Per applicable state, federal, and international regulations.
 
 **Law Enforcement:** If necessary, law enforcement agencies may be contacted to:
 

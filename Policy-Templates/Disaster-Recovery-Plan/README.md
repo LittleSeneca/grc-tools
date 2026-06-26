@@ -19,8 +19,8 @@ The Disaster Recovery Plan (DRP) is the technical counterpart to the Business Co
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: IT disaster recovery framework with system classification (Critical/Non-Critical), RTO/RPO targets, three-phase recovery (Notification/Activation, Recovery, Reconstitution), and testing requirements. This is the governance document reviewed by leadership and auditors.
-- **`DR-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Phase-by-phase recovery execution procedures, failover configuration, platform-specific recovery steps, and plan deactivation workflows. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: IT disaster recovery framework with system classification (Critical/Non-Critical), RTO/RPO targets, three-phase recovery (Notification/Activation, Recovery, Reconstitution), and testing requirements. This is the governance document reviewed by leadership and auditors.
+- **`DR-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Phase-by-phase recovery execution procedures, failover configuration, platform-specific recovery steps, and plan deactivation workflows. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 

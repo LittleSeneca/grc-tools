@@ -18,8 +18,8 @@ The Backup Integrity Testing Process is an operational procedure document that d
 
 This folder contains two files:
 
-- **`Template.md`** — The process document. Describes HOW to operationalize the related policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** - This overview.
 
 When updating the governing policy, ensure implementation changes flow into this process document.
 
@@ -31,7 +31,7 @@ When updating the governing policy, ensure implementation changes flow into this
 
 **3. Ignoring SaaS platforms.** Most organizations now store more critical data in SaaS tools (Google Workspace, Microsoft 365, Salesforce) than in self-managed databases. Few test their SaaS backups. If you can't restore a deleted shared drive or a compromised executive mailbox, you don't have a complete backup program.
 
-**4. Not validating application-layer integrity.** A database backup may restore cleanly but return garbled data if the backup captured a mid-transaction state, or if the application expects data relationships that were broken during backup. Run application-level queries — not just `SELECT COUNT(*)` — against restored data.
+**4. Not validating application-layer integrity.** A database backup may restore cleanly but return garbled data if the backup captured a mid-transaction state, or if the application expects data relationships that were broken during backup. Run application-level queries - not just `SELECT COUNT(*)` - against restored data.
 
 **5. Skipping cleanup.** Test environments, restored databases, and cloned repositories cost money and create security exposure if left running. Every test procedure must include explicit cleanup steps. Automate cleanup to prevent "I forgot to delete the test RDS instance" surprises on the monthly cloud bill.
 

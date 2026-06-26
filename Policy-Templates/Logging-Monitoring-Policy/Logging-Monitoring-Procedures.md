@@ -1,6 +1,6 @@
-# Logging and Monitoring — Implementation Procedures
+# Logging and Monitoring - Implementation Procedures
 
-Document Title: Logging and Monitoring — Implementation Procedures
+Document Title: Logging and Monitoring - Implementation Procedures
 Parent Policy: Logging and Monitoring Policy (ISP-____)
 Companion Process: Logging and Monitoring Process
 Effective Date: ____
@@ -16,22 +16,22 @@ This document provides practical, step-by-step implementation procedures for the
 
 ---
 
-## Standard Approach — Configuring Logging from Scratch
+## Standard Approach - Configuring Logging from Scratch
 
 ### Phase 1: Determine What to Log
 
-**Step 1 — Classify the System**
+**Step 1 - Classify the System**
 
 Before configuring logging, determine the system's role and data sensitivity:
 
-- **Critical Security Control:** Firewall, IDS/IPS, authentication service, SIEM, logging platform itself — these directly affect the security posture.
+- **Critical Security Control:** Firewall, IDS/IPS, authentication service, SIEM, logging platform itself - these directly affect the security posture.
 - **Sensitive Data Handler:** Processes or stores Restricted or Confidential data.
-- **Infrastructure Component:** Server, container, network device — foundational but not directly handling sensitive data in most cases.
+- **Infrastructure Component:** Server, container, network device - foundational but not directly handling sensitive data in most cases.
 - **End-User Device:** Workstation, laptop, mobile device.
 
 Logging requirements increase with system criticality.
 
-**Step 2 — Map Required Log Events**
+**Step 2 - Map Required Log Events**
 
 Using the policy's "Logged Activities" section as a checklist, mark which event categories apply to this system. Create a logging specification document (or a row in the system's configuration record) listing each category and whether it's **Required**, **Recommended**, or **Not Applicable**:
 
@@ -52,7 +52,7 @@ Using the policy's "Logged Activities" section as a checklist, mark which event 
 
 Document this specification. It will guide both initial configuration and future reviews.
 
-**Step 3 — Define Log Retention Tiers**
+**Step 3 - Define Log Retention Tiers**
 
 For this system's logs, define the retention tiers based on the Data Retention Policy:
 
@@ -66,7 +66,7 @@ For this system's logs, define the retention tiers based on the Data Retention P
 
 ### Phase 2: Configure Log Generation
 
-**Step 4 — Enable OS-Level Audit Logging**
+**Step 4 - Enable OS-Level Audit Logging**
 
 **Linux Systems:**
 
@@ -79,7 +79,7 @@ sudo yum install audit         # RHEL/CentOS/Amazon Linux
 sudo systemctl enable auditd
 sudo systemctl start auditd
 
-# Add rules for critical events (example — customize for your environment)
+# Add rules for critical events (example - customize for your environment)
 # Log all commands run as root
 sudo auditctl -a exit,always -F euid=0 -F arch=b64 -S execve
 # Log changes to /etc/passwd and /etc/shadow
@@ -98,7 +98,7 @@ sudo sh -c 'auditctl -l >> /etc/audit/rules.d/audit.rules'
 - Required subcategories to enable: Logon/Logoff, Account Management, Privilege Use, Policy Change, System Integrity.
 - Enable command-line process auditing (Group Policy → Administrative Templates → System → Audit Process Creation → Include command line in process creation events).
 
-**Step 5 — Configure Application Logging**
+**Step 5 - Configure Application Logging**
 
 For each application, configure logging output to include the required event categories. General principles:
 
@@ -122,7 +122,7 @@ For each application, configure logging output to include the required event cat
 }
 ```
 
-**Step 6 — Configure Network Device Logging**
+**Step 6 - Configure Network Device Logging**
 
 For firewalls, routers, switches:
 
@@ -132,7 +132,7 @@ For firewalls, routers, switches:
 - Set the syslog facility to a dedicated value (e.g., `local0` or `local1`) to distinguish network device logs from server logs.
 - Ensure log messages include timestamps synchronized via NTP.
 
-**Step 7 — Configure Cloud Resource Logging**
+**Step 7 - Configure Cloud Resource Logging**
 
 For cloud environments:
 
@@ -146,7 +146,7 @@ For cloud environments:
 
 ### Phase 3: Configure Log Forwarding and Protection
 
-**Step 8 — Deploy the Log Forwarding Agent**
+**Step 8 - Deploy the Log Forwarding Agent**
 
 On each managed host:
 
@@ -156,15 +156,15 @@ On each managed host:
 4. Enable buffering: configure the agent to buffer logs locally (disk or memory) if the centralized platform is unreachable, with a maximum buffer size of `____` GB. This prevents log loss during network interruptions.
 5. Configure the agent to monitor its own health and log forwarding status; forward these agent-health metrics to the platform so you're alerted if a host stops forwarding.
 
-**Step 9 — Protect Audit Logs on Source Systems**
+**Step 9 - Protect Audit Logs on Source Systems**
 
 Before logs leave the source system, protect them:
 
 - Set file permissions on log files so only the logging agent and root/administrator can read them. Application users should write logs but not read or delete them.
 - Enable file integrity monitoring (FIM) on log directories to detect unauthorized modification or deletion. Recommended tool: Wazuh (OSSEC-compatible, open source) or the FIM capability of your endpoint detection platform.
-- Ensure the logging agent runs under a dedicated, low-privilege service account — not root. The agent needs only read access to log files and network egress to the centralized platform.
+- Ensure the logging agent runs under a dedicated, low-privilege service account - not root. The agent needs only read access to log files and network egress to the centralized platform.
 
-**Step 10 — Configure the Centralized Platform for Log Integrity**
+**Step 10 - Configure the Centralized Platform for Log Integrity**
 
 On the centralized logging platform:
 
@@ -177,7 +177,7 @@ On the centralized logging platform:
 
 ### Phase 4: Configure Alerting
 
-**Step 11 — Define Alert Rules**
+**Step 11 - Define Alert Rules**
 
 Translate the policy's alerting requirements into specific alert rules on the centralized platform.
 
@@ -185,8 +185,8 @@ Translate the policy's alerting requirements into specific alert rules on the ce
 
 | Alert Name | Trigger Condition | Severity |
 |---|---|---|
-| Brute Force — Single Source | >`____` failed logins from a single IP in `____` minutes | High |
-| Brute Force — Distributed | >`____` failed logins against a single account from `____`+ IPs in `____` minutes | High |
+| Brute Force - Single Source | >`____` failed logins from a single IP in `____` minutes | High |
+| Brute Force - Distributed | >`____` failed logins against a single account from `____`+ IPs in `____` minutes | High |
 | Impossible Travel | Successful login from location >`____` km from previous login, within <`____` minutes | High |
 | Off-Hours Privileged Login | Privileged account login between `____:00` and `____:00` local time, outside approved maintenance windows | Medium |
 | MFA Bypass / Failure | MFA challenge failed or bypassed for a sensitive system | High |
@@ -197,7 +197,7 @@ Translate the policy's alerting requirements into specific alert rules on the ce
 | Alert Name | Trigger Condition | Severity |
 |---|---|---|
 | Mass Data Export | >`____` records exported/downloaded in a single session or hour | High |
-| Sensitive Data Access — Unusual Pattern | Access to Restricted data by a user/role that hasn't accessed it in the past `____` days | Medium |
+| Sensitive Data Access - Unusual Pattern | Access to Restricted data by a user/role that hasn't accessed it in the past `____` days | Medium |
 | Database Dump | `mysqldump`, `pg_dump`, or equivalent command detected on a production database | Critical |
 
 **Infrastructure Alerts:**
@@ -208,7 +208,7 @@ Translate the policy's alerting requirements into specific alert rules on the ce
 | Audit Logging Disabled | Logging service stopped, agent uninstalled, or forwarding interrupted for >`____` minutes | Critical |
 | Resource Exhaustion | CPU >`____`%, memory >`____`%, disk >`____`% for >`____` minutes | High |
 
-**Step 12 — Configure Alert Routing**
+**Step 12 - Configure Alert Routing**
 
 Set up routing rules on the centralized platform:
 
@@ -217,15 +217,15 @@ Set up routing rules on the centralized platform:
 - **Medium severity:** Send to `#security-notifications` without tagging.
 - **Low severity:** Log only; visible on dashboards but no active notification.
 
-**Step 13 — Configure Alert Suppression and Tuning**
+**Step 13 - Configure Alert Suppression and Tuning**
 
 Before enabling alerts in production:
 
 - **Set up maintenance windows:** Suppress alerts during scheduled maintenance periods (documented in the change management system) to avoid false alarms during known-good changes.
 - **Establish baselines:** Let the system collect data for `____` days before enabling anomaly-based alerts. Alerts like "impossible travel" or "unusual data access" need a baseline of normal behavior to avoid overwhelming false positives.
-- **Tune thresholds iteratively:** Start with conservative thresholds (sensitive — might miss real events) and tighten them over the first `____` weeks based on the ratio of true positives to false positives. Goal: >`____`% true positive rate.
+- **Tune thresholds iteratively:** Start with conservative thresholds (sensitive - might miss real events) and tighten them over the first `____` weeks based on the ratio of true positives to false positives. Goal: >`____`% true positive rate.
 
-**Step 14 — Validate the Alert Pipeline End-to-End**
+**Step 14 - Validate the Alert Pipeline End-to-End**
 
 Run a controlled test:
 
@@ -242,15 +242,15 @@ Document the test results. Repeat quarterly or after any major platform changes.
 
 ### Phase 5: Establish Log Review Cadence
 
-**Step 15 — Configure Automated Review (Alerting)**
+**Step 15 - Configure Automated Review (Alerting)**
 
 The automated alerting configured above provides continuous review for known patterns. This is the primary review mechanism. Ensure the alerting platform has full coverage of the required event categories from the policy.
 
-**Step 16 — Schedule Manual Reviews**
+**Step 16 - Schedule Manual Reviews**
 
 Create a recurring calendar event for manual log review at the cadence specified in the policy (weekly or monthly). Prepare a standard review checklist covering:
 
-- **Privileged User Activity:** Review all administrative/root actions from the past period. Cross-reference with change management tickets — any administrative action without a corresponding approved change is a finding.
+- **Privileged User Activity:** Review all administrative/root actions from the past period. Cross-reference with change management tickets - any administrative action without a corresponding approved change is a finding.
 - **Failed Authentication Patterns:** Review aggregate failed login statistics. Identify accounts with sustained high failure rates. Investigate any spike.
 - **New Accounts and Privilege Escalations:** Review all new user accounts created and all privilege changes. Verify each has a corresponding access request ticket.
 - **Security Group / Firewall Changes:** Review all network access changes. Verify each has a corresponding approved change ticket.
@@ -259,7 +259,7 @@ Create a recurring calendar event for manual log review at the cadence specified
 
 Assign the review to a named individual each period, with results documented in a shared location at `____`. Anomalies must be escalated via the incident response process.
 
-**Step 17 — Configure Ad-Hoc Review Triggers**
+**Step 17 - Configure Ad-Hoc Review Triggers**
 
 Ensure the team knows that ad-hoc log review is required:
 - During any security incident investigation
@@ -270,7 +270,7 @@ Ensure the team knows that ad-hoc log review is required:
 
 ## Alternative Approaches
 
-### 💡 Alternative 1 — Agentless Log Collection via Syslog
+### 💡 Alternative 1 - Agentless Log Collection via Syslog
 
 Instead of deploying a logging agent on every host, configure all systems to forward syslog directly to the centralized platform or an intermediate syslog server. This is simpler for homogeneous Linux environments and avoids agent management overhead.
 
@@ -278,13 +278,13 @@ Instead of deploying a logging agent on every host, configure all systems to for
 
 **Trade-off:** Less flexibility than agents (no buffering, limited transformation capabilities, no easy metrics collection). You still need agents or separate tooling for Windows, containers, and platforms that don't use syslog. Best suited for small, homogeneous Linux environments.
 
-### 💡 Alternative 2 — Cloud-Native Only (No Self-Hosted Platform)
+### 💡 Alternative 2 - Cloud-Native Only (No Self-Hosted Platform)
 
 For cloud-only organizations, skip the self-hosted centralized platform entirely and use the cloud provider's native services: AWS CloudWatch + GuardDuty + Security Hub, or Azure Monitor + Sentinel, or GCP Cloud Logging + Security Command Center.
 
 **Trade-off:** Lower operational burden (no platform to manage), but higher cost at scale and potential vendor lock-in. Multi-cloud organizations will struggle with correlation across providers. Provider-native UIs are generally less powerful than dedicated platforms (Splunk, ELK, OpenObserve).
 
-### 💡 Alternative 3 — SOAR Integration for Alert Enrichment
+### 💡 Alternative 3 - SOAR Integration for Alert Enrichment
 
 Enhance the alerting pipeline with a Security Orchestration, Automation, and Response (SOAR) platform between the centralized logging platform and the notification channels. The SOAR can:
 - Automatically enrich alerts with threat intelligence (IP reputation, domain age, geolocation)
@@ -297,7 +297,7 @@ Enhance the alerting pipeline with a Security Orchestration, Automation, and Res
 
 ## Common Pitfalls
 
-### ⚠️ Pitfall 1 — Logging Too Much, Too Noisy
+### ⚠️ Pitfall 1 - Logging Too Much, Too Noisy
 
 **Symptom:** Every system is configured to log DEBUG-level events. The centralized platform ingest rate is 10× what was planned. Storage costs balloon. Alert queries time out. The security team ignores alerts because 95% are false positives.
 
@@ -305,7 +305,7 @@ Enhance the alerting pipeline with a Security Orchestration, Automation, and Res
 
 **How to Avoid:** Log only what the policy requires in production. Use INFO as the default level for security-relevant events, WARN/ERROR for operational issues, and DEBUG only in non-production or temporarily during troubleshooting. Review ingest volumes monthly and identify noisy sources to tune.
 
-### ⚠️ Pitfall 2 — Alert Rules Without Maintenance
+### ⚠️ Pitfall 2 - Alert Rules Without Maintenance
 
 **Symptom:** Alerts were configured during initial setup and haven't been reviewed since. New systems have been deployed that generate events that should trigger alerts but don't. Old alerts fire for deprecated systems. Thresholds set a year ago are now wrong for current traffic patterns.
 
@@ -313,7 +313,7 @@ Enhance the alerting pipeline with a Security Orchestration, Automation, and Res
 
 **How to Avoid:** Schedule quarterly alert rule reviews. For each rule, ask: (1) Does this still fire? (2) When it fires, is it actionable? (3) Do we have equivalent coverage for new systems? Use the "alert rule inventory" as a living document, not a one-time setup.
 
-### ⚠️ Pitfall 3 — Logs Without Timestamps, or Wrong Timestamps
+### ⚠️ Pitfall 3 - Logs Without Timestamps, or Wrong Timestamps
 
 **Symptom:** Some systems log in local time, some in UTC, some with no timezone at all. A forensic investigation finds that Event A appears to happen after Event B, but the actual timeline is the reverse because the clocks are 4 hours apart.
 
@@ -321,21 +321,21 @@ Enhance the alerting pipeline with a Security Orchestration, Automation, and Res
 
 **How to Avoid:** Enforce NTP synchronization on all systems. All logs must use UTC and ISO 8601 format (`2026-06-26T14:30:00.000Z`). Reject or flag logs without valid timestamps at the centralized platform ingestion layer. Test NTP synchronization quarterly.
 
-### ⚠️ Pitfall 4 — Administrators Can Delete Their Own Logs
+### ⚠️ Pitfall 4 - Administrators Can Delete Their Own Logs
 
-**Symptom:** System administrators have the ability to delete or modify log files on the systems they manage. During an investigation of potential insider threat, the logs for the suspect's administrative session are missing — conveniently.
+**Symptom:** System administrators have the ability to delete or modify log files on the systems they manage. During an investigation of potential insider threat, the logs for the suspect's administrative session are missing - conveniently.
 
-**Why It's Dangerous:** An administrator with malicious intent (or whose credentials have been compromised) can erase evidence of their actions. You lose visibility into the most dangerous class of activity — privileged misuse.
+**Why It's Dangerous:** An administrator with malicious intent (or whose credentials have been compromised) can erase evidence of their actions. You lose visibility into the most dangerous class of activity - privileged misuse.
 
 **How to Avoid:** Logs must leave the source system as quickly as possible (near real-time forwarding). Once on the centralized platform, logs must be append-only or WORM-protected. The centralized platform must be in a separate trust boundary that source-system administrators cannot access. Separation of duties: the team managing the logging platform must be different from the team managing the source systems.
 
-### ⚠️ Pitfall 5 — Alerting on the Logging Platform, But Not on the Logging Platform Itself
+### ⚠️ Pitfall 5 - Alerting on the Logging Platform, But Not on the Logging Platform Itself
 
 **Symptom:** Every critical system is monitored, but nobody monitors whether the centralized logging platform is healthy. One day, ingestion stops due to a disk-full condition. Nobody notices for a week. All alerts during that week are silently dropped.
 
 **Why It's Dangerous:** The logging platform is a critical security control. Its failure means you're blind to everything else. A sophisticated attacker might deliberately degrade the logging platform as a first step.
 
-**How to Avoid:** Monitor the logging platform's own health: ingestion rate (alert on sudden drops), storage capacity (alert at 75% and 90%), query performance, alert pipeline health, and platform error rates. Consider a lightweight "canary" check: a separate service generates a synthetic security event every `____` minutes and verifies it reaches the platform and triggers an alert — if the canary dies, the platform is down.
+**How to Avoid:** Monitor the logging platform's own health: ingestion rate (alert on sudden drops), storage capacity (alert at 75% and 90%), query performance, alert pipeline health, and platform error rates. Consider a lightweight "canary" check: a separate service generates a synthetic security event every `____` minutes and verifies it reaches the platform and triggers an alert - if the canary dies, the platform is down.
 
 ---
 
@@ -356,4 +356,4 @@ Enhance the alerting pipeline with a Security Orchestration, Automation, and Res
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version — extracted implementation procedures from Logging and Monitoring Policy. |
+| 1.0 | ____ | ____ | Initial version - extracted implementation procedures from Logging and Monitoring Policy. |

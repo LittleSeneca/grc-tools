@@ -13,7 +13,7 @@ This policy establishes requirements to ensure that ____'s information assets, f
 
 ## Scope
 
-This policy applies to all physical facilities owned, leased, or operated by ____, including offices, data centers, equipment rooms, and remote work locations where organizational assets are used or stored. It applies to all Personnel — employees, contractors, temporary workers, and visitors — who have physical access to organizational facilities or assets.
+This policy applies to all physical facilities owned, leased, or operated by ____, including offices, data centers, equipment rooms, and remote work locations where organizational assets are used or stored. It applies to all Personnel - employees, contractors, temporary workers, and visitors - who have physical access to organizational facilities or assets.
 
 ## Policy
 

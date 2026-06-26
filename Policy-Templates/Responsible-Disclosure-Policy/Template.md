@@ -80,11 +80,11 @@ ____ strictly prohibits retaliation against any individual who, in good faith, r
 
 If an individual believes they are experiencing retaliation: immediately report it to the Security Officer, the Compliance function, or through the anonymous reporting channel. Any individual found to have engaged in retaliation will face disciplinary action, up to and including termination.
 
-**Important caveat:** Protection from retaliation does not provide immunity for personal wrongdoing. If an investigation reveals that the reporting individual participated in the violation, standard disciplinary processes apply to that conduct — but not to the act of reporting.
+**Important caveat:** Protection from retaliation does not provide immunity for personal wrongdoing. If an investigation reveals that the reporting individual participated in the violation, standard disciplinary processes apply to that conduct - but not to the act of reporting.
 
 #### Confidentiality
 
-____ will protect the confidentiality of whistleblower reports and the identity of reporters to the maximum extent possible. Identity may need to be disclosed for thorough investigation, legal compliance, or due process — in such cases, the reporter will be notified before disclosure where feasible.
+____ will protect the confidentiality of whistleblower reports and the identity of reporters to the maximum extent possible. Identity may need to be disclosed for thorough investigation, legal compliance, or due process - in such cases, the reporter will be notified before disclosure where feasible.
 
 #### Investigation and Corrective Action
 

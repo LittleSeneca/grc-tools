@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Asset Management Policy defines how the organization tracks, manages, hardens, and disposes of its physical and virtual assets throughout their lifecycle. If you don't know what you have, you can't protect it — this policy is the foundation for every other security control.
+The Asset Management Policy defines how the organization tracks, manages, hardens, and disposes of its physical and virtual assets throughout their lifecycle. If you don't know what you have, you can't protect it - this policy is the foundation for every other security control.
 
 ## What It Covers
 
@@ -20,15 +20,15 @@ The Asset Management Policy defines how the organization tracks, manages, harden
 
 This folder contains two documents that work together:
 
-- **`AMP-Template.md`** — The policy itself. Defines WHAT is required: Asset lifecycle management from acquisition to disposal. Defines inventory standards, system hardening requirements, media handling, and asset retirement procedures. This is the governance document reviewed by leadership and auditors.
-- **`Asset-Management-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: System hardening steps, patching cadences, endpoint security configuration, physical media transfer, media disposal/sanitization, and return of assets workflows. This is what the implementation teams use.
+- **`AMP-Template.md`** - The policy itself. Defines WHAT is required: Asset lifecycle management from acquisition to disposal. Defines inventory standards, system hardening requirements, media handling, and asset retirement procedures. This is the governance document reviewed by leadership and auditors.
+- **`Asset-Management-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: System hardening steps, patching cadences, endpoint security configuration, physical media transfer, media disposal/sanitization, and return of assets workflows. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
 
 ## Gotchas People Get Wrong
 
-**1. Asset inventory is always incomplete.** Everyone starts with good intentions, but within six months the inventory is stale. This is the #1 finding in SOC 2 audits. Automate or die — manual inventory maintenance doesn't scale past 20 employees.
+**1. Asset inventory is always incomplete.** Everyone starts with good intentions, but within six months the inventory is stale. This is the #1 finding in SOC 2 audits. Automate or die - manual inventory maintenance doesn't scale past 20 employees.
 
 **2. "Significant" is a weasel word.** If your policy says "all significant assets must be tracked," you need to define what "significant" means. Cost threshold? Data sensitivity? Regulatory impact? Without a definition, your team will exclude things they shouldn't.
 

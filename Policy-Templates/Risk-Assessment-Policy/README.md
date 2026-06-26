@@ -22,15 +22,15 @@ The Risk Assessment Policy defines how the organization identifies, analyzes, ev
 
 This folder contains two documents that work together:
 
-- **`RA-Policy-Template.md`** — The policy itself. Defines WHAT is required: Risk assessment methodology with impact/likelihood scoring, risk rating matrix, risk appetite definition, treatment options, and POA&M requirements. This is the governance document reviewed by leadership and auditors.
-- **`Risk-Assessment-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Risk assessment execution procedures, asset and threat identification workflows, risk register maintenance, and POA&M tracking processes. This is what the implementation teams use.
+- **`RA-Policy-Template.md`** - The policy itself. Defines WHAT is required: Risk assessment methodology with impact/likelihood scoring, risk rating matrix, risk appetite definition, treatment options, and POA&M requirements. This is the governance document reviewed by leadership and auditors.
+- **`Risk-Assessment-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Risk assessment execution procedures, asset and threat identification workflows, risk register maintenance, and POA&M tracking processes. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
 
 ## Gotchas People Get Wrong
 
-**1. Using this matrix for every type of risk.** The 5×5 Likelihood × Impact matrix works well for operational and information security risks. It does NOT work well for strategic risks, compliance risks (which are binary — you're either compliant or not), or financial risks (which have their own quantification methods). Don't try to force-fit every risk into this matrix.
+**1. Using this matrix for every type of risk.** The 5×5 Likelihood × Impact matrix works well for operational and information security risks. It does NOT work well for strategic risks, compliance risks (which are binary - you're either compliant or not), or financial risks (which have their own quantification methods). Don't try to force-fit every risk into this matrix.
 
 **2. Not defining "over the life of the organization" clearly.** The likelihood criteria reference "chance of occurrence over the life of the organization." If your startup is 2 years old, "once in 50–100 years" is meaningless. Adapt the likelihood scale to a meaningful time horizon (e.g., "over the next 3 years" or "over the planning period").
 
@@ -44,7 +44,7 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 
 **7. Annual assessment becomes a checkbox exercise.** Copy-pasting last year's risk register and updating the date is the most common GRC failure mode. Auditors look for evidence of genuine re-assessment: new risks added, old risks retired, scores adjusted based on changes. If your register hasn't changed in 3 years, it's a red flag.
 
-**8. Threat assessment is missing.** Many organizations have a risk assessment but no threat assessment. The threat assessment feeds the risk assessment — you can't properly assess likelihood without understanding the threat landscape. Include threat intelligence as an input to your annual risk assessment cycle.
+**8. Threat assessment is missing.** Many organizations have a risk assessment but no threat assessment. The threat assessment feeds the risk assessment - you can't properly assess likelihood without understanding the threat landscape. Include threat intelligence as an input to your annual risk assessment cycle.
 
 ## Implementation Advice
 
@@ -54,4 +54,4 @@ The policy sets the requirements; the procedure provides the step-by-step instru
 - **Integrate POA&M with the ticketing system.** POA&M items should be tracked as tickets or tasks, not just rows in a spreadsheet. This ensures ownership, deadlines, and completion tracking are enforced by workflow, not by hoping someone remembers.
 - **Map risks to controls.** For each risk, document which existing controls mitigate it. This creates traceability between your risk assessment and your control framework (SOC 2, ISO 27001, NIST 800-53). Auditors love this.
 - **Annual assessment minimum; trigger-based is better.** Annual is the baseline. Supplement with event-driven assessments: major system change, new regulation, significant incident, merger/acquisition, new product launch.
-- **Don't overthink the math.** The 5×5 matrix is intentionally simple. Don't add decimal precision or complex formulas — they don't improve accuracy, they just make the process harder to explain to executives and auditors.
+- **Don't overthink the math.** The 5×5 matrix is intentionally simple. Don't add decimal precision or complex formulas - they don't improve accuracy, they just make the process harder to explain to executives and auditors.

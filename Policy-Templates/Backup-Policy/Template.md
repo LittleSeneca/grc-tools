@@ -32,7 +32,7 @@
 32|- Data retention periods must comply with all applicable regulatory and contractual obligations. By default, security documentation and audit trails must be retained for a minimum of seven years unless a different period is specified by regulation, the Data Classification Policy, or contractual agreement.
 33|- System documentation, including security and privacy-related documentation, configuration records, and infrastructure-as-code, must be included in backup scope.
 34|
-35|### Backup Strategy — The 3-2-1 Rule
+35|### Backup Strategy - The 3-2-1 Rule
 36|
 37|____ adopts the industry-standard 3-2-1 backup framework:
 38|

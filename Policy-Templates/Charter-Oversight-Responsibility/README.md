@@ -16,9 +16,9 @@ This Charter formally establishes who is responsible for overseeing internal con
 
 This folder contains three files:
 
-- **`Charter-Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Charter-Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -26,7 +26,7 @@ The policy and procedure are deliberately separate: the policy is for all employ
 
 **1. Writing it and never following it.** The meeting cadence you specify ("quarterly" or "semi-annually") must actually happen. Auditors ask for meeting minutes. If the Charter says quarterly and you met twice last year, that's a finding.
 
-**2. Confusing oversight with operations.** The Board/Audit Committee oversees — they don't operate. They review reports, approve strategies, and hold management accountable. If your Charter makes it sound like the Board is running the security program, it's wrong.
+**2. Confusing oversight with operations.** The Board/Audit Committee oversees - they don't operate. They review reports, approve strategies, and hold management accountable. If your Charter makes it sound like the Board is running the security program, it's wrong.
 
 **3. Missing POA&M tracking.** The Plan of Action and Milestones is how you prove the oversight body actually did something about identified deficiencies. Without it, oversight looks performative.
 

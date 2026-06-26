@@ -23,8 +23,8 @@ The Security Incident Response Process is the operational playbook that team mem
 
 This folder contains two files:
 
-- **`IR-Process-Template.md`** — The process document. Describes HOW to operationalize the related policy.
-- **`README.md`** — This overview.
+- **`IR-Process-Template.md`** - The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** - This overview.
 
 When updating the governing policy, ensure implementation changes flow into this process document.
 
@@ -47,9 +47,9 @@ When updating the governing policy, ensure implementation changes flow into this
 ## Implementation Advice
 
 - **Print this process.** Keep a printed copy in the Security Officer's desk and in the datacenter/server room. If systems are down, you can't access the digital copy. Include the IRT contact list with personal phone numbers.
-- **Create a "break glass" runbook supplement.** This process is comprehensive — too comprehensive to read cover-to-cover during an incident. Create a one-page "Incident Response Quick Card" with just the essential steps: Who to call, first 5 actions, severity decision tree, and a checklist. The full process is the reference; the quick card is what you actually use.
+- **Create a "break glass" runbook supplement.** This process is comprehensive - too comprehensive to read cover-to-cover during an incident. Create a one-page "Incident Response Quick Card" with just the essential steps: Who to call, first 5 actions, severity decision tree, and a checklist. The full process is the reference; the quick card is what you actually use.
 - **Pre-create tickets for common incident types.** Have ticket templates pre-configured for: ransomware, data breach, DDoS, unauthorized access, and lost/stolen device. During an incident, the responder creates a ticket from template, not from scratch.
 - **Define handoff points to external teams explicitly.** If you engage a cyber insurance IR team or a DFIR firm, what exactly do they take over? Investigation? Containment? Communication? Define the scope of authority and coordination model beforehand so there's no confusion during the incident.
-- **Run a "communications-only" drill.** Tabletop exercises usually focus on technical response. Run a separate drill focused purely on communications: draft a customer notification, a regulatory filing, and a press statement, all within the 72-hour GDPR window. This is where organizations consistently fail — not because they can't contain the incident, but because they can't communicate about it competently.
+- **Run a "communications-only" drill.** Tabletop exercises usually focus on technical response. Run a separate drill focused purely on communications: draft a customer notification, a regulatory filing, and a press statement, all within the 72-hour GDPR window. This is where organizations consistently fail - not because they can't contain the incident, but because they can't communicate about it competently.
 - **Document the "who has authority to spend money" question.** During a Critical incident, you may need to engage an expensive DFIR firm, purchase emergency hardware, or authorize overtime. Who can approve unbudgeted spending up to what amount? Define this in advance. An incident that gets worse because someone was waiting for purchase approval is a preventable failure.
 - **Review and update within 30 days of every real incident.** Every real incident reveals gaps in your process. Schedule a process review within 30 days of incident closure (not just a lessons learned meeting, but an actual update to this document). The process should improve with every incident.

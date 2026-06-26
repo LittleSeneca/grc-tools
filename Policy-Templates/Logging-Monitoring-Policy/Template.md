@@ -68,29 +68,29 @@ Log records must be created for at minimum the following activities:
 **Administrative Actions:**
 - All actions taken by any individual with administrative or root access, including interactive use of application or system accounts.
 - Attempts to grant, modify, or revoke access rights, including:
-  - Adding or removing users and groups.
-  - Changing user privilege levels or role assignments.
-  - Changing file, directory, or database object permissions.
-  - Modifying firewall rules or security group configurations.
-  - Changing user passwords or authentication methods.
+ - Adding or removing users and groups.
+ - Changing user privilege levels or role assignments.
+ - Changing file, directory, or database object permissions.
+ - Modifying firewall rules or security group configurations.
+ - Changing user passwords or authentication methods.
 - All access to audit logs (viewing, modification, deletion, export).
 - Initialization, starting, stopping, or pausing of audit logging services.
 - Creation and deletion of system-level objects (VMs, containers, databases, storage volumes).
 - System, network, or services configuration changes.
 - Installation of software, patches, updates, or configuration changes.
 - Application process startup, shutdown, restart, abort, or failure, especially due to:
-  - Resource exhaustion (CPU, memory, disk space, network bandwidth).
-  - Reaching a resource limit or threshold.
-  - Failure of network services (DHCP, DNS, NTP).
-  - Hardware faults.
+ - Resource exhaustion (CPU, memory, disk space, network bandwidth).
+ - Reaching a resource limit or threshold.
+ - Failure of network services (DHCP, DNS, NTP).
+ - Hardware faults.
 
 **Security Events:**
 - Detection of suspicious or malicious activity from:
-  - Intrusion detection/prevention systems (IDS/IPS).
-  - Web application firewalls (WAF).
-  - Anti-malware or anti-spyware systems.
-  - File integrity monitoring (FIM) systems.
-  - Data loss prevention (DLP) systems.
+ - Intrusion detection/prevention systems (IDS/IPS).
+ - Web application firewalls (WAF).
+ - Anti-malware or anti-spyware systems.
+ - File integrity monitoring (FIM) systems.
+ - Data loss prevention (DLP) systems.
 - Alerts from security information and event management (SIEM) or centralized logging platforms.
 
 **Cloud Services:**
@@ -156,9 +156,9 @@ To safeguard and prevent manipulation of logs by individuals with elevated acces
 ### Review
 
 - Logs must be reviewed on a regular basis to maintain accountability of privileged users:
-  - Automated alerting on defined patterns (see Monitoring section below).
-  - Scheduled manual review of privileged user activity at least ____ (weekly/monthly).
-  - Ad-hoc review triggered by security events or investigations.
+ - Automated alerting on defined patterns (see Monitoring section below).
+ - Scheduled manual review of privileged user activity at least ____ (weekly/monthly).
+ - Ad-hoc review triggered by security events or investigations.
 - All activities carried out by system administrators and operators must be logged and subjected to routine review.
 
 ## Log Retention

@@ -18,9 +18,9 @@ The Contractor Access and Confidentiality Agreement is the contractor-specific c
 
 This folder contains three files:
 
-- **`Template.md`** — The policy. Defines WHAT is required.
-- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
-- **`README.md`** — This overview.
+- **`Template.md`** - The policy. Defines WHAT is required.
+- **`Procedure.md`** - Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** - This overview.
 
 The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
 
@@ -28,11 +28,11 @@ The policy and procedure are deliberately separate: the policy is for all employ
 
 **1. Treating contractors like employees in the agreement.** Contractors are not employees. The agreement must reference the master services agreement or contract, not employment terms. It must use contractor-appropriate language ("termination of contract" not "termination of employment"). Labor law treats these differently; misclassification in your agreements can create legal exposure.
 
-**2. Not including a return-of-materials clause.** Employees typically go through an offboarding process with HR and IT that includes asset return. Contractors often do not. The agreement must explicitly require return or certified destruction of all materials upon contract end — and someone must verify compliance.
+**2. Not including a return-of-materials clause.** Employees typically go through an offboarding process with HR and IT that includes asset return. Contractors often do not. The agreement must explicitly require return or certified destruction of all materials upon contract end - and someone must verify compliance.
 
 **3. Overlooking subcontractors.** If your contractor hires a subcontractor to do part of the work, does the subcontractor sign this agreement? The master services agreement should flow down confidentiality requirements to subcontractors, and the contractor should be responsible for ensuring compliance.
 
-**4. Access that outlasts the contract.** Contractors often retain system access after their contract ends because nobody remembers to revoke it. This agreement gives you the authority to revoke access "at any time" — but you need a process that actually does it. Link contractor access to the contract end date with automatic expiration.
+**4. Access that outlasts the contract.** Contractors often retain system access after their contract ends because nobody remembers to revoke it. This agreement gives you the authority to revoke access "at any time" - but you need a process that actually does it. Link contractor access to the contract end date with automatic expiration.
 
 **5. Intellectual property ambiguity.** The agreement states the contractor has no ownership rights over organizational data, but what about work product created during the engagement? IP ownership (work-for-hire provisions) belongs in the master services agreement, not the confidentiality agreement. Cross-reference them clearly so there's no ambiguity.
 

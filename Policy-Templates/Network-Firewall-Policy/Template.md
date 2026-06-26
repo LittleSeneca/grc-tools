@@ -21,10 +21,10 @@ This policy applies to all firewalls and firewall capabilities deployed within _
 
 ____ employs a layered firewall architecture:
 
-- **Layer 1 — Perimeter:** Network perimeter firewalls between the internet and the organization's network edge.
-- **Layer 2 — Internal Segmentation:** Firewalls or security groups between internal network segments (production, staging, corporate, guest).
-- **Layer 3 — Host:** Host-based firewalls on all servers and workstations.
-- **Layer 4 — Application:** Web application firewalls (WAF) in front of public-facing web applications.
+- **Layer 1 - Perimeter:** Network perimeter firewalls between the internet and the organization's network edge.
+- **Layer 2 - Internal Segmentation:** Firewalls or security groups between internal network segments (production, staging, corporate, guest).
+- **Layer 3 - Host:** Host-based firewalls on all servers and workstations.
+- **Layer 4 - Application:** Web application firewalls (WAF) in front of public-facing web applications.
 
 Each layer provides independent protection. A failure at one layer must not result in complete loss of protection.
 

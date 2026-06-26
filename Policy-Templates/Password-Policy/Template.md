@@ -13,7 +13,7 @@
 13|
 14|## Scope
 15|
-16|This policy applies to all Personnel — employees, contractors, temporary workers, and any other individuals who hold accounts on any system that resides within ____'s facilities or has access to the organizational network. It covers all authentication credentials, including passwords, passphrases, PINs, and multi-factor authentication tokens.
+16|This policy applies to all Personnel - employees, contractors, temporary workers, and any other individuals who hold accounts on any system that resides within ____'s facilities or has access to the organizational network. It covers all authentication credentials, including passwords, passphrases, PINs, and multi-factor authentication tokens.
 17|
 18|## Policy
 19|
@@ -126,7 +126,7 @@
 128|
 129|## Compliance and Enforcement
 130|
-131|Compliance is verified through automated MFA coverage checks, password manager adoption audits, periodic review of authentication configurations, and breach corpus checks. Personnel found to have violated this policy — particularly through credential sharing, reuse, or insecure storage — may be subject to disciplinary action.
+131|Compliance is verified through automated MFA coverage checks, password manager adoption audits, periodic review of authentication configurations, and breach corpus checks. Personnel found to have violated this policy - particularly through credential sharing, reuse, or insecure storage - may be subject to disciplinary action.
 132|
 133|## Related Documents
 134|

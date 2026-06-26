@@ -2,7 +2,7 @@
 
 ## What This Is
 
-The Logging and Monitoring Policy defines what must be logged, how logs must be protected, how long logs must be retained, and how monitoring must be conducted across the organization's entire technology estate. It is a foundational control — without comprehensive logging, you cannot detect incidents, investigate breaches, or prove control effectiveness to auditors. This policy is referenced by nearly every other security policy in the ISP.
+The Logging and Monitoring Policy defines what must be logged, how logs must be protected, how long logs must be retained, and how monitoring must be conducted across the organization's entire technology estate. It is a foundational control - without comprehensive logging, you cannot detect incidents, investigate breaches, or prove control effectiveness to auditors. This policy is referenced by nearly every other security policy in the ISP.
 
 ## What It Covers
 
@@ -19,8 +19,8 @@ The Logging and Monitoring Policy defines what must be logged, how logs must be 
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Audit logging and monitoring requirements. Defines logged activities, log elements, clock synchronization, log protection controls, retention periods, and monitoring/alerting requirements. This is the governance document reviewed by leadership and auditors.
-- **`Logging-Monitoring-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Log collection and forwarding configuration, SIEM integration, alert rule setup, log retention lifecycle management, and monitoring dashboard configuration. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Audit logging and monitoring requirements. Defines logged activities, log elements, clock synchronization, log protection controls, retention periods, and monitoring/alerting requirements. This is the governance document reviewed by leadership and auditors.
+- **`Logging-Monitoring-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Log collection and forwarding configuration, SIEM integration, alert rule setup, log retention lifecycle management, and monitoring dashboard configuration. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 

@@ -61,7 +61,7 @@
 63|Access must be revoked according to the individual's departure type:
 64|Access must be revoked according to the individual's departure type:
 65|- **Voluntary Departure:** Physical access revoked by end of last working day. Logical access revoked within ____ (e.g., 1) business day. A termination checklist documents all access removal and asset return.
-66|- **Involuntary Termination:** Access revoked immediately upon notification — before or simultaneously with notification to the individual.
+66|- **Involuntary Termination:** Access revoked immediately upon notification - before or simultaneously with notification to the individual.
 67|- **Role Change:** Previous role access must be removed if no longer needed. New role access provisioned through standard process. Access must not accumulate across roles.
 68|- **Extended Inactivity:** Accounts inactive for ____ (e.g., 90) days must be disabled. Disabled accounts unused for an additional ____ (e.g., 90) days must be deleted.
 69|

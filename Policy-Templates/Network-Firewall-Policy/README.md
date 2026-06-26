@@ -20,19 +20,19 @@ The Network Firewall Policy defines how the organization's firewall infrastructu
 
 This folder contains two documents that work together:
 
-- **`Template.md`** — The policy itself. Defines WHAT is required: Firewall deployment and management requirements across four defense-in-depth layers (Perimeter, Internal Segmentation, Host, Application). Defines ruleset management, administrative access, and traffic filtering standards. This is the governance document reviewed by leadership and auditors.
-- **`Firewall-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Firewall deployment and configuration procedures, ruleset review workflows, log forwarding setup, and cloud firewall (security group/NACL) management. This is what the implementation teams use.
+- **`Template.md`** - The policy itself. Defines WHAT is required: Firewall deployment and management requirements across four defense-in-depth layers (Perimeter, Internal Segmentation, Host, Application). Defines ruleset management, administrative access, and traffic filtering standards. This is the governance document reviewed by leadership and auditors.
+- **`Firewall-Procedures.md`** - Companion implementation procedures. Describes HOW to operationalize the policy: Firewall deployment and configuration procedures, ruleset review workflows, log forwarding setup, and cloud firewall (security group/NACL) management. This is what the implementation teams use.
 
 The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
 
 
 ## Common Gotchas and Mistakes
 
-**1. Default-allow or default-deny without enforcement.** Stating "default deny" in the policy but having an "allow all" catch-all rule at the bottom of the ruleset is a contradiction. The final rule in every firewall ruleset must be an explicit deny. If the firewall platform has a default deny behavior, verify it is active — some platforms allow changing the default behavior.
+**1. Default-allow or default-deny without enforcement.** Stating "default deny" in the policy but having an "allow all" catch-all rule at the bottom of the ruleset is a contradiction. The final rule in every firewall ruleset must be an explicit deny. If the firewall platform has a default deny behavior, verify it is active - some platforms allow changing the default behavior.
 
 **2. Ruleset rot.** Over time, firewall rules accumulate. Engineers add rules but rarely remove them because "nobody knows if that rule is still needed." The result is a bloated ruleset with excessive permitted traffic, making both security analysis and troubleshooting difficult. Quarterly reviews that aggressively remove stale rules are essential.
 
-**3. Single firewall layer.** Relying on a perimeter firewall alone with no host-based firewalls or internal segmentation means that any compromise behind the perimeter gains unrestricted lateral movement. Defense-in-depth means multiple independent layers — the perimeter firewall is one layer, not the only layer.
+**3. Single firewall layer.** Relying on a perimeter firewall alone with no host-based firewalls or internal segmentation means that any compromise behind the perimeter gains unrestricted lateral movement. Defense-in-depth means multiple independent layers - the perimeter firewall is one layer, not the only layer.
 
 **4. Management interfaces on the internet.** Exposing SSH, HTTPS management consoles, or administrative panels to the internet is a critical mistake. Management access must require VPN or a dedicated management network. External vulnerability scanners will find exposed management interfaces rapidly.
 

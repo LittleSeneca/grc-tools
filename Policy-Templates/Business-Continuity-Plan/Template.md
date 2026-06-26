@@ -59,9 +59,9 @@ ____ policy requires that:
 
 The following order of succession ensures uninterrupted decision-making authority for execution of the Business Continuity Plan:
 
-1. ____ (e.g., Chief Executive Officer) — Overall authority; responsible for personnel safety and plan execution.
-2. ____ (e.g., Chief Operating Officer) — Assumes authority if the primary is unavailable or delegates.
-3. ____ (e.g., Head of Operations) — Assumes authority if both primary and secondary are unavailable.
+1. ____ (e.g., Chief Executive Officer) - Overall authority; responsible for personnel safety and plan execution.
+2. ____ (e.g., Chief Operating Officer) - Assumes authority if the primary is unavailable or delegates.
+3. ____ (e.g., Head of Operations) - Assumes authority if both primary and secondary are unavailable.
 
 The primary authority holder may delegate specific responsibilities to qualified successors. Delegation decisions must be documented in the event log.
 

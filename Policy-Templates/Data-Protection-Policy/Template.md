@@ -22,7 +22,7 @@
 22|The following principles govern all data protection activities:
 23|
 24|- Data must be handled and protected according to its classification level as defined in the Data Classification Policy, with encryption applied where required by the Encryption Policy.
-25|- Data of the same classification level should be stored in dedicated repositories wherever possible. Where multiple classification levels coexist in a single repository, security controls — including authentication, authorization, encryption, and auditing — must be applied at the level required by the highest classification present.
+25|- Data of the same classification level should be stored in dedicated repositories wherever possible. Where multiple classification levels coexist in a single repository, security controls - including authentication, authorization, encryption, and auditing - must be applied at the level required by the highest classification present.
 26|- Personnel shall not have direct, routine administrative access to production data during normal business operations. Exceptions are limited to emergency operations such as forensic investigation, incident response, and disaster recovery, and must be logged and reviewed.
 27|- All Production Systems must disable services, ports, and protocols that are not required to fulfill the system's business purpose or function (principle of least functionality).
 28|- All access to Production Systems must be logged and retained in accordance with the Logging and Monitoring Policy.
