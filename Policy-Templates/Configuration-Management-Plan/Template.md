@@ -188,62 +188,13 @@ Training must be completed:
 - When significant changes to CM processes or tooling occur
 - Annually as a refresher
 
-## Change Control Process
+## Change Control Requirements
 
-### Change Classification
+All changes to controlled baselines must be submitted through a formal change request process managed by the Change Control Board (CCB). The CCB is the decision-making authority for all configuration changes and must approve or reject all change requests before implementation. Changes must be classified by severity and impact, supported by documented needs statements, change requests, impact analyses, and authorization notices. A complete audit trail linking problems to change requests and resolutions must be maintained.
 
-Changes are classified by severity and impact:
+Configuration Status Accounting (CSA) must track all change requests from submission through implementation and produce status summary reports on a ____ (e.g., monthly) basis. Configuration management metrics — including change volume, disposition rates, change success rates, unauthorized changes, and audit findings — must be tracked to assess CM effectiveness.
 
-| Classification | Definition | Examples |
-|---------------|------------|----------|
-| Critical | Affects system availability, security, or data integrity | Security patch for actively exploited vulnerability |
-| High | Significant functional or architectural change | New feature, database schema migration |
-| Medium | Moderate change with limited impact | Configuration parameter update, dependency version bump |
-| Low | Minor change with minimal risk | Documentation update, cosmetic UI change |
-
-### Change Control Forms
-
-All change requests must follow a documented workflow through the following forms:
-
-#### Needs Statement
-Describes the business or technical need driving the change, including the problem being solved or opportunity being addressed.
-
-#### Change Request
-Formal request containing: CI affected, description of proposed change, impact assessment (functional, security, performance, cost), implementation plan, test plan, rollback plan, and justification.
-
-#### Impact Analysis Report
-Assessment by technical stakeholders of the change's effects on the system, interfaces, security, performance, and dependent systems.
-
-#### Change Authorization Notice
-Formal approval or rejection of the change, signed by the CCB or designee, with any conditions or constraints.
-
-### Problem Resolution Tracking
-
-All problems, defects, and issues must be logged in the organization's ticketing system. Each issue must be traceable to the CI(s) affected, the change request that resolves it (if applicable), and the verification that resolution was successful. An audit trail must be maintained linking problems to their resolution.
-
-### Measurements
-
-The following metrics must be tracked to assess CM effectiveness:
-
-- Number of change requests submitted, approved, rejected, and implemented per period
-- Mean time from change request submission to CCB disposition
-- Change success rate (changes implemented without incident or rollback)
-- Number of unauthorized changes detected
-- Baseline audit findings and remediation status
-- Configuration drift incidents detected and resolved
-
-## Configuration Status Accounting
-
-All CM activities must be recorded, stored, and reported by the Configuration Status Accounting (CSA) function. The CSA function:
-
-- Tracks the status of all change requests from submission through implementation.
-- Maintains the audit trail for all changes to controlled baselines.
-- Identifies and issues the most current approved versions of CM-controlled items.
-- Produces status summary reports on a ____ (e.g., monthly) basis, including:
-  - Change request inventory and disposition
-  - Current baseline versions for each CI
-  - Outstanding approval items
-  - Configuration audit findings
+Detailed implementation procedures — including CCB operations, release management, and configuration item auditing — are defined in Procedure.md, which is the authoritative source for HOW change control activities are executed.
 
 ## Configuration Management Libraries
 
@@ -261,14 +212,9 @@ Stores baselined, approved, and released artifacts. Access is strictly controlle
 
 ## Release Management
 
-All releases of configuration items must be managed through a formal release process:
+All releases of configuration items must be managed through a formal release process that includes: identification of a release candidate, preparation of release notes documenting contents and known issues, CCB or designated authority approval, deployment during a defined maintenance window, production verification, and archival of prior baseline versions for a retention period of ____ months to support rollback.
 
-1. Release candidate is identified from the staging/test library.
-2. Release notes are prepared documenting contents, changes, known issues, and installation instructions.
-3. Release is approved by the CCB or designated release authority.
-4. Release is deployed to production during the defined maintenance window.
-5. Release is verified in production and the production library is updated with the new baseline.
-6. Prior baseline versions are archived for a retention period of ____ months to support rollback.
+Detailed implementation procedures for release execution, including deployment steps, smoke testing, rollback criteria, and post-release monitoring, are defined in Procedure.md.
 
 ## Compliance and Enforcement
 

@@ -15,6 +15,15 @@ The Disaster Recovery Process is the operational companion to the Disaster Recov
 - Annual testing cadence and cross-platform dependency testing
 - Post-incident documentation and review requirements
 
+## Document Structure
+
+This folder contains two files:
+
+- **`Template.md`** — The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** — This overview.
+
+When updating the governing policy, ensure implementation changes flow into this process document.
+
 ## Gotchas People Get Wrong
 
 **1. Platform-specific procedures that go stale.** SaaS platforms change their UIs, APIs, and features frequently. A DR process that says "click the Recover button on the Services tab" may be wrong within months. Review platform-specific procedures quarterly, not just annually.

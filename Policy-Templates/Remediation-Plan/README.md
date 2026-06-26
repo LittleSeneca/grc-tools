@@ -17,6 +17,16 @@ The Remediation Plan is the operational document that defines the end-to-end wor
 - Exception management process
 - Roles and responsibilities across security, IT, development, and leadership
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Remediation-Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. No distinction between "assigned" and "acknowledged."** An SLA that says "Critical findings must be assigned within 4 hours" is meaningless if the assignee doesn't look at their queue for 3 days. Define both an assignment SLA (ticket lands in someone's queue) and an acknowledgment SLA (assignee confirms they're working on it). The escalation path triggers on missed acknowledgments, not missed assignments.

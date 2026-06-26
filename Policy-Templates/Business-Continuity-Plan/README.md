@@ -14,6 +14,16 @@ The Business Continuity Plan (BCP) is the organization's framework for maintaini
 - Annual testing requirements (tabletop and functional)
 - Plan maintenance and update triggers
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Business continuity strategy including recovery objectives (RTO/RPO), line of succession, response team structure, and plan testing requirements. This is the governance document reviewed by leadership and auditors.
+- **`BCP-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Work site recovery, critical service recovery, third-party dependency failure handling, and plan testing execution procedures. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Mixing up BCP and DRP.** The BCP is about business operations — people, facilities, communication, supply chain. The DRP is about IT systems — servers, databases, networks. They reference each other, but they are separate documents with separate owners. Auditors expect both.

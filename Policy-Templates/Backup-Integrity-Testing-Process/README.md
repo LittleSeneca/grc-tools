@@ -14,6 +14,15 @@ The Backup Integrity Testing Process is an operational procedure document that d
 - Acceptance criteria and pass/fail thresholds
 - Documentation and reporting requirements for audit evidence
 
+## Document Structure
+
+This folder contains two files:
+
+- **`Template.md`** — The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** — This overview.
+
+When updating the governing policy, ensure implementation changes flow into this process document.
+
 ## Gotchas People Get Wrong
 
 **1. Testing only that backup files exist, not that they restore.** Running `aws s3 ls` on your backup bucket proves the files are present but says nothing about whether they contain valid data or will restore successfully. The restore is the test.

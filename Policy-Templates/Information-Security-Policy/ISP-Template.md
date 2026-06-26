@@ -72,15 +72,15 @@ The ____ is responsible for the design, development, maintenance, dissemination,
 
 ### Training
 
-All Personnel must complete information security awareness training upon hire and annually thereafter. Training must cover security policies, data handling, incident reporting, and role-specific responsibilities. Training records must be maintained in ____.
+All Personnel must complete information security awareness training upon hire and annually thereafter. Training must cover security policies, data handling, incident reporting, and role-specific responsibilities. Training records must be maintained.
 
-Implementation procedures, including onboarding timelines, training delivery methods, content requirements, and non-compliance tracking, are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 1: Security Awareness Training Program.
+Detailed training program procedures are defined in [ISP Implementation Procedures](./ISP-Procedures.md).
 
 ### Clean Desk and Clear Screen
 
 All Personnel must maintain a clean desk and clear screen — sensitive materials must be secured when unattended, workstations must be locked when not in use, and passwords must never be left in accessible locations.
 
-Enforcement procedures, including technical controls, periodic walkthroughs, and remote worker considerations, are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 2: Clean Desk and Clear Screen Enforcement.
+Detailed enforcement procedures are defined in [ISP Implementation Procedures](./ISP-Procedures.md).
 
 ### Internet and Intranet Access
 
@@ -169,7 +169,7 @@ Contractual obligations for safeguarding information include:
 
 Policy violations must be addressed through a structured corrective action process. The organization reserves the right to combine or skip steps depending on the severity and circumstances of the violation. Behavior that is illegal (theft, violence, substance abuse, fraud) is grounds for immediate termination without progressive discipline.
 
-Detailed procedures for each step — verbal warning, formal written warning, suspension, and termination — are defined in the [ISP Implementation Procedures](ISP-Procedures.md) — Procedure 3: Disciplinary Process for Policy Violations.
+Detailed disciplinary process procedures are defined in [ISP Implementation Procedures](./ISP-Procedures.md).
 
 ## Policy Review
 

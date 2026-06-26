@@ -73,7 +73,7 @@ Before retiring or replacing any asset that retains data, data retention require
 
 ### System Hardening
 
-System hardening must follow industry-standard benchmarks (CIS or equivalent) and organizational configuration standards. Implementation procedures — including specific hardening steps, patching cadences, and endpoint security configurations — are defined in the companion [Asset Management — Implementation Procedures](Asset-Management-Procedures.md).
+System hardening must follow industry-standard benchmarks (CIS or equivalent) and organizational configuration standards.
 
 #### Device Hardening
 
@@ -87,25 +87,25 @@ OS and infrastructure patches must be evaluated and installed based on criticali
 
 Anti-malware/EDR must be deployed on all endpoints with automatic updates, scanning, and alerting.
 
-Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md).
+Detailed implementation procedures for system hardening, patching cadences, and endpoint security configuration are defined in [Asset Management Implementation Procedures](./Asset-Management-Procedures.md).
 
 ### Physical Media Transfer
 
 Physical media transfers must follow secure handling procedures. Electronic transfer is preferred. When physical media is required, data must be encrypted. Approved couriers must be used with verification of identification. Packaging must protect against physical damage. Transfers must be logged with content description, protection type, times, and receipt confirmation.
 
-Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 4: Physical Media Transfer.
+Detailed media transfer procedures are defined in [Asset Management Implementation Procedures](./Asset-Management-Procedures.md).
 
 ### Return of Assets
 
 Upon termination, all issued assets must be returned. The process includes return of physical and electronic assets. If equipment was purchased by or entrusted to an employee or third party, information must be transferred to the organization and securely erased. Unauthorized copying must be monitored and controlled.
 
-Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 6: Return of Assets.
+Detailed return of assets procedures are defined in [Asset Management Implementation Procedures](./Asset-Management-Procedures.md).
 
 ### Media Disposal
 
 Media containing confidential information must be disposed of proportionally to sensitivity. Secure disposal via approved third-party services is required. Sanitization through incineration, shredding, or cryptographic erasure must follow the Encryption Policy. Disposal must be logged for audit trail purposes. Damaged media must be assessed for disposal vs. repair. Sanitization procedures must be tested annually.
 
-Implementation procedures are defined in [Asset Management — Implementation Procedures](Asset-Management-Procedures.md) — Procedure 5: Media Disposal and Sanitization.
+Detailed media disposal and sanitization procedures are defined in [Asset Management Implementation Procedures](./Asset-Management-Procedures.md).
 
 ## Roles and Responsibilities
 
@@ -125,6 +125,7 @@ Violation of this policy may result in disciplinary action as outlined in the In
 - Data Classification Policy
 - Encryption Policy
 - Vendor Management Policy
+- [Asset Management Implementation Procedures](./Asset-Management-Procedures.md)
 
 ## Revision History
 

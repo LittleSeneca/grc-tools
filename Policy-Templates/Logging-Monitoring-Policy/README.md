@@ -15,6 +15,16 @@ The Logging and Monitoring Policy defines what must be logged, how logs must be 
 - Critical security control monitoring and failure response procedures
 - Alerting requirements for security events
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Audit logging and monitoring requirements. Defines logged activities, log elements, clock synchronization, log protection controls, retention periods, and monitoring/alerting requirements. This is the governance document reviewed by leadership and auditors.
+- **`Logging-Monitoring-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Log collection and forwarding configuration, SIEM integration, alert rule setup, log retention lifecycle management, and monitoring dashboard configuration. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Logging everything but never reviewing.** Enabling verbose logging on all systems and then never looking at the logs provides zero security value and wastes storage. The policy must require both logging AND review (automated alerting + scheduled manual review of privileged activity). Auditors will check whether log review actually happens.

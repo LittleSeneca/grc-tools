@@ -126,15 +126,11 @@ Disposal activities must be documented with a record including:
 | Finance | Manage financial record retention; coordinate with auditors on retention requirements |
 | All Personnel | Comply with retention schedules; do not retain data beyond authorized periods |
 
-## Legal Hold Procedure
+## Legal Hold Requirements
 
-When a legal hold is issued:
+The organization must maintain a formal legal hold process that supersedes standard retention periods. When a legal hold is issued by the Legal team, all affected data must be preserved, normal deletion schedules must be suspended, and technical measures must be implemented to prevent deletion until the hold is formally released in writing. The process must include documented issuance, custodian acknowledgment, preservation verification, and formal release procedures.
 
-1. The Legal team issues a written legal hold notice identifying the scope of data to be preserved, the relevant matter, and the custodian(s) of the data.
-2. Affected Personnel and system owners must immediately suspend normal deletion schedules for the identified data.
-3. IT implements technical measures to prevent deletion of the affected data (e.g., suspension of automated purging jobs, preservation of backup media).
-4. The legal hold remains in effect until the Legal team issues a written release.
-5. Upon release, normal retention and deletion processes resume.
+Detailed implementation procedures — including legal hold issuance workflow, technical preservation measures, custodian management, and release coordination — are defined in Procedure.md, which is the authoritative source for HOW legal holds are executed.
 
 ## Compliance and Enforcement
 

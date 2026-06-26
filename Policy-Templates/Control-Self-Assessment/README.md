@@ -16,6 +16,16 @@ The Control Self-Assessment Process defines how the organization evaluates its o
 - Roles and responsibilities (Security Officer, control owners, GRC team, executive management)
 - Recommended GRC tools (Drata, Vanta, or equivalent)
 
+## Document Structure
+
+This folder contains three files:
+
+- **`CSA-Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. "Self-assessment" means "mark everything as effective."** The most common failure mode is control owners attesting that everything is working perfectly because they don't want to create work for themselves. This is why external auditors test controls independently — and why discrepancies between self-assessments and audit findings are a major red flag. Create a culture where identifying issues is rewarded, not punished. "We found and fixed 5 control gaps this quarter" is a better narrative than "Everything is perfect."

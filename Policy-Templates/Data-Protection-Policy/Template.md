@@ -30,21 +30,15 @@ The following principles govern all data protection activities:
 
 ### Customer Data Protection
 
-All customer data must be protected in accordance with the following requirements:
+Controls must be implemented and periodically reviewed to protect customer data from unauthorized alteration, destruction, or disclosure. Customer data must be logically or physically segmented and segmentation validated through testing. Customer data at rest must be stored on encrypted volumes using organizational key management. All customer data repositories must support access logging and automated monitoring for potential security incidents.
 
-- Controls must be implemented and periodically reviewed to protect customer data from unauthorized alteration, destruction, or disclosure.
-- Customer data must be logically or physically segmented so that each customer can access only their own data. Segmentation must be enforced at the application layer and validated through testing.
-- Customer data at rest must be stored on encrypted volumes using encryption keys managed by ____. Volume encryption keys and the systems that generate them must be protected from unauthorized access, with key material accessible only by privileged accounts subject to access reviews.
-- All customer data repositories must support access logging and automated monitoring for potential security incidents.
+> **Implementation procedures:** See [Data Protection Procedures — Procedure 1: Customer Data Protection Implementation](./Data-Protection-Procedures.md)
 
 ### Access Controls for Production Data
 
-Access to production data is governed by the principle of least privilege and requires the following controls:
+Access to production data is governed by the principle of least privilege. Access to production environments is disabled by default; temporary, time-bound access requires formal approval with documented justification, scope, and expiration. Production access must be reviewed on a ____ (e.g., quarterly) basis, with immediate revocation of unneeded access. Privileged access must use just-in-time (JIT) provisioning where feasible.
 
-- Access to production environments is disabled by default for all Personnel. Temporary, time-bound access may be granted through a formal approval process when a legitimate business need exists.
-- All production access requests must be documented, approved by the appropriate authority (e.g., Security Officer, system owner), and include a clear justification, scope, and expiration time.
-- Production access is reviewed on a ____ (e.g., quarterly) basis. Access that is no longer required must be revoked immediately.
-- Privileged access to production must use just-in-time (JIT) provisioning where technically feasible, with automatic revocation after the approved time window.
+> **Implementation procedures:** See [Data Protection Procedures — Procedure 2: Production Data Access Controls](./Data-Protection-Procedures.md)
 
 ### Data at Rest Protection
 
@@ -54,37 +48,23 @@ All databases, data stores, and file systems containing Restricted or Confidenti
 
 #### Storage and Disposal
 
-Stored data must be managed in alignment with the Asset Management Policy, Data Classification Policy, and Data Retention Policy. Key considerations include:
-
-- Authorization requirements for accessing or managing stored data
-- Proper identification of records and their applicable retention periods
-- Planning for technology changes to ensure data remains accessible throughout the retention period
-- Defined retrieval timeframes and acceptable formats
-- Approved methods of secure disposal at end of retention
+Stored data must be managed in alignment with the Asset Management Policy, Data Classification Policy, and Data Retention Policy. Key requirements include: authorization controls for stored data access, proper record identification and retention period tracking, planning for technology changes to maintain accessibility, defined retrieval timeframes, and approved methods of secure disposal at end of retention.
 
 #### Data Deletion
 
-Data that is no longer required for business, legal, or regulatory purposes must be securely deleted. Deletion methods must be appropriate to the classification level:
+Data no longer required must be securely deleted using methods appropriate to its classification level: Restricted data requires cryptographic erasure or verified multi-pass overwrite; Confidential data requires secure deletion utilities or cryptographic erasure. A record of deletion must be maintained for Restricted and Confidential data.
 
-- **Restricted data:** Cryptographic erasure or verified multi-pass overwrite (e.g., NIST SP 800-88)
-- **Confidential data:** Secure deletion utilities or cryptographic erasure
-- **Internal and Public data:** Standard deletion methods
-
-A record of data deletion, including the method used and the date, must be maintained for Restricted and Confidential data.
+> **Implementation procedures:** See [Data Protection Procedures — Procedure 4: Secure Data Deletion](./Data-Protection-Procedures.md)
 
 ### Data in Transit Protection
 
 #### Transfer Authorization
 
-Data shall only be transferred where strictly necessary for effective business processes. Before initiating a data transfer, the following factors must be evaluated:
-
-- Nature, sensitivity, confidentiality, and value of the information
-- Volume of data being transferred
-- Potential impact of loss, interception, or corruption during transit
+Data shall only be transferred where strictly necessary for effective business processes. Before initiating a data transfer, the nature, sensitivity, volume, and potential impact of loss or interception must be evaluated.
 
 #### Encryption Requirements
 
-All external data transmission must be encrypted end-to-end using approved encryption protocols. Requirements include:
+All external data transmission must be encrypted end-to-end using approved encryption protocols:
 
 - All internet-facing and inter-network connections must use strong, mutually authenticated encryption with approved cipher suites.
 - Internal data transmission within trusted network segments must use encryption where required by the data classification (see Data Classification Policy handling matrix).
@@ -121,6 +101,12 @@ Confidentiality or Non-Disclosure Agreements (NDAs) must be used to protect conf
 - Information return or destruction terms at agreement termination
 - Consequences of breach
 
+### Security Monitoring for Data Protection
+
+All Production Systems must have security monitoring enabled per the Logging and Monitoring Policy, including activity monitoring, file integrity monitoring, vulnerability scanning, and malware detection. Monitoring must be configured to detect bulk data access, off-hours access, first-time access to sensitive stores, privileged user data queries, and potential exfiltration patterns.
+
+> **Implementation procedures:** See [Data Protection Procedures — Procedure 3: Security Monitoring Setup](./Data-Protection-Procedures.md)
+
 ## Roles and Responsibilities
 
 | Role | Responsibility |
@@ -151,6 +137,7 @@ Specific attention will be paid to:
 - System Access Control Policy
 - Asset Management Policy
 - Logging and Monitoring Policy
+- [Data Protection Implementation Procedures](./Data-Protection-Procedures.md)
 
 ## Revision History
 

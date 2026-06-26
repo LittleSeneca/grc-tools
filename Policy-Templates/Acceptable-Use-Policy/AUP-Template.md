@@ -56,7 +56,7 @@ All endpoint systems must be protected by anti-malware or EDR (Endpoint Detectio
 
 Software installation must follow the principle of least privilege, and only legally licensed, approved software may be used on organizational equipment.
 
-Implementation procedures — including agent deployment, update cadence, scan scheduling, multi-point scanning architecture, and malware incident response — are defined in the [AUP Implementation Procedures](AUP-Procedures.md) — Procedure 1: Malware Protection Program.
+Detailed implementation procedures for anti-malware deployment, endpoint security, and malware incident response are defined in [AUP Implementation Procedures](./AUP-Procedures.md).
 
 ## Compliance and Enforcement
 
@@ -68,6 +68,7 @@ Violation of this policy may result in disciplinary action as outlined in the In
 - Data Classification Policy (ISP-004)
 - Employee Access and Confidentiality Agreement
 - System Access Control Policy (ISP-011)
+- [AUP Implementation Procedures](./AUP-Procedures.md)
 
 ## Revision History
 

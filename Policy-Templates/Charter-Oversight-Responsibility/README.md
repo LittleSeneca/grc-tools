@@ -12,6 +12,16 @@ This Charter formally establishes who is responsible for overseeing internal con
 - Resource allocation for security programs
 - POA&M tracking for control deficiencies
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Charter-Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. Writing it and never following it.** The meeting cadence you specify ("quarterly" or "semi-annually") must actually happen. Auditors ask for meeting minutes. If the Charter says quarterly and you met twice last year, that's a finding.

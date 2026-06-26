@@ -20,6 +20,16 @@ The SDLC Policy defines how information security is integrated into every phase 
 - Error handling and encryption requirements
 - Change control and deployment approval
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`SDLC-Template.md`** — The policy itself. Defines WHAT is required: Secure software development lifecycle requirements across six phases. Defines security activities for each phase including threat modeling, secure coding, security testing, and deployment controls. This is the governance document reviewed by leadership and auditors.
+- **`SDLC-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Security requirements definition, threat modeling execution, secure coding and code review workflows, security testing procedures, and production data handling in non-production environments. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Security requirements defined after design is complete.** By the time the architecture is finalized, adding security controls means expensive rework. Security requirements must be defined in Phase 2 (Requirements) and security architecture must be designed in Phase 3 (Design). Retro-fitting authentication, encryption, or audit logging into a completed design is a common and costly failure.

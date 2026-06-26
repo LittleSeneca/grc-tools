@@ -16,6 +16,16 @@ The Code of Conduct is a foundational governance document that defines the ethic
 - Reporting mechanisms and non-retaliation protections
 - Mandatory annual acknowledgment process
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Common Gotchas and Mistakes
 
 **1. Treating it as a boilerplate checkbox.** Organizations often copy-paste a Code of Conduct, have everyone sign it at onboarding, and never reference it again. A Code loses all credibility if it is not visibly enforced. If leadership doesn't model the behavior, no one else will either.

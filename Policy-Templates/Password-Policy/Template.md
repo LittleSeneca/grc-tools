@@ -76,7 +76,7 @@ MFA must be enabled for all systems and applications that support it. This inclu
 
 Initial credentials must be unique, non-guessable, delivered through a secure channel, and changed upon first use. The recipient's identity must be verified before issuance.
 
-Implementation procedures — including identity verification methods, secure delivery channels, and alternative approaches — are defined in the [Password Policy — Implementation Procedures](Password-Procedures.md) — Procedure 2: Secure Password Distribution.
+Detailed credential distribution procedures are defined in [Password Policy Implementation Procedures](./Password-Procedures.md).
 
 ### Password Storage in Systems
 
@@ -105,9 +105,9 @@ Passwords must be changed immediately when:
 
 ### Password Compromise Response
 
-If a password is suspected of compromise, it must be changed immediately on the affected system and any other system where it was reused. The incident must be reported to `____` (Security Officer) and account activity must be reviewed for signs of unauthorized access.
+If a password is suspected of compromise, it must be changed immediately on the affected system and any other system where it was reused. The incident must be reported to the Security Officer and account activity must be reviewed for signs of unauthorized access.
 
-Detailed response procedures — including containment, rotation scope, investigation, and notification — are defined in the [Password Policy — Implementation Procedures](Password-Procedures.md) — Procedure 3: Credential Compromise Response.
+Detailed credential compromise response procedures are defined in [Password Policy Implementation Procedures](./Password-Procedures.md).
 
 ### Service Account and Machine Credentials
 

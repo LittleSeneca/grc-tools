@@ -16,6 +16,16 @@ The Configuration Management Plan (CMP) is a detailed operational document that 
 - Release management process
 - CM metrics and measurement
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. Confusing CM with change management.** Configuration Management is about knowing what you have and controlling its state. Change Management is about controlling how it changes. They overlap heavily, but CM defines the baselines and CIs that change management operates on. If you only have a change management policy without a CM plan, you don't know what you're changing.

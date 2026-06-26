@@ -1,7 +1,7 @@
 # System Access Control Policy — Implementation Procedures
 
 > **Companion to:** System Access Control Policy (Template.md)
-> **Purpose:** These procedures describe how to implement the requirements set forth in the System Access Control Policy. The policy defines WHAT must be done; this document describes HOW to do it.
+> **Purpose:** These procedures describe how to implement the access control lifecycle. The policy defines WHAT must be done; this document describes HOW.
 
 ---
 
@@ -9,71 +9,54 @@
 
 ### Standard Approach
 
-This procedure covers the end-to-end process for granting access to organizational systems and data.
-
-#### Step 1: Request Submission
-
-1. The requestor (typically the individual's manager, or the individual themselves if self-service is enabled) submits an access request through `____` (approved ticketing system / IGA platform, e.g., ServiceNow, Jira Service Management, Okta Access Requests, SailPoint).
-2. The request form must capture:
-   - **Individual's Identity:** Full name, employee/contractor ID, department, manager.
-   - **Systems Requested:** Specific application, server, database, or network resource. Use system names from the CMDB.
-   - **Access Level:** Role-based (e.g., "Salesforce — Sales User") or specific permissions (viewer, editor, admin).
-   - **Business Justification:** Free-text describing why this access is needed for job responsibilities.
-   - **Duration:** Permanent (ongoing role) or temporary (end date: `____`).
-3. The ticketing system auto-routes the request to the appropriate approver(s) based on system and access level.
-
-#### Step 2: Approval
-
-1. **Standard Access:** System owner or designated approver reviews the request for appropriateness, least privilege alignment, and separation of duties conflicts. Approval or denial within `____` business days.
-2. **Privileged Access:** Additional approval from `____` (Security Officer / CISO) is required. The approver verifies that the individual's role genuinely requires elevated privileges and that compensating controls (session logging, JIT) will be applied.
-3. **Third-Party / Contractor Access:** Additional approval from `____` (Vendor Manager / Procurement) confirming a valid contract with security obligations is in place.
-4. If denied, the approver provides a reason. The requestor may resubmit with additional justification.
-
-#### Step 3: Identity Verification
-
-1. For new hires: identity is verified during onboarding by HR (government ID check, background verification). No additional verification needed if access request aligns with the individual's role.
-2. For existing personnel requesting NEW access (role change or additional systems): the approver confirms the request is consistent with the individual's role. Out-of-band verification (phone call, Slack DM, video call) is required for sensitive access grants.
-3. For remote personnel: out-of-band verification is mandatory — do not approve based solely on an email or ticket.
-
-#### Step 4: Provisioning
-
-1. The IAM team or automated provisioning system creates the account with permissions matching the approved role.
-2. For RBAC: assign the individual to the approved role group(s). Do NOT grant individual custom permissions unless the role does not exist and a temporary exception is approved.
-3. For privileged access: provision via the PAM/JIT access broker (`____`, e.g., CyberArk, Delinea, Teleport). Set automatic expiration matching the approved duration.
-4. Provisioning must be completed within `____` business hours of approval.
-
-#### Step 5: Acknowledgement and Activation
-
-1. Before access is activated, the individual must:
-   - Acknowledge the System Access Control Policy, Acceptable Use Policy, and any system-specific security requirements.
-   - Confirm completion of required security awareness training (if not already current).
-2. Acknowledgement is captured digitally via `____` (IGA platform, policy management tool).
-3. After acknowledgement, access is activated. The individual receives credentials via a secure channel (NOT email — use password manager sharing, one-time link, or in-person handoff).
-4. On first login, the individual is forced to set a new password (if password-based) or complete MFA enrollment.
-
-#### Post-Provisioning Validation
-
-1. Within `____` business days, the provisioning team verifies that the account has the correct permissions and no unintended access.
-2. The manager confirms the individual can perform their required job functions with the granted access.
-3. The access request is closed in the ticketing system with provisioning details recorded.
+1. Define role-based access profiles for each job function in the organization. Document each role in ____ (IAM platform / role catalog) with:
+   - Role name and description
+   - Job functions covered
+   - Systems and permission levels granted
+   - Business justification
+   - Role owner (who approves membership)
+2. When a new hire or role change occurs, HR/Manager submits an access request in ____ (ticketing/IAM system) with:
+   - Individual's full name and employee/contractor ID
+   - Role(s) to be assigned
+   - Start date
+   - Any special access needs beyond the standard role (with justification)
+3. The request is routed for approval:
+   - Standard role assignment: Manager approval
+   - Privileged access (admin, root, DBA): Manager + System Owner + Security Officer
+   - Third-party/contractor: Sponsor (internal) + Security Officer; must include contract end date
+4. Identity verification — before access is provisioned:
+   - In-person: Government-issued photo ID verified by HR or IT
+   - Remote hire: Video call with ID verification, out-of-band confirmation via phone call to known number, or identity verification service
+5. IAM team provisions access:
+   - Create unique user ID following naming convention (e.g., firstname.lastname for employees, ct-firstname.lastname for contractors)
+   - Assign to pre-defined role groups — never assign individual permissions directly unless documented as an exception
+   - Set account expiry for contractors and temporary workers
+   - Enforce MFA enrollment at first login
+6. Before access is activated, the individual must:
+   - Acknowledge the Acceptable Use Policy
+   - Complete security awareness training (if not already done)
+   - Acknowledge confidentiality obligations (Employee Access Agreement or Contractor Access Agreement)
+7. Verify the provisioning:
+   - IT/IAM confirms all groups, permissions, and expirations are correct
+   - Manager confirms the individual can access required resources
+   - Document the completed provisioning in the access log
+8. Add the provisioning event to the next access review queue.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Organizational size, tooling maturity, and compliance requirements dictate the level of automation and rigor.
+> **💡 Why you might choose differently:** Fully automated provisioning from HRIS to IAM is the gold standard but requires integration maturity. Manual provisioning with checklists works at smaller scale; the risk is missed revocations, not missed creations.
 
-- **Fully Automated Birthright Provisioning:** When an HR system creates a new employee record, the IGA platform automatically provisions baseline access based on department, role, and location — no manual request or approval needed. Exception access still requires request/approval. Reduces time-to-productivity but requires mature role definitions.
-- **Self-Service with Auto-Approval:** For low-risk applications (e.g., corporate wiki, internal chat), allow self-service access requests that are auto-approved if no separation-of-duties conflict is detected. Speeds up access for commodity tools.
-- **Manager-Only Access Control:** The individual's manager is solely responsible for requesting access. The IAM team provisions exactly what the manager requests after confirming no SoD conflicts. Simpler chain of custody; relies heavily on manager diligence.
+- **Alternative A — HRIS-Driven Automation:** Integrate your HR system (BambooHR, Workday) with your IAM platform (Okta, Azure AD) via SCIM. When HR marks someone as hired, the IAM system automatically provisions the birthright role and notifies the manager to approve additional access. Eliminates manual ticket creation.
+- **Alternative B — Manager Self-Service Portal:** Instead of a ticketing system, provide managers with an IAM self-service portal where they can request, approve, and review team access. Reduces IT overhead for routine changes but requires managers to understand role definitions.
+- **Alternative C — Attribute-Based Access Control (ABAC):** Instead of pre-defined roles, define access policies based on attributes (department, location, project, clearance level). Access is computed dynamically. More flexible, significantly more complex to implement and audit.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Access creep. An individual changes roles 3 times over 5 years and accumulates access from every previous role. At provisioning for a NEW role, always review and remove old role access. Role changes are not additive by default.
+> **⚠️ Watch out:** "Just give them the same access as [coworker]" is how permission creep starts. Person A accumulated 47 permissions over 4 years, and now Person B inherits all of them on day one. Always provision by role, not by copying an existing user.
 
-> **⚠️ Watch out:** "Just give them the same access as [coworker]." Copying access from a peer is the #1 source of privilege creep. Every access grant must be based on role requirements, not another individual's potentially over-provisioned access.
+> **⚠️ Watch out:** Contractor access without an expiration date is a ticking time bomb. The contract ends, nobody tells IT, and six months later the contractor still has VPN access because "they might come back for another project." Every contractor account must have an auto-expiration that requires affirmative renewal.
 
-> **⚠️ Watch out:** Delayed provisioning. If it takes 2 weeks to get a developer access to the CI/CD pipeline, they'll find workarounds (shared credentials, bypass). Track provisioning SLAs as a KPI.
-
-> **⚠️ Watch out:** Failing to verify identity for remote workers. Social engineering attackers exploit the access request process by impersonating employees. Always use out-of-band verification for sensitive access changes.
+> **⚠️ Watch out:** Remote identity verification over a video call is trivially spoofed with deepfake technology. For remote hires with access to sensitive systems, invest in an identity verification service (e.g., Onfido, Jumio, or notary-based verification) rather than trusting "I saw their face on Zoom."
 
 ---
 
@@ -81,64 +64,49 @@ This procedure covers the end-to-end process for granting access to organization
 
 ### Standard Approach
 
-#### 2.1 Review Initiation
-
-1. The Security Officer (or delegate) initiates the access review on a `____` (quarterly) schedule.
-2. The review is managed via the IGA platform (`____`) or, for organizations without an IGA platform, via a structured spreadsheet distributed through the ticketing system.
-3. The review scope includes:
-   - All user accounts and their associated permissions across all in-scope systems.
-   - Privileged accounts (reviewed `____` (monthly), more frequently than standard accounts).
-   - Shared/generic accounts (reviewed `____` (monthly)).
-   - Third-party and contractor accounts (reviewed `____` (monthly)).
-   - Service accounts (reviewed `____` (quarterly) — confirm they are still in use by an active service).
-
-#### 2.2 Reviewer Assignment
-
-1. System owners and managers receive their assigned review population: the individuals and accounts under their purview.
-2. Reviewers are notified via email with a link to the review interface. The notification includes: review deadline (`____` days from initiation), review instructions, and escalation path for questions.
-
-#### 2.3 Review Execution
-
-For each access entitlement, the reviewer must confirm:
-- **Continued Need:** Does the individual still require this access for their current job responsibilities?
-- **Appropriate Level:** Is the level of access (read, write, admin) appropriate? Could it be reduced?
-- **No Unauthorized Escalation:** Has the individual's access changed since the last review? If so, was the change approved?
-- **Separation of Duties:** Does the individual have conflicting access that should be segregated?
-
-The reviewer certifies each entitlement as:
-- **Approve:** Access is appropriate; no changes needed.
-- **Modify:** Access should be reduced or changed.
-- **Revoke:** Access is no longer needed and must be removed.
-- **Flag for Investigation:** Something looks unusual; Security team should investigate before certifying.
-
-#### 2.4 Remediation
-
-1. At the review deadline, the Security Officer compiles all "Revoke" and "Modify" decisions.
-2. The IAM team implements changes within `____` business days.
-3. Any "Flag for Investigation" items are assigned to the Security team for investigation within `____` business days.
-4. Reviewers who fail to complete their review by the deadline are escalated: first reminder at `____` days before deadline, manager escalation at deadline, executive escalation at `____` days past.
-
-#### 2.5 Documentation and Evidence
-
-1. The completed review (all certifications, modifications, revocations) is exported as a dated, immutable record.
-2. Retain review records for `____` years.
-3. A summary report is presented to management: total accounts reviewed, accounts modified/revoked, privileged accounts reviewed, overdue reviewers, and key findings.
+1. Schedule access reviews on a recurring basis:
+   - Standard user access: ____ (e.g., quarterly)
+   - Privileged access (admin, root, DBA, security roles): ____ (e.g., monthly)
+   - Third-party/contractor access: ____ (e.g., monthly)
+   - Shared account exceptions: ____ (e.g., monthly)
+2. One week before the review window opens, Security Officer sends notification to all reviewers (system owners, managers) with:
+   - Review window dates (must complete within ____ days)
+   - Link to the review dashboard or report
+   - Instructions for certifying, modifying, or revoking access
+3. Generate the review report from ____ (IAM platform) for each reviewer's scope:
+   - List of users and their access rights
+   - Last login date for each system
+   - Any privilege escalation events since last review
+4. Reviewer actions for each user in their scope:
+   - **Certify:** User still needs this access, level is appropriate → no action
+   - **Modify:** Access level too high or too low → submit modification request
+   - **Revoke:** User no longer needs this access → submit revocation request
+   - **Investigate:** Reviewer cannot determine if access is needed → escalate to user's manager
+5. Track completion: the Security Officer monitors progress and escalates overdue reviews at ____ days past the deadline.
+6. After the review window closes, the Security Officer compiles results:
+   - ____ of ____ users reviewed
+   - ____ modifications requested
+   - ____ revocations requested
+   - ____ escalations (manager could not be reached, discrepancy identified)
+7. Remediate all modification and revocation requests within ____ business days.
+8. Document the review: completed report, actions taken, timeline, any discrepancies found and their resolution. Retain as audit evidence.
+9. Review the process itself annually: were deadlines met, were all reviewers engaged, did the review catch any real issues, what can be improved?
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Review frequency, depth, and tooling depend on organizational size and risk profile.
+> **💡 Why you might choose differently:** Full manual review of every user's access doesn't scale beyond ~200 users. Automated review with manager certification of exceptions is more practical at scale.
 
-- **Continuous Certification (Zero-Trust Approach):** Instead of quarterly point-in-time reviews, implement continuous certification where access is automatically validated against HR data and flagged instantly on discrepancies. A quarterly review becomes a validation of the continuous process, not the primary control.
-- **Manager-Led vs. System-Owner-Led:** Some organizations route all access reviews through managers ("Does your team member need this?"). Others route through system owners ("Does this person need access to MY system?"). Best practice: both — managers certify need, system owners certify appropriateness of level.
-- **Campaign-Based Review for Large Orgs:** For organizations with >1000 employees, stagger reviews by department on a rolling quarterly schedule rather than reviewing everyone at once. Reduces reviewer fatigue.
+- **Alternative A — Manager Certification with Automated Baselining:** The IAM system automatically certifies access that matches the user's role and hasn't changed since the last review. Managers only need to review exceptions: new access, privilege changes, users with unusual patterns. Reduces reviewer burden by 80%+.
+- **Alternative B — Continuous Certification:** Instead of quarterly reviews, the IAM system continuously monitors access against role definitions and flags deviations in real time. Reviewers address exceptions as they occur rather than in a quarterly batch. Higher operational tempo, lower compliance risk.
+- **Alternative C — User-Initiated Recertification:** Require users to re-certify their own access quarterly (with manager confirmation for privileged access). Users are more likely to flag access they no longer need than managers are to notice it. Adds user friction.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Rubber-stamping. Reviewers clicking "Approve All" without actually reviewing. Mitigate by: limiting review population per reviewer, requiring justification for every "Approve," and implementing spot-check audits of reviewer decisions.
+> **⚠️ Watch out:** Rubber-stamp reviews — where every access is certified without scrutiny — are worse than no review at all. They create a paper trail that says "everything is fine" while access accumulates unchecked. Random spot-checks by the Security team on a sample of certifications can deter rubber-stamping.
 
-> **⚠️ Watch out:** The "ghost account" problem. Accounts for terminated employees that weren't properly deprovisioned appear in the review as active accounts with no manager to certify them. Flag any account with no assigned manager for immediate investigation.
+> **⚠️ Watch out:** The access review report shows current access, but the real risk is in the delta: what changed since the last review? Without historical context, a reviewer can't tell if a user quietly accumulated access over the quarter. Include a "changes since last review" column in the report.
 
-> **⚠️ Watch out:** Reviewing the wrong thing. A review that certifies "User X has Role Y" doesn't catch that Role Y grants access to System Z, which Role Y shouldn't include. Review at the entitlement level, not just the role level. Or, review role composition AND role membership.
+> **⚠️ Watch out:** Revocation requests from the review that sit in a queue for weeks defeat the purpose. The SLA for access review remediation should be shorter than the review interval. If you review quarterly but take 60 days to revoke, that's 60 days of unnecessary access.
 
 ---
 
@@ -146,78 +114,146 @@ The reviewer certifies each entitlement as:
 
 ### Standard Approach
 
-#### 3.1 Voluntary Departure (Resignation, Retirement)
+#### Voluntary Departure
 
-1. **HR Notification:** HR notifies the IAM team and Security Officer of the departure at least `____` business days before the last working day, OR immediately upon notification from the employee if shorter notice.
-2. **Pre-Departure Access Review:** The IAM team compiles a list of all system accounts, physical access cards, and assets assigned to the individual. This list is shared with the manager for completeness verification.
-3. **Physical Access Revocation:** Building access cards, office keys, and parking passes are collected on the last working day. Building access is disabled in the access control system by end of day.
-4. **Logical Access Revocation:** All system accounts are disabled within `____` business day of the last working day. This includes:
-   - Primary user account (SSO/IdP).
-   - Application-specific accounts.
-   - VPN and remote access.
-   - Email account (set to auto-responder: "_____ is no longer with _____; please contact _____").
-   - Cloud service accounts (AWS IAM, Azure AD, GCP IAM).
-   - Third-party SaaS tools managed through SSO (revoking IdP access cascades to most tools).
-5. **Asset Return:** The termination checklist tracks return of all organization-owned equipment (laptop, phone, security tokens, external drives, documents). Items are signed back in by IT/Facilities.
-6. **Data Handling:** The individual's data (email, files) is preserved per legal hold requirements. After the retention period (`____` days/weeks), data is securely deleted per the Data Protection Procedures.
+1. HR notifies IT/Security via ____ (automated integration or ticket) immediately upon receiving a resignation notice. Include:
+   - Employee name and ID
+   - Last working day
+   - Any transition or handoff requirements
+   - Whether access should be maintained during a notice period (with business justification)
+2. IT/Security creates a termination ticket with a checklist of all access to revoke:
+   - User account (SSO/IAM: disable, not delete — retain for audit trail)
+   - Email account (forward to manager, then disable after ____ days)
+   - VPN/remote access
+   - Database accounts
+   - Application-specific accounts
+   - Cloud console access
+   - Shared account passwords the individual knew (rotate these!)
+   - Physical access (badge deactivation)
+3. Execute revocations on a tiered timeline:
+   - **Immediately:** Disable all privileged access (admin, root, DBA) — reduce blast radius
+   - **End of last working day:** Disable remaining logical access, deactivate badge
+   - **Within ____ business days:** Recover all physical assets (laptop, phone, tokens, keys)
+4. Asset recovery:
+   - Schedule equipment return (in person or shipping label)
+   - Verify all assets are returned against the asset inventory
+   - Flag any unreturned assets for follow-up
+5. Data transfer from personal equipment (if applicable):
+   - If employee used personal equipment, supervise transfer of all organization data to organization-controlled storage
+   - Securely wipe organization data from personal equipment with witness verification
+   - Monitor for unauthorized bulk data transfers during the notice period
+6. Complete the termination checklist — every item must be signed off. File with HR records.
+7. After ____ days, review the disabled account: convert to a deleted state or archive per retention policy.
 
-#### 3.2 Involuntary Termination
+#### Involuntary Termination
 
-1. **Pre-Coordination:** HR and Security coordinate the termination timing. Logical access may need to be revoked BEFORE the individual is notified, depending on risk assessment.
-2. **Immediate Access Revocation:** ALL access is revoked simultaneously with (or immediately before) the termination meeting:
-   - Active sessions are force-terminated.
-   - Accounts are disabled.
-   - VPN tokens are revoked.
-   - Building access is disabled.
-   - Mobile device management (MDM) issues a remote wipe command if the device contains sensitive data and cannot be physically recovered.
-3. **Physical Security:** Security personnel are available if there is any risk of confrontation or if the individual needs to be escorted from the premises.
-4. **Post-Termination Monitoring:** Monitor the individual's accounts and email forwarding rules for `____` days post-termination to detect any unauthorized access attempts or backdoor activity.
+1. HR notifies IT/Security BEFORE or SIMULTANEOUSLY with notifying the individual — not after.
+2. Execute immediate revocation of ALL access (logical and physical) within ____ minutes of notification.
+3. If remote, force-terminate all active sessions (SSO session invalidation, VPN disconnect, RDP/logoff commands).
+4. Escort from premises if on-site; badge deactivation at the door.
+5. Follow the same asset recovery and checklist process as voluntary termination, accelerated.
+6. Post-revocation review within 24 hours: confirm all access is revoked, no active sessions, no backdoor accounts.
 
-#### 3.3 Role Change (Internal Transfer)
+#### Role Change
 
-1. **Manager Notification:** The individual's current manager notifies the IAM team of the role change effective date.
-2. **Previous Role Access Review:** The IAM team compiles all access from the previous role. The previous manager certifies which access should be removed.
-3. **Access Removal and Provisioning:** Previous role access is removed effective on the role change date. New role access is provisioned per the standard provisioning procedure (Procedure 1).
-4. **"Clean Slate" Principle:** Access should not accumulate across roles. If an individual transfers from Finance to Engineering, their Finance system access is removed (unless explicitly justified and approved by both department heads).
+1. Manager submits a role-change ticket in ____ (ticketing system), specifying old role and new role.
+2. IT/IAM provisions new role access per the standard provisioning procedure.
+3. After new access is verified and working, review old role access:
+   - Which permissions from the old role are fully superseded by the new role? → Revoke.
+   - Which permissions from the old role are still needed temporarily during transition? → Set expiration (max ____ days).
+   - Which permissions from the old role are not in the new role and not needed? → Revoke immediately.
+4. The manager certifies the final access state: "Employee no longer has any access from previous role except what was explicitly retained."
+5. Flag for the next access review: "Role change — verify no accumulated access."
 
-#### 3.4 Extended Inactivity
+#### Extended Inactivity
 
-1. **Detection:** Automated systems monitor last-login timestamps across all accounts.
-2. **Disablement:** Accounts inactive for `____` days are automatically disabled. The individual and their manager are notified.
-3. **Deletion:** Disabled accounts that remain unused for an additional `____` days are permanently deleted. Data associated with the account is handled per the Data Retention Policy.
-4. **Exception Handling:** Exceptions (e.g., long-term leave, sabbatical, maternity/paternity leave) must be documented in the HR system BEFORE the inactivity threshold triggers. HR notifies IAM to place the account in "leave" status instead of "inactive."
-
-#### 3.5 Verification and Closure
-
-1. The offboarding process is tracked via a termination checklist in `____` (ticketing system / IGA workflow).
-2. Every item on the checklist must be marked complete before the ticket can be closed.
-3. A post-offboarding audit is conducted `____` days after offboarding: attempt to authenticate with the terminated individual's credentials. Any successful authentication triggers an immediate investigation.
+1. Configure automated inactivity detection in ____ (IAM platform):
+   - Accounts with no login for ____ (e.g., 90) days: automatically disable and notify manager
+   - Accounts disabled for an additional ____ (e.g., 90) days: flag for deletion
+2. Before deletion, the Security Officer reviews: any legal holds, any compliance retention requirements, any HR records that indicate expected return (leave of absence, sabbatical).
+3. Deletion is logged with: account ID, last active date, approver, deletion date.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Organizational size, geographic distribution, and termination volume influence the right approach.
+> **💡 Why you might choose differently:** Offboarding is the highest-risk access control event. A disgruntled employee with lingering access during a notice period can cause enormous damage. Some organizations choose zero-notice termination with pay in lieu for high-risk roles.
 
-- **HRIS-Triggered Automation:** The HR system (e.g., Workday, BambooHR) fires a webhook on employment status change → the IAM platform automatically disables all accounts → the ticketing system creates a termination ticket pre-populated with the offboarding checklist. Zero manual initiation. Requires mature systems integration.
-- **Identity Provider (IdP)-Centric Revocation:** For organizations where 90%+ of applications are behind SSO, disabling the IdP account effectively revokes access to everything. Non-SSO systems require manual cleanup, but the bulk of revocation is instantaneous. Simplifies the process dramatically.
-- **Physical Access First, Logical Second:** For geographically distributed companies, coordinate so that the physical office badge is deactivated, but logical access may remain active for a transition period (only for voluntary departures). Not applicable for involuntary terminations.
+- **Alternative A — Automated Offboarding Workflow:** HRIS-to-IAM integration detects termination in HR and automatically triggers the full offboarding sequence: disable account, revoke sessions, notify manager, generate asset return labels, schedule badge deactivation. Zero human delay.
+- **Alternative B — Immediate Revocation for All Departures:** Even for voluntary departures, revoke all access immediately upon notice and pay out the notice period. Eliminates the risk of a notice-period insider threat. More expensive (pay without work) but eliminates a significant risk window.
+- **Alternative C — Graduated Access Reduction:** For long-notice departures (C-suite, key engineers), reduce access in stages: first remove privileged access, then remove customer data access, then remove internal systems, keeping only email until the final day. Allows knowledge transfer while limiting risk.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Forgetting about non-SSO applications. The Okta account is disabled, but the individual also had a direct login to the legacy database, a local account on the jump server, and a shared API key. Maintain an inventory of ALL access points, not just SSO-managed ones.
+> **⚠️ Watch out:** The most common offboarding failure is system accounts that are NOT managed by central IAM. The employee's Okta account is disabled, but their direct MySQL login still works, their AWS IAM user wasn't deactivated, and they have an API key in a secrets manager that nobody remembered. Maintain a comprehensive system inventory cross-referenced with IAM coverage.
 
-> **⚠️ Watch out:** Email account kept active "to forward to the replacement." This is a huge data protection risk. Set an auto-responder directing senders to the new contact. Do NOT forward the departed employee's email indefinitely — it may contain sensitive data the replacement shouldn't access.
+> **⚠️ Watch out:** Shared account passwords are "known secrets" after an employee with access departs. If John knew the break-glass root password and John leaves, the password must be rotated IMMEDIATELY. The revocation checklist must include a "rotate all shared credentials this person knew" step.
 
-> **⚠️ Watch out:** Service accounts and API keys created by the individual. If a departing DevOps engineer created AWS IAM access keys for a script, simply disabling their user account doesn't revoke those keys. Audit for user-created long-lived credentials as part of the offboarding checklist.
-
-> **⚠️ Watch out:** Delayed notification from HR. If HR notifies IT of a termination 3 days after it happened, the individual had 3 days of access they shouldn't have had. Integrate HR and IAM systems to eliminate this gap, or implement an HR SLA for termination notification (e.g., within 1 business hour).
+> **⚠️ Watch out:** "We'll do it tomorrow" is how involuntary termination revocations fail. It takes exactly one breach where a terminated admin still had VPN access to destroy an organization's reputation. Practice involuntary termination drills quarterly — measure the time from HR notification to full access revocation. Target: under ____ minutes.
 
 ---
 
-## Related Documents
+## Procedure 4: Privileged Access Management
 
-- System Access Control Policy (Template.md)
-- Information Security Policy (ISP-Template.md)
-- Password Policy
-- Acceptable Use Policy (AUP-Template.md)
-- Data Protection Policy
-- Vendor Management Policy
+### Standard Approach
+
+1. Identify all privileged accounts in the environment:
+   - Domain/enterprise admins
+   - Root/superuser on servers and databases
+   - Cloud platform admin/owner roles
+   - Application admin accounts
+   - Service accounts with elevated permissions
+   - Break-glass emergency accounts
+2. Inventory each privileged account in ____ (PAM tool or spreadsheet) with:
+   - Account name, system, permission level
+   - Account owner
+   - Justification for privileged status
+   - Review cadence (monthly for human accounts, quarterly for service accounts)
+3. Configure Just-in-Time (JIT) access for human privileged accounts:
+   - Default state: no standing privileged access
+   - Access request: ticket with business justification, scope, time window (max ____ hours)
+   - Approval: System Owner + Security Officer
+   - Provisioning: temporary group membership or role elevation with auto-expiration
+4. Configure Privileged Access Workstations (PAW):
+   - All privileged operations must originate from a dedicated, hardened workstation
+   - PAWs must not be used for email, web browsing, or non-privileged work
+   - PAWs must have enhanced monitoring (session recording, keystroke logging if required by risk assessment)
+5. Session management:
+   - All privileged sessions must be recorded (commands, output, screen if feasible)
+   - Session recordings must be stored in a tamper-proof repository with access controls (only Security team can view)
+   - Spot-check ____% of privileged sessions monthly for inappropriate activity
+6. Service account management:
+   - Service accounts must have the minimum permissions needed for their specific function
+   - Service account passwords/keys must be rotated per the credential rotation policy (____ days)
+   - Service accounts must not be used for interactive login
+   - Monitor service accounts for anomalous behavior (interactive login, unusual commands, off-hours activity)
+7. Monthly privileged access review:
+   - Security Officer generates privileged access report from PAM tool
+   - System owners certify each privileged account: still needed, permissions still appropriate
+   - Any uncertified account is disabled after ____ days
+   - Document review results
+
+### Alternative Approaches
+
+> **💡 Why you might choose differently:** Full PAM tooling (CyberArk, BeyondTrust, Delinea) is expensive and complex. For smaller organizations, cloud-native tools (Azure PIM, AWS IAM Access Analyzer) or simpler solutions (Teleport, HashiCorp Vault) provide adequate privileged access management without the enterprise price tag.
+
+- **Alternative A — Cloud-Native PAM Only:** Use built-in cloud IAM features: Azure AD Privileged Identity Management (PIM), AWS IAM Roles with max session duration, GCP IAM Recommender. Sufficient if your entire infrastructure is in one cloud.
+- **Alternative B — Sudo with Centralized Policy:** For on-prem Linux environments, manage sudo access via centralized sudoers distribution (LDAP sudoers, SSSD, or configuration management). All sudo commands are logged to SIEM. Lighter weight than a full PAM, but harder to audit.
+- **Alternative C — No Standing Privileged Access (Zero Standing Privileges):** All privileged access is JIT, all sessions are ephemeral, and privileges are never persistent. The most secure posture, but requires mature automation and may slow down incident response.
+
+### Common Pitfalls
+
+> **⚠️ Watch out:** Service accounts are the forgotten privileged accounts. They're created during system setup, never reviewed, and often have more permissions than any human. A compromised CI/CD service account with cloud admin access can destroy your entire infrastructure. Inventory and right-size service account permissions.
+
+> **⚠️ Watch out:** Break-glass accounts are tricky: they need high privileges for emergencies but must be incredibly hard to abuse. If the break-glass password is in a sticky note on the wall, it's not a break-glass — it's a back door. Store break-glass credentials in a password manager with access alerts, require multi-party approval to retrieve, and rotate after every use.
+
+> **⚠️ Watch out:** Session recording without a review process is security theater. Recording 10,000 privileged sessions per month but reviewing 0 means a malicious admin can do anything and you'll only discover it after the fact — if ever. Commit to reviewing a statistically significant sample or use automated anomaly detection on session logs.
+
+---
+
+## Procedure Quick Reference
+
+| Procedure | Owner | Cadence | Key Artifact |
+|-----------|-------|---------|-------------|
+| Access Provisioning | ____ / IAM Team | Per request | Access request ticket, provisioning log |
+| Access Reviews | ____ / Security Officer | Quarterly (standard), Monthly (privileged) | Access review report, certification records |
+| Offboarding & Revocation | ____ / IT + HR | Per departure/change | Termination checklist, revocation confirmation |
+| Privileged Access Mgmt | ____ / Security Engineering | Continuous + monthly review | PAM inventory, session recordings, review report |

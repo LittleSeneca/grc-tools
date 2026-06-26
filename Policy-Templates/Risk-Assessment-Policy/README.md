@@ -18,6 +18,16 @@ The Risk Assessment Policy defines how the organization identifies, analyzes, ev
 - Threat assessment integration
 - Reporting and governance requirements
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`RA-Policy-Template.md`** — The policy itself. Defines WHAT is required: Risk assessment methodology with impact/likelihood scoring, risk rating matrix, risk appetite definition, treatment options, and POA&M requirements. This is the governance document reviewed by leadership and auditors.
+- **`Risk-Assessment-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Risk assessment execution procedures, asset and threat identification workflows, risk register maintenance, and POA&M tracking processes. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Using this matrix for every type of risk.** The 5×5 Likelihood × Impact matrix works well for operational and information security risks. It does NOT work well for strategic risks, compliance risks (which are binary — you're either compliant or not), or financial risks (which have their own quantification methods). Don't try to force-fit every risk into this matrix.

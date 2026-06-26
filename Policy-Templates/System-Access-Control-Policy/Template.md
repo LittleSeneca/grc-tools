@@ -9,7 +9,7 @@ Approved By: ____
 
 ## Purpose
 
-This policy establishes the requirements and procedures for provisioning, modifying, reviewing, and revoking access to ____'s information systems and data. It ensures that access is granted based on the principle of least privilege, properly authorized, and regularly reviewed to maintain alignment with job responsibilities.
+This policy establishes the requirements for provisioning, modifying, reviewing, and revoking access to ____'s information systems and data. It ensures that access is granted based on the principle of least privilege, properly authorized, and regularly reviewed to maintain alignment with job responsibilities.
 
 ## Scope
 
@@ -29,44 +29,15 @@ Access to organizational systems and data is governed by the following principle
 
 ### Access Provisioning
 
-#### New Account Creation
+Access must be provisioned through a formal, documented process that includes: request submission with business justification, approval by the system owner or designated approver, identity verification, role-based access assignment per the principle of least privilege, and policy acknowledgment before activation. Roles must be defined by job function, not individual identity, and documented. Privileged access must be explicitly authorized, use just-in-time (JIT) provisioning with automatic expiration (max ____ hours), and be logged. Third-party and contractor access must be limited in scope and duration with a defined expiration, supported by a valid contract, and promptly revoked upon contract completion.
 
-1. The requester submits an access request through the approved ticketing or identity management system.
-2. The request must specify: individual's name and role, systems requested, level of access, and business justification.
-3. The request must be approved by the system owner or designated approver.
-4. Identity verification must be performed (in-person preferred; for remote, out-of-band verification required).
-5. Access is provisioned based on role and minimum necessary permissions.
-6. The individual must acknowledge applicable policies before access is activated.
-
-#### Role-Based Access Control (RBAC)
-
-- Roles must be defined based on job functions, not individual identities.
-- Each role must be documented with access description and business justification.
-- Role membership must be reviewed when job responsibilities change.
-- Custom permission grants should be the exception; repeated patterns should become defined roles.
-
-#### Privileged Access
-
-- Must be explicitly authorized by the system owner and Security Officer.
-- Just-in-time (JIT) provisioning with automatic expiration preferred (not to exceed ____ hours, e.g., 8).
-- All privileged access use must be logged and attributable to the individual.
-- Privileged access grants must be reviewed at least ____ (e.g., monthly).
-
-#### Third-Party and Contractor Access
-
-- Must be limited in scope and duration with a defined expiration date.
-- A valid contract with security and confidentiality obligations must be in place.
-- Third-party access must be reviewed at least ____ (e.g., monthly).
-- Access must be promptly revoked upon contract completion or termination.
+> **Implementation procedures:** See [System Access Control Procedures — Procedure 1: Access Provisioning](./System-Access-Control-Procedures.md)
 
 ### Access Reviews
 
-1. Initiated by the Security Officer on a ____ (e.g., quarterly) schedule.
-2. System owners and managers review access rights of users within their purview.
-3. Review confirms: individual still requires access, level of access is appropriate, no unauthorized escalation.
-4. Unneeded access must be modified or revoked; discrepancies must be remediated and documented.
-5. Review must be completed within ____ (e.g., 30) days of initiation.
-6. Results and changes must be documented and retained as evidence.
+Formal access reviews must be conducted by system owners and managers on a ____ (e.g., quarterly) schedule. Each review must confirm that the individual still requires access, the level of access is appropriate, and no unauthorized escalation has occurred. Unneeded access must be revoked; discrepancies must be remediated and documented. Reviews must be completed within ____ (e.g., 30) days of initiation, and results must be documented and retained.
+
+Detailed access review execution workflows and continuous certification procedures are defined in [System Access Control Implementation Procedures](./System-Access-Control-Procedures.md).
 
 ### Unique User Identification
 
@@ -89,23 +60,14 @@ May be permitted only when: the system does not support individual accounts (leg
 
 ### Offboarding and Access Revocation
 
-#### Voluntary Departure
-- HR notifies Security Officer/IT of departure date.
-- Physical access revoked by end of last working day.
-- Logical access revoked within ____ (e.g., 1) business day.
-- Termination checklist documents all access removal and asset return.
+Access must be revoked according to the individual's departure type:
+Access must be revoked according to the individual's departure type:
+- **Voluntary Departure:** Physical access revoked by end of last working day. Logical access revoked within ____ (e.g., 1) business day. A termination checklist documents all access removal and asset return.
+- **Involuntary Termination:** Access revoked immediately upon notification — before or simultaneously with notification to the individual.
+- **Role Change:** Previous role access must be removed if no longer needed. New role access provisioned through standard process. Access must not accumulate across roles.
+- **Extended Inactivity:** Accounts inactive for ____ (e.g., 90) days must be disabled. Disabled accounts unused for an additional ____ (e.g., 90) days must be deleted.
 
-#### Involuntary Termination
-- Access must be revoked immediately upon notification — before or simultaneously with notification to the individual.
-
-#### Role Change
-- Previous role access must be reviewed and removed if no longer needed.
-- New role access provisioned through standard process.
-- Access should not accumulate across roles.
-
-#### Extended Inactivity
-- Accounts inactive for ____ (e.g., 90) days must be disabled.
-- Disabled accounts unused for an additional ____ (e.g., 90) days must be deleted.
+Detailed offboarding and access revocation procedures are defined in [System Access Control Implementation Procedures](./System-Access-Control-Procedures.md).
 
 ### Access Control for Customer Data
 
@@ -136,6 +98,7 @@ Compliance is verified through quarterly access reviews, automated monitoring of
 - Acceptable Use Policy
 - Vendor Management Policy
 - Encryption Policy
+- [System Access Control Implementation Procedures](./System-Access-Control-Procedures.md)
 
 ## Revision History
 

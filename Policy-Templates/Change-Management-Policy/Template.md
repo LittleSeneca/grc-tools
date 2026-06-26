@@ -45,48 +45,43 @@ Changes are classified by risk and impact:
 
 ### Change Management Process
 
-#### 1. Request
+All changes follow a structured lifecycle: Request → Review → Approval → Testing → Implementation → Post-Implementation Review. Each phase is governed by requirements defined below. Detailed implementation workflows are defined in [Change Management Implementation Procedures](./Change-Management-Procedures.md).
+
+#### Request
+
 A Change Requester identifies the need for a change and submits a formal change request containing: description of the change, business justification, systems affected, risk assessment, proposed implementation timeline, test plan, rollback plan, and identified stakeholders.
 
-#### 2. Review
+#### Review
+
 The Change Owner reviews the request for completeness and coordinates with affected teams. The Change Advisory Board (CAB) reviews all Normal and Major changes for risk, impact, resource requirements, and alignment with organizational objectives.
 
-#### 3. Approval
+#### Approval
+
 Changes are approved according to the classification table above. Approvals must be documented with date, approver identity, and any conditions. No single individual may both request and approve a change to a production system.
 
-#### 4. Testing
+#### Testing
+
 Approved changes must be implemented and validated in a non-production environment that mirrors production. Testing must include: functional verification, integration testing with dependent systems, security assessment, and performance impact analysis where applicable. The Testing or QA function must provide a test results summary before production deployment.
 
-#### 5. Implementation
+#### Implementation
+
 Approved and tested changes are implemented in production by authorized personnel during the defined change window. The implementer must follow the documented implementation plan, monitor system health during and after the change, and be prepared to execute the rollback plan if issues arise.
 
-#### 6. Post-Implementation Review
+#### Post-Implementation Review
+
 After implementation, the Change Owner must verify that the change achieved its intended outcome without adverse effects. For Major and Emergency changes, a post-implementation review must be presented to the CAB within ____ business days.
-
-### Software Development Changes
-
-For software application changes, the following controls apply:
-
-1. All development work must be tracked in the organization's issue tracking system.
-2. Code must be committed to a version control system with branch protection enabled on production branches.
-3. All code changes must undergo peer review before merge.
-4. Automated tests (unit, integration, end-to-end) must pass on all pull requests before merge.
-5. Automated security scanning (SAST, dependency scanning) must pass with no high or critical findings before merge.
-6. Code merges to the production branch require approval from an authorized reviewer who is not the author.
-7. Changes must be deployed to a staging environment for final validation before production release.
-8. Production deployment must occur during the defined maintenance window.
-9. A documented rollback procedure must be identified and tested before production deployment.
 
 ### Infrastructure and Configuration Changes
 
-For infrastructure and system configuration changes:
+All production infrastructure must be managed using infrastructure-as-code (IaC) and configuration-as-code. Manual changes to production systems are prohibited except for documented emergency procedures. Development, staging, and production environments must be maintained as separate environments, with staging mirroring production in architecture and configuration. All changes to production infrastructure must be tested in staging before production deployment. All changes to production network devices, firewalls, and security groups must be approved by the appropriate authority and reviewed by the Security Team. Implementation must be performed only by authorized personnel. An up-to-date system inventory and architecture diagrams must be maintained.
 
-- All production infrastructure must be managed using infrastructure-as-code (IaC) and configuration-as-code. Manual changes to production systems are prohibited except for documented emergency procedures.
-- Development, staging, and production environments must be maintained as separate environments. Staging must mirror production in architecture and configuration.
-- All changes to production infrastructure must be tested in the staging environment before production deployment.
-- All changes to production network devices, firewalls, and security groups must be approved by the ____ (e.g., Infrastructure Team) and reviewed by the Security Team.
-- Implementation of approved infrastructure changes must be performed only by authorized personnel with appropriate access credentials.
-- An up-to-date system inventory and corresponding architecture diagrams must be maintained.
+Detailed implementation procedures for IaC workflows, configuration management, network/firewall change controls, and immutable infrastructure approaches are defined in [Change Management Implementation Procedures](./Change-Management-Procedures.md).
+
+### Emergency Change Process
+
+Emergency changes bypass standard lead times but require single-approver authority, immediate stakeholder communication, and mandatory post-implementation review. The CAB must retrospectively review all emergency changes to confirm classification was justified and identify process improvements.
+
+Detailed emergency change procedures are defined in [Change Management Implementation Procedures](./Change-Management-Procedures.md).
 
 ### Clock Synchronization
 
@@ -138,6 +133,7 @@ Violation of this policy — including unauthorized production changes, circumve
 - Incident Response Policy
 - Vendor Management Policy
 - Asset Management Policy
+- [Change Management Implementation Procedures](./Change-Management-Procedures.md)
 
 ## Revision History
 

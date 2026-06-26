@@ -1,260 +1,222 @@
 # Disaster Recovery Plan — Implementation Procedures
 
 > **Companion to:** Disaster Recovery Plan (Template.md)
-> **Purpose:** These procedures describe how to execute the three DR phases defined in the policy. They focus on the phase-level execution steps. For platform-specific failover procedures (CRM, financial systems, communication tools), refer to the Disaster Recovery Process document.
-
-## Procedure: Notification and Activation (Phase 1)
-
-### Standard Approach
-
-#### Detection and Initial Response
-
-1. **The first responder detects the disruption.** This may be:
-   - An automated alert from monitoring indicating multiple critical systems are down.
-   - A manual report from a team member who cannot access critical services.
-   - A cloud provider status page notification of a regional outage.
-   - A physical event (fire, flood, power loss) at a facility hosting infrastructure.
-2. **Notify immediately:** The first responder contacts ____ (e.g., CTO / Head of Engineering) via all available channels — messaging platform, SMS, and phone. Provide:
-   - What was observed (specific systems, error messages, or physical conditions).
-   - When it started.
-   - Any initial assessment of scope (single system, entire region, unknown).
-3. **The ____ (DR Authority) acknowledges** and assumes incident command. If unreachable within ____ minutes, the succession chain activates (next in line assumes authority).
-
-#### Damage Assessment
-
-1. **Assemble the assessment team:**
-   - Infrastructure Lead (or equivalent) to assess technical systems.
-   - Security Officer to assess security implications.
-   - If physical damage is involved, Facilities Lead.
-2. **Determine the nature and extent of damage:**
-   - **Infrastructure salvageable?** Can affected systems be restored in place, or is a full rebuild required?
-   - **Data integrity?** Are backups intact and recent enough to meet RPO?
-   - **Estimated recovery time?** Under best-case, expected, and worst-case scenarios.
-   - **Safety concerns?** Are personnel at risk? Is the facility safe?
-   - **Security state?** Was the disruption caused by an attack? Is the attacker still present?
-3. **Formulate an initial recovery approach:**
-   - Recover in place (if infrastructure is salvageable)
-   - Fail over to alternate site (if primary infrastructure is unrecoverable)
-   - Hybrid (recover some systems in place, fail over others)
-4. **Document the assessment** in the event log with timestamps.
-
-#### Activation Decision
-
-The DR Authority activates the DR Plan if **any** of these criteria are met:
-
-- Critical systems will be unavailable for more than ____ hours (from the RTO table in the policy).
-- A hosting facility or cloud region is damaged and will be unavailable for more than ____ hours.
-- A cybersecurity incident has caused widespread data destruction or system compromise.
-- Executive leadership declares activation for any other reason.
-
-#### Activation Actions (Execute Immediately Upon Activation)
-
-1. **Notify all recovery team members:**
-   - Send activation notice via messaging platform + SMS + email.
-   - Include: event description, activation time, immediate action required from each team.
-   - Confirm receipt from every team member; call anyone who doesn't acknowledge within ____ minutes.
-2. **Notify external partners:**
-   - Cloud provider / hosting provider: open a high-severity support case.
-   - Critical vendors that may be affected or can assist.
-   - Cyber insurance provider (if applicable).
-3. **Notify executive leadership** with current status, estimated recovery timeline, and any resource needs.
-4. **Activate the communications plan:**
-   - Update public status page.
-   - Prepare customer notification if required by SLA or regulation.
-   - Designate a single point of contact for all external communications.
-5. **Start the event log:** Record every decision, action, and communication with timestamps. This log becomes the authoritative record of the DR event.
-
-### Alternative Approaches
-
-> **💡 Why you might choose differently:** Full activation is noisy and disruptive. For contained incidents, a partial activation may be appropriate.
-
-- **Alternative A — Phased activation:** Activate only the Recovery Phase for affected systems without declaring a full DR event. Use this when systems are down but the recovery path is clear and contained (e.g., a single database failure with a known-good backup). Does not trigger external notification.
-- **Alternative B — Pre-authorized auto-activation:** For cloud region outages detected by automated monitoring, pre-authorize the Infrastructure Lead to activate the DR Plan and begin failover without waiting for executive approval. Requires clear guardrails (which scenarios, what spend limits).
-
-### Common Pitfalls
-
-> **⚠️ Watch out:** The notification cascade assumes the messaging platform is working. If it's part of the affected infrastructure, you're trying to coordinate in the dark. Pre-distribute a phone tree and SMS list that doesn't depend on any internal system.
->
-> **⚠️ Watch out:** "We'll notify customers when we know more" leads to radio silence for hours while the team assesses damage. Customers would rather hear "we're investigating, we'll update you in 30 minutes" than silence. Commit to a communication cadence, not a content threshold.
->
-> **⚠️ Watch out:** Activation is often delayed because the DR Authority wants "more information" before committing. The policy's activation criteria exist precisely to prevent this — if the criteria are met, activate. You can always stand down later.
+> **Purpose:** These procedures describe how to execute the three phases of disaster recovery defined in the DRP. The DRP defines the strategic framework and WHAT must be done; this document describes HOW to execute each phase with tactical, platform-specific guidance.
 
 ---
 
-## Procedure: Recovery (Phase 2)
+## Procedure 1: Phase 1 — Notification and Activation
 
 ### Standard Approach
 
-Execute the following sequence. Steps may run in parallel where dependencies permit:
+This procedure covers initial detection, damage assessment, and plan activation.
 
-#### Step 1: Communicate
+#### 1.1 Initial Detection and First Response
 
-- Send initial customer notification (if not already done during Activation).
-- Provide the first timeline estimate (even if rough: "we estimate 4-8 hours").
-- Commit to next update time: "We will provide our next update at ____."
+1. **First Responder Actions:** Whoever detects the disruption (automated alerting system, on-call engineer, or manual observation) must:
+   - Immediately notify the DR authority (`____`, e.g., CTO / Head of Engineering) via all available channels (messaging platform, SMS, phone call).
+   - Relay all known information: what system/service is affected, what symptoms are observed, when it started, any error messages or alert details.
+   - If the first responder has the access and knowledge, perform a rapid triage: is this a localized issue (one server) or widespread (entire region/cloud provider)?
+2. **DR Authority Acknowledgment:** The DR authority acknowledges receipt within `____` minutes (recommended: 15 minutes). If no acknowledgment within `____` minutes (recommended: 30), the notification escalates to the successor per the chain of command.
 
-#### Step 2: Assess
+#### 1.2 Damage Assessment Execution
 
-- Complete the damage assessment (if not completed during Phase 1).
-- Confirm the recovery approach: in-place recovery, alternate site failover, or hybrid.
-- Confirm which backups will be used for restoration (most recent verified backup that predates the disruption).
+1. **Assemble Assessment Team:** The DR authority assembles a minimum damage assessment team: Infrastructure Lead, Engineering Lead, Security Officer. Conference bridge or dedicated messaging channel within `____` minutes.
+2. **Assessment Checklist:**
+   - [ ] Identify scope: which systems, services, and data are affected?
+   - [ ] Determine if production infrastructure is salvageable or requires full rebuild.
+     - **Salvageable:** Systems are intact but unavailable (network outage, configuration error). Recovery focuses on restoring connectivity/correcting configuration.
+     - **Rebuild Required:** Systems are destroyed, corrupted, or the cloud region is down. Recovery focuses on provisioning a new environment from infrastructure-as-code.
+   - [ ] Estimate time to recovery under best-case, expected, and worst-case scenarios.
+   - [ ] Identify immediate safety or security concerns (exposed data, active attacker, physical danger to personnel).
+   - [ ] Check backup integrity: are recent, verified backups accessible from the recovery site?
+   - [ ] Assess if the alternate recovery site/region is operational.
+3. **Documentation:** Record all assessment findings in a shared document (the event log). Timestamp every entry.
 
-#### Step 3: Provision
+#### 1.3 Activation Decision and Execution
 
-- Deploy the recovery environment at the alternate site using infrastructure-as-code (IaC).
-- **If using a secondary cloud region:** Execute the IaC deployment against the failover region. Validate that networking, security groups, and IAM roles resolve correctly in the new region context.
-- **If using a secondary cloud provider:** Execute the multi-cloud IaC deployment. Validate that provider-specific resources (e.g., managed database engines, load balancer types) have been correctly mapped.
-- **If using on-premises:** Power on the recovery hardware, deploy from the configuration management system.
-- Provisioning should target a production-equivalent environment — same instance sizes, same database tiers, same network topology.
-
-#### Step 4: Restore
-
-- Restore databases from the most recent verified backups:
-  - Verify backup integrity before restoring (checksums, file sizes).
-  - Restore in priority order: databases supporting critical systems first.
-  - Execute point-in-time recovery if transaction log backups are available and needed.
-- Restore file/object storage.
-- Restore configuration data (secrets, certificates, environment variables) from secure backup stores.
-
-#### Step 5: Validate
-
-- **Smoke tests:** Can the application start? Can users authenticate? Can core business operations execute?
-- **Integration tests:** Do services connect to each other correctly? Do third-party integrations work?
-- **Data validation:** Are row counts, checksums, and recent transactions consistent with expectations?
-- **Performance check:** Is the recovery environment performing adequately? (It may be degraded from production — document any degradation.)
-
-#### Step 6: Secure
-
-- Confirm encryption is enabled on all data stores.
-- Confirm logging is flowing to the centralized log platform.
-- Confirm monitoring alerts are configured and firing correctly.
-- Confirm access controls are in place (security groups, IAM policies, network ACLs).
-- Run a vulnerability scan on the recovery environment before exposing it to users.
-
-#### Step 7: Patch
-
-- Apply any outstanding security patches that the backup may not include.
-- Update any certificates that may have expired since the backup was taken.
-
-#### Step 8: Activate
-
-- Designate the recovery environment as the active production environment.
-- Update internal references (DNS, service discovery, configuration) to point to the recovery environment.
-
-#### Step 9: Route
-
-- Update public DNS records to direct users to the recovery environment.
-- Monitor DNS propagation (it can take hours for some users).
-- If using a CDN, update origin server configuration.
-- Monitor traffic, errors, and user reports for the first ____ hours after cutover.
-
-### Alternative Approaches
-
-> **💡 Why you might choose differently:** The full 9-step sequence assumes a complete rebuild. Some scenarios call for lighter approaches.
-
-- **Alternative A — Pilot light recovery:** Maintain a minimal recovery environment running at all times (e.g., a small database replica and one app server). On activation, scale up rather than provision from scratch. Faster recovery (minutes instead of hours) at higher ongoing cost.
-- **Alternative B — Warm standby:** Maintain a fully-provisioned but scaled-down copy of production in the failover region. Data is continuously replicated. On activation, scale up and cut over. Best RTO but highest cost.
-- **Alternative C — Backup-only recovery:** For non-critical systems, skip steps 3 (Provision) and 8-9 (Activate/Route) by restoring directly to the original environment once it's available. Accept longer downtime in exchange for operational simplicity.
+1. **Activation Criteria Check:** The DR authority determines if activation criteria are met:
+   - [ ] Critical systems will be unavailable for >`____` hours.
+   - [ ] A hosting facility or cloud region is damaged and will be unavailable for >`____` hours.
+   - [ ] A cybersecurity incident has caused widespread data destruction or system compromise.
+   - [ ] Other criteria per organizational leadership.
+2. **Formal Activation:**
+   - DR authority declares the plan activated. Record the declaration timestamp and rationale in the event log.
+   - If DR authority is unavailable, the successor per chain of command makes the declaration.
+3. **Notification Execution:**
+   - [ ] Notify all recovery team members via all available channels (messaging, SMS, phone). Use pre-configured distribution lists. Confirm acknowledgment from each team lead.
+   - [ ] Team leads notify their teams with applicable information and instructions.
+   - [ ] Notify external partners: cloud provider(s) (`____`), hosting provider (`____`), critical vendors (`____`). Open Severity 1 tickets where applicable.
+   - [ ] Notify executive leadership with initial status: what happened, what's affected, estimated recovery timeline, and immediate resource needs.
+   - [ ] Notify customers and partners per the communications plan (Communications Lead executes).
+   - [ ] Document all notifications with timestamps, recipients, and content in the event log.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** IaC that works in us-east-1 may fail in eu-west-1 because of regional service availability differences (e.g., a specific instance type or managed service tier isn't offered in the failover region). Test IaC deployment in the failover region BEFORE you need it.
->
-> **⚠️ Watch out:** DNS changes have TTL. If your TTL is 24 hours, some users won't see the cutover for a day. Lower TTLs before planned maintenance; for unplanned DR, accept that routing will be gradual.
->
-> **⚠️ Watch out:** The recovery environment will have different IP addresses. Hardcoded IPs in application config, third-party allowlists, or customer firewall rules will break. Document all IP-dependent integrations and have a procedure to update them.
+> **⚠️ Watch out:** Delaying activation while waiting for "more information." The most common DR failure mode is analysis paralysis. The activation decision should be made based on what you know now, with a bias toward activation. It's easier to stand down from a false activation than to recover lost time from a delayed activation.
+
+> **⚠️ Watch out:** The notification cascade breaking because one person is on vacation. Distribute notification responsibilities across at least three people for each team. Use a pager/on-call rotation service (e.g., PagerDuty, Opsgenie) to automate escalation rather than relying on a manual phone tree.
+
+> **⚠️ Watch out:** Failing to notify the cloud provider early. Major cloud providers have support teams that can assist with region-wide issues, but they need to be engaged quickly. Open a support case immediately upon suspecting a provider-level issue — you can always close it if it turns out to be localized.
 
 ---
 
-## Procedure: Reconstitution (Phase 3)
+## Procedure 2: Phase 2 — Recovery
 
 ### Standard Approach
 
-Once the original site is restored or a new permanent site is established:
+This procedure covers the technical recovery of IT systems at the designated recovery site.
 
-1. **Provision the permanent environment:**
-   - Deploy production infrastructure using the same IaC templates that were validated during Recovery.
-   - If using a new permanent site (not the original), this is a greenfield deployment.
-   - If the original site has been repaired, ensure it is clean and secure before provisioning.
-2. **Replicate data:**
-   - Set up continuous replication from the recovery environment to the permanent environment (if supported by the database engine).
-   - Alternatively, take a fresh backup from the recovery environment and restore to the permanent environment.
-   - Validate data consistency after replication.
-3. **Execute validation tests** against the permanent environment:
-   - Same smoke tests, integration tests, and data validation as Recovery Phase Step 5.
-   - Add a full regression test suite if time permits.
-4. **Verify security controls:**
-   - Logging, monitoring, and alerting operational.
-   - Encryption enabled.
-   - Access controls correct.
-   - Vulnerability scan clean.
-5. **Plan the cutover:**
-   - Choose a low-traffic window if possible.
-   - Lower DNS TTLs in advance.
-   - Brief all teams on the cutover plan and rollback procedure.
-6. **Execute the cutover:**
-   - Deploy the permanent environment as production.
-   - Update DNS to direct traffic to the permanent environment.
-   - Monitor for ____ hours post-cutover.
-7. **Decommission the recovery environment:**
-   - After confirming stability, begin decommissioning the recovery environment.
-   - Sanitize all storage (secure wipe or cryptographic erasure).
-   - Terminate all compute resources.
-   - Document decommissioning actions.
+#### 2.1 Recovery Environment Provisioning
+
+1. **Target Selection:** Determine the recovery site:
+   - **Same provider, different region:** If the primary region is down but the provider is operational. Use the pre-designated recovery region: `____`.
+   - **Different cloud provider:** If the primary provider is experiencing a widespread outage. Fail over to: `____` (e.g., AWS → Azure, GCP → AWS).
+   - **On-premises:** If cloud providers are unavailable or the organization maintains on-premises infrastructure.
+2. **Provisioning Execution:**
+   - Execute infrastructure-as-code (IaC) deployment against the recovery target:
+     ```bash
+     # Example: Terraform with separate state file for recovery environment
+     terraform init -backend-config="bucket=dr-state-bucket"
+     terraform apply -var="environment=dr" -var="region=${DR_REGION}"
+     ```
+   - Deploy container orchestration (Kubernetes) cluster if applicable, using the same configuration as production.
+   - Verify that IaC execution completes successfully. Any failures are documented and escalated to the Infrastructure Lead.
+3. **Network Configuration:**
+   - Provision networking: VPC/VNet, subnets, security groups, load balancers.
+   - Configure DNS (initially internal-only for validation).
+   - Establish VPN or interconnect if hybrid architecture is required.
+   - Verify connectivity between all recovery environment components.
+
+#### 2.2 Data Restoration
+
+1. **Identify Restore Source:**
+   - Check the backup catalog for the most recent verified backup of each data store.
+   - For databases, determine the recovery point: most recent full backup + transaction logs to the latest available point.
+2. **Restore Execution (Ordered by Dependency):**
+   - **First:** Encryption keys and secrets. Retrieve from KMS/HSM (`____`). Verify accessibility.
+   - **Second:** Databases (the most dependency-heavy layer). Restore full backup, then apply transaction logs to reach the desired recovery point. Verify row counts and schema integrity.
+   - **Third:** File stores and object storage. Sync from backup storage to the recovery environment.
+   - **Fourth:** Configuration data (service discovery, feature flags, application config). Restore from configuration-as-code repository.
+3. **Restore Validation:**
+   - Run database integrity checks (`pg_dump` schema validation, checksum verification).
+   - Compare file counts and sizes against the backup manifest.
+   - Verify that all required secrets are accessible to applications.
+
+#### 2.3 System Validation and Hardening
+
+1. **Functional Validation:**
+   - Deploy applications to the recovery environment.
+   - Run smoke tests: can the application start? Can it connect to the database? Can it serve requests?
+   - Run a subset of integration tests to validate critical paths.
+   - Have `____` (QA / Engineering) sign off on functional readiness.
+2. **Security Hardening:**
+   - Verify encryption at rest is enabled on all data stores.
+   - Verify TLS certificates are deployed and valid.
+   - Verify access controls (IAM roles, security groups) match production policies.
+   - Deploy monitoring agents and verify they are reporting to the central monitoring platform.
+   - Deploy EDR/anti-malware agents.
+   - Verify alerting rules are active for the recovery environment.
+   - **Do NOT** cut over to the recovery environment until security controls are confirmed operational.
+3. **Patch Verification:**
+   - Check that all systems are running the latest approved patches.
+   - Run a vulnerability scan against the recovery environment. Any Critical or High findings must be remediated before cutover.
+4. **Performance Validation (if time permits):**
+   - If the recovery environment has different specifications than production, run a performance smoke test to verify it can handle expected load.
+   - If recovery environment is undersized, provision additional resources.
+
+#### 2.4 Cutover to Recovery Environment
+
+1. **Pre-Cutover Checklist:**
+   - [ ] All critical services operational in recovery environment.
+   - [ ] Functional validation passed.
+   - [ ] Security controls verified.
+   - [ ] Monitoring and alerting active.
+   - [ ] Communications team prepared with customer notification.
+2. **DNS Cutover:**
+   - Update DNS records to point to the recovery environment's endpoints. Reduce TTL to `____` seconds (recommended: 60 seconds) 24 hours before planned cutover (if planning ahead). For emergency cutover, accept that propagation may take up to the current TTL.
+   - Monitor DNS propagation using a tool like `dig` or `whatsmydns.net`.
+3. **Traffic Verification:**
+   - Monitor incoming traffic to the recovery environment. Verify that user traffic is arriving.
+   - Check error rates, latency, and throughput against baseline.
+   - Keep the damaged production environment isolated but do not destroy it — it may contain forensic evidence.
+4. **Declaration:** The DR authority declares the recovery environment as the active production environment. Record the timestamp in the event log.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Reconstitution adds risk — you're moving production a second time. Sometimes staying put is better.
+> **💡 Why you might choose differently:** Recovery strategy should match your RTO and RPO targets.
 
-- **Alternative A — Stay at recovery site:** If the recovery environment is stable, equivalent in capability, and the original site cannot be restored cost-effectively, designate the recovery environment as the new permanent production site. Rebuild redundancy from there.
-- **Alternative B — Gradual migration:** Move services back to the permanent site one at a time over days or weeks, rather than a single big-bang cutover. Lower risk per service but prolonged co-existence complexity.
+- **Pilot Light:** Maintain a minimal version of the environment always running in the recovery region (core services only, no data). In a disaster, scale up and restore data. Lower cost than full hot standby but slower to recover (typically hours).
+- **Warm Standby:** Maintain a scaled-down but fully functional environment in the recovery region. In a disaster, scale up and redirect traffic. Higher cost but faster recovery (typically minutes to an hour).
+- **Multi-Region Active-Active:** Run production across multiple regions simultaneously. If one region fails, traffic is automatically routed to the other. Highest cost and operational complexity, but near-zero RTO. Appropriate for services that cannot tolerate any downtime.
+- **Backup and Restore Only:** For non-critical systems with long RTO, maintain only backups (no pre-provisioned infrastructure). Restoration time depends on IaC execution + data transfer time. Lowest cost, slowest recovery (typically hours to days).
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Reconstitution is often treated as an afterthought — "we'll figure it out after recovery." But it needs the same level of planning as the initial failover. An unplanned cutback to the original site can cause a second outage.
->
-> **⚠️ Watch out:** The recovery environment may have accumulated configuration drift (emergency patches, workarounds, hotfixes) that aren't in the IaC templates. If you redeploy from IaC at the permanent site, those fixes are lost. Audit the recovery environment's config before reconstitution.
+> **⚠️ Watch out:** Infrastructure-as-code that doesn't actually work in the recovery region. AMIs, managed service availability, and instance types vary by region. Test IaC deployment in the recovery region at least quarterly — don't wait for a disaster to discover that a critical service isn't available there.
+
+> **⚠️ Watch out:** DNS changes that take hours to propagate because the TTL was set to 86400 seconds. For critical domains, maintain a low TTL (60-300 seconds) at all times. Accept the slightly higher DNS query cost as insurance.
+
+> **⚠️ Watch out:** TLS certificate issues. If you use a different domain or CDN endpoint for the recovery environment, ensure certificates are pre-provisioned and not expired. Automate certificate renewal for recovery domains even if they're rarely used.
+
+> **⚠️ Watch out:** Restoring data that has been corrupted but not yet detected. If a database corruption occurred 3 days ago and all backups since then contain the corruption, restoration won't help. Maintain point-in-time recovery with enough history to restore to a point before corruption was introduced. Use replication delay on read replicas as an additional safety net.
 
 ---
 
-## Procedure: DR Plan Deactivation and Post-Event Review
+## Procedure 3: Phase 3 — Reconstitution
 
 ### Standard Approach
 
-1. **Declare deactivation:** Once the permanent environment is stable for ____ hours, the DR Authority formally declares the DR Plan deactivated. Notify all recovery team members and executive leadership.
-2. **Compile the event record:**
-   - Gather all event logs, incident tickets, communication records, and decision logs.
-   - Organize into a chronological timeline.
-   - Identify key decision points and who made them.
-3. **Conduct post-incident review** within ____ business days:
-   - All recovery team members participate.
-   - Review the timeline — what happened when?
-   - Evaluate: what worked, what didn't, what was missing?
-   - Measure actual recovery times against RTO/RPO targets.
-   - Identify procedural gaps, tooling deficiencies, and training needs.
-4. **Update all DR documentation:**
-   - Update the DR Plan with lessons learned.
-   - Update the DR Process with platform-specific findings.
-   - Update IaC templates if they failed in the failover region.
-   - Update contact rosters if any were inaccurate.
-5. **Track remediation items** in the ticketing system. Assign owners and due dates.
+This procedure covers restoration of normal operations at the original or a new permanent site.
+
+#### 3.1 Permanent Environment Preparation
+
+1. **Original Site Assessment (if returning):**
+   - Verify the original site/region is fully operational and stable.
+   - Verify that the root cause of the original disruption has been resolved.
+   - Provision the permanent environment using the SAME infrastructure-as-code as the recovery environment (ensuring any fixes applied during recovery are captured).
+2. **New Permanent Site (if original is abandoned):**
+   - Provision the new permanent environment per organizational standards.
+   - Update all documentation to reflect the new production location.
+
+#### 3.2 Data Synchronization
+
+1. **Establish Data Replication:**
+   - Set up replication from the recovery environment to the permanent environment.
+   - For databases: configure streaming replication or log shipping.
+   - For file stores: use `rclone sync` or cloud-native cross-region replication.
+2. **Verify Data Consistency:**
+   - Compare data in both environments. Row counts, checksums, file manifests.
+   - Resolve any discrepancies before proceeding.
+
+#### 3.3 Validation and Cutback
+
+1. **Validation:** Execute the same validation checklist as Phase 2 (functional, security, performance).
+2. **Cutback Window:** Schedule the cutback during a maintenance window. Notify customers in advance.
+3. **DNS Update:** Redirect traffic from the recovery environment to the permanent environment.
+4. **Monitoring:** Monitor the permanent environment for stability for `____` hours (recommended: 24 hours) before decommissioning the recovery environment.
+5. **Deactivation Declaration:** DR authority declares the DRP deactivated. Record timestamp.
+
+#### 3.4 Recovery Environment Decommissioning
+
+1. **Sanitization:** Securely wipe all data from the recovery environment. For cloud resources, delete storage volumes and object storage buckets. For on-premises hardware, follow the media sanitization policy.
+2. **Resource Deallocation:** Terminate compute resources to stop billing. Do NOT delete infrastructure-as-code templates or configuration — they may be needed again.
+3. **Event Log Closure:** Compile all event logs, decisions, and actions into the incident record. Archive per retention requirements.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Post-incident reviews that happen weeks later suffer from memory decay. Conduct the hot wash within 48 hours of deactivation while details are fresh.
->
-> **⚠️ Watch out:** Remediation items from post-incident reviews often go into a black hole. Schedule a 30-day follow-up meeting specifically to review remediation progress.
+> **⚠️ Watch out:** Rushing reconstitution. The recovery environment is working; there's no urgency to move back. Take the time to do reconstitution properly. A botched reconstitution can cause a second outage, which is far worse than staying on the recovery environment for an extra week.
+
+> **⚠️ Watch out:** Forgetting to apply lessons learned to the permanent environment. If you fixed configuration issues or applied patches during recovery, those fixes must be backported to the permanent environment's IaC so they aren't lost when you provision the next permanent environment.
+
+---
 
 ## Related Documents
 
 - Disaster Recovery Plan (Template.md)
-- Disaster Recovery Process
-- Business Continuity Plan
-- Backup Policy
-- Incident Response Policy
-
-## Revision History
-
-| Version | Date | Author | Description |
-|---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+- Disaster Recovery Process (../Disaster-Recovery-Process/Template.md)
+- Business Continuity Plan (../Business-Continuity-Plan/Template.md)
+- Backup Policy (../Backup-Policy/Template.md)
+- Backup Procedures (../Backup-Policy/Backup-Procedures.md)
+- Incident Response Policy (../Incident-Response-Policy/IR-Policy-Template.md)
+- Encryption Policy (../Encryption-Policy/Template.md)

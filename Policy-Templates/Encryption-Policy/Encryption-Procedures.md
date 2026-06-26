@@ -1,249 +1,317 @@
 # Encryption Policy — Implementation Procedures
 
 > **Companion to:** Encryption Policy (Template.md)
-> **Purpose:** These procedures describe how to implement the encryption requirements defined in the policy, including key management lifecycle, device encryption deployment, and TLS configuration.
-
-## Procedure: Cryptographic Key Management Lifecycle
-
-### Standard Approach
-
-#### Key Generation
-
-1. **Determine the appropriate key generation method:**
-   - **Cloud KMS (preferred):** Use AWS KMS, Azure Key Vault, or GCP Cloud KMS. The HSM-backed key generation ensures FIPS 140-2 Level 2/3 compliance.
-   - **On-premises HSM:** For organizations with physical HSM appliances. Slower to provision but necessary for air-gapped environments.
-   - **Software-based (least preferred, requires exception):** OpenSSL or similar. Only acceptable for development/non-production keys.
-2. **Configure key specifications:**
-   - **Symmetric (AES):** 256-bit, generated within the KMS/HSM.
-   - **Asymmetric (RSA):** 3072-bit minimum.
-   - **Asymmetric (ECC):** NIST P-256 or Ed25519.
-   - **Random number source:** The KMS/HSM's internal entropy source, seeded from a hardware random number generator.
-3. **Document each key at creation:**
-   - Key identifier (ARN, key ID, or alias).
-   - Algorithm and key size.
-   - Creation date.
-   - Intended use (e.g., "S3 bucket encryption for production data").
-   - Rotation policy.
-   - Authorized principals (who can use and manage the key).
-
-#### Key Storage and Protection
-
-1. **Never store private/secret keys in plaintext.** Use one of:
-   - KMS/HSM: keys never leave the hardware boundary. Applications request cryptographic operations via API.
-   - Envelope encryption: encrypt the data encryption key (DEK) with a key encryption key (KEK) stored in KMS. Store only the encrypted DEK alongside the data.
-2. **Prohibit key embedding in:**
-   - Source code (including comments).
-   - Configuration files (use secrets references or environment variable injection from a secrets manager).
-   - Version control systems (scan repos with tools like `git-secrets`, `truffleHog`, or `detect-secrets`).
-   - CI/CD logs (mask secrets in build output).
-   - Docker images (use build secrets, not COPY instructions).
-3. **Restrict access to key material:**
-   - Use IAM policies / access policies scoped to specific principals and specific key operations (encrypt, decrypt, sign, verify).
-   - No principal should have `*` permissions on any key.
-   - Review key access policies quarterly — remove any overly permissive grants.
-
-#### Key Rotation
-
-1. **Configure automatic rotation where supported:**
-   - AWS KMS: enable automatic annual rotation for customer-managed keys.
-   - Azure Key Vault: configure key rotation policy with desired interval.
-   - GCP Cloud KMS: enable automatic rotation.
-   - TLS certificates: use an automated certificate management tool (e.g., cert-manager for Kubernetes, AWS ACM) that renews certificates before expiry.
-2. **For systems without automatic rotation** (e.g., application-layer encryption keys, legacy systems), implement a manual rotation procedure:
-   - Generate new key in KMS/HSM.
-   - Re-encrypt data with the new key. For large datasets, this may need to happen incrementally or during a maintenance window.
-   - Mark the old key as "retired" (keep for decryption of old data, prevent new encryption).
-   - Retire old key versions after the retention period.
-3. **Rotation schedule (from policy):**
-   - Data encryption keys (DEKs): every ____ months.
-   - Key encryption keys (KEKs): every ____ months.
-   - TLS certificates: every ____ months.
-   - API keys / service account credentials: every ____ months.
-   - Signing keys: every ____ months.
-
-#### Key Revocation and Destruction
-
-1. **Revoke immediately upon suspected compromise:**
-   - Disable the key in KMS/HSM (revoke all cryptographic operations).
-   - Revoke associated TLS certificates (CRL/OCSP).
-   - Rotate all credentials that may have been exposed alongside the key.
-2. **Investigate the scope of compromise:**
-   - What data was encrypted with this key?
-   - Was the key used to sign anything (certificates, code, documents)?
-   - Could an attacker have used it to decrypt or sign?
-3. **Destroy the key when no longer needed:**
-   - KMS: schedule key deletion (minimum waiting period per policy).
-   - HSM: use secure deletion function (cryptographic erasure — overwrite key material with zeros or random data).
-   - Document the destruction: key ID, date, method, and authorizing individual.
-4. **Key destruction is auditable** — log all destruction events to the centralized logging platform and retain logs per retention policy.
-
-### Alternative Approaches
-
-> **💡 Why you might choose differently:** Cloud KMS costs can add up with thousands of keys.
-
-- **Alternative A — HashiCorp Vault:** Use Vault as an abstraction layer over cloud KMS. Provides unified API, audit logging, and dynamic secrets. More operational complexity but better multi-cloud support.
-- **Alternative B — BYOK (Bring Your Own Key):** Generate keys in your own HSM and import them into the cloud provider's KMS. You control the key origin, but the cloud provider performs cryptographic operations. Satisfies some regulatory requirements for key sovereignty.
-- **Alternative C — Hardware-bound keys:** For highest-security applications, use physical HSMs or smart cards for key storage. Keys NEVER leave the hardware. Highest security but lowest convenience and scalability.
-
-### Common Pitfalls
-
-> **⚠️ Watch out:** "Automatic key rotation" in cloud KMS keeps old key versions available for decryption by default. The rotation is transparent to applications — they reference the key alias, not the version. BUT if you manually delete old key versions, anything encrypted with them becomes permanently unrecoverable.
->
-> **⚠️ Watch out:** Keys stored in `.env` files that get committed to Git "just for local development" will be discovered by attackers scraping public repos within minutes. Use `.env.example` with placeholder values and inject real secrets at runtime.
->
-> **⚠️ Watch out:** Key rotation that generates a new key but never actually re-encrypts data with it is theater. The old key still decrypts everything, and if it's compromised, rotation didn't help. Rotation must include data re-encryption or a clear plan for when old data ages out.
+> **Purpose:** These procedures describe how to implement the cryptographic requirements set forth in the Encryption Policy. The policy defines WHAT must be done (approved algorithms, minimum key strengths, encryption requirements); this document describes HOW to do it.
 
 ---
 
-## Procedure: Full-Disk Encryption Deployment
+## Procedure 1: Key Management Lifecycle
 
 ### Standard Approach
 
-#### macOS Devices (FileVault)
+This procedure covers the end-to-end lifecycle of cryptographic keys: generation, storage, rotation, revocation, and destruction.
 
-1. **Verify MDM enrollment:** The device must be enrolled in the organization's MDM platform (Jamf, Kandji, Intune, etc.).
-2. **Enable FileVault via MDM policy:**
-   - Deploy a configuration profile that enforces FileVault with the following settings:
-     - Enable FileVault: Required.
-     - Escrow recovery key to MDM: Required.
-     - Show recovery key to user: Optional (recommended: do NOT show — users will screenshot it and save it insecurely).
-   - The policy should apply to all managed macOS devices with no opt-out.
-3. **Monitor encryption status:**
-   - MDM dashboard should report encryption status for every managed device.
-   - Configure an alert if any device reports FileVault as disabled or in-progress for more than ____ hours.
-4. **Handle encryption failures:**
-   - If FileVault fails to enable (e.g., disk errors, unsupported configuration), the IT team must investigate and resolve within ____ business days.
-   - Devices that cannot be encrypted must not be used to access organizational data.
+#### 1.1 Key Generation
 
-#### Windows Devices (BitLocker)
+1. **Key Generation Environment:**
+   - Production keys must be generated within a secure, access-controlled environment:
+     - **Hardware Security Module (HSM):** For on-premises or high-assurance keys. Use FIPS 140-2 Level 3 or higher certified HSM. Example: `pkcs11-tool --module /usr/lib/opensc-pkcs11.so --keypairgen --key-type RSA:4096 --label "prod-signing-key-2026"`
+     - **Cloud Key Management Service (KMS):** For cloud-native workloads. Use AWS KMS, Azure Key Vault, or GCP Cloud KMS. Generate keys within the service — never import key material unless there is a specific external HSM requirement.
+   - Development/test keys must be generated in a separate KMS instance from production. Never use production KMS for non-production environments.
+2. **Entropy Requirements:**
+   - All key generation must use a cryptographically secure pseudo-random number generator (CS-PRNG) seeded with sufficient entropy.
+   - For on-premises systems, verify available entropy: `cat /proc/sys/kernel/random/entropy_avail` — should be > 1000 before key generation. Use `haveged` or hardware RNG if entropy is insufficient.
+3. **Key Generation Audit Log:**
+   - Log every key generation event: timestamp, key identifier, key type, key strength, generating entity (person or service), and purpose.
+   - Store logs in the centralized logging platform for minimum 7 years.
 
-1. **Verify MDM or Active Directory enrollment.**
-2. **Enable BitLocker via MDM/GPO policy:**
-   - Encryption method: AES-256 (not the default AES-128).
-   - Encrypt entire system drive (not just used space — this leaves deleted data unencrypted).
-   - Require TPM + PIN for boot (optional; TPM-only is acceptable for most organizations).
-   - Escrow recovery key to MDM or Active Directory.
-3. **Monitor encryption status:**
-   - MDM dashboard or AD query for BitLocker status.
-   - Alert on any device without BitLocker enabled.
+#### 1.2 Key Storage and Protection
 
-#### Mobile Devices (iOS / Android)
+1. **Never Store Keys in Plaintext:**
+   - Private/secret keys must never exist in plaintext on disk, in configuration files, environment variables, source code repositories, or deployment scripts.
+   - Scan for plaintext keys using automated secret scanning tools (**git-secrets**, **truffleHog**, **Gitleaks**) in CI/CD pipelines and periodically across all repositories and file shares.
+2. **Key Encryption Keys (KEKs):**
+   - Encrypt all data encryption keys (DEKs) with a separate key encryption key (KEK).
+   - The KEK must be stored one tier higher in the security hierarchy: DEK is application-accessible (via KMS API), KEK is accessible only to the KMS admin role.
+3. **Cloud KMS Configuration:**
+   - Use customer-managed keys (CMKs) for encrypting Restricted and Confidential data.
+   - Configure key policies following least privilege:
+     ```json
+     // AWS KMS key policy example
+     {
+       "Effect": "Allow",
+       "Principal": {"AWS": "arn:aws:iam::123456789012:role/application-role"},
+       "Action": ["kms:Decrypt", "kms:GenerateDataKey"],
+       "Resource": "*",
+       "Condition": {
+         "StringEquals": {"kms:ViaService": "s3.us-east-1.amazonaws.com"}
+       }
+     }
+     ```
+   - Enable key usage logging: CloudTrail (AWS), Azure Monitor (Azure), Cloud Audit Logs (GCP).
+4. **Access Control:**
+   - Access to key material must be restricted to explicitly authorized personnel and systems.
+   - Implement dual control for critical key operations (key creation, key deletion, key policy modification): require approval from two authorized individuals.
+   - Review key access logs monthly. Flag any unauthorized access attempts.
 
-1. **Enforce MDM enrollment** for all devices accessing organizational data.
-2. **Verify encryption is enabled:**
-   - iOS: encryption is enabled by default when a passcode is set. MDM policy should require a passcode (minimum length per Password Policy).
-   - Android: encryption is enabled by default on modern devices. MDM policy should enforce device encryption and block unencrypted devices.
-3. **Prohibit jailbroken/rooted devices:**
-   - MDM policy must detect and block jailbroken/rooted devices from accessing organizational data.
-   - Configure an alert if a managed device is detected as jailbroken/rooted.
+#### 1.3 Key Rotation
+
+1. **Rotation Automation:**
+   - Automate key rotation wherever feasible. Manual rotation is error-prone and leads to expired keys.
+   - For cloud KMS: enable automatic rotation. AWS KMS supports automatic annual rotation. Azure Key Vault and GCP Cloud KMS support configurable rotation policies.
+   - For application-managed keys: implement rotation in the application deployment pipeline:
+     ```bash
+     # Example: rotate database encryption key
+     # 1. Generate new DEK via KMS
+     NEW_DEK=$(aws kms generate-data-key --key-id alias/db-encryption --key-spec AES_256)
+     # 2. Re-encrypt data with new DEK
+     reencrypt-database --old-key $OLD_DEK --new-key $NEW_DEK
+     # 3. Store new DEK (encrypted with KEK)
+     aws ssm put-parameter --name /db/encryption-key --value $ENCRYPTED_NEW_DEK
+     ```
+2. **Rotation Schedule:**
+   - Data encryption keys (DEKs): rotate every `____` months (recommended: 12 months).
+   - Key encryption keys (KEKs): rotate every `____` months (recommended: 12 months).
+   - TLS/SSL certificates: rotate every `____` months (recommended: 12 months, or 90 days for high-assurance environments). Use ACM (AWS) or managed certificate services with auto-renewal.
+   - SSH host keys: rotate every `____` months (recommended: 12 months) or on known compromise.
+   - API keys and service account credentials: rotate every `____` months (recommended: 6 months). Automate where possible (e.g., IAM role instead of long-lived access keys).
+   - Signing keys: rotate every `____` months (recommended: 12 months). Maintain old keys for signature verification of previously signed artifacts.
+3. **Rotation Verification:**
+   - After rotation, verify: old key is no longer in use, new key is functioning correctly, backups of the new key are secured, and dependent systems have access to the new key.
+   - Monitor for "access denied" errors using the old key — this indicates a system that wasn't updated.
+
+#### 1.4 Key Revocation and Destruction
+
+1. **Compromise Response:**
+   - Upon suspected key compromise: immediately revoke the key, rotate all data encrypted with that key, initiate incident response per the IR Policy.
+   - For TLS certificates: revoke via the Certificate Authority (CA) and publish to CRL/OCSP.
+2. **Scheduled Key Destruction:**
+   - When a key is no longer needed: verify that no data still requires the key for decryption. If data is still encrypted with the key, decrypt and re-encrypt with a current key before destroying.
+   - For cloud KMS: schedule key deletion with a waiting period (AWS: 7-30 days, Azure: configurable, GCP: configurable). The waiting period allows recovery if destruction was accidental.
+   - For HSM: use the HSM's secure deletion function that zeroizes the key material.
+   - Log every key destruction event: timestamp, key identifier, authorizing individuals (dual control), and rationale.
+
+#### 1.5 Key Backup and Recovery
+
+1. **Key Backup Procedure:**
+   - Keys critical for data recovery must be securely backed up.
+   - Export the key from KMS/HSM in encrypted form (wrapped with a separate backup key).
+   - Store the encrypted key backup in a physically and logically separate environment from the primary keys (different region, different account).
+2. **Key Recovery Procedure:**
+   - Recovery requires dual control: at least two authorized individuals must approve and participate.
+   - Verify the identity of the requesting individuals via out-of-band communication (video call, in-person).
+   - Recover the key to the target environment and verify it works.
+   - Rotate the recovered key immediately after recovery (it was in transit/outside the secure boundary).
+3. **Annual Key Recovery Test:**
+   - Test key recovery annually: attempt to recover and use a test key from backup. Document the results.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Not all organizations use MDM, or MDM may not cover all device types.
+> **💡 Why you might choose differently:** Key management architecture depends on deployment model, scale, and compliance requirements.
 
-- **Alternative A — Manual enablement with audit:** For organizations without MDM, IT manually enables encryption during device provisioning and verifies status during annual asset audit. Higher risk of gaps.
-- **Alternative B — Self-service with attestation:** Employees self-enable FileVault/BitLocker following provided instructions and attest annually. Only appropriate for very small organizations with high trust.
+- **Bring Your Own Key (BYOK):** For organizations with strict data sovereignty requirements, import your own key material into the cloud KMS rather than having the cloud provider generate it. Trade-off: you are responsible for key material security and backup. The cloud provider cannot recover your key if lost.
+- **External HSM / Hybrid Model:** Use an on-premises HSM for root of trust and generate cloud KMS keys within the HSM, importing only the public components to the cloud. Provides the strongest separation but adds complexity and latency.
+- **HashiCorp Vault for Multi-Cloud:** Organizations operating across multiple clouds may unify key management under HashiCorp Vault (or similar). Provides a single control plane but Vault itself becomes a critical security dependency requiring careful hardening.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** FileVault recovery keys escrowed to MDM are only useful if the MDM is accessible when you need them. If the MDM is cloud-based and the device can't connect to the internet (because the disk is locked), you have a chicken-and-egg problem. Keep a break-glass procedure: how do you boot and connect to network before FileVault unlock?
->
-> **⚠️ Watch out:** BitLocker with TPM-only means anyone who can physically access the powered-on device can access the data. TPM + PIN is more secure but adds user friction.
->
-> **⚠️ Watch out:** "Encryption is enabled" in the MDM dashboard is a point-in-time check. A user who disables FileVault after provisioning won't be caught until the next MDM sync (which could be hours or days). Configure continuous compliance checks.
+> **⚠️ Watch out:** Key rotation that creates a new key but leaves the old key active. "Rotated" doesn't mean "added a second key." Verify that the old key is disabled or scheduled for destruction after rotation. Run monthly audits checking for keys that should have been destroyed but are still active.
+
+> **⚠️ Watch out:** Backing up the encryption key alongside the encrypted data. If the key backup is in the same S3 bucket as the data backup, an attacker who compromises that bucket gets both. Store key backups in a separate KMS or a separate cloud account with different credentials and MFA requirements.
+
+> **⚠️ Watch out:** Losing the ability to decrypt old data because keys were destroyed too aggressively. TLS certificate private keys can be destroyed; data encryption keys for archived data must be preserved as long as the retention period for that data. Maintain a key lifecycle schedule aligned with data retention policies.
+
+> **⚠️ Watch out:** Hard-coded "test" encryption keys making it to production. A common pattern: developers use a hard-coded key for local testing, and it accidentally gets deployed. Use KMS in all environments; for local development, use a local KMS emulator (e.g., localstack) or a dedicated dev KMS that cannot access production key material.
 
 ---
 
-## Procedure: TLS Configuration and Enforcement
+## Procedure 2: Employee Device Encryption
 
 ### Standard Approach
 
-#### Server-Side TLS Configuration
+This procedure covers the deployment, configuration, and enforcement of full-disk encryption on organizational endpoints.
 
-1. **Minimum TLS version: 1.3** for all new deployments. TLS 1.2 permitted only for backward compatibility.
-2. **Cipher suite configuration (TLS 1.2, where used):**
-   - Allow ONLY: `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`, `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384`.
-   - Explicitly disable: all CBC-mode ciphers, all non-PFS ciphers, all ciphers with <256-bit keys.
-3. **Certificate management:**
-   - Use ECDSA (NIST P-256) certificates for new deployments.
-   - RSA certificates: minimum 3072-bit key.
-   - Automate certificate renewal (cert-manager, ACM, Let's Encrypt with auto-renewal).
-4. **HSTS (HTTP Strict Transport Security):** Enable on all HTTPS endpoints with `max-age` of at least 1 year and `includeSubDomains`.
-5. **Verify configuration:**
-   - Use `testssl.sh`, SSL Labs, or `nmap --script ssl-enum-ciphers` to validate the deployed configuration.
-   - Integrate TLS testing into CI/CD: scan staging endpoints before production deployment.
+#### 2.1 macOS: FileVault Deployment
 
-#### Client-Side TLS Enforcement
+1. **Pre-Deployment Verification:**
+   - Verify the device is enrolled in the MDM platform (`____`, e.g., Jamf Pro, Kandji, Mosyle).
+   - Verify the device meets minimum OS requirements (macOS 12 Monterey or later recommended).
+   - Ensure the user has a secure password (not linked to an insecure Apple ID).
+2. **Enable FileVault via MDM:**
+   - Push a FileVault configuration profile with the following settings:
+     ```xml
+     <!-- MDM FileVault Configuration -->
+     <key>PayloadType</key>
+     <string>com.apple.MCX.FileVault2</string>
+     <key>Enable</key>
+     <string>On</string>
+     <key>Defer</key>
+     <false/>
+     <key>ShowRecoveryKey</key>
+     <false/>  <!-- Escrow to MDM, don't show to user -->
+     <key>UseRecoveryKey</key>
+     <true/>
+     ```
+   - Recovery key must be escrowed to the MDM platform — never display it to the end user (who may store it insecurely).
+3. **Verification:**
+   - Verify encryption status via MDM: `fdesetup status` should return "FileVault is On."
+   - Configure MDM compliance policy: if FileVault is disabled, mark the device as non-compliant and notify the user + IT.
+   - Attempted FileVault disable: generate a Critical alert to the Security team.
+4. **User Guidance:**
+   - At login, the user must enter their password to unlock the disk. This is automatic — FileVault uses the same password.
+   - If the user forgets their password, IT can retrieve the recovery key from the MDM.
+   - Users must NOT store their recovery key on a sticky note, in email, or in personal password managers synced to the same device.
 
-1. **Application-level:** Applications must validate TLS certificates (no `InsecureSkipVerify` or equivalent). Certificate pinning may be used for high-security applications.
-2. **Network-level:** Egress firewall rules should require TLS for all outbound connections carrying data classified as Internal or higher.
+#### 2.2 Windows: BitLocker Deployment
 
-#### TLS Monitoring
+1. **Pre-Deployment Verification:**
+   - Verify the device has a TPM chip (TPM 2.0 required for modern Windows). Check via `tpm.msc`.
+   - Verify the device is enrolled in MDM/Intune or domain-joined to Active Directory.
+   - Ensure BIOS is set to UEFI mode (not Legacy BIOS).
+2. **Enable BitLocker via Intune/GPO:**
+   - Intune policy (Endpoint Security > Disk Encryption):
+     - **Encryption method:** XTS-AES 256-bit (for Windows 10 1809+).
+     - **TPM startup:** Require TPM. Do not allow startup PIN (adds friction without significant security gain for modern TPM 2.0).
+     - **Recovery key escrow:** Escrow to Azure AD / Active Directory.
+   - Group Policy (for AD-joined devices):
+     - Computer Configuration > Administrative Templates > Windows Components > BitLocker Drive Encryption > Operating System Drives
+     - "Choose how BitLocker-protected operating system drives can be recovered" → Save recovery keys to AD DS.
+3. **Verification:**
+   - Check encryption status: `manage-bde -status` (should show "Protection: On" and "Encryption Method: XTS-AES 256").
+   - MDM compliance check: flag devices where BitLocker is not active. Auto-remediate after `____` hours by forcing encryption.
+4. **Recovery Key Access:**
+   - IT can retrieve recovery keys from Azure AD (Intune > Devices > [Device] > Recovery Keys) or Active Directory.
+   - Access to recovery keys must be logged and audited monthly.
 
-1. **Certificate expiry monitoring:**
-   - Monitor all TLS certificates for expiry. Alert at 30 days, escalate at 14 days, critical at 7 days before expiry.
-   - Use certificate transparency logs to detect unauthorized certificate issuance for organizational domains.
-2. **Protocol/cipher monitoring:**
-   - Continuously scan all public-facing endpoints for TLS configuration drift.
-   - Alert if a previously TLS 1.3 endpoint drops to TLS 1.0, or if a prohibited cipher suite appears.
+#### 2.3 Mobile Devices (iOS and Android)
+
+1. **iOS Devices:**
+   - Encryption is enabled by default when a passcode is set. MDM policy must:
+     - Require passcode (minimum 6 digits or alphanumeric).
+     - Enforce "Data Protection" (encryption) as enabled.
+   - Verify via MDM: check that "Data Protection" is reported as compliant.
+2. **Android Devices:**
+   - Android 7+ uses file-based encryption by default. MDM policy must:
+     - Require a screen lock (password/PIN/pattern).
+     - Enforce full-disk encryption if the device supports it (Android 5–6).
+     - Block devices that report encryption as disabled.
+3. **Prohibited Devices:**
+   - Jailbroken (iOS) or rooted (Android) devices are prohibited from accessing organizational data. MDM must detect jailbreak/root and automatically block access (conditional access policy) or wipe corporate data.
+   - Devices that cannot run a supported OS version (iOS < 15, Android < 11) must be blocked.
+
+#### 2.4 Ongoing Compliance Monitoring
+
+1. **Monthly Audit:** Generate a report from MDM showing:
+   - Total enrolled devices.
+   - Devices with encryption disabled or not reporting.
+   - Devices with missing or non-escrowed recovery keys.
+   - Devices that haven't checked in for > `____` days (recommended: 14 days).
+2. **Remediation:** For each non-compliant device:
+   - Send automated notification to the user with instructions and a deadline (48 hours).
+   - If not remediated, IT contacts the user directly.
+   - If not remediated within `____` days, block device access to organizational data.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Some internal services have legitimate reasons for not running TLS.
+> **💡 Why you might choose differently:** Different device ecosystems and BYOD policies require different strategies.
 
-- **Alternative A — Service mesh TLS:** Use a service mesh (Istio, Linkerd, Consul Connect) to provide mutual TLS between services transparently. Services communicate over HTTP; the mesh upgrades to mTLS. Reduces per-service TLS configuration burden.
-- **Alternative B — TLS termination at load balancer:** Terminate TLS at the load balancer/API gateway and use HTTP internally within a trusted network. Simpler per-service configuration but data is unencrypted on the internal network.
+- **BYOD with Conditional Access:** Instead of managing encryption on personal devices, enforce access controls: block access from devices that don't meet compliance policies (encryption, OS version, passcode). The user is responsible for enabling encryption on their personal device; if they don't, they can't access organizational data. Use Microsoft Intune MAM (Mobile Application Management) or equivalent to protect data within apps without full device management.
+- **VDI/DaaS for Unmanaged Devices:** For contractors or BYOD users on unmanaged devices, provide access only through a virtual desktop (AWS WorkSpaces, Windows 365, Citrix) or browser-based interface. No organizational data is stored on the device, eliminating the encryption requirement.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** TLS 1.3 with an RSA 2048-bit certificate and an obsolete cipher still isn't secure. TLS version is just one dimension — validate the full configuration (protocol, ciphers, certificate key size, HSTS, certificate validity).
->
-> **⚠️ Watch out:** Expired TLS certificates are one of the most common causes of production outages. Automate renewal. If you're running `certbot renew` in a cron job, monitor that the cron job actually ran — cron failures are silent.
->
-> **⚠️ Watch out:** "We only use TLS internally" is a common rationalization that falls apart when an attacker gets inside the network. Internal TLS prevents lateral movement after initial compromise.
+> **⚠️ Watch out:** Recovery keys escrowed to a system that requires the same device to be working to access. If a user's laptop won't boot and the recovery key is only accessible via an MDM portal that requires MFA on that user's phone (which they also lost), IT is stuck. Maintain a break-glass procedure: authorized IT personnel can retrieve recovery keys from a secure offline backup.
+
+> **⚠️ Watch out:** FileVault prompting users to enable encryption with no enforcement. macOS will nag users to enable FileVault but will not force it without MDM enforcement. Configure MDM to require FileVault and mark devices non-compliant if it's not enabled — don't rely on user cooperation.
+
+> **⚠️ Watch out:** Assuming all devices are encrypted because encryption is "enabled by default" on modern OSes. FileVault is not enabled by default on macOS — it must be explicitly turned on. BitLocker is not enabled by default on Windows unless Intune/GPO forces it. Verify, don't assume.
 
 ---
 
-## Procedure: Data-at-Rest Encryption Verification
+## Procedure 3: TLS Configuration
 
 ### Standard Approach
 
-1. **Database encryption verification:**
-   - For each database storing Restricted or Confidential data, verify encryption is enabled:
-     - **RDS/Aurora:** Check encryption status via AWS Console or CLI (`aws rds describe-db-instances --query 'DBInstances[*].StorageEncrypted'`).
-     - **Cloud SQL:** Check encryption configuration.
-     - **Self-managed:** Verify TDE or filesystem encryption is enabled.
-   - Quarterly audit: export a report of all databases and their encryption status.
-2. **Cloud storage encryption verification:**
-   - For each S3 bucket / GCS bucket / Azure Blob container storing Restricted or Confidential data:
-     - Verify default encryption is configured (server-side encryption with CMK where required).
-     - Verify bucket policies deny unencrypted uploads (`aws:s3:x-amz-server-side-encryption` condition).
-   - Use CSPM tools for continuous monitoring of encryption configuration.
-3. **Backup encryption verification:**
-   - Verify that backup jobs output encrypted data (check file headers, or attempt to read without the key — should fail).
-   - Include backup encryption verification in quarterly restore tests.
-4. **Endpoint encryption verification:**
-   - MDM dashboard must report encryption status for all managed devices.
-   - Generate monthly compliance report: encrypted devices / total devices.
-   - Target: 100% encryption compliance for all devices accessing organizational data.
+This procedure covers the deployment and hardening of TLS configurations across web servers, load balancers, and CDN endpoints.
+
+#### 3.1 Server TLS Configuration
+
+1. **Nginx TLS Configuration:**
+   ```nginx
+   server {
+       listen 443 ssl http2;
+       ssl_protocols TLSv1.3;  # TLS 1.3 only for new deployments
+       # If TLS 1.2 compatibility is required:
+       # ssl_protocols TLSv1.2 TLSv1.3;
+       ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;
+       ssl_prefer_server_ciphers on;
+       ssl_ecdh_curve secp384r1;
+       ssl_certificate /etc/ssl/certs/example.com.crt;
+       ssl_certificate_key /etc/ssl/private/example.com.key;
+       ssl_session_cache shared:SSL:10m;
+       ssl_session_timeout 1d;
+       ssl_session_tickets off;  # Disable session tickets (uses random key)
+       ssl_stapling on;
+       ssl_stapling_verify on;
+       add_header Strict-Transport-Security "max-age=63072000; includeSubDomains; preload" always;
+   }
+   ```
+2. **Apache TLS Configuration:**
+   ```apache
+   SSLProtocol -all +TLSv1.3
+   # If TLS 1.2 needed: SSLProtocol -all +TLSv1.2 +TLSv1.3
+   SSLCipherSuite ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384
+   SSLHonorCipherOrder on
+   SSLSessionTickets off
+   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+   ```
+3. **Load Balancer / CDN Configuration:**
+   - Configure TLS termination at the load balancer (ALB, CloudFront, Cloudflare) with a minimum TLS version of 1.3 (or 1.2 if compatibility required).
+   - Use an ACM/Cloudflare-managed certificate with auto-renewal.
+   - Configure the origin connection (load balancer → server) to use TLS with a valid certificate (not self-signed, not disabled).
+
+#### 3.2 TLS Certificate Management
+
+1. **Certificate Procurement:**
+   - Use a public CA (Let's Encrypt, DigiCert, AWS Certificate Manager) for public-facing services.
+   - For internal services, maintain an internal CA (e.g., HashiCorp Vault PKI, Active Directory Certificate Services, step-ca).
+   - Certificates must use ECDSA P-256 or RSA 3072-bit keys minimum. Preferred: ECDSA P-256.
+2. **Auto-Renewal:**
+   - For public certificates: use ACM (auto-renews) or Certbot (Let's Encrypt) with automatic renewal.
+   - Configure renewal alerting: if a certificate is within 30 days of expiry and hasn't renewed, generate a P2 alert.
+   - For internal CA certificates: implement auto-renewal via Vault PKI or similar. If manual, maintain a certificate expiry calendar and assign ownership.
+3. **Certificate Expiry Monitoring:**
+   - Use a monitoring tool (e.g., SSL Labs, UptimeRobot, custom script) that checks certificate expiry daily.
+   - Alert thresholds: 60 days → P3, 30 days → P2, 14 days → P1, expired → Critical P1.
+
+#### 3.3 TLS Hardening Verification
+
+1. **Scan All Public Endpoints:**
+   - Use SSL Labs Server Test (`https://www.ssllabs.com/ssltest/`) or `testssl.sh` CLI tool to scan all public-facing endpoints.
+   - Target: A or A+ rating. Acceptable: B. B and below: remediate.
+2. **Scan Internal Endpoints:**
+   - Use `testssl.sh` or Nessus to scan internal services.
+   - Flag any service using TLS 1.0, TLS 1.1, SSLv3, or prohibited cipher suites.
+3. **Quarterly Full Scan:**
+   - Scan all domains and subdomains in the organization's DNS.
+   - Produce a report of endpoints with weak TLS configurations.
+   - Track remediation in the ticketing system.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** An S3 bucket with "default encryption enabled" still accepts unencrypted uploads if the client explicitly sends an unencrypted PUT. The default only applies when no encryption headers are specified. Use bucket policies to DENY unencrypted uploads.
->
-> **⚠️ Watch out:** "Transparent data encryption" in databases encrypts data at rest on disk, but data in memory and in transit is unencrypted. TDE protects against physical disk theft, not application-layer attacks.
+> **⚠️ Watch out:** TLS termination at the load balancer but HTTP between load balancer and origin. If traffic between the load balancer and the application server is unencrypted, it's vulnerable to network sniffing within the VPC/datacenter. Always encrypt origin connections, even if using a self-signed or internal CA certificate.
+
+> **⚠️ Watch out:** HSTS headers not set or set with a short max-age. Without HSTS, a man-in-the-middle can strip TLS. Set `max-age=63072000` (2 years) and include `includeSubDomains` and `preload`. Test at `https://hstspreload.org`.
+
+> **⚠️ Watch out:** Certificate transparency not monitored. If someone issues a fraudulent certificate for your domain, you may not know until it's used in an attack. Set up certificate transparency monitoring (e.g., CertSpotter, crt.sh alerts, Cloudflare CT monitoring) for all domains.
+
+---
 
 ## Related Documents
 
 - Encryption Policy (Template.md)
-- Data Classification Policy
-- Data Protection Policy
-- Password Policy
-- System Access Control Policy
-- Asset Management Policy
-
-## Revision History
-
-| Version | Date | Author | Description |
-|---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+- Data Classification Policy (../Data-Classification-Policy/Template.md)
+- Data Protection Policy (../Data-Protection-Policy/Template.md)
+- System Access Control Policy (../System-Access-Control-Policy/Template.md)
+- Password Policy (../Password-Policy/Template.md)
+- Asset Management Policy (../Asset-Management-Policy/AMP-Template.md)

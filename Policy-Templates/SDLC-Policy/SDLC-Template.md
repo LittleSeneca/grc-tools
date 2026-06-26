@@ -37,13 +37,13 @@ ____ must establish and maintain processes for ensuring that all computer applic
 
 ## Software Development Phases and Security Integration
 
-A Software Development Project consists of a defined set of phases. The sequence and iteration of these phases depends on the development methodology, but security activities are required at each phase regardless of methodology.
+A Software Development Project consists of a defined set of phases. The sequence and iteration of these phases depends on the development methodology, but security activities are required at each phase regardless of methodology. The phases and their requirements are defined below. Detailed implementation workflows covering all phases are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Phase 1: Determine System Need
 
-**Activities:** An information system need is identified, and a decision is made whether to commit resources.
+An information system need is identified and a decision is made whether to commit resources.
 
-**Security Activities:**
+**Required Security Activities:**
 
 - Conduct an initial security impact assessment: will this system process, store, or transmit sensitive or regulated data?
 - Identify applicable regulatory and compliance requirements (GDPR, HIPAA, PCI DSS, SOC 2, etc.).
@@ -51,115 +51,76 @@ A Software Development Project consists of a defined set of phases. The sequence
 - Identify external dependencies and third-party components that may introduce supply chain risk.
 - Document security and privacy requirements at a high level for inclusion in the business case.
 
+Detailed security requirements definition procedures are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
+
 ### Phase 2: Define System Requirements
 
-**Activities:** User requirements are decomposed into detailed functional and non-functional requirements.
+User requirements are decomposed into detailed functional and non-functional requirements.
 
-**Security Activities:**
+**Required Security Activities:**
 
 - Conduct a formal information security risk assessment for the proposed system.
-- Define detailed security requirements including:
-  - Authentication and authorization requirements.
-  - Data protection requirements (encryption at rest and in transit).
-  - Audit logging and monitoring requirements.
-  - Input validation and output encoding requirements.
-  - Session management requirements.
-  - Error handling and exception management requirements.
-  - API security requirements.
+- Define detailed, testable security requirements covering: authentication and authorization, data protection (encryption at rest and in transit), audit logging and monitoring, input validation and output encoding, session management, error handling, and API security.
 - Identify security controls that must be inherited from the organizational security framework.
 - Document security requirements in the system requirements specification.
-- Privacy review and approval (if handling personal data).
+- Complete privacy review and approval (if handling personal data).
+
+Detailed security requirements definition procedures are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Phase 3: Design System Components
 
-**Activities:** Requirements are transformed into architectural and detailed design specifications.
+Requirements are transformed into architectural and detailed design specifications.
 
-**Security Activities:**
+**Required Security Activities:**
 
-- Conduct threat modeling to identify potential threats and attack vectors against the system design.
-  - Use structured methodologies such as STRIDE, PASTA, or attack trees.
-  - Document identified threats, their likelihood and impact, and planned mitigations.
+- Conduct threat modeling to identify potential threats and attack vectors using structured methodologies (STRIDE, PASTA, or attack trees). Document identified threats, their likelihood and impact, and planned mitigations.
 - Perform architecture risk analysis.
-- Design security controls into the system architecture:
-  - Authentication and authorization architecture.
-  - Encryption architecture (key management, certificate management).
-  - Network segmentation and API gateway design.
-  - Logging and monitoring architecture.
-- Apply secure design principles:
-  - Defense in depth (multiple layers of security controls).
-  - Least privilege (minimal access required for functionality).
-  - Secure by default (secure out-of-the-box configurations).
-  - Fail secure (failures default to secure state).
-  - Economy of mechanism (keep design simple and verifiable).
-  - Complete mediation (validate all access requests).
-  - Open design (security should not depend on secrecy of design).
-  - Separation of duties.
-  - Psychological acceptability (security should not make the system unusable).
+- Design security controls into the system architecture: authentication and authorization architecture, encryption architecture (key management, certificates), network segmentation and API gateway design, and logging and monitoring architecture.
+- Apply secure design principles: defense in depth, least privilege, secure by default, fail secure, economy of mechanism, complete mediation, open design, separation of duties, and psychological acceptability.
 - Review data flow diagrams to identify trust boundaries and data sensitivity at each boundary.
+
+Detailed threat modeling procedures are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Phase 4: Build System Components
 
-**Activities:** Detailed design is transformed into coded software units, integrated into a complete product.
+Detailed design is transformed into coded software units, integrated into a complete product.
 
-**Security Activities:**
+**Required Security Activities:**
 
-- **Secure Coding Standards:** All developers must follow secure coding practices aligned with the **OWASP Top 10** (current version) and relevant language-specific secure coding guidelines (e.g., OWASP Secure Coding Practices, CERT secure coding standards).
-- **Developer Security Training:** All developers must complete annual secure coding training, including OWASP Top 10 awareness. Developers working on internet-facing applications must receive additional training on internet-specific threats. Training must be completed before writing or supporting code for production systems.
-- **Automated Security Testing (CI/CD Pipeline):**
-  - **Static Application Security Testing (SAST):** Automated code analysis integrated into the build pipeline to identify security vulnerabilities before code is merged.
-  - **Software Composition Analysis (SCA):** Automated scanning of open-source dependencies and third-party libraries for known vulnerabilities (CVEs).
-  - **Container Image Scanning:** Automated scanning of container images for vulnerabilities before deployment.
-  - **Infrastructure-as-Code (IaC) Scanning:** Automated scanning of infrastructure configuration templates for misconfigurations.
-  - Pipeline must be configured to fail builds for Critical and High severity findings, with appropriate exception processes for documented and approved waivers.
-- **Code Review:**
-  - All code changes must be reviewed by at least one individual other than the originating author.
-  - Reviewers must be knowledgeable in code review techniques and secure coding practices.
-  - Code reviews must include review for security vulnerabilities, not just functional correctness.
-  - Overrides of edit checks, approvals, and changes to confirmed transactions must be appropriately authorized, documented, and reviewed.
-- **Secrets Management:**
-  - Secrets (API keys, database credentials, encryption keys, tokens) must never be hardcoded in source code, configuration files, or committed to version control.
-  - Secrets must be managed through a dedicated secrets management system (e.g., HashiCorp Vault, AWS Secrets Manager, Azure Key Vault).
-  - Credential scanning tools must be used to detect and prevent accidental secret exposure in code repositories.
-- **Environment Separation:**
-  - Development, testing, and production environments must be separated (logically or physically, based on risk assessment).
-  - Access to production environments must be restricted and controlled through change management.
-  - Development and testing activities must not occur in production environments.
+- **Secure Coding Standards:** All developers must follow secure coding practices aligned with the OWASP Top 10 and language-specific guidelines.
+- **Developer Security Training:** All developers must complete annual secure coding training before writing or supporting production code. Developers on internet-facing applications must receive additional training.
+- **Automated Security Testing (CI/CD Pipeline):** SAST, SCA, container scanning, IaC scanning, and secret scanning must be integrated into the build pipeline. The pipeline must fail builds for Critical and High severity findings.
+- **Code Review:** All code changes must be reviewed by at least one individual other than the author. Reviews must include security vulnerability assessment, not just functional correctness.
+- **Secrets Management:** Secrets must never be hardcoded or committed. They must be managed through a dedicated secrets management system with credential scanning to prevent accidental exposure.
+- **Environment Separation:** Development, testing, and production environments must be separated. Access to production must be restricted and controlled through change management.
+
+Detailed secure coding and code review procedures are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Phase 5: Evaluate System Readiness
 
-**Activities:** The system is tested to verify it satisfies functional, performance, and security requirements.
+The system is tested to verify it satisfies functional, performance, and security requirements.
 
-**Security Activities:**
+**Required Security Activities:**
 
-- **Security Testing:**
-  - **Dynamic Application Security Testing (DAST):** Automated scanning of running applications for vulnerabilities.
-  - **Penetration Testing:** For high-risk or internet-facing applications, engage qualified security testers for manual penetration testing.
-  - **API Security Testing:** Validate API authentication, authorization, input validation, rate limiting, and data exposure.
-  - **Authentication and Authorization Testing:** Verify that access controls function correctly for all user roles.
-  - **Fuzz Testing:** Where appropriate, test application resilience against malformed or unexpected inputs.
-- **Quality Assurance Testing:** Feature acceptance tests must include testing of edge cases, boundary conditions, and negative test cases in addition to normal-path testing.
-- **Security Acceptance Criteria:** The system must meet all defined security requirements before being approved for deployment. Any exceptions must be formally documented with risk acceptance.
+- **Security Testing:** DAST scanning of running applications, penetration testing for high-risk or internet-facing applications (at least annually), API security testing, authentication/authorization testing, and fuzz testing where appropriate.
+- **Quality Assurance Testing:** Feature acceptance tests must include edge cases, boundary conditions, and negative test cases.
+- **Security Acceptance Criteria:** The system must meet all defined security requirements before deployment. Any exceptions must be formally documented with risk acceptance.
 - **Independent Testing:** Where possible, security testing should be performed by testers independent of the development team.
+
+Detailed security testing procedures are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Phase 6: System Deployment
 
-**Activities:** The system is released initially to a pilot or staging environment and then into production.
+The system is released initially to a pilot or staging environment and then into production.
 
-**Security Activities:**
+**Required Security Activities:**
 
-- **Pre-Deployment Checklist:**
-  - All Critical and High security findings resolved or formally accepted.
-  - Security configuration hardened per organizational baselines.
-  - Default accounts and passwords removed or changed.
-  - Test data, test accounts, and debug functionality removed from production deployment.
-  - Production data NOT present in the deployment artifacts (code, configuration).
-  - Encryption configured and verified (TLS certificates, database encryption, secrets).
-  - Logging configured and verified to forward to centralized logging platform.
-  - Monitoring and alerting configured for the new system.
-- **Deployment Automation:** Deployments must follow a defined, repeatable process (CI/CD pipeline) with human approval gates for production deployments.
-- **Change Management:** All production deployments must follow the change management process, with appropriate approval based on risk.
-- **Post-Deployment Monitoring:** Monitor the system closely for security events, errors, and performance issues for at least ____ days after deployment.
-- **User Training:** Provide security training to users of the new system covering appropriate use, data handling, and incident reporting.
+- Complete the **Pre-Deployment Checklist:** all Critical/High security findings resolved, security configuration hardened per baselines, default accounts/passwords removed, test data and debug functionality removed, encryption configured and verified, logging and monitoring configured, and deployment automation with human approval gates for production.
+- All production deployments must follow the change management process.
+- Monitor the system for security events, errors, and performance issues for at least ____ days post-deployment.
+- Provide security training to users of the new system.
+
+Deployment workflow details are defined in the Change Management Implementation Procedures and [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Project Management
 
@@ -188,6 +149,8 @@ Production data must NOT be used in development or testing environments. If a sp
 - Access to production data in test environments must be restricted to individuals with a documented business need.
 - Production data used for testing must be securely erased upon completion of testing.
 - Test data, test accounts, and test credentials must be removed before systems are placed into production.
+
+Detailed procedures for handling production data in non-production environments are defined in [SDLC Implementation Procedures](./SDLC-Procedures.md).
 
 ### Third-Party and Outsourced Development
 
@@ -232,12 +195,14 @@ Violation of this policy, including failure to follow secure coding practices, f
 
 - Information Security Policy (ISP-001)
 - Change Management Policy
+- Change Management Implementation Procedures (Change-Management-Procedures.md)
 - Vulnerability Management Policy
 - Encryption Policy
 - Logging and Monitoring Policy
 - Data Classification Policy
 - Vendor Management Policy
 - Risk Assessment Policy
+- [SDLC Implementation Procedures](./SDLC-Procedures.md)
 
 ## Revision History
 

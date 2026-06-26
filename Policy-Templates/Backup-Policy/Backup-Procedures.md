@@ -1,218 +1,195 @@
 # Backup Policy — Implementation Procedures
 
 > **Companion to:** Backup Policy (Template.md)
-> **Purpose:** These procedures describe how to implement the backup requirements defined in the Backup Policy.
-
-## Procedure: Configuring the 3-2-1 Backup Framework
-
-### Standard Approach
-
-1. **Inventory critical data assets.** List all production databases, file stores, object storage buckets, configuration repositories, and source code repositories that fall within backup scope.
-2. **Designate three copy locations:**
-   - **Copy 1 (Production):** The live data as used by applications and users.
-   - **Copy 2 (Primary Backup):** A backup in the same cloud region or on-premises facility, stored on different infrastructure than production (e.g., separate storage account, separate SAN).
-   - **Copy 3 (Off-Site Backup):** A backup in a geographically separate region (≥ ____ miles from primary, or a different cloud provider region). This copy must be in a separate failure domain — a regional outage affecting the primary site must not affect this copy.
-3. **Select two different media types.** Common pairings:
-   - Cloud object storage (e.g., S3, GCS, Azure Blob) + cloud cold storage tier (e.g., Glacier, Archive)
-   - Cloud object storage + on-premises NAS (for hybrid environments)
-   - Cloud block storage snapshots + cloud object storage exports
-4. **Configure replication or backup jobs** to create all copies automatically. Validate that each copy is written to the intended storage target and that no single credential set can delete all three copies.
-
-### Alternative Approaches
-
-> **💡 Why you might choose differently:** The strict 3-2-1 rule can be expensive for large datasets or low-criticality data. Adjust the model based on data classification.
-
-- **Alternative A — 3-2-1 with tiering:** Apply 3-2-1 only to Restricted and Confidential data. Internal data gets 2 copies on 2 media types (2-2-0). Public data gets 1 copy.
-- **Alternative B — Immutable backups:** Use WORM (Write Once Read Many) storage for Copy 3 to protect against ransomware that attempts to delete or encrypt backups. This satisfies the spirit of 3-2-1 with stronger protection on the off-site copy.
-- **Alternative C — Cloud-native snapshots:** For fully cloud-native organizations, rely on cross-region snapshot replication + cloud provider backup service instead of managing separate media types.
-
-### Common Pitfalls
-
-> **⚠️ Watch out:** All three copies stored in the same AWS account under the same root credentials do NOT satisfy 3-2-1. A compromised admin account can delete everything. Use separate accounts or a separate cloud provider for Copy 3.
->
-> **⚠️ Watch out:** "Different media types" doesn't mean two S3 buckets in the same region — they share a failure domain. If you're cloud-only, use different storage classes (e.g., S3 Standard + S3 Glacier Deep Archive) in different regions, with different access credentials.
+> **Purpose:** These procedures describe how to implement the backup requirements set forth in the Backup Policy. The policy defines WHAT must be done; this document describes HOW to do it.
 
 ---
 
-## Procedure: Configuring Database Backup Frequency
+## Procedure 1: Backup Infrastructure Setup
 
 ### Standard Approach
 
-1. **Identify the database engine** (PostgreSQL, MySQL, SQL Server, MongoDB, etc.) and its native backup tools (`pg_dump`, `mysqldump`, native snapshot APIs).
-2. **Configure daily full backups:**
-   - Schedule during the lowest-activity window (typically 01:00–04:00 local time).
-   - Use the database's native consistent backup mechanism (e.g., `pg_dump -Fc` for PostgreSQL, snapshots for cloud-managed databases).
-   - Validate backup completion with a post-backup hook that checks file size > 0 and exit code 0.
-3. **Configure transaction log backups:**
-   - Set interval at ____ minutes (recommended: 15 minutes for critical databases, 60 minutes for non-critical).
-   - Use WAL archiving (PostgreSQL), binary log streaming (MySQL), or cloud-native point-in-time recovery.
-   - Monitor log backup lag — if lag exceeds 2× the configured interval, trigger an alert.
-4. **Verify backup integrity** using a scheduled job that attempts to restore the most recent backup to a sandbox environment and run a consistency check (`pg_restore --schema-only` or equivalent).
+This procedure covers the end-to-end configuration of backup infrastructure, including storage targets, encryption, scheduling, and monitoring.
 
-### Alternative Approaches
+#### 1.1 Backup Storage Provisioning
 
-> **💡 Why you might choose differently:** Native dump tools don't scale well for multi-terabyte databases.
+1. Provision **two distinct storage targets** for the 3-2-1 framework:
+   - **Primary backup target:** `____` (e.g., AWS S3 with Object Lock, Azure Blob with immutable storage, GCP Cloud Storage with retention policies). Configure versioning and object lock / legal hold to prevent accidental or malicious deletion.
+   - **Secondary backup target (off-site):** `____` — a separate cloud region or provider, geographically distant from the primary production region. Ensure it is in a different seismic zone, flood plain, and power grid.
+2. For on-premises components, provision a local backup appliance (`____`, e.g., NAS with RAID-6, dedicated backup server) as an intermediate staging target before replication to cloud storage.
+3. Configure network paths: backup traffic should traverse a dedicated management VLAN or VPN tunnel, not the public internet, unless encrypted at the transport layer.
+4. Set storage quotas: `____` TB for production databases, `____` TB for file stores, `____` TB for source code and configuration. Configure capacity alerts at 80% and 90% utilization.
 
-- **Alternative A — Cloud-managed automated backups:** Use the cloud provider's managed backup service (RDS automated backups, Cloud SQL backups). This eliminates tooling maintenance but ties you to the provider's restore process.
-- **Alternative B — Streaming replication:** For databases requiring near-zero RPO, maintain a hot standby with streaming replication in a different region. This supplements (not replaces) logical backups — replication replicates mistakes and ransomware too.
-- **Alternative C — Storage-level snapshots:** Use filesystem or block-storage snapshots for very large databases where logical dumps take too long. Ensure the snapshot is taken with the database in a consistent state (quiesce or freeze first).
+#### 1.2 Backup Encryption Configuration
 
-### Common Pitfalls
-
-> **⚠️ Watch out:** `pg_dump` on a 2 TB database can take 8+ hours — you might not finish before the next backup window. Test backup duration at production scale before committing to a frequency.
->
-> **⚠️ Watch out:** Transaction log backups that succeed but are never tested for replay can create a false sense of security. At least quarterly, test a point-in-time restore using the log chain.
-
----
-
-## Procedure: Source Code Backup and Commit Preservation
-
-### Standard Approach
-
-1. **Identify all source code repositories** (GitHub, GitLab, Bitbucket, self-hosted Git).
-2. **Configure a daily mirror job** for every repository:
+1. Generate or procure a **customer-managed key (CMK)** in the organization's cloud key management service (`____`, e.g., AWS KMS, Azure Key Vault, GCP Cloud KMS).
+2. Configure all backup storage targets to encrypt data at rest using AES-256-GCM with the CMK. Do NOT use provider-managed keys for backups containing Restricted or Confidential data.
+3. For backup software that manages its own encryption (e.g., Veeam, Rubrik, BorgBackup), generate a strong encryption key:
    ```bash
-   git clone --mirror <repo-url> /backup/path/repo.git
-   cd /backup/path/repo.git
-   git remote update
+   openssl rand -base64 32 > backup_encryption_key.bin
    ```
-3. **Store mirrors in organization-controlled object storage** (separate from the hosting provider). Example: a daily CronJob in Kubernetes or scheduled AWS Lambda that:
-   - Clones/mirrors all repos
-   - Tars and encrypts the bundle
-   - Uploads to a separate cloud object storage bucket with versioning enabled
-4. **Preserve every commit:** The mirror includes the full commit history. Configure the object storage bucket with versioning so that even if a subsequent backup job overwrites data, previous versions are recoverable.
-5. **Verify integrity quarterly:** Clone from the backup mirror and confirm `git fsck` reports no errors.
+   Store this key in the KMS/HSM, not in configuration files or environment variables.
+4. For backup data in transit between the staging server and cloud storage, enforce TLS 1.3 (or TLS 1.2 with approved cipher suites) for the transport layer.
+5. Document key backup and recovery procedures: ensure at least two authorized individuals (dual control) can recover the backup encryption keys.
+
+#### 1.3 Backup Scheduling Configuration
+
+1. **Production Databases:**
+   - **Full backup:** Daily at `____:00 UTC` (off-peak hours). Use `pg_dump` (PostgreSQL), `mysqldump` (MySQL), or native cloud database snapshot APIs. Ensure transactionally consistent backups — for PostgreSQL use `pg_dump -Fc` or `pg_basebackup`; for MySQL use `mysqldump --single-transaction`.
+   - **Transaction log / WAL backup:** Continuous or at intervals no greater than `____` minutes (recommended: 5–15 minutes). Configure `archive_command` (PostgreSQL) or binary log streaming (MySQL). Test point-in-time recovery monthly.
+   - **Retention:** `____` daily full backups (recommended: 30 days), `____` transaction log backups (recommended: 7 days), `____` monthly archives (recommended: 12 months for compliance).
+2. **File Stores and Object Storage:**
+   - **Full backup:** Daily at `____:00 UTC`. Use `rclone sync` with `--backup-dir` for incremental snapshot capability, or the cloud provider's native replication/cross-region copy with versioning.
+   - **Continuous sync (critical paths):** Use `lsyncd` or cloud event-triggered replication for near-real-time sync of directories containing active work product.
+3. **Configuration and Infrastructure-as-Code:**
+   - Trigger backup on every `git push` to the main branch via CI/CD pipeline: push a tarball of the repository to the backup storage target.
+   - Weekly full export of all IaC state files (Terraform state, Ansible inventories, Kubernetes manifests) and configuration databases.
+4. **Source Code Repositories:**
+   - Daily mirror to an organization-controlled location using `git clone --mirror` or the hosting provider's API export. Store in a separate cloud storage bucket from the primary backup target.
+   - Verify that every commit is preserved: compare commit counts between the primary host and the mirror weekly. Any discrepancy triggers an alert.
+   - For GitHub/GitLab: use the provider's migration/export API to download a full archive (including issues, PRs, wikis, and metadata) at least weekly.
+
+#### 1.4 Source Code Backup — Independent Preservation
+
+Source code must be preserved independently of the primary hosting provider. Configure:
+
+1. **Automated Mirror Pipeline:**
+   ```bash
+   # Example: nightly cron job on a dedicated backup runner
+   git clone --mirror https://github.com/org/repo.git /backup/repos/repo.git
+   cd /backup/repos/repo.git && git fetch --all --prune
+   ```
+2. **Multi-Provider Strategy:** Store mirrors in at least two locations:
+   - Cloud object storage (separate region from production).
+   - A secondary Git host (e.g., if primary is GitHub, mirror to AWS CodeCommit, GitLab, or a self-hosted Gitea instance) as a hot standby.
+3. **Metadata Preservation:** Beyond `git` data, export and backup:
+   - Issues, pull requests, and comments (use provider API or tools like `github-issues-export`).
+   - Wiki pages (clone the wiki repository).
+   - CI/CD pipeline definitions (export as YAML/JSON).
+   - Project boards and milestones.
+4. **Integrity Verification:** After each mirror, run `git fsck` on the backup copy and log the result. Any corruption triggers an alert and re-mirror.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Mirroring every repo daily is overkill if your hosting provider already has strong durability guarantees.
+> **💡 Why you might choose differently:** Organizational size, data volume, and cloud maturity may favor different architectures.
 
-- **Alternative A — Provider-native export:** Use GitHub/GitLab's built-in export/migration API to download a weekly archive. Less frequent but simpler.
-- **Alternative B — Self-hosted Gitea mirror:** Maintain a self-hosted Gitea instance that mirrors all repos in near-real-time. Functions as both a backup and a failover option.
-- **Alternative C — CI/CD artifact backup:** If your CI/CD pipeline already produces build artifacts, back those up instead of raw source. Faster restore for deployment, but you lose commit history.
+- **Database-Native Replication Instead of Dumps:** For very large databases (>1 TB), nightly dumps become impractical. Use streaming replication to a read replica in a separate region, with point-in-time recovery enabled. The replica serves as the backup, and periodic snapshots of the replica provide long-term retention. Requires the replica to be in a separate account or subscription.
+- **Deduplication Appliances for On-Prem:** Organizations with significant on-premises footprint may benefit from hardware or virtual deduplication appliances (e.g., Dell Data Domain, ExaGrid). These reduce storage costs but add complexity and a hardware dependency. Ensure the appliance itself is backed up.
+- **SaaS Backup Platforms:** For SaaS-heavy organizations (Google Workspace, Microsoft 365, Salesforce), use a dedicated SaaS backup platform (e.g., Afi, Backupify, Spanning) rather than attempting to back up SaaS data with generic tools. Verify that the platform covers all relevant SaaS services and supports granular restore.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** A `git clone` (non-mirror) only fetches the default branch. Use `--mirror` to capture all branches, tags, and refs.
->
-> **⚠️ Watch out:** Large repositories with many binary assets (LFS objects) require special handling. `git clone --mirror` doesn't automatically fetch LFS objects — use `git lfs fetch --all` after mirroring.
+> **⚠️ Watch out:** Backups that are never tested. A backup that cannot be restored is not a backup — it's a placebo. Schedule restore tests on a recurring calendar with mandatory participation. The first restore test will almost always fail; fix the issues and retest.
+
+> **⚠️ Watch out:** Cataloging the backup encryption key alongside the backup data. If the key is in the same storage account and an attacker compromises that account, they have both the lock and the key. Store encryption keys in a separate KMS/HSM with different access credentials and auditing.
+
+> **⚠️ Watch out:** Source code that lives only in GitHub/GitLab. If the provider has an outage, suspends your account, or is compromised, you lose not just your code but your entire development history, issues, and CI/CD configuration. Always maintain an independent mirror.
+
+> **⚠️ Watch out:** Backup job failures that go unnoticed for weeks. A monitoring dashboard showing green for "Last backup: 3 weeks ago" means no backups. Require daily verification of backup job completion and surface failures as P1 incidents.
+
+> **⚠️ Watch out:** Immutable backups that are immutable to you too. Write-once-read-many (WORM) storage protects against ransomware but also prevents you from deleting data subject to GDPR erasure requests. Have a documented, audited process for authorized deletion of specific records from WORM backups when legally required.
 
 ---
 
-## Procedure: Restore Testing
+## Procedure 2: Restore Testing
 
 ### Standard Approach
 
-1. **Schedule quarterly restore tests.** Create a recurring calendar event and assign ownership to ____.
-2. **For each test cycle, select a sample** of backup types to restore:
-   - At least one production database from each database engine
-   - One file/object storage backup
-   - One configuration repository
-   - One source code repository
-3. **Restore to an isolated environment:**
-   - Use a separate cloud account, VPC, or on-premises sandbox that has no network connectivity to production.
-   - Provision minimal infrastructure from infrastructure-as-code templates (do not connect to production networks).
-4. **Validate the restored data:**
-   - **Database:** Run schema validation, row counts, and a sample query against known reference data.
-   - **File storage:** Verify file counts, checksums against a known manifest, and spot-check file contents.
-   - **Configuration:** Confirm that the configuration can be parsed/validated by the target system.
-   - **Source code:** Run `git fsck` and confirm a build succeeds from the restored code.
-5. **Document results** in the Backup Integrity Testing Process repository, including:
-   - Systems restored, backup dates used, time to restore
-   - Validation results (pass/fail)
-   - Any failures or anomalies
-6. **Remediate failures within ____ business days** and re-test.
+This procedure covers how to execute and document backup restore tests.
+
+#### 2.1 Quarterly Restore Testing
+
+1. **Test Selection:** Each quarter, select a random sample from the backup catalog:
+   - 1 production database (rotate through all databases over the year).
+   - 1 file store or object storage bucket.
+   - 1 configuration repository or infrastructure-as-code state file.
+   - 1 source code repository.
+2. **Isolated Restore Environment:** Provision a temporary environment:
+   - A separate cloud account / subscription or VPC with no network path to production.
+   - Minimal compute resources matching the restore target's requirements.
+   - Logging and monitoring enabled for audit trail.
+3. **Restore Execution:**
+   - Restore the selected backup to the isolated environment using the documented restore procedure.
+   - Record the wall-clock time from restore initiation to data availability.
+   - Compare restore time against the defined RTO for that data type. Flag any violation.
+4. **Validation Checks:**
+   - **Completeness:** Compare file counts, database row counts, and total data size between the backup and restored data.
+   - **Consistency:** Run application-level integrity checks (`pg_dump` schema validation, checksum comparison on files, `git fsck` on source repos).
+   - **Functionality:** For database restores, connect a test application instance and verify queries return expected results. For file restores, open a sample of files and verify they are not corrupted.
+5. **Documentation:** Record results in the restore test log:
+   - Date, tester name, backup source, restore target, time taken, validation results, any failures.
+   - Store in `____` (shared document repository) and retain as audit evidence for minimum 7 years.
+6. **Remediation:** Any test failure creates a tracked ticket in `____` with a remediation deadline of `____` business days. The ticket must be resolved before the next quarterly test cycle.
+
+#### 2.2 Annual Application-Level Validation Test
+
+1. Once per year, perform a full application stack restore:
+   - Provision a complete but isolated replica of the production infrastructure using infrastructure-as-code.
+   - Restore the most recent database and file store backups.
+   - Deploy the application and run the full integration test suite.
+   - Have `____` (QA / Engineering) sign off on functional completeness.
+2. This test validates that backups are not just recoverable at the data level but that the entire system can be reconstituted and function correctly.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Full quarterly restore testing of everything is operationally expensive.
+> **💡 Why you might choose differently:** Testing frequency and depth may vary by organizational maturity and regulatory requirements.
 
-- **Alternative A — Rotating schedule:** Test different systems each quarter so all critical systems are tested at least annually. Reduces per-quarter effort.
-- **Alternative B — Automated restore validation:** For each backup job, automatically restore to a sandbox, run validation scripts, and tear down. Only flag for manual review if validation fails. This makes "quarterly testing" continuous.
-- **Alternative C — Chaos engineering approach:** Periodically (e.g., annually) run a full-scale DR exercise where you intentionally fail over to backup-restored systems. Tests both restore and failover procedures simultaneously.
+- **Automated Validation Pipelines:** For organizations with mature CI/CD, automate restore testing in a pipeline that runs weekly. Spin up a temporary environment, restore the latest backup, run a suite of validation queries, and tear down. Failures generate Jira tickets automatically. This catches restore issues within days, not months.
+- **Chaos Engineering Approach:** Randomly "lose" a production dataset (in a controlled way) and require the operations team to restore from backup within the RTO. This tests both the backup integrity AND the team's muscle memory for executing restores under pressure.
+- **Regulatory-Driven Testing:** For organizations subject to specific regulations (FFIEC, HIPAA, PCI DSS), align test cadence and scope with regulatory requirements. Some regulations require twice-annual testing or specific types of validation.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Restoring a backup and seeing "no errors" in the restore tool is NOT sufficient validation. The restored database might have all rows but corrupted data within them. Always run application-level validation.
->
-> **⚠️ Watch out:** If you always restore the same database during testing, you're only testing that database's backup pipeline. Rotate which systems you restore.
->
-> **⚠️ Watch out:** Restoring to the same server that hosts production can accidentally overwrite live data. Always use an isolated environment.
+> **⚠️ Watch out:** Testing restores of the oldest backups but never the newest. Restore the most recent backup each test cycle — this is the one you'd actually use in a real disaster. Old backups may be intact while yesterday's backup is corrupted.
+
+> **⚠️ Watch out:** Restore testing that doesn't cover dependencies. Restoring a database is not enough if the application needs that database plus a configuration file, plus an encryption key, plus a specific library version. Test the full dependency chain at least annually.
+
+> **⚠️ Watch out:** Failing to account for backup storage egress costs. Restoring 10 TB from cloud storage to a test environment can incur hundreds of dollars in egress fees. Budget for test egress costs and use same-region restore targets where possible to minimize costs.
+
+> **⚠️ Watch out:** "The restore worked" being the only recorded result. Document recovery time, validation checks passed/failed, and any errors. A restore that "mostly worked" (90% of files recovered) is a FAILURE — 10% data loss is likely above the RPO.
 
 ---
 
-## Procedure: Backup Monitoring and Alerting Setup
+## Procedure 3: Backup Monitoring and Alerting
 
 ### Standard Approach
 
-1. **Instrument every backup job** with success/failure logging:
-   - Wrap backup scripts with logging that writes structured output (JSON or key=value) to a central log aggregator.
-   - Include: job name, start time, end time, exit code, data size, destination.
-2. **Configure alerting rules:**
-   - **Backup failure:** Alert immediately (within ____ minutes) to ____ team via messaging platform + ticketing system auto-create.
-   - **Backup job not started:** Alert if a scheduled job hasn't started within ____ minutes of its scheduled time (detects scheduler failures).
-   - **Backup size anomaly:** Alert if backup size drops by >____% or increases by >____% compared to the 7-day rolling average (detects silent data loss or unexpected data growth).
-   - **Backup storage approaching capacity:** Alert when backup storage exceeds ____% of allocated capacity.
-3. **Create a backup health dashboard** showing:
-   - Last success time for each backup job (color-coded: green <24h, yellow 24-48h, red >48h)
-   - Total backup storage used vs. allocated
-   - Restore test status (last test date, pass/fail)
-4. **Monthly capacity review:** On the first business day of each month, ____ reviews backup storage consumption, retention compliance, and any capacity trends.
+#### 3.1 Backup Job Monitoring
 
-### Alternative Approaches
+1. **Centralized Logging:** Configure all backup tools (database dump scripts, rclone, cloud backup services) to output structured logs (JSON preferred) shipped to the centralized log management platform (`____`, e.g., OpenObserve, Elastic, Splunk).
+2. **Dashboard:** Create a backup status dashboard showing:
+   - Last successful backup time for each data source (database, file store, config, source code).
+   - Backup job status (success/failure/running) for the last 24 hours.
+   - Backup duration trend (increasing duration may indicate growing data or performance issues).
+   - Storage capacity utilization and trend.
+3. **Alert Rules:**
+   - Backup job failure: Alert immediately (P1) to `____` (Operations Team) via messaging platform and ticketing system.
+   - Backup job exceeding expected duration by >50%: Alert (P3).
+   - Storage capacity >80%: Alert (P3). >90%: Alert (P2). >95%: Alert (P1).
+   - No successful backup for a data source in >`____` hours (recommended: 30 hours for daily backups): Alert (P1).
 
-> **💡 Why you might choose differently:** Full custom monitoring may be overkill if your backup tool already provides it.
+#### 3.2 Retention Compliance Monitoring
 
-- **Alternative A — Backup vendor monitoring:** Use the monitoring and alerting built into your backup platform (Veeam, Rubrik, Commvault, cloud-native backup services). Supplement with a periodic manual review.
-- **Alternative B — Infrastructure-as-code monitoring:** Define backup monitoring rules in Terraform/CloudFormation alongside the backup infrastructure. Changes to backup configuration automatically update monitoring.
-- **Alternative C — Simple cron email:** For small organizations, a cron job that emails results to a shared mailbox may suffice. Less robust but very low overhead.
+1. Run a monthly report comparing actual retained backups against the retention policy:
+   - Count of daily backups retained vs. target.
+   - Count of weekly/monthly archives vs. target.
+   - Any gap in the backup chain (missing day, missing transaction log).
+2. Automate retention cleanup: configure lifecycle policies on backup storage to automatically delete backups older than the retention period. Verify monthly that auto-cleanup is functioning.
+3. For compliance purposes, generate a monthly backup compliance report. Archive for `____` years (minimum 7 years for security documentation).
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Monitoring that a backup job "ran" is not the same as monitoring that it "succeeded." A job can exit code 0 but produce a 0-byte backup file. Always validate output.
->
-> **⚠️ Watch out:** Alert fatigue from non-critical backup warnings (e.g., "backup took 2 minutes longer than usual") trains people to ignore all backup alerts. Reserve immediate alerts for failures only; use dashboards for trends.
+> **⚠️ Watch out:** Alerting on backup failure but not on backup silence. If the backup script crashes silently (zero exit code due to a wrapper bug), you get no alert and no backup. Monitor for the *absence* of success, not just the *presence* of failure. Use a dead-man's-switch approach: if no success event is received in X hours, alert.
+
+> **⚠️ Watch out:** Backup monitoring that depends on the same infrastructure being backed up. If your monitoring server is in the same cloud region that went down, you won't know backups are failing. Use an external monitoring service (e.g., Healthchecks.io, Better Uptime) or a cross-region monitoring deployment.
 
 ---
-
-## Procedure: Backup Encryption Configuration
-
-### Standard Approach
-
-1. **Encrypt data before it leaves the source system.** Use client-side encryption with a key managed by the organization's key management service (KMS), not the backup destination's default encryption.
-2. **For cloud object storage backups:**
-   - Enable server-side encryption with customer-managed keys (SSE-C or SSE-KMS with CMK).
-   - Create a dedicated KMS key for backups that is separate from the production data encryption key.
-   - Configure the key policy so that only the backup service account and designated recovery personnel can use it for decryption.
-3. **For on-premises or hybrid backups:**
-   - Encrypt backup files with AES-256-GCM using a key derived from the organization's KMS or HSM before writing to backup media.
-   - Never store the encryption key alongside the backup data.
-4. **Validate encryption quarterly** by attempting to restore a backup in an isolated environment without the decryption key — it should fail. Then restore with the key — it should succeed.
-
-### Alternative Approaches
-
-> **💡 Why you might choose differently:** Client-side encryption adds latency and CPU overhead for large backup volumes.
-
-- **Alternative A — Storage-level encryption only:** Rely on server-side encryption provided by the storage platform. Simpler but means the storage provider technically has access to the encryption keys. Acceptable for Internal data; not recommended for Restricted data.
-- **Alternative B — Backup appliance encryption:** Use a dedicated backup appliance that handles encryption transparently. The appliance manages keys internally.
-
-### Common Pitfalls
-
-> **⚠️ Watch out:** If the KMS key used to encrypt backups is in the same AWS account as the backups and the account is compromised, the attacker can decrypt everything. Store backup encryption keys in a separate account with cross-account access.
->
-> **⚠️ Watch out:** Encrypting backups with a key that has an automatic rotation policy without preserving old key versions renders old backups unrecoverable. Always keep previous key versions active for the duration of your retention period.
 
 ## Related Documents
 
 - Backup Policy (Template.md)
-- Backup Integrity Testing Process
-- Disaster Recovery Plan
-- Disaster Recovery Process
-- Encryption Policy
-- Data Classification Policy
-
-## Revision History
-
-| Version | Date | Author | Description |
-|---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+- Disaster Recovery Plan (../Disaster-Recovery-Plan/Template.md)
+- Disaster Recovery Process (../Disaster-Recovery-Process/Template.md)
+- Backup Integrity Testing Process (../Backup-Integrity-Testing-Process/Template.md)
+- Encryption Policy (../Encryption-Policy/Template.md)
+- Asset Management Policy (../Asset-Management-Policy/AMP-Template.md)

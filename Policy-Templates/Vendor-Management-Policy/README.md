@@ -15,6 +15,16 @@ The Vendor Management Policy (often called Third-Party Risk Management or TPRM p
 - Vendor access management and offboarding procedures
 - Individual contractor requirements
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Third-party vendor risk management with three-tier risk classification. Defines assessment requirements, contract security provisions, ongoing monitoring, and offboarding standards. This is the governance document reviewed by leadership and auditors.
+- **`Vendor-Management-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Vendor risk assessment execution, security questionnaire review, contract review workflows, and vendor access management procedures. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Treating all vendors equally.** Applying the same deep assessment to a critical cloud infrastructure provider and a vendor that provides office plants wastes resources and slows procurement. Risk-tiering is essential. But the opposite failure — treating High-risk vendors with a lightweight questionnaire — is even more dangerous. The tiering must be honest and enforced.

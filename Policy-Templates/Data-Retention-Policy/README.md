@@ -15,6 +15,16 @@ The Data Retention Policy defines how long different categories of data must be 
 - Legal hold procedures that override standard retention
 - Backup and archive data lifecycle management
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Data-Retention-Procedures.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Common Gotchas and Mistakes
 
 **1. Retaining data "just in case" with no defined period.** The most common retention failure is indefinite retention. Every terabyte of data kept beyond its useful life is a terabyte you must protect, search during e-discovery, and notify about in a breach. Indefinite retention is a liability, not an asset.

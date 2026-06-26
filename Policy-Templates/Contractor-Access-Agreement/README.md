@@ -14,6 +14,16 @@ The Contractor Access and Confidentiality Agreement is the contractor-specific c
 - Accountability provisions including contract termination and legal remedies
 - Signature block for contractor and organization representative
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. Treating contractors like employees in the agreement.** Contractors are not employees. The agreement must reference the master services agreement or contract, not employment terms. It must use contractor-appropriate language ("termination of contract" not "termination of employment"). Labor law treats these differently; misclassification in your agreements can create legal exposure.

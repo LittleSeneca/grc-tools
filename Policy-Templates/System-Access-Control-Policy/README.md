@@ -17,6 +17,16 @@ The System Access Control Policy governs the entire lifecycle of user access: ho
 - Offboarding and access revocation (voluntary, involuntary, role change, inactivity)
 - Customer data access controls
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Access control governance with least privilege and separation of duties principles. Defines provisioning, access reviews, privileged access, offboarding, and customer data access controls. This is the governance document reviewed by leadership and auditors.
+- **`System-Access-Control-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Access provisioning workflows, RBAC design, access review execution, offboarding procedures, and third-party access management. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Access accumulation over time.** The most common access control failure is not granting access improperly — it's failing to remove it. People change roles, move departments, and accumulate permissions from every previous position. Without rigorous access reviews that actively revoke old access, the organization drifts toward a state where long-tenured employees have far more access than their current role requires.

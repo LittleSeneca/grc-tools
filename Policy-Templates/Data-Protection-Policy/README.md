@@ -15,6 +15,16 @@ The Data Protection Policy translates the high-level data classification framewo
 - End-user messaging channel restrictions for sensitive data
 - Confidentiality and Non-Disclosure Agreement (NDA) requirements
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Data protection controls throughout the data lifecycle. Defines customer data segmentation, production access controls, encryption requirements, data deletion standards, and information exchange governance. This is the governance document reviewed by leadership and auditors.
+- **`Data-Protection-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Customer data segmentation implementation, production data access controls (JIT provisioning), secure data deletion methods, and monitoring setup for data protection. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Allowing routine production access.** The single most common data protection failure is letting developers or support staff have standing administrative access to production databases. Every routine access pathway that exists will eventually be misused or compromised. Just-in-time access with automatic revocation is the standard; standing access is the exception that must be justified.

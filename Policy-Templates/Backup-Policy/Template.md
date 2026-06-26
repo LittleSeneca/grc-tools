@@ -88,6 +88,7 @@ Violation of this policy may result in disciplinary action as outlined in the In
 - Disaster Recovery Plan
 - Disaster Recovery Process
 - Backup Integrity Testing Process
+- [Backup-Procedures.md](./Backup-Procedures.md)
 - Encryption Policy
 - Asset Management Policy
 

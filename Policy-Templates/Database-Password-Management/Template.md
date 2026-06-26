@@ -17,106 +17,27 @@ This process applies to all production database systems, including managed datab
 
 All production database credentials must be stored in a centralized secrets management service. The organization's standard secrets management platform stores credentials as encrypted secrets, with access controlled by identity and access management policies.
 
-### Connection Patterns
+### Connection Requirements
 
-Applications and services connect to databases using one of two patterns:
+Applications and services must connect to databases using a centralized secrets management service for credential retrieval. Hardcoded credentials in source code, compiled binaries, or unversioned configuration files are prohibited. Each application must have a unique database user and credential — shared credentials across applications are prohibited.
 
-1. **Direct Secrets Retrieval:** The application retrieves database credentials at startup (or on a refresh interval) directly from the secrets management service via API call or SDK integration.
-
-2. **Environment Variable Injection:** Database credentials are injected into the application's runtime environment via an environment file or configuration variable, which is protected by file system permissions, user access controls, and network access controls.
-
-The direct secrets retrieval pattern (Pattern 1) is the preferred approach for production services because it eliminates static credential files, enables automatic rotation without application restart, and centralizes access auditing. The environment variable pattern (Pattern 2) should be migrated to Pattern 1 where technically feasible.
-
-### Current Configuration
-
-A comprehensive inventory of all database connection configurations must be maintained, documenting:
-
-| Application / Service | Database Type | Host | Connection Pattern | Credential Storage Location | Rotation Schedule |
-|----------------------|---------------|------|-------------------|-----------------------------|-------------------|
-| ____ | ____ | ____ | Direct / Env File | ____ | ____ |
-| ____ | ____ | ____ | Direct / Env File | ____ | ____ |
+Database credentials must never be committed to source code repositories, included in documentation, or transmitted over unencrypted channels.
 
 ## Password Rotation Schedule
 
-### Automated Rotation
+### Rotation Requirements
 
-Database credentials stored in the secrets management service that supports automatic rotation must be configured for automatic rotation on the following schedule:
+Database credentials must be rotated on the following schedule:
 
-- Production database credentials: Rotate every ____ days (recommended: 90 days).
-- Non-production database credentials: Rotate every ____ days (recommended: 180 days).
-- Break-glass / emergency access credentials: Rotate immediately after each use.
+- Production database credentials: every ____ days (recommended: 90 days).
+- Non-production database credentials: every ____ days (recommended: 180 days).
+- Break-glass / emergency access credentials: immediately after each use.
 
-Automated rotation must be verified by confirming that the secrets management service successfully generates a new password, updates the database instance with the new credential, and updates the stored secret value.
+Rotation must be automated where the secrets management service supports it. Manual rotation is permitted only for systems where automated rotation is technically infeasible, and must occur during a pre-defined maintenance window coordinated with application owners. Post-rotation verification must confirm that all dependent applications connect successfully with the new credential.
 
-### Manual Rotation
+If a password rotation fails, the credential must be immediately reverted to a known working state. The database must not be left in an unknown password state. Failed rotations must be documented as incidents with root cause investigation completed before attempting another rotation.
 
-For database connections that do not support automatic rotation (e.g., legacy applications using environment files), a manual rotation process must be followed on the same rotation schedule. The manual procedure is:
-
-1. Generate a new password that meets the Password Policy complexity requirements.
-2. Update the database instance with the new credential.
-3. Update the application's credential storage (environment file, configuration, or secrets manager).
-4. Restart or reload the application to pick up the new credential.
-5. Verify that the application successfully connects to the database with the new credential.
-6. Document the rotation in the credential management log.
-
-All manual password rotations must occur during a pre-defined maintenance window. For production services, the maintenance window is ____ (e.g., Saturdays 12:00 AM - 4:00 AM UTC). A calendar event or scheduled task must be created for each manual rotation with links to this process document.
-
-## Rotation Procedure — Direct Secrets Retrieval (Pattern 1)
-
-For services that retrieve credentials directly from the secrets management service:
-
-1. The secrets management service automatically generates a new password according to the configured rotation schedule.
-2. The service updates the database instance with the new credential.
-3. The service updates the stored secret value with the new credential.
-4. Applications retrieve the new secret value automatically at their next refresh interval or upon restart.
-5. If applications do not support automatic secret refresh, a service restart or redeployment is required:
-   - For container-based services, trigger a new deployment to pull the updated secret.
-   - For virtual machine-based services, restart the application service.
-6. Verify connectivity by checking application logs and database connection metrics.
-
-## Rotation Procedure — Environment File (Pattern 2)
-
-For services using environment variable files:
-
-1. Retrieve the new password from the secrets management service console or via CLI.
-2. Establish a secure session (SSH or equivalent) to the application server.
-3. Navigate to the application directory containing the environment file.
-4. Open the environment file for editing and locate the database password variable.
-5. Replace the existing password value with the new password value.
-6. Save the file and exit the editor.
-7. Restart the application service using the appropriate service manager:
-   - For systemd-managed services: `sudo systemctl restart [service-name]`
-   - For container-based services: `docker compose down [service] && docker compose up -d [service]`
-   - For other service managers, follow the documented restart procedure for that service.
-8. Verify that the application starts successfully and connects to the database by checking logs and monitoring dashboards.
-
-### Multi-Server Coordination
-
-If multiple application servers use the same database credential and environment file pattern, the rotation must be coordinated:
-
-1. Update the database credential first.
-2. Update and restart each application server sequentially (not simultaneously) to avoid a complete service outage during the rotation.
-3. Verify each server's connectivity before proceeding to the next.
-
-## Post-Rotation Verification
-
-After any password rotation (automated or manual), the following verification steps must be completed:
-
-1. Confirm that all applications can connect to their respective databases (check application health endpoints and database connection pools).
-2. Verify that no authentication errors appear in application or database logs for a monitoring period of ____ minutes after rotation.
-3. Confirm that database monitoring dashboards show expected connection counts and query throughput.
-4. Test a representative end-to-end transaction to confirm full functionality.
-5. Document the rotation completion, including date, time, systems affected, and verification results, in the credential management log.
-
-## Rotation Failure Response
-
-If a password rotation fails — either the new credential is not applied correctly or applications cannot connect with the new credential:
-
-1. Immediately revert to the previous credential if the old password is still valid and available.
-2. If the old password has been invalidated, use the break-glass procedure to set a known password and restore connectivity.
-3. Document the failure as an incident in the ticketing system.
-4. Investigate the root cause before attempting another rotation.
-5. Do not leave the database using a compromised or unknown password state.
+Detailed rotation procedures — including automated rotation configuration, manual rotation steps for both connection patterns, multi-server coordination, post-rotation verification, and failure response — are defined in Procedure.md.
 
 ## Access Control
 

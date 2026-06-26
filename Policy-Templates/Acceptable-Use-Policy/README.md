@@ -15,6 +15,16 @@ The Acceptable Use Policy (AUP) defines what employees can and cannot do with co
 - Malware protection requirements
 - Malware detection and scanning procedures
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`AUP-Template.md`** — The policy itself. Defines WHAT is required: Acceptable use of organizational computing devices, networks, and data. Defines onboarding/offboarding requirements, device security, malware protection, and prohibited activities. This is the governance document reviewed by leadership and auditors.
+- **`AUP-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Malware protection program implementation, endpoint security deployment, software installation controls, and security monitoring configuration. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. BYOD is a trap if not explicit.** If you allow personal devices, you need to define exactly what controls apply (MDM enrollment, encryption, remote wipe capability). Vague BYOD language is worse than no BYOD policy — it creates a grey area that auditors and incident responders both hate.

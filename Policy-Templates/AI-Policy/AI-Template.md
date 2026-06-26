@@ -71,4 +71,4 @@ Violation of this policy may result in disciplinary action as outlined in the Ac
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to AI-Procedures.md. |

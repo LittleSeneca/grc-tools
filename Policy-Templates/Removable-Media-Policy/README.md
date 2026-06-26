@@ -14,6 +14,16 @@ The Removable Media Policy establishes a default-deny posture for USB drives, ex
 - Exemptions for IT recovery media and backup media
 - Secure disposal requirements for media that is no longer needed
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Removable-Media-Procedures.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Common Gotchas and Mistakes
 
 **1. Policy without technical enforcement.** A written prohibition with no endpoint controls is a suggestion, not a policy. If USB ports work by default, people will use them — especially when they're in a hurry. Deploy endpoint management to block USB mass storage at the OS level and only allow specific devices through a formal exception process.

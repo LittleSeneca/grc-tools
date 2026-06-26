@@ -18,6 +18,16 @@ The Responsible Disclosure Policy serves two important functions: (1) it establi
 - Confidentiality protections for reporters
 - Investigation and corrective action process
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Vulnerability disclosure program and whistleblower protection. Defines authorized testing scope, submission process, safe harbor provisions, and protection from retaliation. This is the governance document reviewed by leadership and auditors.
+- **`Disclosure-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Vulnerability report triage and remediation coordination procedures, researcher communication workflows, and whistleblower investigation processes. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. No vulnerability disclosure policy at all.** Many organizations, especially smaller ones, don't have a disclosure policy until a researcher finds a vulnerability and doesn't know how to report it. The researcher may then disclose publicly or on social media, creating a crisis. Having the policy in place — even if it's simple — channels reports into a managed process.

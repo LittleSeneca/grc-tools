@@ -1,204 +1,235 @@
 # Business Continuity Plan — Implementation Procedures
 
 > **Companion to:** Business Continuity Plan (Template.md)
-> **Purpose:** These procedures describe how to implement the continuity requirements defined in the BCP policy. For IT-specific technical recovery, refer to the Disaster Recovery Plan and Disaster Recovery Process.
+> **Purpose:** These procedures describe how to execute the recovery and testing requirements set forth in the Business Continuity Plan. The BCP defines WHAT must be done; this document describes HOW to do it. These procedures cover business operations recovery only; for IT system recovery, refer to the Disaster Recovery Plan and DR Procedures.
 
-## Procedure: Work Site Recovery
+---
+
+## Procedure 1: Work Site Recovery
 
 ### Standard Approach
 
-When a facility becomes non-functional due to a disaster:
+This procedure covers the steps to transition personnel and operations when a physical work site becomes non-functional.
 
-1. **Declare the work site unavailable.** The ____ (e.g., Facilities and Personnel Safety Team Lead) confirms the site status and notifies the Executive Coordination Team.
-2. **Activate remote work protocol:**
-   - Send an organization-wide communication via ____ (messaging platform, email, SMS) instructing all personnel at the affected site to work from home or from a pre-designated secondary location.
-   - Verify that all personnel have been reached within ____ hours. Use the HR contact roster; call personnel who haven't acknowledged the message.
-3. **Assess remote work capability:**
-   - Confirm that essential personnel have functioning internet, VPN access, and required hardware. If their issued laptop is at the affected site and unrecoverable, ship a replacement or direct them to the secondary location.
-   - Verify that critical SaaS platforms are accessible from remote locations (not IP-restricted to the office).
-4. **For roles that cannot function remotely** (e.g., secure lab work, physical asset handling):
-   - The ____ team coordinates temporary office space or arranges relocation to a secondary site.
-   - Identify a coworking space, partner office, or pre-arranged alternate facility.
-   - Provision necessary equipment (laptops, monitors, secure network access) within ____ hours.
-5. **Maintain operations:** Critical business processes must continue without dependency on physical presence at any single facility. Validate that payroll, customer support, and revenue operations are functioning within one business day.
+#### 1.1 Immediate Response (First 4 Hours)
+
+1. **Safety First:** The Facilities and Personnel Safety Team Lead (`____`) confirms that all personnel at the affected site are accounted for and safe. Use the emergency contact list (maintained offline by team leads). If any personnel are unaccounted for, contact emergency services immediately.
+2. **Site Assessment:** Determine the nature and expected duration of the disruption:
+   - **Building access denied** (fire, gas leak, structural issue): expected duration `____` hours/days.
+   - **Building destroyed or inaccessible long-term** (earthquake, flood, major fire): expected duration weeks to months.
+   - **Utility failure** (power, water, internet): expected duration `____` hours. Check with utility providers for restoration estimates.
+3. **Activation Decision:** The primary authority holder (or successor per the line of succession) decides whether to activate the BCP. For disruptions expected to exceed `____` hours, activation is mandatory.
+4. **Notification Cascade:** Activate the notification sequence:
+   - Executive Coordination Team Lead notifies all other team leads.
+   - Each team lead notifies their team members using pre-established contact methods (messaging platform, SMS, phone tree).
+   - The Communications Team Lead notifies all personnel via the organization-wide communication channel.
+   - Record all notification timestamps in the event log.
+
+#### 1.2 Transition to Remote Work
+
+1. **Remote Work Enablement:**
+   - Instruct all affected personnel to work from home or from the pre-designated secondary location (`____` address/location).
+   - Verify that personnel have: a functional computer (corporate laptop or personal device with VPN), internet connectivity, and access to required systems.
+   - For personnel who do not have a corporate laptop: the IT team ships or arranges pickup of loaner devices from `____` (IT inventory location).
+2. **Connectivity Verification:**
+   - IT Support verifies that VPN capacity is sufficient for the increased remote workforce. If not, provision additional VPN endpoints or enable split tunneling for non-sensitive traffic.
+   - Verify that MFA, SSO, and identity provider are operational and accessible from remote locations.
+   - Test connectivity to all critical business applications from a remote endpoint.
+3. **Communication Cadence:**
+   - The Communications Team sends an initial all-hands message within 1 hour of activation: what happened, what's being done, what personnel should do, and when the next update will come.
+   - Establish a regular update cadence: `____` hours (recommended: every 4 hours during the first day, then twice daily).
+   - Create a dedicated channel/category in the messaging platform for continuity event updates.
+
+#### 1.3 Alternate Work Site Activation (If Remote Work Insufficient)
+
+If certain roles cannot function remotely (e.g., physical security, hardware-dependent operations):
+
+1. **Facilities Team** activates the pre-arranged alternate work site at `____` (address). Verify:
+   - Power, water, HVAC are operational.
+   - Internet connectivity is available (primary ISP: `____`, backup: `____`).
+   - Workstations, phones, and essential equipment are functional.
+   - Physical security controls (badge access, cameras) are active.
+2. **Relocation Logistics:**
+   - Arrange transportation for personnel who cannot drive to the alternate site.
+   - If the alternate site is in a different city, arrange hotel accommodations for essential personnel.
+   - Coordinate with HR for expense reimbursement guidelines during the continuity event.
+3. **Minimum Viable Operations:** Identify the absolute minimum personnel and equipment needed at the alternate site. Everyone else works remotely. This reduces logistical complexity and cost.
+
+#### 1.4 Distributed Workforce Assurance
+
+Validate that critical business processes do not depend on physical presence:
+
+1. **Process Audit:** Review each critical business process. If any process requires physical presence (e.g., signing physical checks, accessing a specific on-premises server), document a remote-capable alternative:
+   - Physical checks → electronic payments or mail-to-sign workflows.
+   - On-premises server → ensure remote access or migrate to cloud before a disruption occurs.
+2. **Equipment Gaps:** Identify personnel who require specialized equipment (designers needing high-end workstations, finance needing check printers) and maintain a loaner inventory or cloud-based alternatives.
 
 ### Alternative Approaches
 
-> **💡 Why you might choose differently:** Not all organizations can sustain full remote operations for extended periods.
+> **💡 Why you might choose differently:** Organizational size, geographic distribution, and industry constraints drive different recovery models.
 
-- **Alternative A — Hot site:** Maintain a pre-provisioned alternate office with desks, network, and equipment ready to go. Higher cost but near-zero transition time for on-site-dependent roles.
-- **Alternative B — Dispersed team model:** Design teams to be distributed across multiple offices by default, so no single office loss affects more than a fraction of any team. Business continues with reduced capacity rather than full failover.
-- **Alternative C — Mutual aid agreement:** Pre-arrange with a partner organization to share office space in an emergency. Requires a legal agreement and compatibility testing.
+- **Hot Site / Co-Location:** Organizations that cannot tolerate any downtime for on-premises operations may maintain a hot site — a fully equipped, ready-to-use alternate facility with replicated data. This is expensive (2x infrastructure cost) but provides near-zero RTO for facilities. Common in financial services and healthcare.
+- **100% Remote-First Model:** Organizations already operating fully remote or hybrid may not need physical work site recovery. Focus instead on ensuring personnel have redundant internet (secondary ISP or cellular backup) and that cloud services are resilient. The BCP becomes primarily a communication and coordination plan.
+- **Shared Recovery Facilities:** Multiple small/medium organizations can contract with a shared recovery facility provider (e.g., Sungard AS, Recovery Point) that maintains workstations, phones, and connectivity for multiple clients. This reduces cost but may create contention if a regional disaster affects multiple clients simultaneously.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** If your VPN concentrator is in the same physical facility that's now inaccessible, remote work won't work either. Ensure VPN infrastructure is cloud-hosted or at a separate location.
->
-> **⚠️ Watch out:** The "everyone work from home" plan fails if home internet is also down (common in regional disasters like earthquakes or hurricanes). Have a plan for personnel in the affected area to relocate outside the disaster zone.
->
-> **⚠️ Watch out:** If your identity provider (SSO) is unreachable, personnel can't authenticate to anything. Test that break-glass accounts and offline recovery procedures work when SSO is down.
+> **⚠️ Watch out:** The "just work from home" assumption failing at scale. If a regional disaster affects home internet (power outage, ISP damage), remote work is not viable. Always have an alternate site option that is geographically separate — far enough that the same disaster won't affect both locations (typically 50+ miles for most natural disasters).
+
+> **⚠️ Watch out:** Personnel contact lists that are only accessible from the intranet or a SaaS tool that requires authentication. During a disruption, personnel may not be able to access these. Team leads must maintain an offline copy (printed or on a personal device) of their team's contact information.
+
+> **⚠️ Watch out:** Ignoring the psychological impact. A disaster that destroys the office is traumatic. Personnel may be dealing with personal losses, childcare disruptions, or displacement. The BCP must account for reduced capacity, extended response times, and the need for mental health support resources.
+
+> **⚠️ Watch out:** Assuming key personnel are always available. During a regional disaster, key personnel may themselves be affected — evacuated, injured, or unreachable. The succession plan must be tested under the assumption that the top 2 people in each role may be unavailable.
 
 ---
 
-## Procedure: Critical Service Recovery
+## Procedure 2: Critical Service Recovery
 
 ### Standard Approach
 
-For disruptions affecting customer-facing or revenue-generating services:
+This procedure covers the steps to maintain or restore customer-facing and revenue-generating business operations during a continuity event (non-IT-specific aspects; for IT recovery, see DR Plan & Procedures).
 
-1. **Declare the critical service disruption.** The IT and Infrastructure Recovery Team Lead confirms the disruption and notifies the Executive Coordination Team.
-2. **Activate the Communications Team:**
-   - Update the public status page with: what is affected, what users will experience, estimated time to resolution (if known), and where to find updates.
-   - If the status page platform is also affected, use a status-page provider hosted on separate infrastructure (e.g., an independent SaaS status page service).
-   - Post updates at least every ____ minutes until resolved.
-3. **Execute technical recovery** per the Disaster Recovery Plan:
-   - The IT Recovery Team follows the DR Plan's Recovery Phase sequence.
-   - If the DR Plan has been activated, coordinate with the DR Coordinator.
-4. **Maintain customer support:**
-   - If the primary support platform is affected, redirect to a fallback channel (email alias, phone line, alternative ticketing system).
-   - Empower support staff to provide proactive communications to affected customers if SLAs are at risk.
-   - Document all customer communications for post-event review.
-5. **Validate service restoration:**
-   - Before declaring the service recovered, run a smoke test: can users log in, access their data, and perform the primary business function?
-   - Monitor for ____ hours post-restoration to confirm stability.
+#### 2.1 Service Impact Assessment
 
-### Alternative Approaches
+1. **Identify Affected Services:** The Executive Coordination Team works with business unit leads to identify which customer-facing services are affected and the nature of the impact:
+   - Service fully unavailable.
+   - Service degraded (slower, partial functionality).
+   - Service operational but dependent on a disrupted function (e.g., payments processing down but application still running).
+2. **Customer Impact Quantification:**
+   - Number of customers affected.
+   - Revenue impact per hour/day of disruption.
+   - Regulatory or contractual SLA impact.
+   - Reputational risk (is this customer-visible or internal-only?).
+3. **Prioritization:** Rank services for recovery based on: customer impact, revenue criticality, regulatory requirements, and dependencies (Service A must be restored before Service B).
 
-> **💡 Why you might choose differently:** Full DR activation is a heavy process; for short disruptions, a lighter touch may be appropriate.
+#### 2.2 Customer Communication
 
-- **Alternative A — Degraded mode operation:** If full recovery is delayed, bring up a read-only or reduced-capability version of the service so customers have partial access while full recovery proceeds. Communicate clearly what features are limited.
-- **Alternative B — Manual workaround:** For some B2B services, a manual process (e.g., processing customer requests via email with a person in the loop) can bridge a short outage without full DR activation.
+1. **Status Page Update:** The Communications Team updates the public status page (`____` URL) within `____` minutes of confirming a customer-visible impact:
+   - What service is affected.
+   - What customers are experiencing.
+   - What the organization is doing.
+   - When the next update will be posted (specific time, not "soon").
+   - If the cause is known and appropriate to share.
+2. **Direct Customer Notification:** For critical services affecting a known set of customers:
+   - Send direct email notification within `____` hours.
+   - Include a point of contact for questions (support email or designated account manager).
+   - If the disruption is expected to exceed `____` hours, schedule a customer briefing call.
+3. **Support Channel Continuity:**
+   - If the primary support channel (e.g., Zendesk, Intercom) is affected, activate the fallback: `____` (e.g., email alias, phone hotline, social media support).
+   - Prepare a support team FAQ document so all support agents provide consistent information.
+   - Escalation path for customers demanding service credits/refunds: `____` (Customer Success / Legal).
+
+#### 2.3 Business Process Workarounds
+
+For each affected business process, document and activate manual or alternate workarounds:
+
+1. **Payment Processing Down:** Activate offline payment capture (record payment details securely for processing when system is restored). Notify finance team to monitor for duplicate charges during recovery.
+2. **Order Fulfillment Down:** Use manual order tracking (shared spreadsheet) and notify customers of delays. Prioritize orders by customer tier and order date.
+3. **Customer Support Down:** Activate email-only support with extended response time SLA communicated to customers.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** The status page is often hosted on the same infrastructure as the main service. When the service goes down, so does the status page. Always use an independently hosted status-page provider.
->
-> **⚠️ Watch out:** "We'll update the status page" means nothing if the person who knows the status-page credentials is unreachable. Pre-share credentials with at least three people across different teams.
+> **⚠️ Watch out:** Status page saying "Investigating" for 6 hours with no update. This erodes customer trust faster than the outage itself. Set a hard rule: update the status page at least every `____` minutes (recommended: 30 minutes), even if the update is "We're still working on it. Next update at [specific time]."
+
+> **⚠️ Watch out:** Customer communication that promises unrealistic recovery times. "We'll be back up in 30 minutes" — and then you're not — is far worse than "We're working on it and will provide a timeline within 2 hours." Under-promise and over-deliver on communications.
 
 ---
 
-## Procedure: Third-Party Dependency Failure
+## Procedure 3: Third-Party Dependency Failures
 
 ### Standard Approach
 
-For disruptions caused by a critical vendor or service provider outage:
+#### 3.1 Vendor Disruption Response
 
-1. **Detect the dependency failure.** This may present as a service degradation, error spike, or direct notification from the vendor's status page.
-2. **Identify the affected business functions.** Which internal services and processes depend on the failed vendor? Map the blast radius.
-3. **Consult the vendor contingency register.** This document (maintained separately, referenced by the BCP) should list for each critical vendor:
-   - Alternative providers (pre-vetted, with accounts created and tested)
-   - Manual workaround procedures (documented and tested)
-   - Contractual SLA and escalation contacts
-4. **Evaluate options against RTO:**
-   - If the alternative provider can be activated within the affected function's RTO, execute the failover.
-   - If the manual workaround can sustain operations within the RTO, activate it.
-   - If neither can meet RTO, escalate to executive leadership for a business decision.
-5. **Escalate to the vendor:**
-   - Open a support ticket immediately.
-   - If the vendor provides a premium support tier, use it.
-   - Document all vendor communications (timestamps, ticket numbers, what was promised).
-6. **Communicate internally and externally:**
-   - Notify affected business units that a vendor dependency is down and what the contingency plan is.
-   - If customer-facing impact is significant, update the status page.
+1. **Vendor Status Verification:** When a critical vendor or service provider experiences an outage:
+   - Check the vendor's own status page and subscribe to updates.
+   - Contact the vendor through established support channels (open a Severity 1 ticket if applicable).
+   - Check the vendor's SLA: what is their committed recovery time? Are service credits accruing?
+2. **Impact Assessment:** Determine which internal business functions are affected by the vendor outage:
+   - Direct dependency (if Vendor X is down, our Service Y is down).
+   - Indirect dependency (Vendor X is down, so our vendor's vendor is affected, cascading to us).
+3. **Activate Vendor Contingency:** Consult the vendor contingency register (`____` location). For each critical vendor, this register documents:
+   - Alternative provider(s) that can replace the function.
+   - Manual workaround procedures.
+   - Estimated switching time.
+   - Authorization required to switch.
+4. **Escalation Protocol:**
+   - `____` hours into the outage: Business owner escalates to vendor account manager.
+   - `____` hours into the outage (or if approaching RTO): Executive sponsor contacts vendor executive sponsor.
+   - If vendor cannot restore within the function's RTO: activate the alternate provider or manual process.
 
-### Alternative Approaches
+#### 3.2 Alternate Provider Activation
 
-> **💡 Why you might choose differently:** Maintaining a full contingency register for every vendor is operationally expensive.
-
-- **Alternative A — Tiered contingency planning:** Only maintain detailed failover procedures for Tier-1 vendors (those whose failure would violate RTOs). For Tier-2 vendors, document only an escalation path.
-- **Alternative B — Multi-vendor architecture:** Design critical services to be vendor-agnostic from the start (e.g., abstract the email sending service behind an interface that supports multiple providers). Failover is built into the architecture, not a manual process.
-- **Alternative C — Insurance-only approach:** For vendors where the business impact of prolonged outage is primarily financial and below a threshold, rely on business interruption insurance rather than technical failover.
+1. **Authorization:** The Executive Coordination Team authorizes the switch based on cost, operational impact, and expected duration of the primary vendor's outage.
+2. **Cutover Execution:**
+   - If the alternate provider is already configured (warm standby): redirect traffic or workflows to the alternate.
+   - If the alternate provider requires setup (cold standby): execute the documented onboarding procedure. This may require data migration, DNS changes, or API key reconfiguration.
+3. **Validation:** Test that the alternate provider is functioning correctly before notifying users of the switch.
+4. **Return to Primary:** Once the primary vendor is restored and stable (typically after a `____`-hour observation period with no further issues), plan a controlled cutback during a maintenance window.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** You discover the alternative provider's API has changed since you last tested it — and the failover fails. Test vendor failover paths at least annually.
->
-> **⚠️ Watch out:** Your "alternative provider" is actually a reseller or subsidiary of the same parent company as your primary provider. When the parent has an outage, both are down. Verify true independence.
+> **⚠️ Watch out:** The alternate provider requiring the same data that was on the primary provider, which is now unavailable. If your CRM is down and you want to switch to an alternate CRM, you need your customer data — which may only exist in the down CRM. Mitigate this by maintaining regular data exports from critical SaaS platforms to an organization-controlled location.
+
+> **⚠️ Watch out:** Assuming the alternate provider is still available and hasn't changed their pricing, API, or terms since the contingency was documented. Review and test vendor contingencies at least annually — actually attempt to activate the alternate in a test scenario.
 
 ---
 
-## Procedure: Annual BCP Testing
+## Procedure 4: BCP Testing Execution
 
 ### Standard Approach
 
-#### Tabletop Exercise
+#### 4.1 Tabletop Exercise Execution
 
-1. **Plan the exercise** at least ____ weeks in advance:
-   - Select a realistic disruption scenario (e.g., ransomware encrypts all file servers, headquarters inaccessible due to earthquake, critical SaaS vendor suffers week-long outage).
-   - Define clear objectives (e.g., test notification cascade, test succession chain, test decision-making under time pressure).
-   - Identify participants — all response team leads must attend.
-   - Prepare a facilitator guide with injects (simulated events) to introduce at specific times during the exercise.
-2. **Conduct the exercise:**
-   - Facilitator presents the opening scenario.
-   - Participants respond as they would in a real event, discussing what actions they'd take, who they'd contact, and what decisions they'd make.
-   - Facilitator introduces injects to test edge cases (e.g., "The CEO is unreachable," "The backup restore is corrupted," "A reporter calls asking for comment").
-   - Capture all actions, decisions, and discussion points in real time.
-3. **Debrief immediately after** (hot wash):
-   - What worked as expected?
-   - Where did the plan break down?
-   - What assumptions were wrong?
-   - What information was missing that people needed?
-4. **Document the exercise:**
-   - Produce a written report within ____ business days.
-   - Include: scenario, participants, timeline of actions, what worked, gaps identified, remediation items.
-   - Assign each remediation item an owner and a due date.
+1. **Scenario Design:** `____` (BCP Coordinator) designs a realistic scenario `____` weeks before the exercise. The scenario must:
+   - Be plausible for the organization's geography and industry.
+   - Affect multiple business functions (not just one team).
+   - Require succession decisions (assume a key leader is unavailable).
+   - Have an evolving timeline (injects — new information revealed at intervals).
+2. **Participant Preparation:**
+   - Distribute the scenario briefing 48 hours before the exercise (do not share the injects — these should be surprises).
+   - Remind participants to bring their offline contact lists and copies of the BCP.
+   - Designate a facilitator (external to the response teams) who controls the timeline and injects.
+3. **Exercise Execution:**
+   - Facilitator reads the opening scenario and starts the clock.
+   - Teams respond as they would in a real event: activating communication channels, making decisions, documenting actions.
+   - Facilitator introduces injects at pre-planned intervals (e.g., "The ISP just reported a 12-hour fiber cut" at T+30 minutes, "A key customer is threatening to terminate their contract" at T+90 minutes).
+   - A designated note-taker (not a participant) records all decisions, actions, and timestamps.
+4. **Metrics to Capture:**
+   - Time from scenario start to BCP activation decision.
+   - Time to complete the notification cascade (all team leads notified).
+   - Time to stand up alternate work arrangements (remote work or alternate site).
+   - Time to customer notification (if applicable in the scenario).
+   - Number of decisions that required escalation due to an unavailable authority holder.
+5. **Hot Wash / Debrief:** Immediately after the exercise, conduct a 30-minute debrief:
+   - Each team lead shares: what worked, what didn't, what they'd change.
+   - Facilitator captures all feedback.
+   - Do not problem-solve during the hot wash — just capture.
 
-#### Functional / Technical Test
+#### 4.2 Post-Exercise Remediation
 
-1. **Select the recovery procedure to test** based on risk (what would hurt most if it failed during a real event) and freshness (what hasn't been tested recently).
-2. **Define success criteria:** What does "the test passed" look like? Be specific (e.g., "Application X is accessible at the failover URL and passes the smoke test suite within 45 minutes of initiating failover").
-3. **Schedule during a maintenance window** if the test has any risk of production impact.
-4. **Execute the test** under observation — capture timestamps for every major step.
-5. **Document results:**
-   - Success criteria met / not met
-   - Actual recovery time vs. RTO target
-   - Issues encountered
-   - Remediation items
+1. **Post-Exercise Report:** Within `____` business days, produce a report documenting:
+   - Scenario, objectives, and participants.
+   - Timeline of actions taken.
+   - Metrics achieved vs. targets.
+   - Issues identified and recommendations.
+   - Remediation items with assigned owners and due dates.
+2. **Remediation Tracking:** All remediation items are entered into `____` (ticketing system). Track to resolution. Items not resolved before the next annual test are escalated to executive leadership.
 
 ### Common Pitfalls
 
-> **⚠️ Watch out:** Tabletop exercises where everyone agrees "yes, we'd do that" without actually doing it discover almost nothing. Design injects that force hard decisions (budget tradeoffs, priority conflicts).
->
-> **⚠️ Watch out:** Annual testing that always uses the same scenario ("primary data center is destroyed") trains the team for only one type of disaster. Rotate scenarios — include cyber attack, vendor failure, pandemic, and insider threat.
->
-> **⚠️ Watch out:** Functional tests that succeed because the test environment is simpler than production don't validate real-world recovery. Add complexity each year (more services, more data, cross-service dependencies).
+> **⚠️ Watch out:** Tabletop exercises that are too easy. If the scenario doesn't challenge assumptions or force hard decisions, the exercise provides a false sense of readiness. Include injects that remove key people, cut communication channels, and force trade-off decisions.
+
+> **⚠️ Watch out:** Treating the tabletop as a compliance checkbox. The exercise is training, not an exam. A "failed" exercise that identifies 10 gaps is more valuable than a "perfect" exercise that finds nothing. Create psychological safety: no one is blamed for gaps discovered during testing.
 
 ---
-
-## Procedure: BCP Plan Maintenance
-
-### Standard Approach
-
-1. **Schedule the annual review** as a recurring event tied to the annual test cycle. Review the plan AFTER the test so lessons learned are incorporated.
-2. **Review checklist:**
-   - Are all response team roles filled with current personnel? Update names and contact information.
-   - Are RTO/RPO targets still accurate given changes in business operations?
-   - Have any new critical business functions been added? Do they need continuity procedures?
-   - Have vendors changed? Update the vendor contingency register references.
-   - Has the IT architecture changed? Ensure the DR Plan references are still correct.
-   - Are regulatory notification requirements still current?
-3. **Update after material organizational changes:**
-   - Office relocation: within ____ days, update work site recovery procedures and test remote access from the new location.
-   - Acquisition or new product launch: assess whether the new business unit or product has continuity requirements. Add to the BCP if critical.
-   - Significant IT architecture change: confirm the DR Plan has been updated and cross-reference is correct.
-4. **Distribute updated copies** to all response team leads and ensure they maintain local copies.
-
-### Common Pitfalls
-
-> **⚠️ Watch out:** The BCP gets updated but nobody actually reads the new version. After each update, conduct a 30-minute walkthrough with team leads to confirm they understand the changes.
->
-> **⚠️ Watch out:** Contact information rots fast. The person listed as "Facilities Lead" left six months ago. Validate the contact roster quarterly, not just at the annual review.
 
 ## Related Documents
 
 - Business Continuity Plan (Template.md)
-- Disaster Recovery Plan
-- Disaster Recovery Process
-- Backup Policy
-- Incident Response Policy
-
-## Revision History
-
-| Version | Date | Author | Description |
-|---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version |
+- Disaster Recovery Plan (../Disaster-Recovery-Plan/Template.md)
+- Disaster Recovery Process (../Disaster-Recovery-Process/Template.md)
+- Backup Policy (../Backup-Policy/Template.md)
+- Incident Response Policy (../Incident-Response-Policy/IR-Policy-Template.md)
+- Vendor Management Policy (../Vendor-Management-Policy/Template.md)

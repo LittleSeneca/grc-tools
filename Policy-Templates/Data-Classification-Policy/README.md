@@ -14,6 +14,16 @@ The Data Classification Policy establishes a standardized taxonomy for categoriz
 - De-identification standards
 - Labeling requirements for physical and electronic documents
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Common Gotchas and Mistakes
 
 **1. Too many or too few classification levels.** Some organizations create seven or eight tiers that no one can consistently apply. Others default everything to one level. Four tiers (Public, Internal, Confidential, Restricted) is the industry standard for a reason — it balances granularity with usability. Anything beyond four levels degrades adoption.

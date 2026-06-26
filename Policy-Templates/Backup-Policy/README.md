@@ -14,6 +14,16 @@ The Backup Policy defines the organization's requirements for protecting data th
 - Backup monitoring, alerting, and incident response for failures
 - Roles and responsibilities for backup operations
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Backup and recovery requirements using the 3-2-1 framework. Defines backup frequency by data classification, encryption standards, restore testing cadence, and monitoring requirements. This is the governance document reviewed by leadership and auditors.
+- **`Backup-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Backup job configuration, restore testing procedures, backup monitoring setup, and recovery validation workflows. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Backing up without testing restores.** A backup that has never been restored is not a backup — it's a hope. Auditors expect quarterly restore tests with documented evidence. The most common finding is "backups exist but restore testing does not."

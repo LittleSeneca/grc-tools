@@ -16,6 +16,16 @@ The Physical Security Policy establishes the controls that protect the organizat
 - Alarm and surveillance system requirements
 - Fire and life safety
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Physical security controls for facilities, secure areas, workstations, and off-site equipment. Defines access controls, clean desk requirements, alarm systems, and data center security. This is the governance document reviewed by leadership and auditors.
+- **`Physical-Security-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Physical access control system configuration, badge management, surveillance monitoring procedures, and facility inspection workflows. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Treating physical security as "just facilities."** Physical security is a shared responsibility between security, IT, and facilities teams. If the security team doesn't know that the server room door lock has been broken for two weeks because "facilities handles that," there is a governance gap. The policy must establish clear cross-functional ownership.

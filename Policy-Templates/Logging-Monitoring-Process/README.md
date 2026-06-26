@@ -17,6 +17,15 @@ The Logging and Monitoring Process is the operational guide for how logs and met
 - Scheduled manual log review procedures
 - Platform health monitoring
 
+## Document Structure
+
+This folder contains two files:
+
+- **`Template.md`** — The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** — This overview.
+
+When updating the governing policy, ensure implementation changes flow into this process document.
+
 ## Gotchas People Get Wrong
 
 **1. Not defining the collection tier for each log source.** The process describes both agent-based and cloud-streaming collection. Every log source needs an explicit assignment: "PostgreSQL logs → Otel-Collector agent → OpenObserve." Vague "logs are forwarded" language means logs get forgotten. Maintain a log source inventory that maps each source to its collection method and destination.

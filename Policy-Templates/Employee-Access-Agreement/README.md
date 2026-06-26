@@ -13,6 +13,16 @@ The Employee Access and Confidentiality Agreement is a legally binding document 
 - Signature block for employee and witness
 - Post-employment continuing obligations
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. Not collecting signed copies.** The most common audit finding for confidentiality agreements is "agreements exist but signed copies cannot be produced." Integrate this agreement into the onboarding workflow (HRIS, DocuSign) so signed copies are automatically stored and retrievable.

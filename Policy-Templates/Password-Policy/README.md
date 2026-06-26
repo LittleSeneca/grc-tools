@@ -17,6 +17,16 @@ The Password Policy defines how authentication credentials must be created, mana
 - Compromise response procedures
 - Service account and machine credential requirements
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Authentication credential requirements aligned with NIST SP 800-63B. Defines password construction, password manager requirements, MFA standards, credential storage, and compromise response. This is the governance document reviewed by leadership and auditors.
+- **`Password-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Secure credential distribution procedures, password manager deployment, MFA enrollment workflows, and credential compromise response execution. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Keeping mandatory complexity rules.** "Must contain uppercase, lowercase, digit, and special character" is the most persistent bad practice in password policies. It has been explicitly deprecated by NIST since 2017. Users respond to complexity rules with predictable substitutions (Password1!) that are easy for attackers to guess. Replace complexity rules with minimum length (12+ characters) and banned password checks.

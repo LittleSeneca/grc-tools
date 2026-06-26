@@ -17,7 +17,7 @@ If a vulnerability is identified, it must be resolved within a set period of tim
 
 This policy is aligned with the NIST Incident Response Lifecycle framework: **Preparation → Detection & Analysis → Containment, Eradication & Recovery → Post-Incident Activity**.
 
-The processes outlined in this document are maintained and executed by the Incident Response Team (IRT). The IRT at ____ plays a critical role in the incident management strategy, designed to swiftly address and mitigate security incidents. This specialized team ensures rapid mobilization and effective response to potential threats, minimizing disruptions and protecting both organizational assets and client data during emergencies.
+The Incident Response Team (IRT) is responsible for executing this policy. The IRT ensures rapid mobilization and effective response to potential threats, minimizing disruptions and protecting both organizational assets and client data during emergencies. Detailed operational procedures for the IRT are defined in the companion [IR Procedures](./IR-Procedures.md).
 
 ## Policy
 
@@ -60,15 +60,7 @@ If the IRT Lead is unavailable to provide direction, command authority moves thr
 
 ### Mobilizing the IRT
 
-#### Incident Recognition
-
-Security events may be detected through automated alerting from monitoring and security tools, manual discovery by personnel, or external notification. It is critical to differentiate between routine operational alerts and genuine security incidents. If any reviewing member of the IRT is unsure whether a notification constitutes an incident, assume it is an incident and proceed accordingly.
-
-Anomalous system behavior, broken functionality, unusual user activity, or unexpected changes to an environment may indicate compromise. Any such anomalies must be reported to the Security Officer for evaluation.
-
-#### Initial Assessment and Verification
-
-Upon receiving an alert or discovering an anomaly, the first responder verifies the alert and communicates findings to the IRT. The IRT is assembled through all available channels. If the IRT Lead is unavailable, the succession plan activates automatically. Detailed mobilization procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
+Security events may be detected through automated alerting, manual discovery by personnel, or external notification. Any security event that may constitute an incident must be reported to the Security Officer for evaluation. If the IRT Lead is unavailable, the succession plan activates automatically. Detailed mobilization procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ### Incident Types and Trigger Criteria
 
@@ -88,53 +80,11 @@ Prior to initiating the full incident response process, the IRT must establish w
 - Malware or ransomware infections.
 - Denial of service or distributed denial of service attacks.
 
-#### Detection Mechanisms
+#### Detection and Escalation
 
-Information security incidents are detected through a combination of automated and manual mechanisms:
+Incidents must be detected through a combination of automated monitoring and manual reporting. All Critical and High severity alerts from monitoring systems must be escalated to incident status immediately. Manual findings must be evaluated promptly by the Security Officer and escalated if they indicate a potential security breach.
 
-**Infrastructure Monitoring and Alerting:**
-- Real-time monitoring of system metrics, logs, and network traffic for security-related events.
-- Unusual API call patterns suggesting unauthorized access or malicious activity.
-- Resource utilization anomalies (CPU, memory, network spikes) indicating potential DDoS or breach.
-- Privileged command execution (sudo, administrative actions) under non-standard conditions.
-- Significant network traffic deviations from baseline, potentially indicating command and control, botnet activity, or port scanning.
-
-**Cloud Threat Detection:**
-- Continuous analysis of cloud audit logs, network flow logs, and DNS logs for unusual behavior.
-- Threat intelligence feeds for known malicious IP addresses and domains.
-- Account compromise indicators: unusual instance deployments, data exfiltration, anomalous geography.
-- Detection of reconnaissance activity, credential compromise, and privilege escalation.
-
-**Cloud Security Posture Monitoring:**
-- Compliance checks against security best practices and framework requirements.
-- Aggregated security findings from integrated security services into a centralized view.
-- Detection of misconfigurations, overly permissive access policies, and unencrypted data stores.
-
-**Audit Trail Monitoring:**
-- Monitoring of management operations performed on resources (API calls, configuration changes).
-- Changes to security group rules, network access control lists, and IAM roles.
-- Optional data event logging for visibility into data access patterns and potential exfiltration.
-
-**Real-Time Messaging Alerts:**
-- Integration between monitoring tools and organizational messaging platform for immediate notifications to IRT channels.
-- Group notifications to all IRT members upon critical alert triggers.
-
-**SMS / Pager Alerting:**
-- Secondary notification layer via SMS or pager to IRT members for critical alerts.
-- SMS numbers must be configured to bypass quiet hours/focus settings on IRT members' phones.
-
-**Manual Evaluation:**
-- Security events not caught by automated tooling must be promptly reported to the Security Officer.
-- All anomalous environmental or user behavior should trigger review and potential escalation.
-
-#### Incident Trigger Criteria
-
-Establishing the impact and scope of an event is critical before initiating the full incident response process. Trigger criteria include:
-
-- **Alert Severity:** Alerts classified as Critical or High severity are escalated to incident status immediately.
-- **Security Findings:** Findings classified as Critical or High severity from vulnerability management or CSPM tools are reviewed and escalated to incident status if confirmed as active threats.
-- **Manual Findings:** Evaluated using professional judgment by the Security Officer. Generally, if a finding appears concerning, additional team members are brought in for review.
-- **Verification Process:** Alerts and findings undergo initial verification to rule out false positives and ensure duplicate alerts are identified and managed efficiently.
+Detailed detection mechanisms, alerting configurations, and escalation workflows are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ### Incident Documentation and Tracking
 
@@ -153,13 +103,13 @@ The tracking system must be configured with incident management workflows guidin
 
 ### Pre-Incident Responsibilities (Preparation)
 
-- **Training and Preparedness:** All IRT members must undergo regular, scenario-based training. Preparedness must be maintained through tabletop exercises, drills, and simulations.
-- **Plan Review and Maintenance:** IRT contact lists, technology tools, response strategies, and this policy must be reviewed at least quarterly.
-- **Tool Readiness:** Incident response tools (forensic toolkits, communication channels, secure evidence storage) must be verified operational at least quarterly.
+- **Training and Preparedness:** All IRT members must undergo regular, scenario-based training.
+- **Plan Review and Maintenance:** IRT contact lists, response strategies, and this policy must be reviewed at least quarterly.
+- **Tool Readiness:** Incident response tools must be verified operational at least quarterly.
 
 ### During-Incident Responsibilities
 
-Within 24 hours of the incident being reported, the Security Officer shall conduct a preliminary investigation and risk assessment. If the incident is confirmed, the Security Officer must assess the impact and assign a severity level. The incident response lifecycle follows the NIST phases: Identification, Containment, Eradication, and Recovery. Detailed phase execution procedures are defined in the Security Incident Response Process and supplemented by [IR-Procedures.md](./IR-Procedures.md).
+The Security Officer must conduct a preliminary investigation and risk assessment promptly upon incident report. If the incident is confirmed, the Security Officer must assess the impact and assign a severity level. The incident response lifecycle follows the NIST phases: Identification, Containment, Eradication, and Recovery. Detailed phase execution procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ### Post-Incident Responsibilities and Lessons Learned
 
@@ -174,13 +124,9 @@ In the event that the incident involves the breach of sensitive or personal data
 - **User Notification and Training:** The IRT Lead must notify all users of the incident, conduct additional training if necessary, and present lessons learned to prevent future occurrences.
 - **Disciplinary Action:** Where necessary, management must take disciplinary action if a user's activity is deemed malicious or grossly negligent.
 
-#### Lessons Learned Process
+#### Lessons Learned and Root Cause Analysis
 
-A structured lessons learned process must be followed after each incident, including data collection, analysis meetings, and formal documentation. Key areas evaluated include response effectiveness, resource utilization, communication, external support, and implementation of changes. Detailed procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
-
-### Root Cause Analysis (RCA)
-
-Root Cause Analysis is a systematic process used to identify the underlying causes of incidents to prevent future occurrences. RCA must be initiated soon after the incident is contained, using structured techniques. Root cause findings and corrective actions must be documented and reviewed in follow-up meetings. Detailed RCA procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
+A structured lessons learned process and Root Cause Analysis (RCA) must be conducted after each incident. RCA must identify underlying causes to prevent future occurrences. Root cause findings and corrective actions must be documented and reviewed in follow-up meetings. Detailed procedures are defined in [IR-Procedures.md](./IR-Procedures.md).
 
 ## Review Cycle
 

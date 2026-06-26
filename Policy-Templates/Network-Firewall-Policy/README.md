@@ -16,6 +16,16 @@ The Network Firewall Policy defines how the organization's firewall infrastructu
 - Logging requirements and SIEM integration
 - Cloud firewall constructs (security groups, network ACLs) and infrastructure-as-code management
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Firewall deployment and management requirements across four defense-in-depth layers (Perimeter, Internal Segmentation, Host, Application). Defines ruleset management, administrative access, and traffic filtering standards. This is the governance document reviewed by leadership and auditors.
+- **`Firewall-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Firewall deployment and configuration procedures, ruleset review workflows, log forwarding setup, and cloud firewall (security group/NACL) management. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Default-allow or default-deny without enforcement.** Stating "default deny" in the policy but having an "allow all" catch-all rule at the bottom of the ruleset is a contradiction. The final rule in every firewall ruleset must be an explicit deny. If the firewall platform has a default deny behavior, verify it is active — some platforms allow changing the default behavior.

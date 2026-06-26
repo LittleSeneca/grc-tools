@@ -138,6 +138,8 @@ Key rotation must be automated wherever feasible. Manual rotation processes are 
 - Key backups must be encrypted with a separate key and stored in a physically and logically separate environment from the primary keys.
 - Key recovery procedures must require approval from a minimum of two authorized individuals (split knowledge / dual control).
 
+Detailed key management implementation procedures are defined in [Encryption-Procedures.md](./Encryption-Procedures.md).
+
 ### Cloud Environment Cryptography
 
 When using cloud infrastructure and platform services:
@@ -149,23 +151,11 @@ When using cloud infrastructure and platform services:
 
 ### End-User Device Encryption
 
-#### Apple macOS Devices
+- **Apple macOS:** FileVault full-disk encryption must be enabled on all organization-managed macOS devices. Recovery keys must be escrowed to the MDM platform. Employees must not disable FileVault.
+- **Microsoft Windows:** BitLocker full-disk encryption must be enabled on all organization-managed Windows devices. Recovery keys must be escrowed to the MDM platform or Active Directory.
+- **Mobile Devices (iOS, Android):** Device encryption must not be disabled. Devices must be managed through an MDM platform that enforces encryption policies. Jailbroken or rooted devices are prohibited.
 
-- FileVault full-disk encryption must be enabled on all organization-managed macOS devices.
-- Recovery keys must be escrowed to the organization's mobile device management (MDM) platform.
-- Employees must not disable FileVault. Attempts to do so must generate an alert to the IT or Security team.
-
-#### Microsoft Windows Devices
-
-- BitLocker full-disk encryption must be enabled on all organization-managed Windows devices, encrypting the entire system drive.
-- Recovery keys must be escrowed to the organization's MDM platform or Active Directory.
-- The IT team must monitor encryption status through the MDM dashboard and remediate devices where encryption is not active.
-
-#### Mobile Devices (iOS, Android)
-
-- Device encryption is enabled by default on modern iOS and Android devices and must not be disabled.
-- Devices must be managed through an MDM platform that enforces encryption policies.
-- Jailbroken or rooted devices are prohibited from accessing organizational data.
+Detailed device encryption deployment and monitoring procedures are defined in [Encryption-Procedures.md](./Encryption-Procedures.md).
 
 ### Customer Transparency
 
@@ -210,9 +200,10 @@ Violations of this policy may result in disciplinary action, up to and including
 - Password Policy
 - System Access Control Policy
 - Asset Management Policy
+- [Encryption-Procedures.md](./Encryption-Procedures.md)
 
 ## Revision History
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. AES-256-GCM preferred; TLS 1.3 minimum; 12-month key rotation. |
+| 1.0 | ____ | ____ | Initial version. AES-256-GCM preferred; TLS 1.3 minimum; 12-month key rotation. Companion procedures extracted to Encryption-Procedures.md. |

@@ -18,6 +18,16 @@ The Security Incident Response Policy is the governance document that defines ho
 - Post-incident activities: debriefings, lessons learned, root cause analysis
 - Comprehensive Security Incident Report template (Appendix A)
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`IR-Policy-Template.md`** — The policy itself. Defines WHAT is required: Incident response governance with IRT structure, chain of command, incident classification criteria, reporting requirements, and the NIST-aligned response lifecycle. This is the governance document reviewed by leadership and auditors.
+- **`IR-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Incident detection and alerting configurations, IRT mobilization procedures, containment/eradication/recovery workflows, and post-incident lessons learned process. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. The 24-hour reporting clock starts at discovery, not confirmation.** The policy says "report within 24 hours of discovery." This means the moment anyone suspects something is wrong, the clock starts. Don't let employees wait until they're "sure" — report suspicion immediately. You can always downgrade later; you can't recover lost containment time.

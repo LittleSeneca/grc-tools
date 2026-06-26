@@ -16,6 +16,16 @@ The Asset Management Policy defines how the organization tracks, manages, harden
 - Return of assets upon termination
 - Media disposal and sanitization
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`AMP-Template.md`** — The policy itself. Defines WHAT is required: Asset lifecycle management from acquisition to disposal. Defines inventory standards, system hardening requirements, media handling, and asset retirement procedures. This is the governance document reviewed by leadership and auditors.
+- **`Asset-Management-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: System hardening steps, patching cadences, endpoint security configuration, physical media transfer, media disposal/sanitization, and return of assets workflows. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. Asset inventory is always incomplete.** Everyone starts with good intentions, but within six months the inventory is stale. This is the #1 finding in SOC 2 audits. Automate or die — manual inventory maintenance doesn't scale past 20 employees.

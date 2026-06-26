@@ -19,6 +19,15 @@ The Security Incident Response Process is the operational playbook that team mem
 - Disaster Recovery escalation criteria
 - Evidence collection and chain of custody requirements
 
+## Document Structure
+
+This folder contains two files:
+
+- **`IR-Process-Template.md`** — The process document. Describes HOW to operationalize the related policy.
+- **`README.md`** — This overview.
+
+When updating the governing policy, ensure implementation changes flow into this process document.
+
 ## Gotchas People Get Wrong
 
 **1. Writing the process for when everything is working.** During a real incident, your messaging platform might be down, your ticketing system might be compromised, and your monitoring tools might be the attack vector. The process must include offline fallbacks: phone numbers, printed contact lists, alternative communication channels. If the process assumes Slack/SMS/email will be available, it fails at the worst possible moment.

@@ -14,6 +14,16 @@ The Change Management Policy defines how the organization controls changes to pr
 - Separation of duties enforcement
 - Emergency change procedures with post-implementation ratification
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Change control framework with CAB governance, change classifications (Standard/Normal/Major/Emergency), approval requirements, and the full change lifecycle. This is the governance document reviewed by leadership and auditors.
+- **`Change-Management-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Software development change pipeline, infrastructure/IaC change workflows, emergency change process, and CAB meeting procedures. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Gotchas People Get Wrong
 
 **1. No separation of duties.** The most common audit finding in change management is that the same person develops, tests, approves, and deploys a change. This is especially common in startups. At minimum, a different person must approve the change. Ideally, a different person also deploys it. Developers must not have direct production access.

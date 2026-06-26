@@ -15,6 +15,16 @@ The Encryption Policy is the authoritative reference for which cryptographic alg
 - Cloud environment cryptographic requirements
 - End-user device encryption standards (macOS, Windows, mobile)
 
+## Document Structure
+
+This folder contains two documents that work together:
+
+- **`Template.md`** — The policy itself. Defines WHAT is required: Approved cryptographic algorithms, minimum key strengths, key management lifecycle, and encryption requirements for data at rest, data in transit, cloud environments, and end-user devices. This is the governance document reviewed by leadership and auditors.
+- **`Encryption-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: Key management implementation, device encryption deployment (FileVault, BitLocker), TLS configuration, and cryptographic validation procedures. This is what the implementation teams use.
+
+The policy sets the requirements; the procedure provides the step-by-step instructions for meeting them. Keep them aligned: when the policy changes, the procedures must be reviewed for consistency.
+
+
 ## Common Gotchas and Mistakes
 
 **1. Allowing AES-256-CBC as equal to GCM.** CBC mode is still widely deployed but is vulnerable to padding oracle attacks if not implemented with encrypt-then-MAC and constant-time comparison. GCM provides authenticated encryption by default. The policy should clearly deprecate CBC and require GCM for all new implementations.

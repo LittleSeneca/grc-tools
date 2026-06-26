@@ -15,6 +15,16 @@ The Database Password Management Process defines the operational procedures for 
 - Access control requirements for database credentials
 - Multi-server coordination during rotations
 
+## Document Structure
+
+This folder contains three files:
+
+- **`Template.md`** — The policy. Defines WHAT is required.
+- **`Procedure.md`** — Companion procedures. Describes HOW to implement the policy.
+- **`README.md`** — This overview.
+
+The policy and procedure are deliberately separate: the policy is for all employees and auditors; the procedure is for implementers. When updating this policy, ensure implementation changes flow into the procedure document.
+
 ## Gotchas People Get Wrong
 
 **1. Rotating a password and breaking everything.** The most common rotation failure: update the database password, forget to update the application that connects to it, application goes down. This is why automated rotation built into a secrets management platform is superior — it coordinates both sides of the rotation. If you must rotate manually, always update the application last, not the database last.
