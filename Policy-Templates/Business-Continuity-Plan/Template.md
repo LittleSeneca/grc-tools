@@ -107,7 +107,6 @@ The following response teams are established and trained to respond to continuit
 
 ## Recovery and Continuity
 
-- Detailed procedures for Work Site Recovery, Critical Service Recovery, Third-Party Dependency Failures, and other continuity scenarios are defined in [BCP-Procedures.md](./BCP-Procedures.md).
 - IT-specific technical recovery is executed per the Disaster Recovery Plan and Disaster Recovery Process.
 
 ## Testing and Maintenance
@@ -122,7 +121,7 @@ Each test must produce a test plan, a post-exercise report documenting outcomes 
 
 ### Plan Maintenance
 
-This plan must be reviewed and updated annually as part of the test cycle, within ____ days of any material organizational change, and within ____ days of any significant change to the IT architecture or vendor landscape. Implementation procedures for testing and maintenance are defined in [BCP-Procedures.md](./BCP-Procedures.md).
+This plan must be reviewed and updated annually as part of the test cycle, within ____ days of any material organizational change, and within ____ days of any significant change to the IT architecture or vendor landscape.
 
 ## Roles and Responsibilities
 
@@ -152,4 +151,3 @@ Violation of this policy, including failure to participate in required testing o
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to BCP-Procedures.md. |

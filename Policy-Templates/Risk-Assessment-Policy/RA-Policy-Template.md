@@ -213,10 +213,8 @@ Violation of this policy, including failure to complete assigned risk assessment
 - Business Continuity Plan
 - Disaster Recovery Plan
 - Vendor Management Policy
-- [Risk-Assessment-Procedures.md](./Risk-Assessment-Procedures.md)
 
 ## Revision History
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to Risk-Assessment-Procedures.md. |

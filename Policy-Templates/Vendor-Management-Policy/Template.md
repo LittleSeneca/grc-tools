@@ -118,10 +118,8 @@ Compliance is verified through quarterly vendor inventory reviews, audit of vend
 - System Access Control Policy
 - Incident Response Policy
 - Acceptable Use Policy
-- [Vendor-Management-Procedures.md](./Vendor-Management-Procedures.md)
 
 ## Revision History
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. Three-tier risk classification; SOC 2/ISO 27001 required for High-risk. Companion procedures extracted to Vendor-Management-Procedures.md. |

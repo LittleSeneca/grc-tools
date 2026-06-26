@@ -113,9 +113,6 @@ Each test must produce:
 All test documentation must be retained as audit evidence.
 
 ## Disaster Recovery Phases
-
-This plan is structured around three phases: Notification/Activation, Recovery, and Reconstitution. Detailed execution procedures for each phase are defined in [DR-Procedures.md](./DR-Procedures.md). Platform-specific failover procedures are defined in the Disaster Recovery Process.
-
 - **Phase 1 — Notification and Activation:** Addresses initial detection, damage assessment, and plan activation. The DR Plan is activated when critical systems will be unavailable beyond their RTO, a hosting facility is damaged, a cybersecurity incident has caused widespread compromise, or as declared by executive leadership.
 - **Phase 2 — Recovery:** Covers technical recovery of IT systems at a designated recovery site, following a defined sequence of communication, assessment, provisioning, restoration, validation, security verification, patching, activation, and traffic routing.
 - **Phase 3 — Reconstitution:** Covers the restoration of normal operations at the original or a new permanent site, executed with minimal or no additional service disruption.
@@ -152,4 +149,3 @@ Violation of this policy — including failure to participate in required testin
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to DR-Procedures.md. |

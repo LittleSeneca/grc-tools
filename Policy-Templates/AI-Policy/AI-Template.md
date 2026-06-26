@@ -44,16 +44,6 @@ This policy applies to all Personnel who use AI tools and services in the course
 - Ongoing security awareness training must include safe AI use practices.
 - Policy breaches will follow the disciplinary process outlined in the Acceptable Use Policy. Determination of "serious misconduct" must weigh factors such as intent and impact.
 
-## Implementation
-
-The requirements in this policy must be implemented according to the companion [AI Usage Policy — Implementation Procedures](AI-Procedures.md), which covers:
-
-- AI platform approval, security review, and onboarding
-- Data handling implementation (pre-submission PII scanning, monitoring, incident response)
-- AI tool offboarding and data deletion
-
-Personnel responsible for AI tool procurement, security review, or data handling must follow these procedures.
-
 ## Compliance and Enforcement
 
 Violation of this policy may result in disciplinary action as outlined in the Acceptable Use Policy and Information Security Policy.
@@ -65,10 +55,8 @@ Violation of this policy may result in disciplinary action as outlined in the Ac
 - Encryption Policy
 - Acceptable Use Policy
 - Vendor Management Policy
-- [AI Usage Policy — Implementation Procedures](AI-Procedures.md)
 
 ## Revision History
 
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
-| 1.0 | ____ | ____ | Initial version. Companion procedures extracted to AI-Procedures.md. |

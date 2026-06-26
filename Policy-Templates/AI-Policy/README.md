@@ -16,12 +16,13 @@ The AI Usage Policy defines what AI tools and platforms employees can use, what 
 
 ## Document Structure
 
-This folder contains two documents:
+This folder contains three files:
 
-- **`AI-Template.md`** — The policy itself. Defines WHAT is required: approved platforms, prohibited activities, data handling rules. This is what employees read and acknowledge.
-- **`AI-Procedures.md`** — Companion implementation procedures. Describes HOW to operationalize the policy: platform approval workflow, data handling implementation (pre-submission scanning, monitoring, incident response), and AI tool offboarding. This is what the security and IT teams use.
+- **`AI-Template.md`** — The policy. Defines WHAT is required: approved platforms, prohibited activities, and data handling rules. This is what all employees read and acknowledge. Contains no implementation guidance.
+- **`AI-Procedures.md`** — Companion procedures. Describes HOW to operationalize the policy: platform approval workflow, data handling implementation (pre-submission PII scanning, monitoring, incident response), and AI tool offboarding. This is what the security and IT teams use.
+- **`README.md`** — This overview (what you're reading now).
 
-Separating policy from procedures keeps the policy readable and auditor-friendly while giving implementers the detailed guidance they need.
+**How to use them together:** Start with the policy to understand requirements and scope. When you need to actually implement something — approving a new AI platform, setting up data handling controls, offboarding a tool — follow the companion procedures. The policy tells you what must be done; the procedures tell you how to do it.
 
 ## Gotchas People Get Wrong
 
