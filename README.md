@@ -25,19 +25,25 @@ These templates are framework-aligned (NIST 800-53, SOC 2, ISO 27001) and reflec
 
 ### Guides/
 
-Vendor-neutral tool evaluation guides covering six security tool categories. Each guide explains what the tool does, who needs it, options by budget tier, and how to evaluate vendors. Written for people who need to pick tools but are not sure where to start.
+Vendor-neutral tool evaluation guides and implementation roadmaps.
 
-### Getting Started
+- [Getting Started](Guides/Getting-Started.md) - Three-tier implementation roadmap (Startup, Growth, Enterprise) with policies, tools, costs, and timelines
+- [Framework Mapping](Guides/Framework-Mapping.md) - Every policy mapped to NIST 800-53, SOC 2 CC criteria, and ISO 27001 Annex A
+- [Log Management](Guides/Log-Management.md) - OpenObserve, Loki, Elastic, Splunk, Datadog
+- [SIEM and Security Monitoring](Guides/SIEM-Security-Monitoring.md) - Wazuh, Elastic Security, cloud-native, managed SOC
+- [Endpoint Protection](Guides/Endpoint-Protection.md) - OS-native, EDR tiers, MDM integration
+- [Password Managers](Guides/Password-Managers.md) - Bitwarden, 1Password, Keeper, browser-native
+- [GRC Automation](Guides/GRC-Automation.md) - Drata, Vanta, Secureframe, manual approach
+- [Vulnerability Scanning](Guides/Vulnerability-Scanning.md) - OpenVAS, Nessus, cloud-native, SAST/DAST
 
-[Getting-Started.md](Getting-Started.md) - Three-tier implementation roadmap (Startup, Growth, Enterprise) showing which policies to implement at each stage, what tools you need, approximate costs, and how long it takes.
+### Resources/
 
-### Supporting Documents
+Operational templates and checklists for running a security program day-to-day.
 
-- [Framework-Mapping.md](Framework-Mapping.md) - Every policy mapped to NIST 800-53, SOC 2 CC criteria, and ISO 27001 Annex A controls
-- [Vendor-Questionnaire.md](Vendor-Questionnaire.md) - Standardized security assessment questionnaire for evaluating third-party vendors
-- [Risk-Register-Template.md](Risk-Register-Template.md) - Likelihood × impact scoring template with example risks
-- [Annual-Review-Checklist.md](Annual-Review-Checklist.md) - Step-by-step checklist for the required annual policy review
-- [Evidence-Collection-Guide.md](Evidence-Collection-Guide.md) - What evidence auditors actually want for each control area, and how to collect it
+- [Vendor Security Questionnaire](Resources/Vendor-Questionnaire.md) - Standardized assessment for evaluating third-party vendors
+- [Risk Register Template](Resources/Risk-Register-Template.md) - Likelihood × impact scoring with example risks
+- [Annual Review Checklist](Resources/Annual-Review-Checklist.md) - Step-by-step checklist for annual policy review
+- [Evidence Collection Guide](Resources/Evidence-Collection-Guide.md) - What auditors want per control area, and how to collect it
 
 ## Policies Included
 

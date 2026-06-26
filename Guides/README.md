@@ -2,12 +2,14 @@
 
 Vendor-neutral comparisons of common security tools across six categories. Each guide covers what the tool category does, who needs it, price tiers, and when to pick one option over another.
 
-These guides assume no prior knowledge. If you are building a security program from scratch, start with the Getting Started guide in the repo root, then use these guides when you need to pick specific tools.
+These guides assume no prior knowledge. If you are building a security program from scratch, start with the [Getting Started](Getting-Started.md) guide, then use the tool evaluation guides when you need to pick specific tools.
 
 ## Guides
 
 | Guide | What it covers |
 |-------|---------------|
+| [Getting Started](Getting-Started.md) | Three-tier implementation roadmap with policies, tools, costs, and timelines |
+| [Framework Mapping](Framework-Mapping.md) | Every policy mapped to NIST 800-53, SOC 2, and ISO 27001 |
 | [Log Management](Log-Management.md) | OpenObserve, Grafana Loki, Elastic, Splunk, Datadog, cloud-native options |
 | [SIEM and Security Monitoring](SIEM-Security-Monitoring.md) | Wazuh, Elastic Security, Splunk ES, cloud-native SIEM, managed SOC |
 | [Endpoint Protection](Endpoint-Protection.md) | OS-native defenders, EDR tiers, MDM integration, mobile device coverage |

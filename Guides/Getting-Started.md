@@ -103,12 +103,12 @@ Security programs do not need to be built all at once. The tiers below reflect w
 ## How to use this repository
 
 1. Read this guide and determine your tier.
-2. Go to the [Policy-Templates](Policy-Templates/) directory.
+2. Go to the [Policy-Templates](../Policy-Templates/) directory.
 3. For each policy in your tier, read the README first. It explains what the policy does and common mistakes.
 4. Copy the policy template and replace all `____` placeholders with your organization's details.
 5. Copy the companion procedure document and adapt the implementation approaches to your environment.
 6. Have legal review final policy documents before publishing.
-7. See the [Guides](Guides/) directory when you need help selecting specific tools.
+7. See the [Guides](.) directory when you need help selecting specific tools.
 
 ## How long does this take
 
