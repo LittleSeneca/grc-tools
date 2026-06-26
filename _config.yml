@@ -1,22 +1,23 @@
 # GitHub Pages configuration for grc-tools
-# After pushing this file, enable Pages in repo Settings → Pages:
+# Enable Pages in repo Settings → Pages:
 #   Source: Deploy from a branch
 #   Branch: main, folder: / (root)
 
 title: grc-tools
 description: Open-source GRC policy templates, tools, and guidance
-remote_theme: pages-themes/cayman@v0.2.0
+
+# Use minimal theme as base; custom layout + CSS do the rest
+remote_theme: pages-themes/minimal@v0.2.0
 plugins:
   - jekyll-remote-theme
 
-# Make all markdown files render as pages
+# Allow all markdown files to be served as pages
 include:
   - "*.md"
   - "Guides/*.md"
   - "Resources/*.md"
   - "Policy-Templates/**/*.md"
 
-# Exclude files that shouldn't be served
 exclude:
   - .gitignore
   - LICENSE

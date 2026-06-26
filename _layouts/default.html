@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title | default: site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <a href="{{ '/' | relative_url }}" class="site-title">grc-tools</a>
+        <p class="site-desc">Open-source GRC policy templates and guidance</p>
+      </div>
+      <ul class="nav-list">
+        <li><a href="{{ '/Guides/Getting-Started' | relative_url }}">Getting Started</a></li>
+        <li><a href="{{ '/Policy-Templates/' | relative_url }}">Policy Templates</a></li>
+        <li class="nav-section">Guides</li>
+        <li><a href="{{ '/Guides/Framework-Mapping' | relative_url }}">Framework Mapping</a></li>
+        <li><a href="{{ '/Guides/Log-Management' | relative_url }}">Log Management</a></li>
+        <li><a href="{{ '/Guides/SIEM-Security-Monitoring' | relative_url }}">SIEM</a></li>
+        <li><a href="{{ '/Guides/Endpoint-Protection' | relative_url }}">Endpoint Protection</a></li>
+        <li><a href="{{ '/Guides/Password-Managers' | relative_url }}">Password Managers</a></li>
+        <li><a href="{{ '/Guides/GRC-Automation' | relative_url }}">GRC Automation</a></li>
+        <li><a href="{{ '/Guides/Vulnerability-Scanning' | relative_url }}">Vulnerability Scanning</a></li>
+        <li class="nav-section">Resources</li>
+        <li><a href="{{ '/Resources/Vendor-Questionnaire' | relative_url }}">Vendor Questionnaire</a></li>
+        <li><a href="{{ '/Resources/Risk-Register-Template' | relative_url }}">Risk Register</a></li>
+        <li><a href="{{ '/Resources/Annual-Review-Checklist' | relative_url }}">Annual Review Checklist</a></li>
+        <li><a href="{{ '/Resources/Evidence-Collection-Guide' | relative_url }}">Evidence Collection</a></li>
+      </ul>
+    </nav>
+    <main class="content">
+      {{ content }}
+    </main>
+  </div>
+</body>
+</html>
